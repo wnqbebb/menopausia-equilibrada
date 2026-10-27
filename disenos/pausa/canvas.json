@@ -1,0 +1,937 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-26T23:30:00Z"
+ },
+ "title": "PAUSA — El manual de la menopausia",
+ "launch": {
+  "view": "canvas",
+  "page": "libro"
+ },
+ "pages": [
+  {
+   "id": "libro",
+   "name": "Libro (60 págs.)"
+  },
+  {
+   "id": "plantillas",
+   "name": "Plantillas"
+  },
+  {
+   "id": "upsell1",
+   "name": "Upsell 1 · Noches frescas"
+  },
+  {
+   "id": "upsell2",
+   "name": "Upsell 2 · Intimidad sin dolor"
+  },
+  {
+   "id": "upsell3",
+   "name": "Upsell 3 · Menopausia en el trabajo"
+  },
+  {
+   "id": "upsell4",
+   "name": "Upsell 4 · Fuerte después de los 45"
+  },
+  {
+   "id": "tienda",
+   "name": "Tienda"
+  }
+ ],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "01 Portada",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B02-Legal.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "02 Créditos y aviso",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "P02-Carta.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "03 Carta y brief",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "P03-Sumario.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "04 Sumario",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B05-Herramientas.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "05 Herramientas e ideas",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "P04-Parte1.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "06 Parte I",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "P05-Cap01.dc.html": {
+   "x": 0,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "07 Cap 01",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B08-Hormonas.dc.html": {
+   "x": 874,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "08 Cap 01 Hormonas",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B09-Tipos.dc.html": {
+   "x": 1748,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "09 Cap 01 Tipos",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B10-Anticoncepcion.dc.html": {
+   "x": 2622,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "10 Cap 01 Anticoncepción",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "P06-Cap02a.dc.html": {
+   "x": 3496,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "11 Cap 02",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "P07-Cap02b.dc.html": {
+   "x": 4370,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "12 Cap 02 SGM",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B13-Sueno.dc.html": {
+   "x": 0,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "13 Cap 02 Sueño",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B14-Animo.dc.html": {
+   "x": 874,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "14 Cap 02 Ánimo",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B15-Cuerpo.dc.html": {
+   "x": 1748,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "15 Cap 02 Cuerpo",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B16-Cap03.dc.html": {
+   "x": 2622,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "16 Cap 03 Huesos",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B17-Corazon.dc.html": {
+   "x": 3496,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "17 Cap 03 Corazón",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B18-Mente.dc.html": {
+   "x": 4370,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "18 Cap 03 Mente",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B19-Chequeos.dc.html": {
+   "x": 0,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "19 Cap 03 Chequeos",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B20-Parte2.dc.html": {
+   "x": 874,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "20 Parte II",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B21-Cap04.dc.html": {
+   "x": 1748,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "21 Cap 04",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B22-Diario1.dc.html": {
+   "x": 2622,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "22 Diario 1-2",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B23-Diario2.dc.html": {
+   "x": 3496,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "23 Diario 3-4",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B24-LeerDiario.dc.html": {
+   "x": 4370,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "24 Leer el diario",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B25-Cap05.dc.html": {
+   "x": 0,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "25 Cap 05",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B26-Guion.dc.html": {
+   "x": 874,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "26 Guion",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B27-Durante.dc.html": {
+   "x": 1748,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "27 Durante",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B28-NoTeEscuchan.dc.html": {
+   "x": 2622,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "28 Si no te escuchan",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B29-Cap06.dc.html": {
+   "x": 3496,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "29 Cap 06",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B30-THM.dc.html": {
+   "x": 4370,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "30 Terapia hormonal",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B31-Riesgos.dc.html": {
+   "x": 0,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "31 Riesgos",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B32-Vaginal.dc.html": {
+   "x": 874,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "32 Tratamiento local",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B33-NoHormonal.dc.html": {
+   "x": 1748,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "33 No hormonal",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B34-Decision.dc.html": {
+   "x": 2622,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "34 Decisión",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B35-Cap07.dc.html": {
+   "x": 3496,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "35 Cap 07",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B36-Fuerza.dc.html": {
+   "x": 4370,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "36 Rutina de fuerza",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B37-Comida.dc.html": {
+   "x": 0,
+   "y": 7458,
+   "w": 794,
+   "h": 1123,
+   "title": "37 Comida",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B38-Dormir.dc.html": {
+   "x": 874,
+   "y": 7458,
+   "w": 794,
+   "h": 1123,
+   "title": "38 Plan de sueño",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B39-Semana.dc.html": {
+   "x": 1748,
+   "y": 7458,
+   "w": 794,
+   "h": 1123,
+   "title": "39 Semana",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B40-Parte3.dc.html": {
+   "x": 2622,
+   "y": 7458,
+   "w": 794,
+   "h": 1123,
+   "title": "40 Parte III",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B41-Cap08.dc.html": {
+   "x": 3496,
+   "y": 7458,
+   "w": 794,
+   "h": 1123,
+   "title": "41 Cap 08",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B42-Autocompasion.dc.html": {
+   "x": 4370,
+   "y": 7458,
+   "w": 794,
+   "h": 1123,
+   "title": "42 Autocompasión",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B43-Deseo.dc.html": {
+   "x": 0,
+   "y": 8701,
+   "w": 794,
+   "h": 1123,
+   "title": "43 Deseo",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B44-Alarma.dc.html": {
+   "x": 874,
+   "y": 8701,
+   "w": 794,
+   "h": 1123,
+   "title": "44 Señales de alarma",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B45-Cap09.dc.html": {
+   "x": 1748,
+   "y": 8701,
+   "w": 794,
+   "h": 1123,
+   "title": "45 Cap 09",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B46-Pareja.dc.html": {
+   "x": 2622,
+   "y": 8701,
+   "w": 794,
+   "h": 1123,
+   "title": "46 Pareja",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B47-Familia.dc.html": {
+   "x": 3496,
+   "y": 8701,
+   "w": 794,
+   "h": 1123,
+   "title": "47 Familia",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B48-Trabajo.dc.html": {
+   "x": 4370,
+   "y": 8701,
+   "w": 794,
+   "h": 1123,
+   "title": "48 Trabajo",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B49-Jefe.dc.html": {
+   "x": 0,
+   "y": 9944,
+   "w": 794,
+   "h": 1123,
+   "title": "49 Jefe",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B50-Empresas.dc.html": {
+   "x": 874,
+   "y": 9944,
+   "w": 794,
+   "h": 1123,
+   "title": "50 Empresas",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B51-Cap10.dc.html": {
+   "x": 1748,
+   "y": 9944,
+   "w": 794,
+   "h": 1123,
+   "title": "51 Cap 10",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B52-Mitos1.dc.html": {
+   "x": 2622,
+   "y": 9944,
+   "w": 794,
+   "h": 1123,
+   "title": "52 Mitos 1",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B53-Mitos2.dc.html": {
+   "x": 3496,
+   "y": 9944,
+   "w": 794,
+   "h": 1123,
+   "title": "53 Mitos 2",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B54-FAQ.dc.html": {
+   "x": 4370,
+   "y": 9944,
+   "w": 794,
+   "h": 1123,
+   "title": "54 Preguntas",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B55-EmpiezaAqui.dc.html": {
+   "x": 0,
+   "y": 11187,
+   "w": 794,
+   "h": 1123,
+   "title": "55 Empieza aquí",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B56-Plan30.dc.html": {
+   "x": 874,
+   "y": 11187,
+   "w": 794,
+   "h": 1123,
+   "title": "56 Plan 30 días",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B57-Glosario.dc.html": {
+   "x": 1748,
+   "y": 11187,
+   "w": 794,
+   "h": 1123,
+   "title": "57 Glosario",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B58-Fuentes1.dc.html": {
+   "x": 2622,
+   "y": 11187,
+   "w": 794,
+   "h": 1123,
+   "title": "58 Fuentes 1",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B59-Fuentes2.dc.html": {
+   "x": 3496,
+   "y": 11187,
+   "w": 794,
+   "h": 1123,
+   "title": "59 Fuentes 2",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "B60-Contraportada.dc.html": {
+   "x": 4370,
+   "y": 11187,
+   "w": 794,
+   "h": 1123,
+   "title": "60 Contraportada",
+   "page": "libro",
+   "paper": "a4"
+  },
+  "PL1-HojaConsulta.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Plantilla 1 · Hoja de consulta",
+   "page": "plantillas",
+   "paper": "a4"
+  },
+  "PL2-Rastreador30.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Plantilla 2 · Rastreador 30 días",
+   "page": "plantillas",
+   "paper": "a4"
+  },
+  "PL3-Conversacion.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Plantilla 3 · Plan de conversación",
+   "page": "plantillas",
+   "paper": "a4"
+  },
+  "U1-01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 1 · pág. 1",
+   "page": "upsell1",
+   "paper": "a4"
+  },
+  "U1-02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 1 · pág. 2",
+   "page": "upsell1",
+   "paper": "a4"
+  },
+  "U1-03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 1 · pág. 3",
+   "page": "upsell1",
+   "paper": "a4"
+  },
+  "U1-04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 1 · pág. 4",
+   "page": "upsell1",
+   "paper": "a4"
+  },
+  "U1-05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 1 · pág. 5",
+   "page": "upsell1",
+   "paper": "a4"
+  },
+  "U1-06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 1 · pág. 6",
+   "page": "upsell1",
+   "paper": "a4"
+  },
+  "U2-01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 2 · pág. 1",
+   "page": "upsell2",
+   "paper": "a4"
+  },
+  "U2-02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 2 · pág. 2",
+   "page": "upsell2",
+   "paper": "a4"
+  },
+  "U2-03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 2 · pág. 3",
+   "page": "upsell2",
+   "paper": "a4"
+  },
+  "U2-04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 2 · pág. 4",
+   "page": "upsell2",
+   "paper": "a4"
+  },
+  "U2-05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 2 · pág. 5",
+   "page": "upsell2",
+   "paper": "a4"
+  },
+  "U2-06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 2 · pág. 6",
+   "page": "upsell2",
+   "paper": "a4"
+  },
+  "U3-01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 3 · pág. 1",
+   "page": "upsell3",
+   "paper": "a4"
+  },
+  "U3-02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 3 · pág. 2",
+   "page": "upsell3",
+   "paper": "a4"
+  },
+  "U3-03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 3 · pág. 3",
+   "page": "upsell3",
+   "paper": "a4"
+  },
+  "U3-04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 3 · pág. 4",
+   "page": "upsell3",
+   "paper": "a4"
+  },
+  "U3-05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 3 · pág. 5",
+   "page": "upsell3",
+   "paper": "a4"
+  },
+  "U3-06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 3 · pág. 6",
+   "page": "upsell3",
+   "paper": "a4"
+  },
+  "U4-01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 4 · pág. 1",
+   "page": "upsell4",
+   "paper": "a4"
+  },
+  "U4-02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 4 · pág. 2",
+   "page": "upsell4",
+   "paper": "a4"
+  },
+  "U4-03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 4 · pág. 3",
+   "page": "upsell4",
+   "paper": "a4"
+  },
+  "U4-04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 4 · pág. 4",
+   "page": "upsell4",
+   "paper": "a4"
+  },
+  "U4-05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 4 · pág. 5",
+   "page": "upsell4",
+   "paper": "a4"
+  },
+  "U4-06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Upsell 4 · pág. 6",
+   "page": "upsell4",
+   "paper": "a4"
+  },
+  "T01-PortadaTienda.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "Portada para la tienda",
+   "page": "tienda"
+  },
+  "T02-PaginaTienda.dc.html": {
+   "x": 1160,
+   "y": 0,
+   "w": 1280,
+   "h": 7300,
+   "title": "Página de venta",
+   "page": "tienda",
+   "expand": "fill"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "B02-Legal.dc.html",
+  "P02-Carta.dc.html",
+  "P03-Sumario.dc.html",
+  "B05-Herramientas.dc.html",
+  "P04-Parte1.dc.html",
+  "P05-Cap01.dc.html",
+  "B08-Hormonas.dc.html",
+  "B09-Tipos.dc.html",
+  "B10-Anticoncepcion.dc.html",
+  "P06-Cap02a.dc.html",
+  "P07-Cap02b.dc.html",
+  "B13-Sueno.dc.html",
+  "B14-Animo.dc.html",
+  "B15-Cuerpo.dc.html",
+  "B16-Cap03.dc.html",
+  "B17-Corazon.dc.html",
+  "B18-Mente.dc.html",
+  "B19-Chequeos.dc.html",
+  "B20-Parte2.dc.html",
+  "B21-Cap04.dc.html",
+  "B22-Diario1.dc.html",
+  "B23-Diario2.dc.html",
+  "B24-LeerDiario.dc.html",
+  "B25-Cap05.dc.html",
+  "B26-Guion.dc.html",
+  "B27-Durante.dc.html",
+  "B28-NoTeEscuchan.dc.html",
+  "B29-Cap06.dc.html",
+  "B30-THM.dc.html",
+  "B31-Riesgos.dc.html",
+  "B32-Vaginal.dc.html",
+  "B33-NoHormonal.dc.html",
+  "B34-Decision.dc.html",
+  "B35-Cap07.dc.html",
+  "B36-Fuerza.dc.html",
+  "B37-Comida.dc.html",
+  "B38-Dormir.dc.html",
+  "B39-Semana.dc.html",
+  "B40-Parte3.dc.html",
+  "B41-Cap08.dc.html",
+  "B42-Autocompasion.dc.html",
+  "B43-Deseo.dc.html",
+  "B44-Alarma.dc.html",
+  "B45-Cap09.dc.html",
+  "B46-Pareja.dc.html",
+  "B47-Familia.dc.html",
+  "B48-Trabajo.dc.html",
+  "B49-Jefe.dc.html",
+  "B50-Empresas.dc.html",
+  "B51-Cap10.dc.html",
+  "B52-Mitos1.dc.html",
+  "B53-Mitos2.dc.html",
+  "B54-FAQ.dc.html",
+  "B55-EmpiezaAqui.dc.html",
+  "B56-Plan30.dc.html",
+  "B57-Glosario.dc.html",
+  "B58-Fuentes1.dc.html",
+  "B59-Fuentes2.dc.html",
+  "B60-Contraportada.dc.html",
+  "PL1-HojaConsulta.dc.html",
+  "PL2-Rastreador30.dc.html",
+  "PL3-Conversacion.dc.html",
+  "U1-01.dc.html",
+  "U1-02.dc.html",
+  "U1-03.dc.html",
+  "U1-04.dc.html",
+  "U1-05.dc.html",
+  "U1-06.dc.html",
+  "U2-01.dc.html",
+  "U2-02.dc.html",
+  "U2-03.dc.html",
+  "U2-04.dc.html",
+  "U2-05.dc.html",
+  "U2-06.dc.html",
+  "U3-01.dc.html",
+  "U3-02.dc.html",
+  "U3-03.dc.html",
+  "U3-04.dc.html",
+  "U3-05.dc.html",
+  "U3-06.dc.html",
+  "U4-01.dc.html",
+  "U4-02.dc.html",
+  "U4-03.dc.html",
+  "U4-04.dc.html",
+  "U4-05.dc.html",
+  "U4-06.dc.html",
+  "T01-PortadaTienda.dc.html",
+  "T02-PaginaTienda.dc.html"
+ ],
+ "notes": {},
+ "designSystems": []
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Plan 30 días — Checklist diario</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.tb{display:grid;grid-template-columns:190px repeat(7, minmax(0, 1fr));align-items:center}
+.th{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-align:center;color:#9B1B4F;padding:8px 0}
+.tr{border-top:1px dashed #F2B8CD;min-height:62px}
+.hb{display:flex;gap:10px;align-items:center;padding:8px 0}
+.hb b{font-size:14px;display:block;line-height:1.2}
+.hb small{font-size:11.5px;color:#6B4E5C;display:block;line-height:1.3}
+.cc{display:flex;justify-content:center;align-items:center}
+.cb{width:24px;height:24px;border:2px solid #9B1B4F;border-radius:6px;background:#fff;box-sizing:border-box}
+.en{width:52px;height:30px;border:1.5px solid #C98AA5;border-radius:8px;background:#fff;box-sizing:border-box}
+.ico{width:34px;height:34px;border-radius:50%;background:#FCE4EC;display:flex;align-items:center;justify-content:center;flex:none}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Plan 30 días · Energía</span><span class="px" style="font-size: 12px">Imprimible · editable</span></div>
+<div style="position: absolute; top: 60px; left: 44px; right: 44px; display: flex; justify-content: space-between; align-items: flex-end">
+<div>
+<span class="tag">Herramienta</span>
+<div class="ser" style="font-size: 44px; font-weight: 900; line-height: 1.04; margin-top: 12px">Checklist <span class="hl">diario</span></div>
+</div>
+<div style="width: 230px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #9B1B4F">Semana del</div>
+<div class="fld" data-fill="text" data-name="e10_semana"></div>
+</div>
+</div>
+<p class="lead" style="position: absolute; top: 196px; left: 44px; right: 44px; font-size: 15px">Una página por semana. Marca cada hábito que cumpliste (aunque sea el mínimo) y puntúa tu energía de 0 a 3. Son los mismos 6 hábitos de la sección Plan 30 de la app.</p>
+<div class="note lined" style="position: absolute; top: 270px; left: 44px; right: 44px; padding: 10px 18px 14px">
+<div class="tb"><div></div><div class="th">Lun</div><div class="th">Mar</div><div class="th">Mié</div><div class="th">Jue</div><div class="th">Vie</div><div class="th">Sáb</div><div class="th">Dom</div></div>
+<div class="tb tr"><div class="hb"><span class="ico"><svg width="18" height="20" viewBox="0 0 34 40" fill="none" stroke="#9B1B4F" stroke-width="2.4" aria-hidden="true"><path d="M17 3c6 9 12 14 12 22a12 12 0 0 1-24 0c0-8 6-13 12-22z"/></svg></span><span><b>Hidratación</b><small>6–8 vasos</small></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_lun_agua"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mar_agua"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mie_agua"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_jue_agua"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_vie_agua"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_sab_agua"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_dom_agua"></span></div></div>
+<div class="tb tr"><div class="hb"><span class="ico"><svg width="18" height="20" viewBox="0 0 34 34" fill="none" stroke="#9B1B4F" stroke-width="2.4" aria-hidden="true"><circle cx="19" cy="6" r="3"/><path d="M12 30l4-9 4 4v5M16 21l2-8 6 4M18 13l-6 3-2 5"/></svg></span><span><b>Movimiento</b><small>paseo o actividad</small></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_lun_mov"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mar_mov"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mie_mov"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_jue_mov"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_vie_mov"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_sab_mov"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_dom_mov"></span></div></div>
+<div class="tb tr"><div class="hb"><span class="ico"><svg width="20" height="14" viewBox="0 0 40 20" fill="none" stroke="#9B1B4F" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M4 4v12M9 2v16M31 2v16M36 4v12M9 10h22"/></svg></span><span><b>Fuerza</b><small>2 días por semana</small></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_lun_fuerza"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mar_fuerza"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mie_fuerza"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_jue_fuerza"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_vie_fuerza"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_sab_fuerza"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_dom_fuerza"></span></div></div>
+<div class="tb tr"><div class="hb"><span class="ico"><svg width="20" height="20" viewBox="0 0 34 34" fill="none" stroke="#9B1B4F" stroke-width="2.4" aria-hidden="true"><circle cx="17" cy="17" r="6"/><path d="M17 3v4M17 27v4M3 17h4M27 17h4"/></svg></span><span><b>Luz natural</b><small>por la mañana</small></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_lun_luz"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mar_luz"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mie_luz"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_jue_luz"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_vie_luz"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_sab_luz"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_dom_luz"></span></div></div>
+<div class="tb tr"><div class="hb"><span class="ico"><svg width="20" height="20" viewBox="0 0 34 34" fill="none" stroke="#9B1B4F" stroke-width="2.4" aria-hidden="true"><circle cx="17" cy="19" r="11"/><path d="M8 19h18"/></svg></span><span><b>Proteína</b><small>en cada comida</small></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_lun_prot"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mar_prot"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mie_prot"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_jue_prot"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_vie_prot"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_sab_prot"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_dom_prot"></span></div></div>
+<div class="tb tr"><div class="hb"><span class="ico"><svg width="20" height="20" viewBox="0 0 34 34" fill="none" stroke="#9B1B4F" stroke-width="2.4" aria-hidden="true"><path d="M24 6a11 11 0 1 0 4 16A9 9 0 0 1 24 6z"/></svg></span><span><b>Rutina de sueño</b><small>misma hora</small></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_lun_sueno"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mar_sueno"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_mie_sueno"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_jue_sueno"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_vie_sueno"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_sab_sueno"></span></div><div class="cc"><span class="cb" data-fill="check" data-name="e10_dom_sueno"></span></div></div>
+<div class="tb tr" style="background: #FCE4EC; border-radius: 10px; border-top: 0; margin-top: 6px"><div class="hb" style="padding-left: 8px"><span class="ico" style="background: #fff"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 0C17 10 22 15 32 16 22 17 17 22 16 32 15 22 10 17 0 16 10 15 15 10 16 0z" fill="#E0337A"/></svg></span><span><b>Mi energía</b><small>0 nada · 3 mucha</small></span></div><div class="cc"><span class="en" data-fill="text" data-name="e10_lun_energia"></span></div><div class="cc"><span class="en" data-fill="text" data-name="e10_mar_energia"></span></div><div class="cc"><span class="en" data-fill="text" data-name="e10_mie_energia"></span></div><div class="cc"><span class="en" data-fill="text" data-name="e10_jue_energia"></span></div><div class="cc"><span class="en" data-fill="text" data-name="e10_vie_energia"></span></div><div class="cc"><span class="en" data-fill="text" data-name="e10_sab_energia"></span></div><div class="cc"><span class="en" data-fill="text" data-name="e10_dom_energia"></span></div></div>
+</div>
+<div style="position: absolute; top: 800px; left: 44px; width: 430px">
+<div class="ser" style="font-size: 22px; font-weight: 800">Notas de la semana</div>
+<div class="lined" data-fill="multi" data-name="e10_notas" style="height: 160px; margin-top: 8px; border-radius: 10px; border: 1.5px solid #F2B8CD"></div>
+</div>
+<div style="position: absolute; top: 826px; left: 500px; right: 44px; background: #1E1419; color: #FFFFFF; padding: 16px 18px; transform: rotate(1.5deg)">
+<div class="px" style="font-size: 13px; color: #F7A8C7">Total de la semana</div>
+<div style="display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 13.5px">Casillas marcadas <span style="width: 70px; height: 34px; background: #fff; border-radius: 8px; display: inline-block" data-fill="text" data-name="e10_total"></span> / 42</div>
+<div style="font-size: 13px; line-height: 1.5; margin-top: 10px; color: #F2C9D7">No buscamos 42. Buscamos que cada semana te cueste un poquito menos.</div>
+</div>
+<div class="src" style="position: absolute; left: 44px; right: 44px; top: 1004px">Imprime una copia por semana o rellena el PDF en tu computador o celular. ¿Prefieres la app? <a href="https://menopausia-equilibrada.vercel.app/#plan30">menopausia-equilibrada.vercel.app/#plan30</a></div>
+<div class="ft"><span>Plan 30 días · Checklist diario</span><span>10</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

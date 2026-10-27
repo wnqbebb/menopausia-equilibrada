@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Chequeos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.tr{display:grid;grid-template-columns:150px 1fr 120px 110px;column-gap:10px;align-items:center;padding:8px 10px;border-bottom:1px solid #F2B8CD;font-size:13px;line-height:1.4}
+.th{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#FFD3E3;background:#1E1419;border:0}
+.fl{height:26px;border-bottom:1.5px solid #C98AA5;background:#FFFFFF}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Menopausia Equilibrada</span><span class="px" style="font-size: 12px">05 · Hormonas</span></div>
+<div class="scr" style="position: absolute; top: 40px; right: 44px; font-size: 84px; line-height: 1; color: #F7A8C7; transform: rotate(-6deg)">mis números</div>
+<div style="position: absolute; top: 70px; left: 44px; width: 470px">
+<span class="tag">Herramienta · rellénala</span>
+<div class="ser" style="font-size: 44px; font-weight: 900; line-height: 1.04; margin-top: 14px">Los chequeos que <span class="hl">mereces</span></div>
+<p class="lead" style="margin-top: 12px">Tras la menopausia, el corazón y los huesos piden más atención aunque no duelan. Usa esta tabla para preguntar y anotar tus resultados.</p>
+</div>
+<div style="position: absolute; top: 330px; left: 44px; right: 44px; background: #FFFFFF; box-shadow: 0 10px 26px rgba(155,27,79,.12)">
+<div class="tr th"><span>Chequeo</span><span>Qué se recomienda en general</span><span>Mi resultado</span><span>Fecha</span></div>
+<div class="tr"><b>Presión arterial</b><span>Medirla a todas las personas adultas.</span><div class="fl" data-fill="text" data-name="g26_pa_res"></div><div class="fl" data-fill="text" data-name="g26_pa_fecha"></div></div>
+<div class="tr"><b>Colesterol</b><span>El LDL y la ApoB suben con la menopausia: pregunta cada cuánto medirlo.</span><div class="fl" data-fill="text" data-name="g26_col_res"></div><div class="fl" data-fill="text" data-name="g26_col_fecha"></div></div>
+<div class="tr"><b>Glucosa</b><span>Entre 35 y 70 años con sobrepeso u obesidad.</span><div class="fl" data-fill="text" data-name="g26_glu_res"></div><div class="fl" data-fill="text" data-name="g26_glu_fecha"></div></div>
+<div class="tr"><b>Densitometría (hueso)</b><span>Desde los 65, o antes si hay más riesgo de fractura.</span><div class="fl" data-fill="text" data-name="g26_dxa_res"></div><div class="fl" data-fill="text" data-name="g26_dxa_fecha"></div></div>
+<div class="tr"><b>Mamografía</b><span>Cada 2 años entre los 40 y los 74.</span><div class="fl" data-fill="text" data-name="g26_mam_res"></div><div class="fl" data-fill="text" data-name="g26_mam_fecha"></div></div>
+<div class="tr"><b>Cuello uterino</b><span>Entre 21 y 65 años, cada 3 o 5 años según la prueba.</span><div class="fl" data-fill="text" data-name="g26_cu_res"></div><div class="fl" data-fill="text" data-name="g26_cu_fecha"></div></div>
+<div class="tr"><b>Peso y cintura</b><span>Útiles para ver cambios de grasa abdominal.</span><div class="fl" data-fill="text" data-name="g26_peso_res"></div><div class="fl" data-fill="text" data-name="g26_peso_fecha"></div></div>
+<div class="tr" style="border-bottom: 0"><b>Ánimo</b><span>Si llevas semanas triste o ansiosa, dilo en voz alta.</span><div class="fl" data-fill="text" data-name="g26_animo_res"></div><div class="fl" data-fill="text" data-name="g26_animo_fecha"></div></div>
+</div>
+<div class="src" style="position: absolute; top: 856px; left: 44px; right: 44px">Recomendaciones del U.S. Preventive Services Task Force: presión arterial (2021), prediabetes y diabetes (2021), osteoporosis (2025), cáncer de mama (2024) y cáncer de cuello uterino (2018); colesterol: American Heart Association, declaración científica 2020. Son recomendaciones de EE. UU.: los programas cambian según el país y tu historial.</div>
+<div style="position: absolute; top: 930px; left: 44px; width: 430px; background: #1E1419; color: #FFFFFF; padding: 16px 20px; transform: rotate(-1deg)">
+<div class="px" style="font-size: 12px; color: #F7A8C7">Truco</div>
+<div style="font-size: 13.5px; line-height: 1.55; margin-top: 6px">Haz una foto de esta página llena y llévala a cada consulta. Así tu médica ve tu historia de un vistazo.</div>
+</div>
+<div style="position: absolute; top: 910px; left: 506px; right: 44px; display: flex; flex-direction: column; align-items: center; gap: 6px">
+<svg width="120" height="110" viewBox="0 0 120 110" aria-hidden="true"><path d="M60 100S12 72 12 38C12 22 24 10 39 10c9 0 16 4 21 11 5-7 12-11 21-11 15 0 27 12 27 28 0 34-48 62-48 62z" fill="#F7A8C7" stroke="#9B1B4F" stroke-width="3"/><path d="M24 52h18l6-12 10 26 8-16h30" stroke="#9B1B4F" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="scr" style="font-size: 34px; color: #E0337A; line-height: 1">cuídate a tiempo</div>
+</div>
+<div class="ft"><span>05 · Salud hormonal</span><span>26</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

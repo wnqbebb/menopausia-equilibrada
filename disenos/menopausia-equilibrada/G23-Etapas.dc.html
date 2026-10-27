@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Etapas y cuándo consultar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.st{padding:12px 12px 10px;font-size:13px;line-height:1.45}
+.st b{display:block;font-size:14px;margin-bottom:4px}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Menopausia Equilibrada</span><span class="px" style="font-size: 12px">05 · Hormonas</span></div>
+<div class="scr" style="position: absolute; top: 30px; right: 44px; font-size: 110px; line-height: 1; color: #F7A8C7; transform: rotate(-6deg)">etapas</div>
+<div style="position: absolute; top: 70px; left: 44px; width: 540px">
+<span class="tag">¿En qué etapa estoy?</span>
+<div class="ser" style="font-size: 46px; font-weight: 900; line-height: 1.04; margin-top: 14px">Un camino en <span class="hl">tres</span> etapas</div>
+<p class="lead" style="margin-top: 12px">La menopausia es un solo día: el que cumple 12 meses sin regla. Lo que más se siente es el camino hacia él.</p>
+</div>
+<div style="position: absolute; top: 300px; left: 44px; right: 44px">
+<div style="display: grid; grid-template-columns: 1fr 1.25fr .55fr 1.25fr; column-gap: 8px">
+<div class="st" style="background: #FFFFFF; border-top: 6px solid #F2B8CD"><b>Etapa fértil</b>Ciclos regulares.</div>
+<div class="st" style="background: #FCE4EC; border-top: 6px solid #F48FB1"><b>Perimenopausia</b>Temprana: ciclos que varían 7 días o más. Tardía: 60 días o más sin regla; suele durar de 1 a 3 años.</div>
+<div class="st" style="background: #1E1419; color: #FFFFFF; border-top: 6px solid #E0337A; text-align: center"><b style="color: #F7A8C7">Última regla</b>Se confirma a los 12 meses.</div>
+<div class="st" style="background: #F7A8C7; border-top: 6px solid #9B1B4F"><b>Posmenopausia</b>Desde la última regla y el resto de la vida. Algunos síntomas siguen un tiempo.</div>
+</div>
+<div class="src" style="margin-top: 6px">Consenso STRAW+10 (Harlow et al., Menopause, 2012), tabla del Manual MSD.</div>
+</div>
+<div style="position: absolute; top: 470px; left: 44px; width: 400px">
+<div class="ser" style="font-size: 26px; font-weight: 800">Consulta si…</div>
+<div class="ck"><span class="bx" data-fill="check" data-name="g23_menos45"></span><span><b>Tienes menos de 45 años</b> y notas estos cambios. Antes de los 40 se habla de menopausia prematura; entre los 40 y 44, de temprana. Juntas afectan a cerca del 10% de las mujeres.</span></div>
+<div class="ck"><span class="bx" data-fill="check" data-name="g23_sangrado"></span><span><b>Sangras después de 12 meses sin regla</b>, aunque sea poco o una sola vez. Casi siempre es benigno, pero siempre hay que revisarlo.</span></div>
+<div class="ck"><span class="bx" data-fill="check" data-name="g23_abundante"></span><span><b>Tus reglas son muy abundantes</b> o sangras entre reglas o después de las relaciones.</span></div>
+<div class="ck" style="border-bottom: 0"><span class="bx" data-fill="check" data-name="g23_vida"></span><span><b>Los síntomas te quitan calidad de vida</b>: sueño, trabajo, pareja, ánimo.</span></div>
+<div class="src" style="margin-top: 4px">The Lancet, serie Menopausia 2024 (King's College London, 6 mar. 2024). HSE (Irlanda), «Postmenopausal bleeding». nidirect, «Bleeding between periods», 2024.</div>
+</div>
+<div style="position: absolute; top: 470px; left: 472px; right: 44px; display: flex; flex-direction: column; gap: 16px">
+<div style="background: #1E1419; color: #FFFFFF; padding: 16px 18px; transform: rotate(1.5deg)">
+<div class="px" style="font-size: 12px; color: #F7A8C7">Ojo: anticoncepción</div>
+<div style="font-size: 13.5px; line-height: 1.55; margin-top: 8px">En la perimenopausia aún puedes quedar embarazada. Mantén anticoncepción <b>2 años</b> después de la última regla si tienes entre 40 y 50, y <b>1 año</b> si tienes más de 50.</div>
+<div style="font-size: 11px; color: #F2C9D7; margin-top: 8px">EMAS, Menopause Essentials 2026: Contraception.</div>
+</div>
+<div class="note lined" style="transform: rotate(-1.5deg)">
+<div class="px" style="font-size: 12px; color: #E0337A">Anota aquí</div>
+<div style="font-size: 13px; margin-top: 8px">Mi última regla fue el:</div>
+<div class="fld" data-fill="text" data-name="g23_ultima_regla"></div>
+<div style="font-size: 13px; margin-top: 8px">Mi etapa (según la tabla):</div>
+<div class="fld" data-fill="text" data-name="g23_etapa"></div>
+</div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 930px; background: #FCE4EC; padding: 14px 18px; display: flex; gap: 14px; align-items: center">
+<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="8" y="4" width="24" height="32" rx="4" fill="none" stroke="#9B1B4F" stroke-width="2"/><path d="M14 12h12M14 18h12M14 24h7" stroke="#9B1B4F" stroke-width="2" stroke-linecap="round"/></svg>
+<div style="font-size: 13.5px; line-height: 1.55">Registra tus reglas y sangrados en la app y te mostrará en qué etapa podrías estar (es orientativo, no un diagnóstico): <a href="https://menopausia-equilibrada.vercel.app/#ciclo">menopausia-equilibrada.vercel.app/#ciclo</a></div>
+</div>
+<div class="ft"><span>05 · Salud hormonal</span><span>23</span></div>
+<img class="stk" src="../../imagenes-soul/editadas/cut28b.png" alt="Mujer de unos 56 años con una agenda rosa y un bolígrafo" style="position: absolute; right: 50px; top: 118px; height: 165px; width: auto; transform: rotate(3deg)">
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

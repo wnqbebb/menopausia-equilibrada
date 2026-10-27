@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Plantilla 02 · Rastreador de 30 días</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.gr{display:grid;grid-template-columns:150px repeat(15,minmax(0,1fr));column-gap:3px;align-items:center;padding:2px 0}
+.gr.alt{background:#FCE4EC}
+.gh{background:#1E1419;color:#FFD3E3;border-radius:6px 6px 0 0;padding:4px 0}
+.gh .rl{color:#FFD3E3 !important;padding-left:8px}
+.dh{text-align:center;font-size:12px;font-weight:800}
+.rl{font-size:12px;font-weight:600;line-height:1.2;padding-left:6px}
+.u{font-size:10.5px;font-weight:700;color:#E0337A}
+.c{height:24px;background:#FFFFFF;border:1px solid #F2B8CD;border-radius:4px}
+.cc{height:24px;display:flex;align-items:center;justify-content:center}
+.cc .bx{margin:0}
+.blk{background:#FFFFFF;border-radius:10px;padding:0 0 4px;box-shadow:0 6px 18px rgba(155,27,79,.08);overflow:hidden}
+.lb{font-size:12px;font-weight:600;color:#6B4E5C}
+.fl{border-bottom:1.5px solid #C98AA5;height:24px}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>PAUSA · Plantilla 02</span><span class="px" style="font-size: 12px">editable</span></div>
+<div style="position: absolute; top: 48px; left: 44px; right: 44px; display: flex; justify-content: space-between; align-items: flex-end">
+<div>
+<div class="ser" style="font-size: 44px; font-weight: 900; line-height: 1">30 días, <span class="hl">a la vista</span></div>
+<div style="font-size: 13.5px; line-height: 1.55; margin-top: 6px">Un minuto cada noche. Al final del mes verás patrones que la memoria no guarda.</div>
+</div>
+<div style="width: 170px"><div class="lb">Mes</div><div class="fl" data-fill="text" data-name="pl2_mes"></div></div>
+</div>
+<div class="scr" style="position: absolute; top: 20px; left: 470px; font-size: 64px; color: #F7A8C7; transform: rotate(-8deg)">mi mes</div>
+<div style="position: absolute; top: 152px; left: 44px; right: 44px; font-size: 12px; color: #6B4E5C">Cómo anotar: <b style="color: #2B1B24">número</b> (sofocos, despertares, horas) · <b style="color: #2B1B24">1–3</b> intensidad (leve, media, fuerte) · <b style="color: #2B1B24">casilla</b> si ocurrió.</div>
+<div class="blk" style="position: absolute; top: 178px; left: 44px; right: 44px">
+<div class="gr gh"><div class="rl" style="font-weight:800">Días 1–15</div>
+<div class="dh">1</div>
+<div class="dh">2</div>
+<div class="dh">3</div>
+<div class="dh">4</div>
+<div class="dh">5</div>
+<div class="dh">6</div>
+<div class="dh">7</div>
+<div class="dh">8</div>
+<div class="dh">9</div>
+<div class="dh">10</div>
+<div class="dh">11</div>
+<div class="dh">12</div>
+<div class="dh">13</div>
+<div class="dh">14</div>
+<div class="dh">15</div>
+</div>
+<div class="gr"><div class="rl">Sofocos de día <span class="u">nº</span></div>
+<div class="c" data-fill="text" data-name="pl2_cal_1"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_2"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_3"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_4"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_5"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_6"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_7"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_8"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_9"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_10"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_11"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_12"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_13"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_14"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_15"></div>
+</div>
+<div class="gr alt"><div class="rl">Sudores nocturnos <span class="u">nº</span></div>
+<div class="c" data-fill="text" data-name="pl2_sud_1"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_2"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_3"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_4"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_5"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_6"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_7"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_8"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_9"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_10"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_11"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_12"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_13"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_14"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_15"></div>
+</div>
+<div class="gr"><div class="rl">Horas de sueño <span class="u">h</span></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_1"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_2"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_3"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_4"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_5"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_6"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_7"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_8"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_9"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_10"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_11"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_12"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_13"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_14"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_15"></div>
+</div>
+<div class="gr alt"><div class="rl">Despertares <span class="u">nº</span></div>
+<div class="c" data-fill="text" data-name="pl2_desp_1"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_2"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_3"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_4"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_5"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_6"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_7"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_8"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_9"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_10"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_11"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_12"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_13"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_14"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_15"></div>
+</div>
+<div class="gr"><div class="rl">Ánimo bajo <span class="u">1–3</span></div>
+<div class="c" data-fill="text" data-name="pl2_animo_1"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_2"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_3"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_4"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_5"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_6"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_7"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_8"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_9"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_10"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_11"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_12"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_13"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_14"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_15"></div>
+</div>
+<div class="gr alt"><div class="rl">Molestia íntima <span class="u">1–3</span></div>
+<div class="c" data-fill="text" data-name="pl2_intima_1"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_2"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_3"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_4"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_5"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_6"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_7"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_8"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_9"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_10"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_11"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_12"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_13"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_14"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_15"></div>
+</div>
+<div class="gr"><div class="rl">Sangrado o manchado</div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_1"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_2"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_3"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_4"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_5"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_6"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_7"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_8"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_9"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_10"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_11"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_12"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_13"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_14"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_15"></div></div>
+</div>
+<div class="gr alt"><div class="rl">Moví mi cuerpo</div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_1"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_2"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_3"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_4"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_5"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_6"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_7"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_8"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_9"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_10"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_11"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_12"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_13"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_14"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_15"></div></div>
+</div>
+</div>
+<div class="blk" style="position: absolute; top: 445px; left: 44px; right: 44px">
+<div class="gr gh"><div class="rl" style="font-weight:800">Días 16–30</div>
+<div class="dh">16</div>
+<div class="dh">17</div>
+<div class="dh">18</div>
+<div class="dh">19</div>
+<div class="dh">20</div>
+<div class="dh">21</div>
+<div class="dh">22</div>
+<div class="dh">23</div>
+<div class="dh">24</div>
+<div class="dh">25</div>
+<div class="dh">26</div>
+<div class="dh">27</div>
+<div class="dh">28</div>
+<div class="dh">29</div>
+<div class="dh">30</div>
+</div>
+<div class="gr"><div class="rl">Sofocos de día <span class="u">nº</span></div>
+<div class="c" data-fill="text" data-name="pl2_cal_16"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_17"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_18"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_19"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_20"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_21"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_22"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_23"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_24"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_25"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_26"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_27"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_28"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_29"></div>
+<div class="c" data-fill="text" data-name="pl2_cal_30"></div>
+</div>
+<div class="gr alt"><div class="rl">Sudores nocturnos <span class="u">nº</span></div>
+<div class="c" data-fill="text" data-name="pl2_sud_16"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_17"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_18"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_19"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_20"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_21"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_22"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_23"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_24"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_25"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_26"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_27"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_28"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_29"></div>
+<div class="c" data-fill="text" data-name="pl2_sud_30"></div>
+</div>
+<div class="gr"><div class="rl">Horas de sueño <span class="u">h</span></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_16"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_17"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_18"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_19"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_20"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_21"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_22"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_23"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_24"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_25"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_26"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_27"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_28"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_29"></div>
+<div class="c" data-fill="text" data-name="pl2_hrs_30"></div>
+</div>
+<div class="gr alt"><div class="rl">Despertares <span class="u">nº</span></div>
+<div class="c" data-fill="text" data-name="pl2_desp_16"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_17"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_18"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_19"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_20"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_21"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_22"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_23"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_24"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_25"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_26"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_27"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_28"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_29"></div>
+<div class="c" data-fill="text" data-name="pl2_desp_30"></div>
+</div>
+<div class="gr"><div class="rl">Ánimo bajo <span class="u">1–3</span></div>
+<div class="c" data-fill="text" data-name="pl2_animo_16"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_17"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_18"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_19"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_20"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_21"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_22"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_23"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_24"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_25"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_26"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_27"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_28"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_29"></div>
+<div class="c" data-fill="text" data-name="pl2_animo_30"></div>
+</div>
+<div class="gr alt"><div class="rl">Molestia íntima <span class="u">1–3</span></div>
+<div class="c" data-fill="text" data-name="pl2_intima_16"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_17"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_18"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_19"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_20"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_21"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_22"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_23"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_24"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_25"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_26"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_27"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_28"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_29"></div>
+<div class="c" data-fill="text" data-name="pl2_intima_30"></div>
+</div>
+<div class="gr"><div class="rl">Sangrado o manchado</div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_16"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_17"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_18"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_19"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_20"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_21"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_22"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_23"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_24"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_25"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_26"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_27"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_28"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_29"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_sang_30"></div></div>
+</div>
+<div class="gr alt"><div class="rl">Moví mi cuerpo</div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_16"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_17"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_18"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_19"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_20"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_21"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_22"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_23"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_24"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_25"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_26"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_27"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_28"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_29"></div></div>
+<div class="cc"><div class="bx" data-fill="check" data-name="pl2_mov_30"></div></div>
+</div>
+</div>
+<div style="position: absolute; top: 718px; left: 44px; width: 394px; background: #FFFFFF; border-radius: 14px; padding: 14px 18px; box-shadow: 0 6px 18px rgba(155,27,79,.08)">
+<div class="ser" style="font-size: 20px; font-weight: 800">Resumen del mes</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 10px; margin-top: 6px">
+<div><div class="lb">Días con sofocos</div><div class="fl" data-fill="text" data-name="pl2_res_dias_sofocos"></div></div>
+<div><div class="lb">Noches con sudores</div><div class="fl" data-fill="text" data-name="pl2_res_noches_sudores"></div></div>
+<div><div class="lb">Sueño promedio</div><div class="fl" data-fill="text" data-name="pl2_res_sueno_prom"></div></div>
+</div>
+<div class="lb" style="margin-top: 8px">Lo que empeora mis días</div><div class="fl" data-fill="text" data-name="pl2_res_empeora"></div>
+<div class="lb" style="margin-top: 6px">Lo que los mejora</div><div class="fl" data-fill="text" data-name="pl2_res_mejora"></div>
+<div class="lb" style="margin-top: 6px">Para mi consulta</div><div class="fl" data-fill="text" data-name="pl2_res_consulta"></div>
+</div>
+<div style="position: absolute; top: 730px; left: 494px; right: 44px; background: #1E1419; color: #FFFFFF; padding: 16px 18px; transform: rotate(1.2deg)">
+<div class="px" style="font-size: 13px; color: #F7A8C7">Consulta sin esperar si…</div>
+<div style="font-size: 13px; line-height: 1.5; margin-top: 8px">Tienes <b>cualquier sangrado</b> después de 12 meses sin regla, aunque sea leve o una sola vez.</div>
+<div style="font-size: 13px; line-height: 1.5; margin-top: 6px">Tu ánimo bajo dura semanas o tienes pensamientos de hacerte daño: <b>busca ayuda hoy</b>.</div>
+<div style="font-size: 13px; line-height: 1.5; margin-top: 6px">Los síntomas te impiden trabajar, dormir o convivir.</div>
+<div style="font-size: 11px; color: #F2C9D7; margin-top: 6px">Sangrado: HSE (Irlanda), «Postmenopausal bleeding».</div>
+</div>
+<svg style="position: absolute; left: 720px; top: 1000px; transform: rotate(-12deg)" width="38" height="36" viewBox="0 0 32 30" aria-hidden="true"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg>
+<div style="position: absolute; left: 44px; right: 44px; bottom: 48px; font-size: 12px; color: #6B4E5C; text-align: center">¿Prefieres el celular? Registra cada día en <a href="https://menopausia-equilibrada.vercel.app/#hoy" style="font-weight: 700">menopausia-equilibrada.vercel.app/#hoy</a> y mira tus gráficas en <a href="https://menopausia-equilibrada.vercel.app/#progreso" style="font-weight: 700">#progreso</a>.</div>
+<div class="ft"><span>Incluida con PAUSA — El manual de la menopausia</span><span>Plantilla 02</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /oferta/admin.html
+Disallow: /oferta/gracias.html

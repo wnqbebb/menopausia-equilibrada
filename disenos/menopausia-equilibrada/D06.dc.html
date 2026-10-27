@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diario — Semana 4</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.t{display:grid;grid-template-columns:58px 66px 66px 66px 66px 66px 62px 1fr;column-gap:6px;align-items:center}
+.th{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#9B1B4F;text-align:center;line-height:1.2}
+.th small{display:block;font-size:9.5px;font-weight:600;letter-spacing:0;text-transform:none;color:#6B4E5C}
+.r{padding:8px 0;border-top:1px dashed #F2B8CD}
+.dy{font-family:'Playfair Display',serif;font-weight:900;font-size:19px;color:#E0337A}
+.c{height:50px;border:1.5px solid #C98AA5;border-radius:10px;background:#fff;box-sizing:border-box}
+.cs{width:26px;height:26px;border:2px solid #9B1B4F;border-radius:6px;background:#fff;box-sizing:border-box;margin:0 auto}
+.cn{height:50px;border:1.5px solid #C98AA5;border-radius:10px;background:#fff;box-sizing:border-box}
+.wb{background:#FFFFFF;border-radius:16px;border:2px solid #F2B8CD;padding:12px 16px}
+.wb .px{font-size:12px;color:#E0337A}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Diario de síntomas y progreso</span><span class="px" style="font-size: 12px">Rellenable · imprimible</span></div>
+<div style="position: absolute; top: 58px; left: 44px; right: 44px; display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; align-items: flex-end; gap: 14px">
+<div class="ser" style="font-size: 54px; font-weight: 900; line-height: 1">Semana</div>
+<div class="ser" style="font-size: 96px; font-weight: 900; line-height: .85; color: #E0337A">4</div>
+<div class="scr" style="font-size: 54px; line-height: 1; color: #9B1B4F; transform: rotate(-6deg)">casi lista</div>
+</div>
+<div style="width: 210px">
+<div style="font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #9B1B4F">Semana del</div>
+<div class="fld" data-fill="text" data-name="d06_fecha"></div>
+</div>
+</div>
+<div style="position: absolute; top: 160px; left: 44px; right: 44px; font-size: 13.5px; line-height: 1.5; color: #6B4E5C">Escalas: calidad, ánimo y energía de 0 a 3 · sofocos = número del día · sangrado = marca si hubo regla o manchado. Detalle en la pág. 2.</div>
+<div class="note" style="position: absolute; top: 212px; left: 44px; right: 44px; padding: 12px 16px 10px">
+<div class="t" style="padding-bottom: 8px"><div class="th">Día</div><div class="th">Sueño<small>horas</small></div><div class="th">Calidad<small>0–3</small></div><div class="th">Ánimo<small>0–3</small></div><div class="th">Sofocos<small>número</small></div><div class="th">Energía<small>0–3</small></div><div class="th">Sangrado<small>sí</small></div><div class="th" style="text-align: left">Notas</div></div>
+<div class="t r"><div class="dy">Lun</div><div class="c" data-fill="text" data-name="d06_lun_sueno"></div><div class="c" data-fill="text" data-name="d06_lun_calidad"></div><div class="c" data-fill="text" data-name="d06_lun_animo"></div><div class="c" data-fill="text" data-name="d06_lun_sofocos"></div><div class="c" data-fill="text" data-name="d06_lun_energia"></div><div><div class="cs" data-fill="check" data-name="d06_lun_sangrado"></div></div><div class="cn" data-fill="multi" data-name="d06_lun_notas"></div></div>
+<div class="t r"><div class="dy">Mar</div><div class="c" data-fill="text" data-name="d06_mar_sueno"></div><div class="c" data-fill="text" data-name="d06_mar_calidad"></div><div class="c" data-fill="text" data-name="d06_mar_animo"></div><div class="c" data-fill="text" data-name="d06_mar_sofocos"></div><div class="c" data-fill="text" data-name="d06_mar_energia"></div><div><div class="cs" data-fill="check" data-name="d06_mar_sangrado"></div></div><div class="cn" data-fill="multi" data-name="d06_mar_notas"></div></div>
+<div class="t r"><div class="dy">Mié</div><div class="c" data-fill="text" data-name="d06_mie_sueno"></div><div class="c" data-fill="text" data-name="d06_mie_calidad"></div><div class="c" data-fill="text" data-name="d06_mie_animo"></div><div class="c" data-fill="text" data-name="d06_mie_sofocos"></div><div class="c" data-fill="text" data-name="d06_mie_energia"></div><div><div class="cs" data-fill="check" data-name="d06_mie_sangrado"></div></div><div class="cn" data-fill="multi" data-name="d06_mie_notas"></div></div>
+<div class="t r"><div class="dy">Jue</div><div class="c" data-fill="text" data-name="d06_jue_sueno"></div><div class="c" data-fill="text" data-name="d06_jue_calidad"></div><div class="c" data-fill="text" data-name="d06_jue_animo"></div><div class="c" data-fill="text" data-name="d06_jue_sofocos"></div><div class="c" data-fill="text" data-name="d06_jue_energia"></div><div><div class="cs" data-fill="check" data-name="d06_jue_sangrado"></div></div><div class="cn" data-fill="multi" data-name="d06_jue_notas"></div></div>
+<div class="t r"><div class="dy">Vie</div><div class="c" data-fill="text" data-name="d06_vie_sueno"></div><div class="c" data-fill="text" data-name="d06_vie_calidad"></div><div class="c" data-fill="text" data-name="d06_vie_animo"></div><div class="c" data-fill="text" data-name="d06_vie_sofocos"></div><div class="c" data-fill="text" data-name="d06_vie_energia"></div><div><div class="cs" data-fill="check" data-name="d06_vie_sangrado"></div></div><div class="cn" data-fill="multi" data-name="d06_vie_notas"></div></div>
+<div class="t r"><div class="dy">Sáb</div><div class="c" data-fill="text" data-name="d06_sab_sueno"></div><div class="c" data-fill="text" data-name="d06_sab_calidad"></div><div class="c" data-fill="text" data-name="d06_sab_animo"></div><div class="c" data-fill="text" data-name="d06_sab_sofocos"></div><div class="c" data-fill="text" data-name="d06_sab_energia"></div><div><div class="cs" data-fill="check" data-name="d06_sab_sangrado"></div></div><div class="cn" data-fill="multi" data-name="d06_sab_notas"></div></div>
+<div class="t r"><div class="dy">Dom</div><div class="c" data-fill="text" data-name="d06_dom_sueno"></div><div class="c" data-fill="text" data-name="d06_dom_calidad"></div><div class="c" data-fill="text" data-name="d06_dom_animo"></div><div class="c" data-fill="text" data-name="d06_dom_sofocos"></div><div class="c" data-fill="text" data-name="d06_dom_energia"></div><div><div class="cs" data-fill="check" data-name="d06_dom_sangrado"></div></div><div class="cn" data-fill="multi" data-name="d06_dom_notas"></div></div>
+</div>
+<div style="position: absolute; top: 748px; left: 44px; right: 44px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<div class="wb"><div class="px">Lo que más me afectó</div><div data-fill="multi" data-name="d06_afecto" style="height: 128px"></div></div>
+<div class="wb"><div class="px">Lo que me ayudó</div><div data-fill="multi" data-name="d06_ayudo" style="height: 128px"></div></div>
+</div>
+<div style="position: absolute; top: 940px; left: 44px; right: 44px; background: #FCE4EC; border-radius: 14px; padding: 12px 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 16px; align-items: center">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700">Total sofocos<span class="c" style="width: 70px; height: 36px" data-fill="text" data-name="d06_total_sofocos"></span></div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700">Media de sueño<span class="c" style="width: 70px; height: 36px" data-fill="text" data-name="d06_media_sueno"></span></div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700">Media de energía<span class="c" style="width: 70px; height: 36px" data-fill="text" data-name="d06_media_energia"></span></div>
+</div>
+<div class="src" style="position: absolute; left: 44px; right: 44px; top: 1014px">Media = suma de los 7 días ÷ 7 (o ÷ los días que anotaste). Si tienes sangrado tras 12 meses sin regla, consulta pronto (HSE, Irlanda).</div>
+<div class="ft"><span>Diario · Semana 4</span><span>6</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

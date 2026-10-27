@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pedidos · Menopausia sin tabú</title>
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800;900&family=Poppins:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#FFF5F8;--blush:#FCE4EC;--rosa:#F7A8C7;--fucsia:#E0337A;--berry:#9B1B4F;--ink:#2B1B24;--negro:#1E1419;--muted:#6B4E5C;--line:#F2C6D6;--ok:#1F7A52}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Poppins',system-ui,Arial,sans-serif;font-size:15.5px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 18px 60px}
+h1{font-family:'Playfair Display',serif;font-weight:900;font-size:34px;margin:0 0 6px}
+.btn{appearance:none;border:0;cursor:pointer;font:inherit;font-weight:700;border-radius:999px;padding:9px 16px;min-height:42px}
+.p{background:var(--fucsia);color:#fff}.g{background:#fff;border:2px solid var(--line);color:var(--ink)}.d{background:var(--negro);color:#fff}
+input{font:inherit;min-height:46px;border-radius:12px;border:2px solid var(--line);padding:0 12px;min-width:260px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.stats div{background:#fff;border-radius:16px;padding:12px 16px;border:1px solid #FBE3EC}
+.stats b{display:block;font-family:'Playfair Display',serif;font-size:28px;color:var(--berry)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;font-size:14.5px}
+th{background:var(--rosa);text-align:left;padding:10px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+td{padding:10px;border-top:1px solid #F8DDE7;vertical-align:top}
+.st{display:inline-block;border-radius:999px;padding:3px 10px;font-weight:700;font-size:12.5px;background:var(--blush);color:var(--berry)}
+.st.pagado{background:#E3F4EC;color:var(--ok)}.st.revisar{background:#FFF1C9;color:#7A5300}
+.tw{overflow-x:auto;border-radius:16px}
+.note{color:var(--muted);font-size:14px}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--negro);color:#fff;padding:12px 18px;border-radius:999px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Pedidos</h1>
+  <p class="note">Solo para la administradora. Escribe tu clave de administración.</p>
+  <form id="f" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px"><label for="k" class="note" style="width:100%">Clave</label><input id="k" type="password" autocomplete="current-password"><button class="btn p">Entrar</button><button type="button" class="btn g" id="re" hidden>Actualizar</button></form>
+  <div id="out"></div>
+</div>
+<div id="toast" hidden></div>
+<script>
+var key='';try{key=sessionStorage.getItem('adm')||''}catch(e){}
+var KN={todo:'TODO JUNTO',pausa:'PAUSA',guia:'Guía Integral',recetario:'Recetario',plan30:'Plan 30 días',vitaminas:'Vitaminas',diario:'Diario',yoga:'Yoga',aroma:'Aromaterapia',plantillas:'Plantillas',k1:'Kit Noches frescas',k2:'Kit Intimidad',k3:'Kit Trabajo',k4:'Kit Fuerte 45',app:'App'};
+function $(s){return document.querySelector(s)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function toast(m){var t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(window._t);window._t=setTimeout(function(){t.hidden=true},2600)}
+var pg=0,fq='',fe='';
+function qs(){return '?page='+pg+'&size=100'+(fe?'&estado='+encodeURIComponent(fe):'')+(fq?'&q='+encodeURIComponent(fq):'')}
+function load(){fetch('/api/pedidos'+qs(),{headers:{'x-admin-key':key}}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){
+  if(!x.ok){$('#out').innerHTML='<p class="note" style="color:#B3261E;font-weight:700">'+esc(x.d.error||'Error')+'</p>';return}
+  try{sessionStorage.setItem('adm',key)}catch(e){}
+  $('#re').hidden=false;var P=x.d.pedidos;var paid=P.filter(function(p){return p.status==='pagado'});var sum=paid.reduce(function(a,p){return a+p.cents},0)/100;
+  var h='<form id="flt" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0"><input id="fq" placeholder="Buscar nombre, correo o #pedido" value="'+esc(fq)+'" style="min-width:240px"><select id="fe" style="font:inherit;min-height:46px;border-radius:12px;border:2px solid var(--line);padding:0 10px"><option value="">Todos</option><option value="pagado"'+(fe==='pagado'?' selected':'')+'>Pagados</option><option value="pendiente"'+(fe==='pendiente'?' selected':'')+'>Pendientes</option><option value="revisar"'+(fe==='revisar'?' selected':'')+'>Por revisar</option></select><button class="btn p">Filtrar</button><button type="button" class="btn g" id="csv">Descargar todo (CSV)</button></form>';
+  h+='<div class="stats"><div><b>'+x.d.total+'</b>'+(fe||fq?'resultados':'pedidos en total')+'</div><div><b>'+paid.length+'</b>pagados en esta página</div><div><b>USD '+sum.toFixed(2)+'</b>cobrado en esta página</div></div>';
+  h+='<div class="tw"><table><thead><tr><th>Fecha</th><th>Clienta</th><th>Contacto</th><th>Productos</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>';
+  P.forEach(function(p){var prods=(p.items||[]).map(function(k){return KN[k]||k}).join(', ')+(p.upgradeFrom?' (mejora)':'')+(p.revoked?' · ACCESO REVOCADO':'')+(p.note?' · '+p.note:'');
+    h+='<tr><td>'+esc(new Date(p.createdAt).toLocaleString('es'))+'<br><span class="note">#'+esc(p.id)+' · '+esc(p.mode)+'</span></td><td>'+esc(p.name)+'</td><td><a href="mailto:'+esc(p.email)+'">'+esc(p.email)+'</a>'+(p.phone?'<br>'+esc(p.phone):'')+'</td><td>'+esc(prods)+'</td><td>USD '+(p.cents/100).toFixed(2)+'</td><td><span class="st '+esc(p.status)+'">'+esc(p.status)+'</span></td><td style="display:flex;flex-wrap:wrap;gap:6px">'+
+    (p.status!=='pagado'?'<button class="btn p" data-a="pagado" data-id="'+esc(p.id)+'">Marcar pagado</button>':'<button class="btn d" data-copy="'+esc(p.entrega)+'">Copiar enlace de entrega</button>')+
+    '<button class="btn g" data-copy="'+esc(p.entrega)+'" title="Enlace de descarga (solo funciona si está pagado)">Enlace</button>'+(p.acceso?'<button class="btn g" data-copy="'+esc(p.acceso)+'" title="Abre la app con acceso">Acceso app</button><button class="btn g" data-a="'+(p.revoked?'reactivar':'revocar')+'" data-id="'+esc(p.id)+'">'+(p.revoked?'Reactivar':'Revocar')+' app</button>':'')+'<button class="btn g" data-a="borrar" data-id="'+esc(p.id)+'">Borrar</button></td></tr>'});
+  h+='</tbody></table></div>'+(x.d.pages>1?'<div style="display:flex;gap:8px;align-items:center;margin-top:12px"><button class="btn g" data-pg="-1"'+(pg<=0?' disabled':'')+'>← Anteriores</button><span class="note">Página '+(pg+1)+' de '+x.d.pages+'</span><button class="btn g" data-pg="1"'+(pg>=x.d.pages-1?' disabled':'')+'>Siguientes →</button></div>':'')+'<p class="note" style="margin-top:12px">Cuando confirmes un pago, márcalo como pagado y envía a la clienta su «enlace de entrega»: ahí descarga todo.</p>';
+  h='<form id="cort" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:#fff;border-radius:16px;padding:12px;margin:12px 0"><b style="width:100%">Regalar acceso completo (cortesía)</b><input id="cN" placeholder="Nombre" style="min-width:180px"><input id="cE" placeholder="Correo (opcional)" style="min-width:220px"><button class="btn d">Crear y copiar enlace</button></form>'+h;
+  $('#out').innerHTML=h;
+  $('#flt').addEventListener('submit',function(e){e.preventDefault();fq=$('#fq').value.trim();fe=$('#fe').value;pg=0;load()});
+  $('#csv').addEventListener('click',function(){var b=this;b.disabled=true;fetch('/api/pedidos?csv=1',{headers:{'x-admin-key':key}}).then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(bl){var a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='pedidos-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1500);b.disabled=false}).catch(function(){toast('No se pudo descargar.');b.disabled=false})});
+  $('#cort').addEventListener('submit',function(e){e.preventDefault();fetch('/api/pedidos',{method:'POST',headers:{'x-admin-key':key,'content-type':'application/json'},body:JSON.stringify({action:'cortesia',name:$('#cN').value||'Cortesía',email:$('#cE').value})}).then(function(r){return r.json()}).then(function(d){if(d.entrega)copy(d.entrega,'Acceso creado. Enlace de entrega copiado.');load()})});
+})}
+$('#f').addEventListener('submit',function(e){e.preventDefault();key=$('#k').value.trim();load()});
+$('#re').addEventListener('click',load);
+document.addEventListener('click',function(e){var g=e.target.closest('[data-pg]');if(g){pg=Math.max(0,pg+(+g.dataset.pg));load();scrollTo(0,0);return}var b=e.target.closest('[data-a]');if(b){if(b.dataset.a==='borrar'&&!confirm('¿Borrar este pedido?'))return;if(b.dataset.a==='revocar'&&!confirm('¿Quitar el acceso a la app de este pedido?'))return;fetch('/api/pedidos',{method:'POST',headers:{'x-admin-key':key,'content-type':'application/json'},body:JSON.stringify({id:b.dataset.id,action:b.dataset.a})}).then(function(r){return r.json()}).then(function(d){if(d.entrega){copy(d.entrega,'Pagado. Enlace de entrega copiado.')}load()});return}
+  var c=e.target.closest('[data-copy]');if(c)copy(c.dataset.copy,'Enlace copiado.')});
+function copy(t,m){try{navigator.clipboard.writeText(t).then(function(){toast(m)},function(){prompt('Copia el enlace:',t)})}catch(e){prompt('Copia el enlace:',t)}}
+if(key){$('#k').value=key;load()}
+</script>
+</body>
+</html>

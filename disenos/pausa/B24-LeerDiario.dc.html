@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PAUSA — Cómo leer tu diario</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.lec{padding:11px 14px;border-radius:14px}
+.ln{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;line-height:1;color:#E0337A}
+.lt{font-weight:800;font-size:15px;margin-top:4px}
+.lx{font-size:13px;line-height:1.5;margin-top:3px}
+.lbl{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#9B1B4F}
+.in{height:26px;border:1.5px solid #E7AFC6;border-radius:6px;background:#FFFFFF;box-sizing:border-box}
+.opt{display:inline-flex;gap:6px;align-items:center;font-size:13px;margin-right:14px}
+.opt .bx{margin-top:0}
+.met{background:#FCE4EC;border-radius:10px;padding:8px 10px}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>PAUSA · El manual de la menopausia</span><span class="px" style="font-size: 12px">04 · Continuación</span></div>
+<div class="scr" style="position: absolute; right: 44px; top: 34px; font-size: 110px; line-height: 1; color: #F7A8C7; transform: rotate(-6deg)">28 días</div>
+<div style="position: absolute; left: 44px; top: 60px; width: 470px">
+<div class="ser" style="font-size: 46px; font-weight: 900; line-height: 1.02">Cómo <span class="hl">leer</span> tu diario</div>
+<p class="lead" style="margin-top: 8px">Cuatro lecturas sencillas convierten 28 días de datos en un resumen de una página.</p>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 186px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div class="lec" style="background: #FFFFFF; border: 2px solid #2B1B24; transform: rotate(-1deg)"><div class="ln">01</div><div class="lt">Suma y promedia</div><div class="lx">Sofocos por día = total de las 4 semanas ÷ 28. Haz lo mismo con las horas de sueño y cuenta las noches con sudor por semana.</div></div>
+<div class="lec" style="background: #F7A8C7; transform: rotate(1deg)"><div class="ln" style="color: #2B1B24">02</div><div class="lt">Busca relaciones</div><div class="lx">¿Las noches con sudor coinciden con peor ánimo al día siguiente? ¿Algo se repite antes de los días más difíciles?</div></div>
+<div class="lec" style="background: #FCE4EC; transform: rotate(1deg)"><div class="ln">03</div><div class="lt">Elige tus 3 prioridades</div><div class="lx">No siempre es lo más frecuente: es lo que más te limita. Tres sofocos al día pueden pesar menos que dormir cuatro horas.</div></div>
+<div class="lec" style="background: #1E1419; color: #FFFFFF; transform: rotate(-1deg)"><div class="ln" style="color: #F7A8C7">04</div><div class="lt">Separa lo que no espera</div><div class="lx">Sangrado después de 12 meses sin regla: consulta sin esperar a la cita. Ánimo muy bajo o ideas de hacerte daño: busca ayuda hoy (cap. 08).</div></div>
+</div>
+<div class="src" style="position: absolute; left: 44px; right: 44px; top: 504px">Lectura 01: cálculo propio, no un dato externo. Lectura 04: HSE (servicio de salud de Irlanda), «Postmenopausal bleeding».</div>
+<div class="lined" style="position: absolute; left: 44px; right: 44px; top: 538px; height: 528px; border: 2px solid #2B1B24; border-radius: 16px; padding: 16px 20px; box-sizing: border-box; box-shadow: 0 12px 26px rgba(120,20,60,.14)">
+<div style="position: absolute; left: 300px; top: -14px; width: 120px; height: 26px; background: rgba(247,168,199,.85); transform: rotate(-4deg)"></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<div><span class="px" style="font-size: 12px; color: #E0337A">Herramienta 04b · Fig. 32</span><div class="ser" style="font-size: 26px; font-weight: 900; line-height: 1.1">Mi resumen para la consulta</div></div>
+<div style="font-size: 12px; text-align: right; color: #6B4E5C; width: 200px; line-height: 1.4">Llévalo impreso o en una foto en el celular.</div>
+</div>
+<div style="display: grid; grid-template-columns: 90px 1fr 170px 1fr; column-gap: 10px; align-items: center; margin-top: 12px">
+<span class="lbl">Edad</span><div class="in" data-fill="text" data-name="p24_edad"></div><span class="lbl">Fecha última regla</span><div class="in" data-fill="text" data-name="p24_ultima_regla"></div>
+</div>
+<div style="margin-top: 10px; display: flex; align-items: center; flex-wrap: wrap"><span class="lbl" style="margin-right: 12px">Ciclos</span>
+<span class="opt"><span class="bx" data-fill="check" data-name="p24_ciclo_regular"></span>regulares</span>
+<span class="opt"><span class="bx" data-fill="check" data-name="p24_ciclo_irregular"></span>irregulares</span>
+<span class="opt"><span class="bx" data-fill="check" data-name="p24_ciclo_60"></span>60+ días sin regla</span>
+<span class="opt"><span class="bx" data-fill="check" data-name="p24_ciclo_12m"></span>12+ meses sin regla</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 10px">
+<div class="met"><div class="lbl">Sofocos / día</div><div class="in" data-fill="text" data-name="p24_sofocos_dia" style="margin-top: 4px"></div></div>
+<div class="met"><div class="lbl">Sudor / semana</div><div class="in" data-fill="text" data-name="p24_sudor_sem" style="margin-top: 4px"></div></div>
+<div class="met"><div class="lbl">Sueño medio (h)</div><div class="in" data-fill="text" data-name="p24_sueno_medio" style="margin-top: 4px"></div></div>
+<div class="met"><div class="lbl">Ánimo medio 0–3</div><div class="in" data-fill="text" data-name="p24_animo_medio" style="margin-top: 4px"></div></div>
+</div>
+<div style="margin-top: 12px"><span class="lbl">Mis 3 prioridades</span>
+<div style="display: grid; grid-template-columns: 18px 1fr; column-gap: 8px; row-gap: 4px; align-items: end; margin-top: 2px">
+<b style="color: #E0337A">1</b><div class="fld" data-fill="text" data-name="p24_prioridad1" style="height: 26px"></div>
+<b style="color: #E0337A">2</b><div class="fld" data-fill="text" data-name="p24_prioridad2" style="height: 26px"></div>
+<b style="color: #E0337A">3</b><div class="fld" data-fill="text" data-name="p24_prioridad3" style="height: 26px"></div>
+</div></div>
+<div style="display: grid; grid-template-columns: 130px 1fr; column-gap: 10px; align-items: end; margin-top: 8px"><span class="lbl">Medicamentos</span><div class="fld" data-fill="text" data-name="p24_medicamentos" style="height: 26px"></div></div>
+<div style="margin-top: 10px; display: flex; align-items: center; flex-wrap: wrap"><span class="lbl" style="margin-right: 10px">Familia</span>
+<span class="opt"><span class="bx" data-fill="check" data-name="p24_ant_mama"></span>cáncer de mama</span>
+<span class="opt"><span class="bx" data-fill="check" data-name="p24_ant_infarto"></span>infarto o ictus</span>
+<span class="opt"><span class="bx" data-fill="check" data-name="p24_ant_osteo"></span>osteoporosis</span>
+<span class="opt"><span class="bx" data-fill="check" data-name="p24_ant_trombosis"></span>trombosis</span>
+</div>
+<div style="display: grid; grid-template-columns: 200px 1fr; column-gap: 10px; align-items: end; margin-top: 8px"><span class="lbl">Hoy quiero salir sabiendo</span><div class="fld" data-fill="text" data-name="p24_hoy_quiero" style="height: 26px"></div></div>
+<div class="src" style="margin-top: 8px">Campos basados en NICE (NG23) y The Menopause Charity. La app lo arma sola: <a href="https://menopausia-equilibrada.vercel.app/#consulta">menopausia-equilibrada.vercel.app/#consulta</a></div>
+</div>
+<div class="ft"><span>04 · Tu diario de síntomas</span><span>24</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

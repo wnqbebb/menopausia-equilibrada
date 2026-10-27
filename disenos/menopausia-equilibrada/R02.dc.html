@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Recetario — Cómo usarlo y el plato</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.al{background:#FFFFFF;border:2px solid #2B1B24;padding:12px 14px}
+.alt{font-family:'Playfair Display',Georgia,serif;font-size:21px;font-weight:800;line-height:1.1}
+.ald{font-size:13px;line-height:1.55;margin-top:6px}
+.step{display:grid;grid-template-columns:34px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:5px 0}
+.sn{width:28px;height:28px;border-radius:50%;background:#E0337A;color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Recetario · Menopausia Equilibrada</span><span class="px" style="font-size: 12px">Antes de cocinar</span></div>
+<div class="scr" style="position: absolute; top: 40px; right: 44px; font-size: 104px; line-height: 1; color: #F7A8C7; transform: rotate(-6deg)">equilibrio</div>
+<div style="position: absolute; top: 70px; left: 44px; width: 520px">
+<span class="tag">Cómo usar este recetario</span>
+<div class="ser" style="font-size: 48px; font-weight: 900; line-height: 1.02; margin-top: 14px">El plato que <span class="hl">te cuida</span></div>
+<p class="lead" style="margin-top: 12px">No es una dieta: es una forma sencilla de armar cada comida para que tus huesos, tus músculos y tu energía tengan lo que necesitan.</p>
+</div>
+<div style="position: absolute; top: 300px; left: 44px; width: 330px; height: 330px">
+<svg width="330" height="330" viewBox="0 0 330 330" role="img" aria-label="Plato dividido: mitad verduras y frutas, un cuarto cereales integrales, un cuarto proteína saludable">
+<circle cx="165" cy="165" r="158" fill="#FFFFFF" stroke="#2B1B24" stroke-width="3"/>
+<circle cx="165" cy="165" r="140" fill="#FFFFFF" stroke="#F2B8CD" stroke-width="2"/>
+<path d="M165 165 L165 25 A140 140 0 0 0 165 305 Z" fill="#CDEBC5"/>
+<path d="M165 165 L165 25 A140 140 0 0 1 305 165 Z" fill="#FFE7A8"/>
+<path d="M165 165 L305 165 A140 140 0 0 1 165 305 Z" fill="#F7A8C7"/>
+<line x1="165" y1="25" x2="165" y2="305" stroke="#2B1B24" stroke-width="2.5"/>
+<line x1="165" y1="165" x2="305" y2="165" stroke="#2B1B24" stroke-width="2.5"/>
+<text x="92" y="150" text-anchor="middle" font-family="Poppins" font-weight="800" font-size="17" fill="#2B1B24">½ VERDURAS</text>
+<text x="92" y="172" text-anchor="middle" font-family="Poppins" font-weight="800" font-size="17" fill="#2B1B24">Y FRUTAS</text>
+<text x="230" y="105" text-anchor="middle" font-family="Poppins" font-weight="800" font-size="14" fill="#2B1B24">¼ CEREALES</text>
+<text x="230" y="124" text-anchor="middle" font-family="Poppins" font-weight="800" font-size="14" fill="#2B1B24">INTEGRALES</text>
+<text x="230" y="225" text-anchor="middle" font-family="Poppins" font-weight="800" font-size="14" fill="#2B1B24">¼ PROTEÍNA</text>
+<text x="230" y="244" text-anchor="middle" font-family="Poppins" font-weight="800" font-size="14" fill="#2B1B24">SALUDABLE</text>
+</svg>
+</div>
+<div style="position: absolute; top: 298px; left: 392px; right: 44px">
+<div class="note" style="transform: rotate(1.5deg)">
+<div class="px" style="font-size: 13px; color: #E0337A">Y además…</div>
+<p class="bd" style="margin: 8px 0 0 0"><b>Aceites saludables</b> (oliva, canola) con moderación y <b>agua, café o té</b> para beber. Bebidas azucaradas: lo menos posible.</p>
+</div>
+<div style="margin-top: 22px">
+<div class="step"><span class="sn">1</span><span><b>Elige</b> una receta por comida. Todas son para 2 porciones.</span></div>
+<div class="step"><span class="sn">2</span><span><b>Marca</b> lo que te falta en la lista de la página 3.</span></div>
+<div class="step"><span class="sn">3</span><span><b>Planifica</b> tu semana en el menú de la página 24 (también lo puedes llenar en la app).</span></div>
+<div class="step"><span class="sn">4</span><span><b>Revisa</b> las etiquetas de alérgenos de cada receta.</span></div>
+</div>
+<div class="src" style="margin-top: 10px">Plato basado en el «Healthy Eating Plate» de la Escuela de Salud Pública de Harvard.</div>
+</div>
+<div style="position: absolute; top: 694px; left: 44px; right: 44px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><div class="ser" style="font-size: 26px; font-weight: 800">Tus 4 aliados en la cocina</div><span class="px" style="font-size: 12px; color: #9B1B4F">dónde encontrarlos</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 12px">
+<div class="al" style="transform: rotate(-.6deg)"><div class="alt">Calcio <span style="font-family: Poppins; font-size: 12px; font-weight: 700; color: #9B1B4F">· 1.200 mg/día de 51 a 70 años</span></div><div class="ald">Leche, yogur y queso; sardinas y salmón enlatados con espinas; col rizada, brócoli; tofu y bebidas vegetales fortificadas.</div></div>
+<div class="al" style="transform: rotate(.6deg); background: #FCE4EC"><div class="alt">Proteína</div><div class="ald">Pescado, pollo, huevos, frijoles, lentejas, garbanzos y frutos secos. Limita la carne roja y evita las carnes procesadas.</div></div>
+<div class="al" style="transform: rotate(.5deg); background: #FCE4EC"><div class="alt">Fibra</div><div class="ald">Avena, cebada, frijoles, lentejas, arvejas, frutos secos, semillas, frutas, verduras y granos integrales.</div></div>
+<div class="al" style="transform: rotate(-.5deg)"><div class="alt">Omega-3 y vitamina D</div><div class="ald">Pescados grasos (salmón, sardina, caballa, atún); linaza, chía y nueces. Vitamina D: leche fortificada, hongos y yema de huevo.</div></div>
+</div>
+<div class="src" style="margin-top: 8px">Fuentes: NIH, Oficina de Suplementos Dietéticos (calcio, vitamina D, omega-3); MedlinePlus (fibra); Harvard T.H. Chan.</div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 1018px; background: #1E1419; color: #FFFFFF; padding: 10px 16px; display: grid; grid-template-columns: 40px 1fr; column-gap: 12px; align-items: center">
+<svg width="30" height="28" viewBox="0 0 32 30" aria-hidden="true"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#F7A8C7"/></svg>
+<div style="font-size: 13px; line-height: 1.5"><b style="color: #F7A8C7">Con honestidad:</b> ningún alimento cura los sofocos; la soya y las hierbas no se recomiendan para tratarlos (The Menopause Society, 2023). Cocina por tus huesos, tu corazón y tu energía.</div>
+</div>
+<img class="stk" src="../../imagenes-soul/editadas/f74.jpg" alt="Salmón, aguacate, almendras, leche y verduras de hoja sobre fondo rosa" style="position: absolute; left: 600px; top: 150px; width: 132px; height: 132px; border-radius: 50%; object-fit: cover">
+<svg style="position: absolute; left: 584px; top: 240px; transform: rotate(-12deg)" width="30" height="28" viewBox="0 0 32 30" aria-hidden="true"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg>
+<div class="ft"><span>Bono 1 · Recetario</span><span>02</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

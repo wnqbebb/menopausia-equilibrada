@@ -1,0 +1,79 @@
+LISTA DE PROMPTS · HIGGSFIELD SOUL 2.0 · MENOPAUSIA (75 imágenes)
+Formato de cada línea:  CÓDIGO | FORMATO | PROMPT
+Pega SOLO el texto del PROMPT (sin el código ni el formato). No cambies ni una palabra.
+
+P01 | 3:4 | Playful fashion photo of a Latina woman around 52 with a pink towel turban and a pink sheet face mask, eyes closed, blissful smile, soft pink robe, plain light pink studio background, bright soft light, feminine pink self-care aesthetic, nothing written anywhere
+P02 | 3:4 | Playful fashion photo of a glamorous Latina woman around 55 talking on a pink retro rotary telephone, pink cat-eye sunglasses, pearl necklace, pink blouse, plain light pink studio background, fun feminine pink aesthetic, nothing written anywhere
+P03 | 3:4 | Fun fashion photo of a woman around 50 with dark curly hair fanning herself with a pink folding hand fan, dramatic playful expression of heat, pink silk dress, plain light pink studio background, feminine pink aesthetic, nothing written anywhere
+P04 | 3:4 | Fashion photo of a woman around 53 with silver bob haircut holding a tall glass of water with lemon slices, big smile, pastel pink knit sweater, plain light pink studio background, fresh feminine aesthetic, nothing written anywhere
+P05 | 3:4 | Fashion photo of a strong confident woman around 50 lifting two pink dumbbells, pink athletic set, sneakers, full body, plain light pink studio background, energetic feminine aesthetic, nothing written anywhere
+P06 | 3:4 | Fashion photo of a woman around 54 in a yoga warrior pose, blush pink activewear, full body, plain light pink studio background, calm strong feminine aesthetic, nothing written anywhere
+P07 | 3:4 | Fashion photo of two Latina women friends around 50 laughing and hugging, pink and white outfits, plain light pink studio background, joyful feminine aesthetic, nothing written anywhere
+P08 | 3:4 | Fashion photo of a woman around 52 hugging herself with eyes closed and a gentle smile, oversized pink sweater, plain light pink studio background, self-love feminine aesthetic, nothing written anywhere
+P09 | 3:4 | Fashion photo of a woman around 55 sleeping peacefully hugging a pink pillow, pink satin pajamas and pink silk sleep mask on forehead, plain light pink studio background, dreamy feminine aesthetic, nothing written anywhere
+P10 | 3:4 | Fashion photo of a woman around 50 writing in a pink notebook with a pink pen, sitting cross-legged, pink pajamas, plain light pink studio background, cozy feminine aesthetic, nothing written anywhere
+P11 | 3:4 | Fashion photo of a woman around 53 holding a small amber essential oil bottle near her nose with eyes closed, lavender sprigs, soft pink loungewear, plain light pink studio background, calm feminine aesthetic, nothing written anywhere
+P12 | 3:4 | Fashion photo of a confident Latina woman around 52 in a hot pink blazer holding a laptop under her arm, smiling, plain light pink studio background, empowered feminine work aesthetic, nothing written anywhere
+P13 | 3:4 | Fashion photo of a woman around 54 with short grey hair blowing a pink bubble gum bubble, pink sunglasses, playful attitude, plain light pink studio background, fun feminine aesthetic, nothing written anywhere
+P14 | 3:4 | Fashion photo of a woman around 50 with hair in pink rollers, laughing, holding a cup of tea, pink robe, plain light pink studio background, playful feminine aesthetic, nothing written anywhere
+P15 | 3:4 | Fashion photo of a woman around 56 with long silver hair holding a pink heart-shaped mirror and smiling at her reflection, pink blouse, plain light pink studio background, feminine self-esteem aesthetic, nothing written anywhere
+P16 | 3:4 | Fashion photo of a woman around 52 holding a bowl of fruit salad and a spoon, smiling, pink apron, plain light pink studio background, healthy feminine aesthetic, nothing written anywhere
+P17 | 3:4 | Fashion photo of a woman around 50 meditating with headphones and eyes closed, soft pink hoodie, sitting, plain light pink studio background, peaceful feminine aesthetic, nothing written anywhere
+P18 | 3:4 | Fashion photo of a woman around 55 walking briskly in pink sneakers and a pink tracksuit, full body side view, plain light pink studio background, active feminine aesthetic, nothing written anywhere
+P19 | 3:4 | Fashion photo of a Latina woman around 53 holding a pink pill organizer box and reading it with reading glasses, pink cardigan, plain light pink studio background, nothing written anywhere
+P20 | 3:4 | Fashion photo of a stylish woman around 52 sitting on a pink chair with legs crossed, pink suit, white sneakers, sunglasses, confident pose, plain light pink studio background, fashion magazine feminine aesthetic, nothing written anywhere
+P21 | 3:4 | Fashion photo of a smiling woman around 51 holding a smartphone close to her chest with the screen facing her, pink blouse, plain light pink studio background, friendly feminine aesthetic, nothing written anywhere
+P22 | 3:4 | Fashion photo of a woman around 55 in a flowing pink dress dancing joyfully with arms up, full body, plain light pink studio background, happy feminine aesthetic, nothing written anywhere
+P23 | 3:4 | Fashion photo of a woman around 50 holding a big bouquet of lavender, eyes closed smelling it, soft pink dress, plain light pink studio background, calm feminine aesthetic, nothing written anywhere
+P24 | 3:4 | Fashion photo of a woman around 53 in office clothes fanning her face with a sheet of blank paper, funny exasperated expression, pink blouse, plain light pink studio background, nothing written anywhere
+P25 | 3:4 | Fashion photo of a couple in their mid 50s hugging and smiling, she in pink, he in white shirt, plain light pink studio background, tender feminine aesthetic, nothing written anywhere
+P26 | 3:4 | Fashion photo of a strong woman around 54 holding a pink kettlebell with both hands, pink activewear, full body, plain light pink studio background, nothing written anywhere
+P27 | 3:4 | Fashion photo of a Black woman around 52 with natural grey curls laughing, pink oversized shirt, plain light pink studio background, joyful feminine aesthetic, nothing written anywhere
+P28 | 3:4 | Fashion photo of a woman around 56 holding a blank pink planner and a pen, thoughtful smile, pink cardigan, plain light pink studio background, organized feminine aesthetic, nothing written anywhere
+P29 | 4:3 | Cozy bedroom at night with pink bedding, a woman around 50 sitting up in bed fanning herself, warm lamp light, soft pink tones, lifestyle photo, nothing written anywhere
+P30 | 4:3 | Bright clinic office with a female doctor and a woman patient around 52 talking and smiling, pink accents, natural light, lifestyle photo, nothing written anywhere
+P31 | 4:3 | Couple in their 50s cooking together in a bright kitchen with pink details, laughing, lifestyle photo, nothing written anywhere
+P32 | 4:3 | Woman around 50 doing gentle yoga stretch on a pink mat in a sunny living room with plants, lifestyle photo, nothing written anywhere
+P33 | 4:3 | Woman around 52 drinking water from a pink bottle after a walk in a sunny park, lifestyle photo, nothing written anywhere
+P34 | 4:3 | Bedside table with a pink diffuser releasing mist, lavender, a book and a glass of water, cozy evening light, pink tones, lifestyle photo, nothing written anywhere
+P35 | 4:3 | Woman around 55 in a bath with pink bubbles and candles, relaxed, eyes closed, soft pink tones, lifestyle photo, nothing written anywhere
+P36 | 4:3 | Group of three women in their 50s doing a walking workout together outdoors in pink activewear, laughing, lifestyle photo, nothing written anywhere
+P37 | 4:3 | Woman around 50 stretching her arms overhead in bed in the morning sunlight, pink sheets, happy, lifestyle photo, nothing written anywhere
+P38 | 4:3 | Woman around 53 at her office desk with a small fan and a glass of water, smiling, pink accents, lifestyle photo, nothing written anywhere
+P39 | 1:1 | Top-down food photo of creamy cinnamon oatmeal with banana and berries in a white bowl on a light pink linen tablecloth, natural light, nothing written anywhere
+P40 | 1:1 | Top-down food photo of Colombian scrambled eggs pericos with tomato and onion, a corn tortilla and sliced avocado on a plate, light pink tablecloth, natural light, nothing written anywhere
+P41 | 1:1 | Food photo of a yogurt parfait with red berries and granola in a glass, light pink background, natural light, nothing written anywhere
+P42 | 1:1 | Top-down food photo of toasts with fresh white cheese and tomato slices with oregano, light pink tablecloth, natural light, nothing written anywhere
+P43 | 1:1 | Food photo of a green smoothie with banana and oats in a glass with a pink straw, light pink background, natural light, nothing written anywhere
+P44 | 1:1 | Top-down food photo of stewed lentils with brown rice in a bowl, light pink tablecloth, natural light, nothing written anywhere
+P45 | 1:1 | Top-down food photo of a bowl with grilled chicken, quinoa and broccoli, light pink tablecloth, natural light, nothing written anywhere
+P46 | 1:1 | Top-down food photo of black bean salad with fresh white cheese, corn, tomato and cilantro, light pink tablecloth, natural light, nothing written anywhere
+P47 | 1:1 | Top-down food photo of baked salmon with roasted sweet potato and green beans on a plate, light pink tablecloth, natural light, nothing written anywhere
+P48 | 1:1 | Food photo of fish tacos with cabbage and a yogurt sauce on a plate, light pink background, natural light, nothing written anywhere
+P49 | 1:1 | Top-down food photo of a spinach and mushroom omelette on a plate, light pink tablecloth, natural light, nothing written anywhere
+P50 | 1:1 | Top-down food photo of creamy broccoli soup with crumbled white cheese in a bowl, light pink tablecloth, natural light, nothing written anywhere
+P51 | 1:1 | Top-down food photo of toasts with sardines and a kale salad, light pink tablecloth, natural light, nothing written anywhere
+P52 | 1:1 | Top-down food photo of chicken soup with chickpeas and vegetables in a bowl, light pink tablecloth, natural light, nothing written anywhere
+P53 | 1:1 | Top-down food photo of stir-fried tofu with colorful vegetables in a pan, light pink tablecloth, natural light, nothing written anywhere
+P54 | 1:1 | Top-down food photo of homemade hummus with carrot, cucumber and celery sticks, light pink tablecloth, natural light, nothing written anywhere
+P55 | 1:1 | Top-down food photo of a small bowl of mixed nuts and seeds, light pink tablecloth, natural light, nothing written anywhere
+P56 | 1:1 | Food photo of yogurt with mango cubes, cinnamon and chia seeds in a glass jar, light pink background, natural light, nothing written anywhere
+P57 | 1:1 | Top-down food photo of crunchy roasted chickpeas with spices in a bowl, light pink tablecloth, natural light, nothing written anywhere
+P58 | 1:1 | Top-down food photo of apple slices with peanut butter and cinnamon on a plate, light pink tablecloth, natural light, nothing written anywhere
+P59 | 1:1 | Product photo of a pink retro rotary telephone isolated on a plain white background, nothing written anywhere
+P60 | 1:1 | Product photo of an open pink folding hand fan isolated on a plain white background, nothing written anywhere
+P61 | 1:1 | Product photo of a pink silk sleep mask isolated on a plain white background, nothing written anywhere
+P62 | 1:1 | Product photo of a pair of pink dumbbells isolated on a plain white background, nothing written anywhere
+P63 | 1:1 | Product photo of a pink reusable water bottle isolated on a plain white background, nothing written anywhere
+P64 | 1:1 | Product photo of three small amber essential oil bottles with lavender sprigs isolated on a plain white background, no labels, nothing written anywhere
+P65 | 1:1 | Product photo of a pink weekly pill organizer isolated on a plain white background, no letters, nothing written anywhere
+P66 | 1:1 | Product photo of a pink spiral notebook with a pink pen isolated on a plain white background, blank cover, nothing written anywhere
+P67 | 1:1 | Product photo of pink cat-eye sunglasses isolated on a plain white background, nothing written anywhere
+P68 | 1:1 | Product photo of a bouquet of pink peonies isolated on a plain white background, nothing written anywhere
+P69 | 1:1 | Product photo of a pink ceramic coffee mug with steam isolated on a plain white background, blank mug, nothing written anywhere
+P70 | 1:1 | Product photo of a white ceramic aroma diffuser with soft mist isolated on a plain white background, nothing written anywhere
+P71 | 1:1 | Product photo of a glossy pink heart-shaped compact mirror isolated on a plain white background, nothing written anywhere
+P72 | 1:1 | Product photo of a pink yoga mat rolled up isolated on a plain white background, nothing written anywhere
+P73 | 1:1 | Top-down flat lay of a pink notebook, a pen, a cup of tea, reading glasses and pink flowers on a light pink background, nothing written anywhere
+P74 | 1:1 | Top-down flat lay of fish oil capsules, a glass of milk, almonds, avocado, salmon fillet and leafy greens on a light pink background, nothing written anywhere
+P75 | 1:1 | Product photo of a pink smartphone lying face down isolated on a plain white background, nothing written anywhere

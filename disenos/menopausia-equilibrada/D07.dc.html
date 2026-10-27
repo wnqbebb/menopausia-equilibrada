@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diario — Resumen mensual</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.t{display:grid;grid-template-columns:96px repeat(6, minmax(0, 1fr));column-gap:8px;align-items:center}
+.th{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#9B1B4F;text-align:center;line-height:1.25}
+.r{padding:8px 0;border-top:1px dashed #F2B8CD}
+.wk{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:#E0337A}
+.c{height:42px;border:1.5px solid #C98AA5;border-radius:10px;background:#fff;box-sizing:border-box}
+.s3{display:grid;grid-template-columns:34px 1fr 150px;column-gap:10px;align-items:center;margin-top:10px}
+.s3 b{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;color:#E0337A;line-height:1}
+.dots{display:flex;gap:6px;align-items:center;font-size:11px;font-weight:700;color:#6B4E5C}
+.dots span{width:20px;height:20px;border:2px solid #9B1B4F;border-radius:50%;background:#fff;box-sizing:border-box}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Diario de síntomas y progreso</span><span class="px" style="font-size: 12px">Rellenable · imprimible</span></div>
+<div class="scr" style="position: absolute; top: 44px; right: 44px; font-size: 86px; line-height: 1; color: #F7A8C7; transform: rotate(-6deg)">mi mes</div>
+<div style="position: absolute; top: 64px; left: 44px; width: 540px">
+<span class="tag">Para tu consulta</span>
+<div class="ser" style="font-size: 44px; font-weight: 900; line-height: 1.04; margin-top: 12px">Resumen <span class="hl">mensual</span></div>
+<p class="lead" style="margin-top: 10px; font-size: 15px">Copia aquí los totales y medias de cada semana. Esta página es la que le enseñas a tu profesional.</p>
+</div>
+<div style="position: absolute; top: 236px; left: 44px; right: 44px; display: flex; gap: 18px">
+<div style="flex: 1"><div style="font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #9B1B4F">Mes</div><div class="fld" data-fill="text" data-name="d07_mes"></div></div>
+<div style="flex: 1"><div style="font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #9B1B4F">Fecha de mi última regla</div><div class="fld" data-fill="text" data-name="d07_ultima_regla"></div></div>
+</div>
+<div class="note lined" style="position: absolute; top: 310px; left: 44px; right: 44px; padding: 12px 16px 10px">
+<div class="t" style="padding-bottom: 8px"><div class="th" style="text-align: left">Semana</div><div class="th">Media de sueño (h)</div><div class="th">Calidad media</div><div class="th">Ánimo medio</div><div class="th">Total sofocos</div><div class="th">Energía media</div><div class="th">Días con sangrado</div></div>
+<div class="t r"><div class="wk">Semana 1</div><div class="c" data-fill="text" data-name="d07_s1_sueno"></div><div class="c" data-fill="text" data-name="d07_s1_calidad"></div><div class="c" data-fill="text" data-name="d07_s1_animo"></div><div class="c" data-fill="text" data-name="d07_s1_sofocos"></div><div class="c" data-fill="text" data-name="d07_s1_energia"></div><div class="c" data-fill="text" data-name="d07_s1_sangrado"></div></div>
+<div class="t r"><div class="wk">Semana 2</div><div class="c" data-fill="text" data-name="d07_s2_sueno"></div><div class="c" data-fill="text" data-name="d07_s2_calidad"></div><div class="c" data-fill="text" data-name="d07_s2_animo"></div><div class="c" data-fill="text" data-name="d07_s2_sofocos"></div><div class="c" data-fill="text" data-name="d07_s2_energia"></div><div class="c" data-fill="text" data-name="d07_s2_sangrado"></div></div>
+<div class="t r"><div class="wk">Semana 3</div><div class="c" data-fill="text" data-name="d07_s3_sueno"></div><div class="c" data-fill="text" data-name="d07_s3_calidad"></div><div class="c" data-fill="text" data-name="d07_s3_animo"></div><div class="c" data-fill="text" data-name="d07_s3_sofocos"></div><div class="c" data-fill="text" data-name="d07_s3_energia"></div><div class="c" data-fill="text" data-name="d07_s3_sangrado"></div></div>
+<div class="t r"><div class="wk">Semana 4</div><div class="c" data-fill="text" data-name="d07_s4_sueno"></div><div class="c" data-fill="text" data-name="d07_s4_calidad"></div><div class="c" data-fill="text" data-name="d07_s4_animo"></div><div class="c" data-fill="text" data-name="d07_s4_sofocos"></div><div class="c" data-fill="text" data-name="d07_s4_energia"></div><div class="c" data-fill="text" data-name="d07_s4_sangrado"></div></div>
+<div class="t r" style="background: #FCE4EC; border-radius: 10px"><div class="wk" style="color: #2B1B24; padding-left: 6px">El mes</div><div class="c" data-fill="text" data-name="d07_mes_sueno"></div><div class="c" data-fill="text" data-name="d07_mes_calidad"></div><div class="c" data-fill="text" data-name="d07_mes_animo"></div><div class="c" data-fill="text" data-name="d07_mes_sofocos"></div><div class="c" data-fill="text" data-name="d07_mes_energia"></div><div class="c" data-fill="text" data-name="d07_mes_sangrado"></div></div>
+</div>
+<div style="position: absolute; top: 676px; left: 44px; width: 380px">
+<div class="ser" style="font-size: 22px; font-weight: 800">Los 3 síntomas que más me afectan</div>
+<div class="s3"><b>1</b><div class="fld" data-fill="text" data-name="d07_sintoma1"></div><div class="dots"><span data-fill="check" data-name="d07_s1_leve"></span><span data-fill="check" data-name="d07_s1_media"></span><span data-fill="check" data-name="d07_s1_fuerte"></span>1·2·3</div></div>
+<div class="s3"><b>2</b><div class="fld" data-fill="text" data-name="d07_sintoma2"></div><div class="dots"><span data-fill="check" data-name="d07_s2_leve"></span><span data-fill="check" data-name="d07_s2_media"></span><span data-fill="check" data-name="d07_s2_fuerte"></span>1·2·3</div></div>
+<div class="s3"><b>3</b><div class="fld" data-fill="text" data-name="d07_sintoma3"></div><div class="dots"><span data-fill="check" data-name="d07_s3_leve"></span><span data-fill="check" data-name="d07_s3_media"></span><span data-fill="check" data-name="d07_s3_fuerte"></span>1·2·3</div></div>
+<div class="ser" style="font-size: 22px; font-weight: 800; margin-top: 22px">Cómo afectan a mi vida</div>
+<div class="lined" data-fill="multi" data-name="d07_impacto" style="height: 100px; margin-top: 8px; border: 1.5px solid #F2B8CD; border-radius: 10px"></div>
+</div>
+<div style="position: absolute; top: 676px; left: 452px; right: 44px; background: #1E1419; color: #FFFFFF; padding: 16px 18px; transform: rotate(1deg)">
+<div class="px" style="font-size: 13px; color: #F7A8C7">Preguntas para mi consulta</div>
+<div data-fill="multi" data-name="d07_preguntas" style="height: 220px; margin-top: 8px; background: #FFFFFF; border-radius: 10px"></div>
+<div style="font-size: 12px; line-height: 1.45; margin-top: 8px; color: #F2C9D7">¿No sabes qué preguntar? La app arma un resumen con preguntas sugeridas.</div>
+</div>
+<div class="src" style="position: absolute; left: 44px; right: 44px; top: 1000px">Resumen automático en la app: <a href="https://menopausia-equilibrada.vercel.app/#consulta">menopausia-equilibrada.vercel.app/#consulta</a>. La guía NICE NG23 basa el diagnóstico en mayores de 45 en los síntomas, por eso este resumen es tan útil.</div>
+<div class="ft"><span>Diario · Resumen mensual</span><span>7</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

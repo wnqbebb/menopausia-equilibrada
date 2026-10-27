@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PAUSA — Mapa de chequeos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.tr{display:grid;grid-template-columns:132px 92px 1fr 118px;column-gap:12px;align-items:center;padding:7px 12px;border-bottom:1px dashed #F2B8CD;font-size:13px;line-height:1.4;background:#FFFFFF}
+.th{background:#1E1419;color:#FFD3E3;font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-bottom:0}
+.cu{display:inline-block;font-size:11.5px;font-weight:800;padding:3px 8px;border-radius:99px;background:#FCE4EC;color:#9B1B4F}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg lined">
+<div class="rh"><span>PAUSA — El manual de la menopausia</span><span class="px" style="font-size: 12px">herramienta 03</span></div>
+<div class="scr" style="position: absolute; top: 46px; right: 50px; font-size: 96px; line-height: 1; color: #F7A8C7; transform: rotate(-6deg)">mi salud</div>
+<div style="position: absolute; top: 72px; left: 44px; width: 520px">
+<span class="tagk">Herramienta 03</span>
+<div class="ser" style="font-size: 44px; font-weight: 900; line-height: 1.05; margin-top: 12px">Tu mapa de <span class="hl">chequeos</span></div>
+<p class="bd" style="margin-top: 10px">Llévalo a tu próxima consulta. Anota la fecha de tu último control y pregunta cuáles te tocan según tu edad, historia y país. No todos aplican a todas.</p>
+</div>
+<div style="position: absolute; top: 262px; left: 44px; right: 44px; box-shadow: 0 10px 26px rgba(155,27,79,.14)">
+<div class="tr th"><span>Chequeo</span><span>Cuida</span><span>Referencia (EE. UU., salvo indicación)</span><span>Mi última fecha</span></div>
+<div class="tr"><b>Presión arterial</b><span><span class="cu">Corazón</span></span><span>A todas las adultas desde los 18. USPSTF, 2021.</span><span class="fld" data-fill="text" data-name="p19_presion"></span></div>
+<div class="tr"><b>Colesterol</b><span><span class="cu">Corazón</span></span><span>LDL y ApoB suben con la menopausia: pregunta cuándo repetirlo. AHA, 2020.</span><span class="fld" data-fill="text" data-name="p19_colesterol"></span></div>
+<div class="tr"><b>Glucosa</b><span><span class="cu">Metabolismo</span></span><span>De 35 a 70 años con sobrepeso u obesidad. USPSTF, 2021.</span><span class="fld" data-fill="text" data-name="p19_glucosa"></span></div>
+<div class="tr"><b>Densitometría</b><span><span class="cu">Huesos</span></span><span>Desde los 65, o antes si eres posmenopáusica con más riesgo. USPSTF, 2025.</span><span class="fld" data-fill="text" data-name="p19_densito"></span></div>
+<div class="tr"><b>Mamografía</b><span><span class="cu">Mama</span></span><span>Cada 2 años de los 40 a los 74. USPSTF, 2024.</span><span class="fld" data-fill="text" data-name="p19_mamo"></span></div>
+<div class="tr"><b>Citología / VPH</b><span><span class="cu">Cuello uterino</span></span><span>De 30 a 65: citología cada 3 años o VPH cada 5. USPSTF (Manual MSD).</span><span class="fld" data-fill="text" data-name="p19_cito"></span></div>
+<div class="tr"><b>Colon</b><span><span class="cu">Colon</span></span><span>Detección de cáncer colorrectal de 45 a 75. USPSTF (Manual MSD).</span><span class="fld" data-fill="text" data-name="p19_colon"></span></div>
+<div class="tr"><b>Ánimo</b><span><span class="cu">Mente</span></span><span>Consulta si llevas 2 semanas o más con ánimo bajo casi a diario. OMS.</span><span class="fld" data-fill="text" data-name="p19_animo"></span></div>
+<div class="tr" style="border-bottom: 0"><b>Sangrado</b><span><span class="cu">Útero</span></span><span>Cualquier sangrado tras 12 meses sin regla: consulta siempre. HSE (Irlanda).</span><span class="fld" data-fill="text" data-name="p19_sangrado"></span></div>
+</div>
+<div class="src" style="position: absolute; top: 820px; left: 44px; right: 44px; background: #FFF5F8; padding: 4px 6px">Fuentes: USPSTF (hipertensión, 2021; diabetes, 2021; osteoporosis, ene. 2025; mama, abr. 2024); Manual MSD, tabla de cribado según USPSTF; American Heart Association, 2020; OMS, «Depresión»; HSE, «Postmenopausal bleeding». Los programas varían según el país.</div>
+<div style="position: absolute; top: 880px; left: 44px; width: 420px; background: #F7A8C7; padding: 18px 20px; transform: rotate(-1deg)">
+<div class="px" style="font-size: 12px; color: #9B1B4F">Cierre de la Parte I</div>
+<div class="ser" style="font-size: 22px; font-weight: 800; line-height: 1.25; margin-top: 6px">Ya sabes qué cambia y qué vigilar. En la Parte II lo convertimos en un plan.</div>
+</div>
+<div class="note" style="position: absolute; top: 884px; left: 494px; right: 44px; transform: rotate(2deg); padding: 14px 16px">
+<div class="px" style="font-size: 12px; color: #E0337A">Truco</div>
+<div style="font-size: 13.5px; line-height: 1.5; margin-top: 4px">Haz una foto de esta página y guárdala en una carpeta «Mi salud», o anota las fechas en la app: <a href="https://menopausia-equilibrada.vercel.app/#plantillas">menopausia-equilibrada.vercel.app/#plantillas</a></div>
+</div>
+<div class="ft"><span>03 · Lo que no se ve</span><span>19</span></div>
+<img class="stk" src="../../imagenes-soul/editadas/cut67.png" alt="" aria-hidden="true" style="position: absolute; right: 70px; top: 1028px; width: 120px; height: auto; transform: rotate(6deg)">
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

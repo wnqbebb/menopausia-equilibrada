@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diario — Mi progreso</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.cmp{display:grid;grid-template-columns:110px 1fr 1fr;column-gap:12px;align-items:center;padding:8px 0;border-top:1px dashed #F2B8CD}
+.cmp b{font-size:14px}
+.c{height:40px;border:1.5px solid #C98AA5;border-radius:10px;background:#fff;box-sizing:border-box}
+.ch{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#9B1B4F;text-align:center}
+.m3{display:grid;grid-template-columns:30px 1fr;column-gap:8px;align-items:end;margin-top:8px}
+.m3 b{font-family:'Playfair Display',serif;font-weight:900;font-size:24px;color:#E0337A;line-height:1}
+.ab{display:inline-block;background:#1E1419;color:#FFFFFF;text-decoration:none;font-weight:800;font-size:12.5px;letter-spacing:.04em;padding:10px 14px;border-radius:99px}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div style="position: absolute; right: 0; top: 0; width: 300px; height: 470px; background: #F7A8C7"></div>
+<div class="rh"><span>Diario de síntomas y progreso</span><span class="px" style="font-size: 12px">Rellenable · imprimible</span></div>
+<img class="stk" src="../../imagenes-soul/editadas/cut08a.png" alt="Mujer de unos 52 años abrazándose a sí misma con los ojos cerrados y una sonrisa" style="position: absolute; right: 26px; top: 120px; height: 330px; width: auto">
+<div class="scr" style="position: absolute; top: 56px; right: 40px; font-size: 64px; line-height: 1; color: #FFFFFF; transform: rotate(-6deg)">mírate</div>
+<div style="position: absolute; top: 64px; left: 44px; width: 420px">
+<span class="tagk">Cierre del mes</span>
+<div class="ser" style="font-size: 46px; font-weight: 900; line-height: 1.04; margin-top: 12px">Mi <span class="hl">progreso</span></div>
+<p class="lead" style="margin-top: 10px; font-size: 15px">El avance no siempre es «estar perfecta». A veces es dormir media hora más, o saber por fin qué te pasa. Eso también cuenta.</p>
+</div>
+<div class="note" style="position: absolute; top: 280px; left: 44px; width: 340px; padding: 12px 18px">
+<div class="px" style="font-size: 13px; color: #E0337A">Antes y ahora</div>
+<div class="cmp" style="border-top: 0"><span></span><span class="ch">Semana 1</span><span class="ch">Semana 4</span></div>
+<div class="cmp"><b>Sueño (h)</b><div class="c" data-fill="text" data-name="d08_sueno_antes"></div><div class="c" data-fill="text" data-name="d08_sueno_ahora"></div></div>
+<div class="cmp"><b>Ánimo 0–3</b><div class="c" data-fill="text" data-name="d08_animo_antes"></div><div class="c" data-fill="text" data-name="d08_animo_ahora"></div></div>
+<div class="cmp"><b>Sofocos/sem.</b><div class="c" data-fill="text" data-name="d08_sofocos_antes"></div><div class="c" data-fill="text" data-name="d08_sofocos_ahora"></div></div>
+<div class="cmp"><b>Energía 0–3</b><div class="c" data-fill="text" data-name="d08_energia_antes"></div><div class="c" data-fill="text" data-name="d08_energia_ahora"></div></div>
+</div>
+<div style="position: absolute; top: 616px; left: 44px; width: 340px">
+<div class="ser" style="font-size: 22px; font-weight: 800">3 cosas que mejoraron</div>
+<div class="m3"><b>1</b><div class="fld" data-fill="text" data-name="d08_mejora1"></div></div>
+<div class="m3"><b>2</b><div class="fld" data-fill="text" data-name="d08_mejora2"></div></div>
+<div class="m3"><b>3</b><div class="fld" data-fill="text" data-name="d08_mejora3"></div></div>
+<div class="ser" style="font-size: 22px; font-weight: 800; margin-top: 22px">Lo que todavía me cuesta</div>
+<div class="lined" data-fill="multi" data-name="d08_cuesta" style="height: 104px; margin-top: 8px; border: 1.5px solid #F2B8CD; border-radius: 10px"></div>
+</div>
+<div style="position: absolute; top: 500px; left: 432px; right: 44px">
+<div style="background: #FCE4EC; border-radius: 18px; padding: 16px 18px; transform: rotate(-1deg)">
+<div class="scr" style="font-size: 40px; line-height: 1; color: #E0337A">para mí</div>
+<div style="font-size: 13.5px; line-height: 1.5; margin-top: 4px">Escríbete una frase amable, como se la dirías a tu mejor amiga.</div>
+<div data-fill="multi" data-name="d08_frase" style="height: 110px; margin-top: 8px; background: #FFFFFF; border-radius: 10px"></div>
+</div>
+<div style="background: #FFFFFF; border: 2px solid #2B1B24; padding: 14px 16px; margin-top: 18px">
+<div class="px" style="font-size: 13px; color: #E0337A">Mi siguiente paso</div>
+<div class="ck"><span class="bx" data-fill="check" data-name="d08_paso_consulta"></span><span>Pedir cita y llevar mi resumen (pág. 7)</span></div>
+<div class="ck"><span class="bx" data-fill="check" data-name="d08_paso_otro_mes"></span><span>Seguir otro mes con el diario</span></div>
+<div class="ck" style="border-bottom: 0"><span class="bx" data-fill="check" data-name="d08_paso_app"></span><span>Pasarme a la app para ver mis gráficas</span></div>
+</div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; bottom: 50px; background: #1E1419; color: #FFFFFF; padding: 14px 20px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; align-items: center">
+<div><div class="px" style="font-size: 12px; color: #F7A8C7">Registra hoy</div><a href="https://menopausia-equilibrada.vercel.app/#hoy" style="color: #FFFFFF; font-size: 13px; font-weight: 600">menopausia-equilibrada.vercel.app/#hoy</a></div>
+<div><div class="px" style="font-size: 12px; color: #F7A8C7">Mira tu progreso</div><a href="https://menopausia-equilibrada.vercel.app/#progreso" style="color: #FFFFFF; font-size: 13px; font-weight: 600">menopausia-equilibrada.vercel.app/#progreso</a></div>
+</div>
+<div class="ft"><span>Diario · Mi progreso</span><span>8</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

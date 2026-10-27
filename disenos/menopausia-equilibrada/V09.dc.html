@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mis suplementos para mi médica</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.lab{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9B1B4F}
+.row{display:grid;grid-template-columns:1.2fr 1.2fr .8fr 1.2fr;column-gap:10px}
+.cell{height:30px;border-bottom:1.5px solid #C98AA5;background:#FFFFFF}
+.box{border:1.5px solid #C98AA5;background:#FFFFFF;border-radius:6px}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Bono 3 · Vitaminas y suplementos</span><span class="px" style="font-size: 12px">plantilla rellenable</span></div>
+<div style="position: absolute; top: 60px; left: 44px; right: 44px; display: flex; justify-content: space-between; align-items: flex-end">
+<div>
+<div class="scr" style="font-size: 64px; line-height: .9; color: #E0337A; transform: rotate(-4deg)">para llevar</div>
+<div class="ser" style="font-size: 40px; font-weight: 900; line-height: 1.05">Mis suplementos para mi médica</div>
+</div>
+<svg width="70" height="96" viewBox="0 0 110 150" aria-hidden="true" style="transform: rotate(10deg)"><rect x="22" y="8" width="66" height="26" rx="5" fill="#2B1B24"/><rect x="14" y="32" width="82" height="110" rx="14" fill="#FFFFFF" stroke="#2B1B24" stroke-width="3"/><rect x="14" y="62" width="82" height="48" fill="#F7A8C7"/></svg>
+</div>
+<div class="lined" style="position: absolute; top: 200px; left: 44px; right: 44px; bottom: 60px; padding: 22px 24px; box-sizing: border-box; box-shadow: 0 10px 26px rgba(155,27,79,.14)">
+<div style="position: absolute; top: -12px; left: 300px; width: 120px; height: 26px; background: rgba(247,168,199,.85); transform: rotate(-4deg)"></div>
+<div style="display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; column-gap: 14px">
+<div><div class="lab">Mi nombre</div><div class="fld" data-fill="text" data-name="v09_nombre"></div></div>
+<div><div class="lab">Fecha</div><div class="fld" data-fill="text" data-name="v09_fecha"></div></div>
+<div><div class="lab">Profesional</div><div class="fld" data-fill="text" data-name="v09_medica"></div></div>
+</div>
+<div class="row" style="margin-top: 18px"><span class="lab">Suplemento</span><span class="lab">Dosis que dice la etiqueta</span><span class="lab">¿Desde cuándo?</span><span class="lab">¿Para qué lo tomo?</span></div>
+<div class="row" style="margin-top: 4px"><div class="cell" data-fill="text" data-name="v09_r1_sup"></div><div class="cell" data-fill="text" data-name="v09_r1_dosis"></div><div class="cell" data-fill="text" data-name="v09_r1_desde"></div><div class="cell" data-fill="text" data-name="v09_r1_para"></div></div>
+<div class="row" style="margin-top: 4px"><div class="cell" data-fill="text" data-name="v09_r2_sup"></div><div class="cell" data-fill="text" data-name="v09_r2_dosis"></div><div class="cell" data-fill="text" data-name="v09_r2_desde"></div><div class="cell" data-fill="text" data-name="v09_r2_para"></div></div>
+<div class="row" style="margin-top: 4px"><div class="cell" data-fill="text" data-name="v09_r3_sup"></div><div class="cell" data-fill="text" data-name="v09_r3_dosis"></div><div class="cell" data-fill="text" data-name="v09_r3_desde"></div><div class="cell" data-fill="text" data-name="v09_r3_para"></div></div>
+<div class="row" style="margin-top: 4px"><div class="cell" data-fill="text" data-name="v09_r4_sup"></div><div class="cell" data-fill="text" data-name="v09_r4_dosis"></div><div class="cell" data-fill="text" data-name="v09_r4_desde"></div><div class="cell" data-fill="text" data-name="v09_r4_para"></div></div>
+<div class="row" style="margin-top: 4px"><div class="cell" data-fill="text" data-name="v09_r5_sup"></div><div class="cell" data-fill="text" data-name="v09_r5_dosis"></div><div class="cell" data-fill="text" data-name="v09_r5_desde"></div><div class="cell" data-fill="text" data-name="v09_r5_para"></div></div>
+<div class="row" style="margin-top: 4px"><div class="cell" data-fill="text" data-name="v09_r6_sup"></div><div class="cell" data-fill="text" data-name="v09_r6_dosis"></div><div class="cell" data-fill="text" data-name="v09_r6_desde"></div><div class="cell" data-fill="text" data-name="v09_r6_para"></div></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; margin-top: 20px">
+<div><div class="lab">Medicamentos que tomo a diario</div><div class="box" style="height: 96px; margin-top: 6px" data-fill="multi" data-name="v09_medicamentos"></div></div>
+<div><div class="lab">Mis preguntas</div><div class="box" style="height: 96px; margin-top: 6px" data-fill="multi" data-name="v09_preguntas"></div></div>
+</div>
+<div style="margin-top: 14px">
+<div class="ck"><span class="bx" data-fill="check" data-name="v09_ck_fotos"></span><span>Llevo fotos de las etiquetas (o los frascos).</span></div>
+<div class="ck"><span class="bx" data-fill="check" data-name="v09_ck_hierbas"></span><span>Le conté también de tés, hierbas y productos «naturales».</span></div>
+<div class="ck"><span class="bx" data-fill="check" data-name="v09_ck_separar"></span><span>Pregunté si debo separar algún suplemento de mis medicamentos.</span></div>
+</div>
+<div style="margin-top: 14px"><div class="lab">Lo que acordamos</div><div class="box" style="height: 84px; margin-top: 6px" data-fill="multi" data-name="v09_acuerdos"></div></div>
+<div style="margin-top: 12px; font-size: 13px; line-height: 1.5">¿Prefieres el celular? Llénala en la app: <a href="https://menopausia-equilibrada.vercel.app/#plantillas" style="font-weight: 700">menopausia-equilibrada.vercel.app/#plantillas</a></div>
+</div>
+<div class="ft"><span>Hoja para tu consulta</span><span>09</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

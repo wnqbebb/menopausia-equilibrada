@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PAUSA — Página de venta</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.root{background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;font-size:16px;line-height:1.65;overflow-x:hidden}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(32px,5vw,52px);line-height:1.05;margin:12px 0 0 0;text-wrap:balance}
+.sec{padding-top:clamp(48px,7vw,80px);padding-bottom:clamp(48px,7vw,80px)}
+.g{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.g4{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+.g2{display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:#E0337A;color:#FFFFFF;text-decoration:none;font-weight:800;font-size:16px;letter-spacing:.04em;padding:16px 28px;min-height:48px;box-sizing:border-box;border-radius:99px;box-shadow:0 8px 0 #9B1B4F}
+.btn:hover{background:#9B1B4F;color:#FFFFFF}
+.btn.o{background:#FFFFFF;color:#9B1B4F;border:2px solid #9B1B4F;box-shadow:none}
+.btn.o:hover{background:#FCE4EC;color:#9B1B4F}
+.note{font-size:13px;color:#6B4E5C;line-height:1.5}
+.card{background:#FFFFFF;padding:24px;display:flex;flex-direction:column;gap:10px;box-shadow:0 12px 30px rgba(155,27,79,.12)}
+.card h3{font-family:'Playfair Display',serif;font-size:28px;line-height:1.08;margin:0}
+.st{background:#FFFFFF;padding:22px;box-shadow:0 12px 30px rgba(155,27,79,.10)}
+.st b{display:block;font-family:'Playfair Display',serif;font-size:58px;line-height:.95;color:#E0337A}
+.chip{display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border:2px solid #2B1B24;border-radius:99px;padding:8px 16px;font-weight:700;font-size:15px}
+.ch{display:grid;grid-template-columns:52px 1fr;column-gap:12px;padding:14px 0;border-bottom:1px dashed #F2B8CD}
+.ch .n{font-family:'Playfair Display',serif;font-weight:900;font-size:32px;color:#E0337A;line-height:1}
+.ch .t{font-weight:800;font-size:17px;line-height:1.3}
+.ch .d{font-size:15px;color:#4A3540;margin-top:3px}
+.pt{background:#1E1419;color:#FFD3E3;font-size:13px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;padding:9px 14px;margin-top:18px}
+.li{display:grid;grid-template-columns:26px 1fr;column-gap:10px;padding:10px 0;border-bottom:1px dashed #F2B8CD;font-size:16px}
+.pr{font-family:'Playfair Display',serif;font-weight:900;font-size:36px;color:#9B1B4F;line-height:1}
+.up img{width:100%;height:220px;object-fit:cover;object-position:center top;background:#FCE4EC}
+details{border-bottom:2px dashed #F2B8CD;padding:18px 0}
+summary{font-weight:800;font-size:18px;cursor:pointer;min-height:24px}
+details p{margin:10px 0 0 0;font-size:16px;color:#4A3540}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+.faces{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:6px;margin-top:22px}
+.faces img{height:170px;width:auto}
+.pol{background:#FFFFFF;padding:10px 10px 12px;box-shadow:0 12px 28px rgba(155,27,79,.16);margin:18px 0 4px}
+.pol img{width:100%;height:200px;object-fit:cover;display:block}
+.cimg{height:210px;background:#FCE4EC;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;margin:-24px -24px 6px}
+.cimg img{height:200px;width:auto}
+.up img.cut{object-fit:contain;object-position:center bottom;padding-top:12px;box-sizing:border-box}
+@media (max-width:600px){.faces img{height:132px}}
+.faq{display:flex;flex-wrap:wrap;gap:40px;align-items:center;margin-top:18px}
+</style>
+</helmet>
+<div class="root">
+<div style="background: #1E1419; color: #FFFFFF">
+<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 12px; padding-bottom: 12px">
+<span class="ser" style="font-size: 28px; font-weight: 900; letter-spacing: .02em">PAUSA</span>
+<span class="px" style="font-size: 13px; color: #FFD3E3">El manual de la menopausia · 2026</span>
+<a class="btn" href="#comprar" style="padding: 10px 20px; min-height: 44px; font-size: 14px; box-shadow: none">Lo quiero</a>
+</div>
+</div>
+
+<div class="lined">
+<div class="wrap" style="padding-top: 56px; padding-bottom: 64px">
+<div class="g2">
+<div style="display: flex; flex-direction: column; gap: 18px; position: relative">
+<span class="px" style="align-self: flex-start; font-size: 13px; color: #9B1B4F; background: #FFFFFF; border: 2px solid #9B1B4F; border-radius: 99px; padding: 6px 14px">Guía digital · 60 páginas · 40 a 60 años</span>
+<h1 class="ser" style="font-size: clamp(46px, 8vw, 92px); line-height: .95; font-weight: 900; margin: 0">Menopausia: lo que nadie te explicó.</h1>
+<div class="scr" style="font-size: clamp(44px, 6vw, 72px); line-height: 1; color: #E0337A; margin-top: -8px">con cariño y con evidencia</div>
+<p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; margin: 0; max-width: 560px">Un manual cálido y claro para entender qué le pasa a tu cuerpo, llegar preparada a tu consulta y armar tu propio plan, con el apoyo de tu casa y tu trabajo.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<a class="btn" href="#comprar">Quiero mi guía · USD 27</a>
+<a class="btn o" href="#dentro">Ver qué incluye</a>
+</div>
+<div class="note">USD 27: precio sugerido (recomendación, no dato de mercado).</div>
+</div>
+<div style="position: relative; max-width: 460px; width: 100%; justify-self: center">
+<div style="position: absolute; inset: 8% 4% 0 4%; background: #F7A8C7; border-radius: 50% 50% 0 0"></div>
+<img class="stk" src="../../imagenes-soul/editadas/cut02a.png" alt="Mujer de unos 55 años riendo mientras habla por un teléfono rosa retro, con gafas de sol blancas" style="position: relative; display: block; width: 80%; height: auto; margin: 0 auto"><img class="stk" src="../../imagenes-soul/editadas/cut71.png" alt="" aria-hidden="true" style="position: absolute; right: -4%; top: 2%; width: 22%; height: auto; transform: rotate(12deg)"><img class="stk" src="../../imagenes-soul/editadas/cut60.png" alt="" aria-hidden="true" style="position: absolute; left: -6%; top: 46%; width: 24%; height: auto; transform: rotate(-14deg)">
+<span class="tagk" style="position: absolute; left: 0; top: 18%; transform: rotate(-4deg)">60 páginas</span>
+<span class="tag" style="position: absolute; right: 0; top: 40%; transform: rotate(3deg); background: #FFFFFF; border: 2px solid #2B1B24">10 herramientas</span>
+<span class="tag" style="position: absolute; left: 2%; bottom: 14%; transform: rotate(-2deg); background: #CFE3F7">App incluida</span>
+</div>
+</div>
+</div>
+</div>
+
+<div style="background: #F7A8C7">
+<div class="wrap sec" style="text-align: center">
+<div class="px" style="font-size: 14px; color: #9B1B4F">¿Te suena?</div>
+<h2 class="h2" style="margin-left: auto; margin-right: auto; max-width: 760px">No estás exagerando. Y no estás sola.</h2>
+<div class="faces"><img class="stk" src="../../imagenes-soul/editadas/cut03b.png" alt="Mujer de unos 50 años abanicándose"><img class="stk" src="../../imagenes-soul/editadas/cut09b.png" alt="Mujer de unos 55 años dormida abrazando una almohada"><img class="stk" src="../../imagenes-soul/editadas/cut24a.png" alt="Mujer en la oficina abanicándose con una hoja"><img class="stk" src="../../imagenes-soul/editadas/cut13a.png" alt="Mujer de unos 54 años con canas haciendo un globo de chicle rosa"></div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 26px">
+<span class="chip">Sofocos que no avisan</span><span class="chip">Noches sin dormir</span><span class="chip">Ansiedad sin motivo</span><span class="chip">Cansancio constante</span><span class="chip">Kilos que cambian de lugar</span><span class="chip">Autoestima por el piso</span>
+</div>
+</div>
+</div>
+
+<div class="wrap sec">
+<span class="tag">Por qué existe este manual</span>
+<h2 class="h2">Los síntomas son comunes. La información clara, <span class="hl">no</span>.</h2>
+<div class="g" style="margin-top: 28px">
+<div class="st"><b>49,4%</b>de las mujeres de 40 a 60 años tuvo síntomas de menopausia en el último año.<div class="note" style="margin-top: 8px">CDC/NCHS, Data Brief n.º 575, oct. 2026 (EE. UU.).</div></div>
+<div class="st"><b>45%</b>no conocía la diferencia entre perimenopausia y menopausia antes de vivirla.<div class="note" style="margin-top: 8px">Bonafide, State of Menopause Survey, citada por SWHR, feb. 2025.</div></div>
+<div class="st"><b>20%</b>esperó 12 meses o más desde los primeros síntomas a una evaluación médica formal.<div class="note" style="margin-top: 8px">Misma fuente (SWHR, feb. 2025).</div></div>
+</div>
+</div>
+
+<div class="wrap sec" style="padding-top: 0px">
+<div class="g2" style="align-items: start">
+<div class="card">
+<span class="tag" style="align-self: flex-start">Para ti, si…</span>
+<div class="li"><span style="color: #E0337A; font-weight: 800">♥</span><span>Tienes entre 40 y 60 años y notas cambios en tu ciclo, tu sueño o tu ánimo.</span></div>
+<div class="li"><span style="color: #E0337A; font-weight: 800">♥</span><span>Ya estás en la menopausia y quieres entender tus opciones sin miedo.</span></div>
+<div class="li"><span style="color: #E0337A; font-weight: 800">♥</span><span>Sientes que en la consulta no te alcanza el tiempo para preguntar.</span></div>
+<div class="li" style="border-bottom: 0"><span style="color: #E0337A; font-weight: 800">♥</span><span>Quieres que tu pareja, tu familia o tu trabajo entiendan lo que vives.</span></div>
+</div>
+<div class="card" style="background: #1E1419; color: #FFFFFF">
+<span class="tagk" style="align-self: flex-start; background: #FFD3E3; color: #1E1419">No es para ti, si…</span>
+<div class="li" style="border-color: rgba(255,255,255,.25)"><span style="color: #F7A8C7; font-weight: 800">×</span><span>Buscas una cura milagrosa o un suplemento «que lo resuelve todo».</span></div>
+<div class="li" style="border-color: rgba(255,255,255,.25)"><span style="color: #F7A8C7; font-weight: 800">×</span><span>Quieres que un libro reemplace a tu médica: aquí te preparamos para hablar con ella.</span></div>
+<div class="li" style="border-bottom: 0"><span style="color: #F7A8C7; font-weight: 800">×</span><span>Tienes una urgencia médica: en ese caso, consulta hoy mismo.</span></div>
+</div>
+</div>
+</div>
+
+<div class="lined" id="dentro">
+<div class="wrap sec">
+<span class="tag">Lo que hay dentro</span>
+<h2 class="h2">10 capítulos, 3 partes, <span class="hl">una herramienta</span> en cada uno</h2>
+<div class="g" style="margin-top: 14px; align-items: start">
+<div>
+<div class="pol" style="transform: rotate(-2deg)"><img src="../../imagenes-soul/editadas/f37a.jpg" alt="Mujer estirándose en la cama con la luz de la mañana"></div>
+<div class="pt">Parte I · Entender</div>
+<div class="ch"><div class="n">01</div><div><div class="t">Qué es (y qué no es)</div><div class="d">Sabrás en qué etapa estás y por qué la edad cambia de una mujer a otra.</div></div></div>
+<div class="ch"><div class="n">02</div><div><div class="t">Los síntomas, sin tabú</div><div class="d">Pondrás nombre a lo que sientes, incluso a lo que nadie habla.</div></div></div>
+<div class="ch"><div class="n">03</div><div><div class="t">Lo que no se ve</div><div class="d">Entenderás qué cambia en huesos, corazón y mente, y qué chequeos pedir.</div></div></div>
+</div>
+<div>
+<div class="pol" style="transform: rotate(1.5deg)"><img src="../../imagenes-soul/editadas/f30a.jpg" alt="Médica y paciente de unos 52 años conversando y sonriendo en una consulta"></div>
+<div class="pt">Parte II · Actuar</div>
+<div class="ch"><div class="n">04</div><div><div class="t">Tu diario de síntomas</div><div class="d">Convertirás 4 semanas de registro en datos que tu médica pueda usar.</div></div></div>
+<div class="ch"><div class="n">05</div><div><div class="t">La consulta que mereces</div><div class="d">Llegarás con un guion de preguntas y sabrás qué hacer si no te escuchan.</div></div></div>
+<div class="ch"><div class="n">06</div><div><div class="t">Tratamientos con evidencia</div><div class="d">Opciones hormonales y no hormonales, con riesgos en contexto.</div></div></div>
+<div class="ch"><div class="n">07</div><div><div class="t">Cuerpo en movimiento</div><div class="d">Un plan semanal de fuerza, comida y sueño para esta década.</div></div></div>
+</div>
+<div>
+<div class="pol" style="transform: rotate(-1.5deg)"><img src="../../imagenes-soul/editadas/f36b.jpg" alt="Tres mujeres de unos 50 años caminando juntas al aire libre"></div>
+<div class="pt">Parte III · Compartir</div>
+<div class="ch"><div class="n">08</div><div><div class="t">La empatía empieza por ti</div><div class="d">Hablarte con amabilidad y reconocer las señales de alarma.</div></div></div>
+<div class="ch"><div class="n">09</div><div><div class="t">Responsabilidad compartida</div><div class="d">Guiones para hablarlo en casa y en el trabajo.</div></div></div>
+<div class="ch"><div class="n">10</div><div><div class="t">Mitos y preguntas</div><div class="d">Respuestas claras, con fuente, a las dudas de siempre.</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="wrap sec">
+<span class="tag">Lo que recibes</span>
+<h2 class="h2">Un manual, tres plantillas y una app</h2>
+<div class="g" style="margin-top: 28px">
+<div class="card"><div class="cimg"><img class="stk" src="../../imagenes-soul/editadas/cut10b.png" alt="Mujer de unos 50 años leyendo y escribiendo en una libreta rosa"></div><span class="px" style="font-size: 13px; color: #E0337A">PDF · 60 páginas</span><h3>PAUSA, el manual</h3><div>Diseño femenino y fácil de leer, en A4, para pantalla o impresión. Cada dato con su fuente.</div></div>
+<div class="card"><div class="cimg"><img src="../../imagenes-soul/editadas/f73.jpg" alt="Libreta rosa, bolígrafo, taza de té, gafas de lectura y flores rosas" style="width: 100%; height: 210px; object-fit: cover"></div><span class="px" style="font-size: 13px; color: #E0337A">3 plantillas editables</span><h3>Para usar hoy</h3><div>Hoja de consulta, rastreador de 30 días y plan de conversación con tu pareja o tu jefe.</div></div>
+<div class="card" style="background: #FCE4EC"><div class="cimg" style="background: #F7A8C7"><img class="stk" src="../../imagenes-soul/editadas/cut21a.png" alt="Mujer de unos 51 años sonriendo con su celular en la mano"></div><span class="px" style="font-size: 13px; color: #E0337A">App en el navegador</span><h3>Menopausia Equilibrada</h3><div>Registra tus síntomas cada día, mira tu progreso y genera un resumen para tu consulta. Gratis, desde el celular o el computador.</div><a class="btn" href="https://menopausia-equilibrada.vercel.app/#hoy" style="align-self: flex-start; font-size: 14px; padding: 12px 20px">Abrir la app</a></div>
+</div>
+</div>
+
+<div style="background: #1E1419; color: #FFFFFF">
+<div class="wrap sec">
+<span class="tag">Complementos opcionales</span>
+<h2 class="h2" style="color: #FFFFFF">¿Un dolor en particular? <span class="scr" style="font-weight: 400; color: #F48FB1">hay un kit para eso</span></h2>
+<div class="g4" style="margin-top: 28px">
+<div class="card up" style="color: #2B1B24"><img class="cut" src="../../imagenes-soul/editadas/cut09a.png" alt="Mujer dormida abrazando una almohada rosa con antifaz"><span class="px" style="font-size: 12px; color: #E0337A">Kit 01 · Sueño</span><h3>Noches frescas</h3><div>Protocolo de 21 días para los calores nocturnos y el sueño cortado.</div><div class="pr">USD 17</div><a class="btn o" href="#comprar" style="margin-top: auto">Añadir</a></div>
+<div class="card up" style="color: #2B1B24"><img class="cut" src="../../imagenes-soul/editadas/cut25b.png" alt="Pareja de unos 55 años abrazándose"><span class="px" style="font-size: 12px; color: #E0337A">Kit 02 · Intimidad</span><h3>Intimidad sin dolor</h3><div>Guía del síndrome genitourinario, el deseo y la conversación en pareja.</div><div class="pr">USD 17</div><a class="btn o" href="#comprar" style="margin-top: auto">Añadir</a></div>
+<div class="card up" style="color: #2B1B24"><img class="cut" src="../../imagenes-soul/editadas/cut12a.png" alt="Mujer latina con blazer fucsia y laptop"><span class="px" style="font-size: 12px; color: #E0337A">Kit 03 · Trabajo</span><h3>Menopausia en el trabajo</h3><div>Guion de 4 pasos, dos correos listos, menú de ajustes y plan de 30 días.</div><div class="pr">USD 19</div><a class="btn o" href="#comprar" style="margin-top: auto">Añadir</a></div>
+<div class="card up" style="color: #2B1B24"><img class="cut" src="../../imagenes-soul/editadas/cut26a.png" alt="Mujer fuerte de unos 54 años con una pesa rusa rosa"><span class="px" style="font-size: 12px; color: #E0337A">Kit 04 · Fuerza</span><h3>Fuerte después de los 45</h3><div>12 semanas de fuerza y nutrición para cuidar huesos y músculo en casa.</div><div class="pr">USD 19</div><a class="btn o" href="#comprar" style="margin-top: auto">Añadir</a></div>
+</div>
+<div style="margin-top: 26px; background: #F7A8C7; color: #2B1B24; padding: 28px; display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; align-items: center">
+<div>
+<div class="px" style="font-size: 14px; color: #9B1B4F">Pack de los 4 kits</div>
+<div class="ser" style="font-size: clamp(34px, 5vw, 50px); font-weight: 900; line-height: 1.05; margin-top: 6px">USD 47 <span style="font-size: .5em; font-weight: 600; text-decoration: line-through; color: #6B4E5C">USD 72</span></div>
+<div style="font-size: 15px; margin-top: 6px">17 + 17 + 19 + 19 = USD 72 por separado. Con el pack ahorras USD 25.</div>
+</div>
+<a class="btn" href="#comprar">Quiero el pack</a>
+</div>
+<div class="note" style="margin-top: 12px; color: #F2C9D7">Todos los precios son sugeridos (recomendación, no dato de mercado).</div>
+</div>
+</div>
+
+<div class="wrap sec">
+<span class="tag">Preguntas frecuentes</span>
+<h2 class="h2">Antes de decidir</h2>
+<div class="faq"><div style="flex: 1 1 520px; max-width: 760px">
+<details open><summary>¿Este manual reemplaza a mi médica?</summary><p>No. Te ayuda a entender lo que vives y a preparar tu consulta. Cualquier decisión sobre tratamientos se toma con un profesional de salud.</p></details>
+<details><summary>¿Me sirve si todavía tengo la regla?</summary><p>Sí. En la perimenopausia, cuando los ciclos se vuelven irregulares, muchas mujeres notan los primeros síntomas. El capítulo 01 te ayuda a ubicarte.</p></details>
+<details><summary>¿Habla de terapia hormonal?</summary><p>Sí, con lo que dicen las sociedades científicas y los riesgos en contexto. No recomienda marcas ni dosis: eso le corresponde a tu médica.</p></details>
+<details><summary>¿En qué formato lo recibo?</summary><p>El manual y las plantillas llegan en PDF A4; las plantillas se pueden rellenar en pantalla o imprimir. La app funciona en el navegador del celular o del computador.</p></details>
+<details><summary>¿Sirve si no vivo en Latinoamérica?</summary><p>Sí. Los datos vienen de varias regiones y cada uno indica su fuente. Lo relativo a leyes laborales o al sistema de salud adáptalo a tu país.</p></details>
+</div>
+<div style="flex: 0 1 300px; margin: 0 auto"><img class="stk" src="../../imagenes-soul/editadas/cut27a.png" alt="Mujer de unos 52 años con rizos canosos riendo" style="display: block; width: 100%; max-width: 300px; height: auto"></div>
+</div>
+</div>
+
+<div class="lined" id="comprar">
+<div class="wrap sec">
+<div class="g2">
+<div>
+<span class="tag">Empieza hoy</span>
+<h2 class="h2">Tu plan empieza con <span class="hl">una página</span></h2>
+<p style="margin: 14px 0 0 0; max-width: 520px; font-size: 17px">PAUSA, el manual de 60 páginas, más 3 plantillas editables y la app Menopausia Equilibrada.</p>
+<div style="display: flex; align-items: flex-end; gap: 6px; margin-top: 22px"><img class="stk" src="../../imagenes-soul/editadas/cut04a.png" alt="Mujer de unos 53 años con melena plateada sosteniendo un vaso de agua con limón" style="height: 260px; width: auto; transform: rotate(-3deg)"><img class="stk" src="../../imagenes-soul/editadas/cut15a.png" alt="Mujer de unos 56 años con cabello plateado mirándose en un espejo rosa en forma de corazón" style="height: 240px; width: auto; transform: rotate(3deg)"></div>
+</div>
+<div class="card" style="align-items: flex-start">
+<div class="pr" style="font-size: 56px">USD 27</div>
+<div class="note">Precio sugerido (recomendación, no dato de mercado).</div>
+<a class="btn" href="#comprar">Comprar PAUSA</a>
+<a class="btn o" href="#comprar">PAUSA + pack de 4 kits · USD 74</a>
+<div class="note">27 + 47 = USD 74. Nota para quien vende: reemplaza cada enlace «#comprar» por tu enlace de pago (Hotmart u otra plataforma).</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="wrap" style="padding: 28px 20px 48px; display: flex; flex-direction: column; gap: 10px">
+<div class="note"><b style="color: #9B1B4F">Aviso médico.</b> PAUSA y sus complementos son contenido educativo. No diagnostican, no tratan y no reemplazan la consulta con un profesional de salud. Si tienes sangrado después de 12 meses sin regla, pensamientos de hacerte daño o cualquier síntoma que te preocupe, consulta de inmediato.</div>
+<div class="note">© 2026 PAUSA · DisierTECH. Imágenes generadas con IA con fines ilustrativos.</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":4200}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

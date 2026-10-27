@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Plantilla 01 · Hoja de consulta</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.sec{background:#FFFFFF;border-radius:14px;padding:12px 16px;box-shadow:0 6px 18px rgba(155,27,79,.08)}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.n{width:26px;height:26px;border-radius:50%;background:#E0337A;color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex:none}
+.st{font-family:'Playfair Display',Georgia,serif;font-weight:800;font-size:18px}
+.lb{font-size:12px;font-weight:600;color:#6B4E5C;margin-top:4px}
+.fl{border-bottom:1.5px solid #C98AA5;height:24px}
+.cb{display:flex;align-items:center;gap:8px;font-size:13px;line-height:1.35;padding:3px 0}
+.cb .bx{margin-top:0;flex:none}
+.sc{display:flex;gap:5px;align-items:center}
+.sc span{font-size:11px;font-weight:700;color:#9B1B4F}
+.sc .bx{width:15px;height:15px;margin:0}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>PAUSA · Plantilla 01</span><span class="px" style="font-size: 12px">editable</span></div>
+<div class="scr" style="position: absolute; top: 44px; left: 470px; font-size: 76px; line-height: 1; color: #F48FB1; transform: rotate(-8deg)">mi cita</div>
+<div style="position: absolute; top: 52px; left: 44px; width: 500px">
+<div class="ser" style="font-size: 46px; font-weight: 900; line-height: 1">Hoja de <span class="hl">consulta</span></div>
+<div style="font-size: 14px; line-height: 1.55; margin-top: 8px">Rellénala antes de entrar. Tu médica verá en un minuto lo que necesita saber.</div>
+</div>
+<div style="position: absolute; top: 160px; left: 44px; right: 44px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 12px">
+<div class="sec">
+<div class="sh"><span class="n">1</span><span class="st">Mis datos</span></div>
+<div style="display: grid; grid-template-columns: 1.6fr 1fr; column-gap: 10px">
+<div><div class="lb">Nombre</div><div class="fl" data-fill="text" data-name="pl1_nombre"></div></div>
+<div><div class="lb">Fecha</div><div class="fl" data-fill="text" data-name="pl1_fecha"></div></div>
+<div><div class="lb">Edad</div><div class="fl" data-fill="text" data-name="pl1_edad"></div></div>
+<div><div class="lb">Última regla</div><div class="fl" data-fill="text" data-name="pl1_ultima_regla"></div></div>
+</div>
+<div style="display: flex; gap: 16px; margin-top: 6px">
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_anticonceptivo"></div>Anticonceptivo o DIU</div>
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_histerectomia"></div>Histerectomía</div>
+</div>
+<div class="lb" style="margin-top: 4px">En mi familia hay antecedentes de:</div>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_fam_mama"></div>Cáncer de mama</div>
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_fam_osteo"></div>Osteoporosis</div>
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_fam_corazon"></div>Corazón</div>
+</div>
+</div>
+<div class="sec">
+<div class="sh"><span class="n">2</span><span class="st">Mi etapa</span><span style="font-size: 12px; color: #6B4E5C">marca lo que aplique</span></div>
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_etapa_7dias"></div>Mis ciclos varían 7 días o más</div>
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_etapa_60dias"></div>He pasado 60 días o más sin regla</div>
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_etapa_12meses"></div>Llevo 12 meses o más sin regla</div>
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_etapa_nose"></div>No lo sé (anticonceptivo, DIU o cirugía)</div>
+<div class="cb"><div class="bx" data-fill="check" data-name="pl1_etapa_sangrado"></div><b>Tuve sangrado tras 12 meses sin regla</b></div>
+<div class="src" style="margin-top: 4px">Criterios: consenso STRAW+10 (Harlow et al., <i>Menopause</i>, 2012).</div>
+</div>
+<div class="sec" style="grid-column: 1 / -1">
+<div class="sh"><span class="n">3</span><span class="st">Mis 3 síntomas principales</span></div>
+<div style="display: grid; grid-template-columns: 2.2fr 1.2fr 1.2fr 1fr; column-gap: 12px; font-size: 12px; font-weight: 700; color: #9B1B4F; text-transform: uppercase; letter-spacing: .06em">
+<div>Síntoma</div><div>Desde cuándo</div><div>Frecuencia</div><div>Intensidad</div>
+</div>
+<div style="display: grid; grid-template-columns: 2.2fr 1.2fr 1.2fr 1fr; column-gap: 12px; align-items: end; margin-top: 2px">
+<div class="fl" data-fill="text" data-name="pl1_sint1"></div><div class="fl" data-fill="text" data-name="pl1_sint1_desde"></div><div class="fl" data-fill="text" data-name="pl1_sint1_frec"></div>
+<div class="sc"><span>1</span><div class="bx" data-fill="check" data-name="pl1_sint1_i1"></div><span>2</span><div class="bx" data-fill="check" data-name="pl1_sint1_i2"></div><span>3</span><div class="bx" data-fill="check" data-name="pl1_sint1_i3"></div></div>
+<div class="fl" data-fill="text" data-name="pl1_sint2"></div><div class="fl" data-fill="text" data-name="pl1_sint2_desde"></div><div class="fl" data-fill="text" data-name="pl1_sint2_frec"></div>
+<div class="sc"><span>1</span><div class="bx" data-fill="check" data-name="pl1_sint2_i1"></div><span>2</span><div class="bx" data-fill="check" data-name="pl1_sint2_i2"></div><span>3</span><div class="bx" data-fill="check" data-name="pl1_sint2_i3"></div></div>
+<div class="fl" data-fill="text" data-name="pl1_sint3"></div><div class="fl" data-fill="text" data-name="pl1_sint3_desde"></div><div class="fl" data-fill="text" data-name="pl1_sint3_frec"></div>
+<div class="sc"><span>1</span><div class="bx" data-fill="check" data-name="pl1_sint3_i1"></div><span>2</span><div class="bx" data-fill="check" data-name="pl1_sint3_i2"></div><span>3</span><div class="bx" data-fill="check" data-name="pl1_sint3_i3"></div></div>
+</div>
+</div>
+<div class="sec">
+<div class="sh"><span class="n">4</span><span class="st">Cuánto me afecta</span></div>
+<div style="font-size: 11.5px; color: #6B4E5C; margin-bottom: 4px">0 nada · 1 poco · 2 bastante · 3 mucho</div>
+<div style="display: grid; grid-template-columns: 1fr auto; row-gap: 5px; align-items: center; font-size: 13px">
+<div>Sueño</div><div class="sc"><span>0</span><div class="bx" data-fill="check" data-name="pl1_af_sueno0"></div><span>1</span><div class="bx" data-fill="check" data-name="pl1_af_sueno1"></div><span>2</span><div class="bx" data-fill="check" data-name="pl1_af_sueno2"></div><span>3</span><div class="bx" data-fill="check" data-name="pl1_af_sueno3"></div></div>
+<div>Trabajo</div><div class="sc"><span>0</span><div class="bx" data-fill="check" data-name="pl1_af_trab0"></div><span>1</span><div class="bx" data-fill="check" data-name="pl1_af_trab1"></div><span>2</span><div class="bx" data-fill="check" data-name="pl1_af_trab2"></div><span>3</span><div class="bx" data-fill="check" data-name="pl1_af_trab3"></div></div>
+<div>Pareja e intimidad</div><div class="sc"><span>0</span><div class="bx" data-fill="check" data-name="pl1_af_par0"></div><span>1</span><div class="bx" data-fill="check" data-name="pl1_af_par1"></div><span>2</span><div class="bx" data-fill="check" data-name="pl1_af_par2"></div><span>3</span><div class="bx" data-fill="check" data-name="pl1_af_par3"></div></div>
+<div>Ánimo</div><div class="sc"><span>0</span><div class="bx" data-fill="check" data-name="pl1_af_animo0"></div><span>1</span><div class="bx" data-fill="check" data-name="pl1_af_animo1"></div><span>2</span><div class="bx" data-fill="check" data-name="pl1_af_animo2"></div><span>3</span><div class="bx" data-fill="check" data-name="pl1_af_animo3"></div></div>
+</div>
+<div class="lb" style="margin-top: 6px">Lo que más me cuesta hoy:</div>
+<div class="fl" data-fill="text" data-name="pl1_lo_que_cuesta"></div>
+</div>
+<div class="sec">
+<div class="sh"><span class="n">5</span><span class="st">Medicación y suplementos</span></div>
+<div style="font-size: 11.5px; color: #6B4E5C">Todo: recetas, vitaminas, hierbas, productos naturales.</div>
+<div style="height: 70px; border: 1.5px dashed #C98AA5; border-radius: 8px; margin-top: 6px" data-fill="multi" data-name="pl1_medicacion"></div>
+<div class="lb" style="margin-top: 6px">Alergias</div>
+<div class="fl" data-fill="text" data-name="pl1_alergias"></div>
+</div>
+<div class="sec">
+<div class="sh"><span class="n">6</span><span class="st">Mis preguntas</span></div>
+<div style="font-size: 11.5px; color: #6B4E5C; margin-bottom: 2px">La más importante, primero.</div>
+<div style="display: grid; grid-template-columns: 18px 1fr; column-gap: 6px; row-gap: 4px; align-items: end; font-size: 13px; font-weight: 700; color: #E0337A">
+<span>1.</span><div class="fl" data-fill="text" data-name="pl1_preg1"></div>
+<span>2.</span><div class="fl" data-fill="text" data-name="pl1_preg2"></div>
+<span>3.</span><div class="fl" data-fill="text" data-name="pl1_preg3"></div>
+</div>
+</div>
+<div class="sec" style="background: #FCE4EC">
+<div class="sh"><span class="n" style="background: #1E1419">7</span><span class="st">Al salir: acuerdos</span></div>
+<div class="lb">Lo que acordamos</div><div class="fl" data-fill="text" data-name="pl1_acuerdos"></div>
+<div class="lb">Exámenes pedidos</div><div class="fl" data-fill="text" data-name="pl1_examenes"></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 10px">
+<div><div class="lb">Próxima cita</div><div class="fl" data-fill="text" data-name="pl1_proxima"></div></div>
+<div><div class="lb">Vuelvo antes si…</div><div class="fl" data-fill="text" data-name="pl1_vuelvo_si"></div></div>
+</div>
+</div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; bottom: 48px; font-size: 12px; color: #6B4E5C; text-align: center">También puedes rellenarla en la app: <a href="https://menopausia-equilibrada.vercel.app/#plantillas" style="font-weight: 700">menopausia-equilibrada.vercel.app/#plantillas</a></div>
+<div class="ft"><span>Incluida con PAUSA — El manual de la menopausia</span><span>Plantilla 01</span></div>
+<img class="stk" src="../../imagenes-soul/editadas/cut19a.png" alt="Mujer de unos 53 años con gafas de lectura revisando un pastillero rosa" style="position: absolute; right: 52px; top: 46px; height: 112px; width: auto; transform: rotate(4deg)">
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

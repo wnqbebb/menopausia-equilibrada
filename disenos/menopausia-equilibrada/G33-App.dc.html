@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cómo usar la app</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.rt{display:grid;grid-template-columns:34px 1fr;column-gap:10px;align-items:start;padding:8px 0;border-bottom:1px dashed #F2B8CD}
+.ri{width:30px;height:30px;border-radius:8px;background:#FCE4EC;display:flex;align-items:center;justify-content:center}
+.rn{font-weight:800;font-size:14px}
+.rd{font-size:12.5px;line-height:1.45;color:#4A2E3B}
+.rl{font-size:12px;font-weight:600}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Menopausia Equilibrada</span><span class="px" style="font-size: 12px">tu app</span></div>
+<div style="position: absolute; top: 70px; left: 44px; width: 440px">
+<span class="tag">App incluida · gratis</span>
+<div class="ser" style="font-size: 44px; font-weight: 900; line-height: 1.04; margin-top: 14px">Tu guía, ahora <span class="hl">en el bolsillo</span></div>
+<p class="lead" style="margin-top: 12px">La app Menopausia Equilibrada guarda tu registro diario y tu historial, y te prepara el resumen para tu consulta. Funciona en el navegador del celular y del computador, sin descargar nada.</p>
+</div>
+<div style="position: absolute; top: 60px; right: 54px; width: 220px; height: 440px; background: #1E1419; border-radius: 36px; padding: 12px; box-sizing: border-box; transform: rotate(4deg); box-shadow: 0 18px 36px rgba(120,20,60,.3)">
+<div style="background: #FFF5F8; border-radius: 26px; height: 100%; padding: 22px 14px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
+<div class="ser" style="font-size: 18px; font-weight: 900">Hoy <span class="scr" style="font-size: 26px; color: #E0337A; font-weight: 400">te escucho</span></div>
+<div style="font-size: 11px; font-weight: 700; color: #9B1B4F; letter-spacing: .06em">SOFOCOS</div>
+<div style="display: flex; gap: 4px"><span style="flex: 1; height: 24px; border-radius: 6px; background: #FCE4EC"></span><span style="flex: 1; height: 24px; border-radius: 6px; background: #F7A8C7"></span><span style="flex: 1; height: 24px; border-radius: 6px; background: #E0337A"></span><span style="flex: 1; height: 24px; border-radius: 6px; background: #FCE4EC"></span></div>
+<div style="font-size: 11px; font-weight: 700; color: #9B1B4F; letter-spacing: .06em">SUEÑO</div>
+<div style="height: 8px; border-radius: 6px; background: #FCE4EC"><div style="width: 62%; height: 8px; border-radius: 6px; background: #E0337A"></div></div>
+<div style="font-size: 11px; font-weight: 700; color: #9B1B4F; letter-spacing: .06em">ÁNIMO</div>
+<div style="display: flex; gap: 6px"><span style="width: 22px; height: 22px; border-radius: 50%; background: #FCE4EC"></span><span style="width: 22px; height: 22px; border-radius: 50%; background: #FCE4EC"></span><span style="width: 22px; height: 22px; border-radius: 50%; background: #E0337A"></span><span style="width: 22px; height: 22px; border-radius: 50%; background: #FCE4EC"></span></div>
+<div style="display: flex; align-items: flex-end; gap: 5px; height: 70px; margin-top: 6px"><span style="flex: 1; height: 40%; background: #F7A8C7; border-radius: 4px"></span><span style="flex: 1; height: 70%; background: #F7A8C7; border-radius: 4px"></span><span style="flex: 1; height: 55%; background: #F7A8C7; border-radius: 4px"></span><span style="flex: 1; height: 30%; background: #E0337A; border-radius: 4px"></span><span style="flex: 1; height: 25%; background: #E0337A; border-radius: 4px"></span></div>
+<div style="margin-top: auto; background: #E0337A; color: #fff; border-radius: 99px; text-align: center; font-size: 12px; font-weight: 800; padding: 8px">Guardar mi día</div>
+</div>
+<div class="px" style="position: absolute; left: -10px; bottom: -14px; font-size: 11px; color: #9B1B4F; background: #FFFFFF; padding: 3px 8px; transform: rotate(-6deg)">ilustración</div>
+</div>
+<div style="position: absolute; top: 330px; left: 44px; width: 440px">
+<div class="rt"><div class="ri"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="none" stroke="#9B1B4F" stroke-width="2.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="#9B1B4F" stroke-width="2.2" stroke-linecap="round"/></svg></div><div><div class="rn">Hoy · registro diario</div><div class="rd">Sofocos, sueño, ánimo, energía, agua y notas en un minuto.</div><a class="rl" href="https://menopausia-equilibrada.vercel.app/#hoy">menopausia-equilibrada.vercel.app/#hoy</a></div></div>
+<div class="rt"><div class="ri"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke="#9B1B4F" stroke-width="2.2" stroke-linecap="round"/></svg></div><div><div class="rn">Progreso · gráficas e historial</div><div class="rd">Mira tus semanas y meses: qué mejora y qué no.</div><a class="rl" href="https://menopausia-equilibrada.vercel.app/#progreso">menopausia-equilibrada.vercel.app/#progreso</a></div></div>
+<div class="rt"><div class="ri"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="#9B1B4F" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" stroke="#9B1B4F" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="rn">Ciclo · reglas y etapa</div><div class="rd">Anota sangrados; te orienta sobre tu etapa (no es un diagnóstico).</div><a class="rl" href="https://menopausia-equilibrada.vercel.app/#ciclo">menopausia-equilibrada.vercel.app/#ciclo</a></div></div>
+<div class="rt"><div class="ri"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4 10-10" stroke="#9B1B4F" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="rn">Plan 30 días · energía</div><div class="rd">Tu checklist diario del bono 2, con racha de días.</div><a class="rl" href="https://menopausia-equilibrada.vercel.app/#plan30">menopausia-equilibrada.vercel.app/#plan30</a></div></div>
+<div class="rt"><div class="ri"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z" fill="none" stroke="#9B1B4F" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h7M9 16h7" stroke="#9B1B4F" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="rn">Plantillas editables</div><div class="rd">Tu plan en 1 página, hoja de consulta y más; se guardan solas.</div><a class="rl" href="https://menopausia-equilibrada.vercel.app/#plantillas">menopausia-equilibrada.vercel.app/#plantillas</a></div></div>
+<div class="rt"><div class="ri"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="#9B1B4F" stroke-width="2"/><path d="M5 21c1-4 4-6 7-6s6 2 7 6" fill="none" stroke="#9B1B4F" stroke-width="2" stroke-linecap="round"/></svg></div><div><div class="rn">Mi consulta · resumen</div><div class="rd">Un resumen de tus datos para imprimir o enviar a tu médica.</div><a class="rl" href="https://menopausia-equilibrada.vercel.app/#consulta">menopausia-equilibrada.vercel.app/#consulta</a></div></div>
+<div class="rt" style="border-bottom: 0"><div class="ri"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2z" fill="none" stroke="#9B1B4F" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v5M12 18v.5" stroke="#9B1B4F" stroke-width="2.2" stroke-linecap="round"/></svg></div><div><div class="rn">Señales de alarma</div><div class="rd">Cuándo consultar y cuándo es urgente.</div><a class="rl" href="https://menopausia-equilibrada.vercel.app/#alarma">menopausia-equilibrada.vercel.app/#alarma</a></div></div>
+</div>
+<div style="position: absolute; top: 540px; left: 512px; right: 44px; background: #F7A8C7; padding: 18px 18px; transform: rotate(-1.5deg)">
+<div class="px" style="font-size: 12px; color: #6B1238">Celular + computador</div>
+<div class="ser" style="font-size: 21px; font-weight: 900; line-height: 1.1; margin-top: 4px">El mismo progreso en todos tus dispositivos</div>
+<div style="font-size: 13px; line-height: 1.55; margin-top: 8px">1. Entra a <b>Cuenta</b>.<br>2. Copia tu enlace o código personal.<br>3. Ábrelo en tu otro dispositivo.<br>Listo: verás tu mismo historial.</div>
+<a class="rl" href="https://menopausia-equilibrada.vercel.app/#cuenta" style="display: block; margin-top: 8px; color: #6B1238">menopausia-equilibrada.vercel.app/#cuenta</a>
+</div>
+<div class="note" style="position: absolute; top: 820px; left: 512px; right: 44px; transform: rotate(1.5deg)">
+<div class="scr" style="font-size: 34px; line-height: 1; color: #E0337A">privacidad</div>
+<div style="font-size: 12.5px; line-height: 1.5; margin-top: 4px">Guarda tu código como una contraseña: quien lo tenga puede ver tus registros. No lo compartas.</div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 990px; background: #1E1419; color: #FFFFFF; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center">
+<span style="font-size: 14px; font-weight: 600">Empieza hoy: abre la app y registra tu primer día.</span>
+<a href="https://menopausia-equilibrada.vercel.app" style="color: #F7A8C7; font-weight: 800; font-size: 14px">menopausia-equilibrada.vercel.app</a>
+</div>
+<div class="ft"><span>Tu app</span><span>33</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

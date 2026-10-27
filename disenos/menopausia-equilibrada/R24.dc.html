@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Menú semanal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:9px;align-items:start;font-size:13.5px;line-height:1.45;padding:6px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:1px;background:#fff}
+.st{display:grid;grid-template-columns:36px 1fr;column-gap:12px;align-items:start;font-size:14px;line-height:1.65;padding:8px 0}
+.sn{width:32px;height:32px;border-radius:50%;background:#E0337A;color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+.alg{display:inline-block;border:1.5px solid #9B1B4F;color:#9B1B4F;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;margin:0 6px 6px 0}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+.gr{display:grid;grid-template-columns:62px repeat(4,1fr);gap:6px}
+.hd{font-family:'Silkscreen',monospace;text-transform:uppercase;font-size:12px;text-align:center;padding:7px 0;color:#2B1B24}
+.dy{background:#1E1419;color:#FFD3E3;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.ix{display:grid;grid-template-columns:42px 1fr;column-gap:8px;align-items:center;padding:4px 0}
+.ix img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2.5px solid #FFFFFF;box-shadow:0 3px 8px rgba(120,20,60,.22);display:block}
+.ix span{font-size:13px;line-height:1.25;font-weight:600}.ix em{display:block;font-style:normal;font-weight:700;font-size:11px;color:#9B1B4F;margin-top:2px}
+.cl{background:#FFFFFF;border:1.5px solid #F2B8CD;height:46px;box-sizing:border-box;padding:6px 8px;font-size:12.5px;line-height:1.35;background-image:repeating-linear-gradient(transparent 0 22px,#F6DCE6 22px 23px);background-position:0 6px}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Recetario · Menopausia Equilibrada</span><span class="px" style="font-size: 12px">Tu semana</span></div>
+<div class="scr" style="position: absolute; top: 40px; right: 44px; font-size: 84px; line-height: 1; color: #F7A8C7; transform: rotate(-6deg)">organízate</div>
+<div style="position: absolute; left: 44px; top: 62px; width: 470px">
+<span class="tagk">Para llenar</span>
+<div class="ser" style="font-size: 40px; font-weight: 900; line-height: 1.02; margin-top: 12px; white-space: nowrap">Mi <span class="hl">menú</span> de la semana</div>
+<p style="font-size: 14px; line-height: 1.55; font-weight: 500; margin: 10px 0 0 0">Elige una receta por casilla, o escribe tu propia idea. No tiene que ser perfecto: repetir platos también vale.</p>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 212px">
+<div class="gr"><div></div><div class="hd" style="background:#F7A8C7;">Desayuno</div><div class="hd" style="background:#CFE3F7;">Almuerzo</div><div class="hd" style="background:#1E1419;color:#FFD3E3">Cena</div><div class="hd" style="background:#FFD95A;">Snack</div>
+<div class="dy">Lun</div><div class="cl" data-fill="multi" data-name="r24_lun_des" aria-label="Lun · Desayuno"></div><div class="cl" data-fill="multi" data-name="r24_lun_alm" aria-label="Lun · Almuerzo"></div><div class="cl" data-fill="multi" data-name="r24_lun_cen" aria-label="Lun · Cena"></div><div class="cl" data-fill="multi" data-name="r24_lun_sna" aria-label="Lun · Snack"></div>
+<div class="dy">Mar</div><div class="cl" data-fill="multi" data-name="r24_mar_des" aria-label="Mar · Desayuno"></div><div class="cl" data-fill="multi" data-name="r24_mar_alm" aria-label="Mar · Almuerzo"></div><div class="cl" data-fill="multi" data-name="r24_mar_cen" aria-label="Mar · Cena"></div><div class="cl" data-fill="multi" data-name="r24_mar_sna" aria-label="Mar · Snack"></div>
+<div class="dy">Mié</div><div class="cl" data-fill="multi" data-name="r24_mie_des" aria-label="Mié · Desayuno"></div><div class="cl" data-fill="multi" data-name="r24_mie_alm" aria-label="Mié · Almuerzo"></div><div class="cl" data-fill="multi" data-name="r24_mie_cen" aria-label="Mié · Cena"></div><div class="cl" data-fill="multi" data-name="r24_mie_sna" aria-label="Mié · Snack"></div>
+<div class="dy">Jue</div><div class="cl" data-fill="multi" data-name="r24_jue_des" aria-label="Jue · Desayuno"></div><div class="cl" data-fill="multi" data-name="r24_jue_alm" aria-label="Jue · Almuerzo"></div><div class="cl" data-fill="multi" data-name="r24_jue_cen" aria-label="Jue · Cena"></div><div class="cl" data-fill="multi" data-name="r24_jue_sna" aria-label="Jue · Snack"></div>
+<div class="dy">Vie</div><div class="cl" data-fill="multi" data-name="r24_vie_des" aria-label="Vie · Desayuno"></div><div class="cl" data-fill="multi" data-name="r24_vie_alm" aria-label="Vie · Almuerzo"></div><div class="cl" data-fill="multi" data-name="r24_vie_cen" aria-label="Vie · Cena"></div><div class="cl" data-fill="multi" data-name="r24_vie_sna" aria-label="Vie · Snack"></div>
+<div class="dy">Sáb</div><div class="cl" data-fill="multi" data-name="r24_sab_des" aria-label="Sáb · Desayuno"></div><div class="cl" data-fill="multi" data-name="r24_sab_alm" aria-label="Sáb · Almuerzo"></div><div class="cl" data-fill="multi" data-name="r24_sab_cen" aria-label="Sáb · Cena"></div><div class="cl" data-fill="multi" data-name="r24_sab_sna" aria-label="Sáb · Snack"></div>
+<div class="dy">Dom</div><div class="cl" data-fill="multi" data-name="r24_dom_des" aria-label="Dom · Desayuno"></div><div class="cl" data-fill="multi" data-name="r24_dom_alm" aria-label="Dom · Almuerzo"></div><div class="cl" data-fill="multi" data-name="r24_dom_cen" aria-label="Dom · Cena"></div><div class="cl" data-fill="multi" data-name="r24_dom_sna" aria-label="Dom · Snack"></div>
+</div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 622px">
+<div class="ser" style="font-size: 26px; font-weight: 800; white-space: nowrap">Tus 20 recetas, <span class="hl">de un vistazo</span></div>
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 10px">
+<div><div class="hd" style="background:#F7A8C7;color:#2B1B24">Desayunos</div><div style="margin-top:6px"><div class="ix"><img src="../../imagenes-soul/editadas/f39.jpg" alt=""><span>Avena cremosa de canela<em>pág. 4</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f40.jpg" alt=""><span>Huevos pericos<em>pág. 5</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f41.jpg" alt=""><span>Parfait de yogur<em>pág. 6</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f42.jpg" alt=""><span>Tostadas de queso y tomate<em>pág. 7</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f43.jpg" alt=""><span>Batido verde<em>pág. 8</em></span></div></div></div>
+<div><div class="hd" style="background:#CFE3F7;color:#2B1B24">Almuerzos</div><div style="margin-top:6px"><div class="ix"><img src="../../imagenes-soul/editadas/f44.jpg" alt=""><span>Lentejas guisadas<em>pág. 9</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f45.jpg" alt=""><span>Bowl de pollo y quinoa<em>pág. 10</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f46.jpg" alt=""><span>Ensalada de frijoles negros<em>pág. 11</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f47.jpg" alt=""><span>Salmón con camote<em>pág. 12</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f48.jpg" alt=""><span>Tacos de pescado<em>pág. 13</em></span></div></div></div>
+<div><div class="hd" style="background:#1E1419;color:#FFD3E3">Cenas</div><div style="margin-top:6px"><div class="ix"><img src="../../imagenes-soul/editadas/f49.jpg" alt=""><span>Tortilla de espinaca<em>pág. 14</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f50.jpg" alt=""><span>Crema de brócoli<em>pág. 15</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f51.jpg" alt=""><span>Tostadas de sardina<em>pág. 16</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f52.jpg" alt=""><span>Sopa de pollo y garbanzos<em>pág. 17</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f53.jpg" alt=""><span>Tofu salteado<em>pág. 18</em></span></div></div></div>
+<div><div class="hd" style="background:#FFD95A;color:#2B1B24">Snacks</div><div style="margin-top:6px"><div class="ix"><img src="../../imagenes-soul/editadas/f54.jpg" alt=""><span>Hummus casero<em>pág. 19</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f55.jpg" alt=""><span>Mix de frutos secos<em>pág. 20</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f56.jpg" alt=""><span>Yogur con mango<em>pág. 21</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f57.jpg" alt=""><span>Garbanzos crujientes<em>pág. 22</em></span></div><div class="ix"><img src="../../imagenes-soul/editadas/f58.jpg" alt=""><span>Manzana con maní<em>pág. 23</em></span></div></div></div>
+</div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 996px; display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: start">
+<div class="px" style="font-size: 13px; color: #9B1B4F; padding-top: 4px; line-height: 1.4">Notas y compras extra</div>
+<div class="cl" data-fill="multi" data-name="r24_notas" aria-label="Notas de la semana" style="height: 52px"></div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 1058px; font-size: 12.5px; color: #6B4E5C">También puedes llenarlo en la app: <a href="https://menopausia-equilibrada.vercel.app/#plantillas">menopausia-equilibrada.vercel.app/#plantillas</a></div>
+<svg style="position: absolute; left: 520px; top: 150px; transform: rotate(14deg)" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2l5.3 11.6 12.7 1.4-9.5 8.6 2.7 12.5L20 29.8 8.8 36.1l2.7-12.5L2 15l12.7-1.4z" fill="#FFD95A" stroke="#2B1B24" stroke-width="1.5" stroke-linejoin="round"/></svg>
+<div class="ft"><span>Bono 1 · Recetario</span><span>24</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

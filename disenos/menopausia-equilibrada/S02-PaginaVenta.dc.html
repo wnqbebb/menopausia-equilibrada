@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Menopausia Equilibrada — Página de venta</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.root{background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;font-size:16px;line-height:1.65;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(30px,5vw,50px);line-height:1.05;margin:10px 0 0 0;text-wrap:balance}
+.sec{padding-top:clamp(48px,7vw,80px);padding-bottom:clamp(48px,7vw,80px)}
+.g{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.g2{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:#E0337A;color:#FFFFFF;text-decoration:none;font-weight:800;font-size:16px;letter-spacing:.03em;padding:16px 26px;min-height:48px;box-sizing:border-box;border-radius:99px;box-shadow:0 10px 22px rgba(224,51,122,.3)}
+.btn:hover{background:#9B1B4F;color:#FFFFFF}
+.btn2{display:inline-flex;align-items:center;justify-content:center;background:#FFFFFF;color:#2B1B24;text-decoration:none;font-weight:700;font-size:15px;padding:14px 22px;min-height:48px;box-sizing:border-box;border-radius:99px;border:2px solid #2B1B24}
+.btn2:hover{background:#2B1B24;color:#FFFFFF}
+.note{font-size:13px;color:#6B4E5C;line-height:1.5}
+.pain{background:#FFFFFF;padding:18px 18px 16px;box-shadow:0 8px 20px rgba(155,27,79,.10);display:flex;gap:12px;align-items:flex-start}
+.pain b{display:block;font-size:17px;line-height:1.3}
+.pain span{font-size:14.5px;color:#4E3A44}
+.st{background:#1E1419;color:#FFFFFF;padding:22px}
+.st b{display:block;font-family:'Playfair Display',serif;font-size:clamp(44px,6vw,60px);font-weight:900;line-height:.95;color:#F7A8C7}
+.it{background:#FFFFFF;padding:22px;box-shadow:0 10px 24px rgba(155,27,79,.12);display:flex;flex-direction:column;gap:8px}
+.it h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;line-height:1.1;margin:0}
+.it ul{margin:4px 0 0 0;padding-left:18px;font-size:15px;line-height:1.6}
+.lbl{font-family:'Silkscreen',monospace;text-transform:uppercase;font-size:12px;color:#E0337A}
+.chk{display:grid;grid-template-columns:24px 1fr;column-gap:10px;padding:9px 0;border-bottom:1px dashed #F2B8CD;font-size:16px}
+.chk span:first-child{color:#E0337A;font-weight:900}
+.stp{background:#FFFFFF;padding:22px;box-shadow:0 8px 20px rgba(155,27,79,.10)}
+.stp b{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;color:#E0337A;line-height:1}
+details{background:#FFFFFF;padding:16px 20px;margin-bottom:10px;box-shadow:0 6px 16px rgba(155,27,79,.08)}
+summary{font-weight:800;font-size:17px;cursor:pointer;min-height:28px}
+details p{margin:10px 0 0 0;font-size:15.5px;color:#3F2F37}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+.ph{display:block;width:calc(100% + 44px);margin:-22px -22px 8px;aspect-ratio:4/3;object-fit:cover}
+.phc{display:block;height:170px;width:auto;margin:-4px auto 6px}
+.hd{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 28px}
+.pol{background:#FFFFFF;padding:10px 10px 12px;box-shadow:0 12px 26px rgba(120,20,60,.18);margin:0}
+.pol img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.pol figcaption{font-size:14px;font-weight:700;line-height:1.3;margin-top:8px;text-align:center}
+.trio{display:flex;gap:14px;align-items:flex-end}
+.trio figure{margin:0;text-align:center;width:140px}
+.trio .bub{width:140px;height:140px;border-radius:50%;background:#F7A8C7;overflow:hidden;position:relative}
+.trio .bub img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:104%;width:auto}
+.trio figcaption{font-family:'Silkscreen',monospace;text-transform:uppercase;font-size:12px;color:#9B1B4F;margin-top:6px}
+.aside{display:block}
+@media (max-width:900px){.aside{display:none}}
+@media (max-width:520px){.trio{width:100%;justify-content:space-between}.trio figure{width:31%}.trio .bub{width:100%;height:auto;aspect-ratio:1/1}}
+</style>
+</helmet>
+<div class="root">
+<div style="background: #1E1419; color: #FFFFFF">
+<div class="wrap" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 12px; padding-bottom: 12px">
+<span class="ser" style="font-size: 22px; font-weight: 900">Menopausia <span class="scr" style="font-size: 30px; color: #F7A8C7; font-weight: 400">equilibrada</span></span>
+<a class="btn" href="#comprar" style="padding: 10px 20px; font-size: 14px; min-height: 44px">Quiero mi guía</a>
+</div>
+</div>
+
+<div class="lined">
+<div class="wrap" style="padding-top: clamp(36px,6vw,64px); padding-bottom: clamp(36px,6vw,64px)">
+<div class="g2">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="tagk">Guía integral</span><span class="tag">+ 6 bonos</span><span class="tag" style="background: #CFE3F7">App incluida</span></div>
+<h1 class="ser" style="font-size: clamp(40px, 7vw, 76px); font-weight: 900; line-height: .98; margin: 0; text-wrap: balance">Vuelve a sentirte <span class="hl">tú</span> en la menopausia</h1>
+<div class="scr" style="font-size: clamp(40px, 6vw, 64px); line-height: 1; color: #E0337A; margin-top: -6px">sin tabú y sin miedo</div>
+<p style="font-size: clamp(17px, 2vw, 20px); line-height: 1.55; margin: 0; max-width: 560px">Una guía cálida y con fuentes para entender tus sofocos, tu sueño, tu peso y tus emociones. Con recetas, un plan de 30 días, plantillas editables y una app que guarda tu progreso en el celular y en el computador.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center"><a class="btn" href="#comprar">Quiero mi guía · USD 27</a><a class="btn2" href="#incluye">Ver todo lo que incluye</a></div>
+<div class="note">USD 27: precio sugerido (recomendación, no dato de mercado).</div>
+</div>
+<div style="position: relative; display: flex; justify-content: center">
+<div style="position: absolute; inset: 8% 6% 0 6%; background: #F7A8C7; border-radius: 50% 50% 0 0"></div>
+<img class="stk" src="../../imagenes-soul/editadas/cut12a.png" alt="Mujer de unos 50 años sonriendo con blazer fucsia y una laptop bajo el brazo" style="position: relative; width: min(100%, 400px); height: auto">
+<span class="tagk" style="position: absolute; left: 2%; top: 18%; transform: rotate(-4deg); font-size: 14px">Para mujeres de 40 a 60</span>
+<span class="tag" style="position: absolute; right: 2%; bottom: 14%; transform: rotate(3deg); font-size: 14px; background: #FFFFFF; border: 2px solid #2B1B24">Con evidencia y cariño</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="wrap">
+<div class="sec">
+<div class="hd"><div style="flex: 1 1 380px"><div class="lbl">¿Te suena alguno?</div>
+<h2 class="h2">Tu cuerpo cambió… y nadie te dio el manual</h2></div>
+<div class="trio" aria-hidden="false">
+<figure><div class="bub"><img src="../../imagenes-soul/editadas/cut03a.png" alt="Mujer de unos 50 años abanicándose con un abanico rosa"></div><figcaption>Sofocos</figcaption></figure>
+<figure><div class="bub" style="background: #CFE3F7"><img src="../../imagenes-soul/editadas/cut09a.png" alt="Mujer de unos 50 años durmiendo abrazada a una almohada rosa con antifaz"></div><figcaption>Insomnio</figcaption></figure>
+<figure><div class="bub" style="background: #FFD95A"><img src="../../imagenes-soul/editadas/cut08a.png" alt="Mujer de unos 50 años abrazándose a sí misma con los ojos cerrados"></div><figcaption>Ansiedad</figcaption></figure>
+</div></div>
+<div class="g" style="margin-top: 28px">
+<div class="pain"><svg width="30" height="30" viewBox="0 0 32 30" aria-hidden="true" style="flex: none"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg><div><b>Sofocos</b><span>Ese calor que sube sin avisar, en plena reunión o a las 3 de la mañana.</span></div></div>
+<div class="pain"><svg width="30" height="30" viewBox="0 0 32 30" aria-hidden="true" style="flex: none"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg><div><b>Aumento de peso</b><span>Comes igual que siempre, pero la cintura no piensa lo mismo.</span></div></div>
+<div class="pain"><svg width="30" height="30" viewBox="0 0 32 30" aria-hidden="true" style="flex: none"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg><div><b>Insomnio</b><span>Te acuestas cansada y te despiertas a mitad de la noche, mirando el techo.</span></div></div>
+<div class="pain"><svg width="30" height="30" viewBox="0 0 32 30" aria-hidden="true" style="flex: none"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg><div><b>Ansiedad</b><span>Un nudo en el pecho que aparece sin una razón clara.</span></div></div>
+<div class="pain"><svg width="30" height="30" viewBox="0 0 32 30" aria-hidden="true" style="flex: none"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg><div><b>Cansancio constante</b><span>Llegas al mediodía sin batería, aunque hayas «descansado».</span></div></div>
+<div class="pain"><svg width="30" height="30" viewBox="0 0 32 30" aria-hidden="true" style="flex: none"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg><div><b>Cambios hormonales</b><span>Reglas irregulares, análisis confusos y mil dudas sin respuesta.</span></div></div>
+<div class="pain"><svg width="30" height="30" viewBox="0 0 32 30" aria-hidden="true" style="flex: none"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg><div><b>Baja autoestima</b><span>Te miras al espejo y no reconoces del todo a la mujer que ves.</span></div></div>
+<div class="pain" style="background: #F7A8C7"><div><b>No estás exagerando.</b><span style="color: #2B1B24">Y no estás sola. Lo que sientes tiene nombre, explicación y opciones.</span></div></div>
+</div>
+</div>
+</div>
+
+<div style="background: #FCE4EC">
+<div class="wrap sec">
+<div class="hd"><div style="flex: 1 1 380px"><div class="lbl">Los números lo confirman</div>
+<h2 class="h2">Es más común de lo que te hicieron creer</h2></div>
+<img class="stk" src="../../imagenes-soul/editadas/cut07a.png" alt="Dos amigas de unos 50 años riendo abrazadas, vestidas de rosa" style="height: 230px; width: auto; max-width: 100%"></div>
+<div class="g" style="margin-top: 28px">
+<div class="st"><b>49,4%</b><div style="margin-top: 8px">de las mujeres de 40 a 60 años tuvo síntomas de menopausia en el último año.</div><div style="font-size: 12px; color: #F2C9D7; margin-top: 8px">CDC/NCHS, Data Brief n.º 575, oct. 2026 (EE. UU.).</div></div>
+<div class="st"><b>7,4 años</b><div style="margin-top: 8px">duraron, en mediana, los sofocos frecuentes en el estudio SWAN. En mujeres hispanas: 8,9 años.</div><div style="font-size: 12px; color: #F2C9D7; margin-top: 8px">Avis et al., JAMA Internal Medicine, 2015.</div></div>
+<div class="st"><b>26%</b><div style="margin-top: 8px">de todas las mujeres y niñas del mundo tenían 50 años o más en 2021.</div><div style="font-size: 12px; color: #F2C9D7; margin-top: 8px">OMS, nota descriptiva «Menopausia», oct. 2024.</div></div>
+</div>
+</div>
+</div>
+
+<div class="wrap">
+<div class="sec g2" style="align-items: start">
+<div>
+<div class="lbl">Por qué creamos esta guía</div>
+<h2 class="h2">Te mereces algo mejor que «son cosas de la edad»</h2>
+<figure class="pol" style="margin-top: 22px; max-width: 420px; transform: rotate(-2deg)"><img src="../../imagenes-soul/editadas/f30a.jpg" alt="Médica conversando y sonriendo con una paciente de unos 50 años en un consultorio luminoso" style="aspect-ratio: 4/3"><figcaption>Llegar a tu consulta con datos lo cambia todo</figcaption></figure>
+</div>
+<div style="font-size: 17px; line-height: 1.7">
+<p style="margin: 0 0 14px 0">Durante años, la menopausia se habló en voz baja. Y mientras tanto, millones de mujeres aguantaron calores, noches sin dormir y cambios de ánimo sin saber qué les pasaba ni qué preguntar.</p>
+<p style="margin: 0">Menopausia Equilibrada junta en un solo lugar lo que necesitas: explicaciones claras, comida rica, movimiento posible, rituales de calma y herramientas para medir tu progreso y llegar a tu consulta con datos. Todo con fuentes y sin promesas mágicas.</p>
+</div>
+</div>
+</div>
+
+<div class="lined" id="incluye">
+<div class="wrap sec">
+<div class="lbl">Lo que vas a recibir</div>
+<h2 class="h2">Una guía, 6 bonos, una app y tus plantillas</h2>
+<div class="g" style="margin-top: 28px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr))">
+<div class="it" style="background: #1E1419; color: #FFFFFF"><img class="phc stk" src="../../imagenes-soul/editadas/cut27a.png" alt="Mujer de unos 50 años con rizos canosos riendo, camisa rosa"><span class="lbl" style="color: #F7A8C7">Producto principal · 38 págs.</span><h3 style="color: #FFFFFF">Guía Integral de la Menopausia</h3><ul><li>Síntomas físicos y emocionales</li><li>Alimentación recomendada</li><li>Ejercicio y movimiento</li><li>Sueño y descanso</li><li>Salud hormonal</li><li>Bienestar emocional</li></ul></div>
+<div class="it"><img class="ph" src="../../imagenes-soul/editadas/f45.jpg" alt="Bowl de pollo a la plancha con quinoa y brócoli"><span class="lbl">Bono 1 · 20 recetas</span><h3>Recetario para la Menopausia</h3><ul><li>Desayunos</li><li>Almuerzos</li><li>Cenas</li><li>Snacks saludables</li></ul></div>
+<div class="it"><img class="ph" src="../../imagenes-soul/editadas/f36a.jpg" alt="Tres mujeres de unos 50 años caminando juntas al aire libre en ropa deportiva rosa"><span class="lbl">Bono 2</span><h3>Plan de 30 Días para Recuperar Energía</h3><ul><li>Checklist diario</li><li>Hábitos</li><li>Hidratación</li><li>Movimiento</li></ul></div>
+<div class="it"><img class="ph" src="../../imagenes-soul/editadas/f74.jpg" alt="Cápsulas de omega 3, vaso de leche, almendras, aguacate, salmón y hojas verdes"><span class="lbl">Bono 3</span><h3>Guía de Vitaminas y Suplementos</h3><ul><li>Magnesio</li><li>Omega 3</li><li>Vitamina D</li><li>Calcio</li><li>Cuándo consultar al médico</li></ul></div>
+<div class="it"><img class="ph" src="../../imagenes-soul/editadas/f73.jpg" alt="Libreta rosa, bolígrafo, taza de té, gafas y flores rosas"><span class="lbl">Bono 4</span><h3>Diario de Síntomas y Progreso</h3><ul><li>Registro de sueño</li><li>Estado de ánimo</li><li>Bochornos</li><li>Energía diaria</li></ul></div>
+<div class="it"><img class="ph" src="../../imagenes-soul/editadas/f32a.jpg" alt="Mujer de unos 50 años haciendo un estiramiento de yoga sobre una esterilla rosa en una sala soleada"><span class="lbl">Bono 5</span><h3>Yoga en Calma</h3><ul><li>Guía paso a paso</li><li>Beneficios, con lo que dice la evidencia</li><li>Rutina semanal</li></ul></div>
+<div class="it"><img class="ph" src="../../imagenes-soul/editadas/f34a.jpg" alt="Mesa de noche con difusor rosa, lavanda, un libro y un vaso de agua"><span class="lbl">Bono 6</span><h3>Aromaterapia en la Menopausia</h3><ul><li>Qué dice la ciencia</li><li>Seguridad primero</li><li>6 aceites y 3 rituales</li></ul></div>
+<div class="it" style="background: #F7A8C7"><img class="phc stk" src="../../imagenes-soul/editadas/cut21b.png" alt="Mujer de unos 50 años sonriendo y mostrando su celular"><span class="lbl" style="color: #2B1B24">Incluida</span><h3>App Menopausia Equilibrada</h3><ul><li>Registro diario de sofocos, sueño, ánimo y energía</li><li>Progreso e historial con gráficas</li><li>Plan de 30 días con checklist</li><li>Sincroniza tu celular y tu computador</li></ul><a class="btn2" href="https://menopausia-equilibrada.vercel.app" style="align-self: flex-start; margin-top: 6px; font-size: 14px">Ver la app</a></div>
+<div class="it" style="background: #CFE3F7"><img class="phc stk" src="../../imagenes-soul/editadas/cut28a.png" alt="Mujer de unos 50 años sonriendo con una agenda rosa y un bolígrafo"><span class="lbl" style="color: #2B1B24">Incluidas</span><h3>Plantillas de seguimiento editables</h3><ul><li>Rellenables en PDF desde el celular o el computador</li><li>También editables dentro de la app</li><li>Para imprimir si lo prefieres</li></ul></div>
+</div>
+</div>
+</div>
+
+<div style="background: #FCE4EC">
+<div class="wrap" style="padding-top: clamp(40px,6vw,64px); padding-bottom: clamp(40px,6vw,64px)">
+<div class="hd"><div><div class="lbl">Un vistazo al recetario</div><h2 class="h2">Comida rica, <span class="scr" style="font-weight: 400; color: #E0337A; font-size: 1.25em">de verdad</span></h2></div><span class="tagk">20 recetas fáciles</span></div>
+<div class="g" style="margin-top: 26px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr))">
+<figure class="pol" style="transform: rotate(-2deg)"><img src="../../imagenes-soul/editadas/f39.jpg" alt="Avena cremosa con plátano y frutos rojos"><figcaption>Avena cremosa de canela</figcaption></figure>
+<figure class="pol" style="transform: rotate(1.5deg)"><img src="../../imagenes-soul/editadas/f45.jpg" alt="Bowl de pollo con quinoa y brócoli"><figcaption>Bowl de pollo, quinoa y brócoli</figcaption></figure>
+<figure class="pol" style="transform: rotate(-1deg)"><img src="../../imagenes-soul/editadas/f47.jpg" alt="Salmón al horno con camote y ejotes"><figcaption>Salmón al horno con camote</figcaption></figure>
+<figure class="pol" style="transform: rotate(2deg)"><img src="../../imagenes-soul/editadas/f41.jpg" alt="Parfait de yogur con frutos rojos y granola"><figcaption>Parfait de yogur y frutos rojos</figcaption></figure>
+<figure class="pol" style="transform: rotate(-1.5deg)"><img src="../../imagenes-soul/editadas/f56.jpg" alt="Yogur con mango, canela y chía"><figcaption>Yogur con mango y chía</figcaption></figure>
+</div>
+</div>
+</div>
+
+<div class="wrap">
+<div class="sec g2" style="align-items: start">
+<div>
+<div class="lbl">Para quién es</div>
+<h2 class="h2">Es para ti si…</h2>
+<div style="margin-top: 18px">
+<div class="chk"><span>✓</span><span>Tienes entre 40 y 60 años y notas cambios en tu ciclo, tu sueño, tu peso o tu ánimo.</span></div>
+<div class="chk"><span>✓</span><span>Ya estás en la menopausia y quieres sentirte mejor con hábitos posibles.</span></div>
+<div class="chk"><span>✓</span><span>Quieres llegar a tu consulta con datos y preguntas claras.</span></div>
+<div class="chk"><span>✓</span><span>Te gustan las cosas bonitas, prácticas y fáciles de leer.</span></div>
+</div>
+</div>
+<div>
+<div class="lbl">Para quién no es</div>
+<h2 class="h2">No es para ti si…</h2>
+<div style="margin-top: 18px">
+<div class="chk"><span>×</span><span>Buscas una píldora mágica o una dieta milagro.</span></div>
+<div class="chk"><span>×</span><span>Quieres reemplazar a tu médica: aquí te preparamos para hablar con ella.</span></div>
+<div class="chk"><span>×</span><span>Tienes una urgencia de salud: en ese caso, consulta hoy mismo.</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<div style="background: #1E1419; color: #FFFFFF">
+<div class="wrap sec">
+<div class="hd"><div style="flex: 1 1 360px"><div class="lbl" style="color: #F7A8C7">Cómo funciona</div>
+<h2 class="h2" style="color: #FFFFFF">Tres pasos, a tu ritmo</h2></div>
+<img class="stk" src="../../imagenes-soul/editadas/cut21a.png" alt="Mujer de unos 50 años sonriendo con su celular en la mano" style="height: 220px; width: auto; max-width: 100%"></div>
+<div class="g" style="margin-top: 28px">
+<div class="stp" style="color: #2B1B24"><b>1</b><div class="ser" style="font-size: 22px; font-weight: 800; margin-top: 8px">Descarga y lee</div><div style="font-size: 15px; margin-top: 6px">Recibes la guía y los 6 bonos en PDF. Empieza por la sección que más te duele.</div></div>
+<div class="stp" style="color: #2B1B24"><b>2</b><div class="ser" style="font-size: 22px; font-weight: 800; margin-top: 8px">Registra en la app</div><div style="font-size: 15px; margin-top: 6px">Un minuto al día: sofocos, sueño, ánimo y energía. Tu progreso se guarda y lo ves en el celular o el computador.</div></div>
+<div class="stp" style="color: #2B1B24"><b>3</b><div class="ser" style="font-size: 22px; font-weight: 800; margin-top: 8px">Lleva tu resumen</div><div style="font-size: 15px; margin-top: 6px">Con tus datos y tus preguntas, la consulta deja de ser de 10 minutos a ciegas.</div></div>
+</div>
+</div>
+</div>
+
+<div class="lined" id="comprar">
+<div class="wrap sec">
+<div class="g2">
+<div>
+<div class="scr" style="font-size: clamp(44px, 6vw, 70px); line-height: 1; color: #E0337A">empieza hoy</div>
+<h2 class="h2">Todo lo que necesitas para tu equilibrio</h2>
+<div style="margin-top: 18px">
+<div class="chk"><span>✓</span><span>Guía Integral de la Menopausia (38 páginas)</span></div>
+<div class="chk"><span>✓</span><span>6 bonos: recetario, plan de 30 días, vitaminas y suplementos, diario, yoga en calma y aromaterapia</span></div>
+<div class="chk"><span>✓</span><span>App Menopausia Equilibrada con sincronización</span></div>
+<div class="chk"><span>✓</span><span>Plantillas de seguimiento editables</span></div>
+</div>
+<div style="display: flex; gap: 14px; align-items: flex-end; margin-top: 22px">
+<img class="stk" src="../../imagenes-soul/editadas/cut02a.png" alt="Mujer de unos 50 años riendo al teléfono con gafas de sol blancas" style="height: 230px; width: auto; max-width: 48%">
+<img class="stk" src="../../imagenes-soul/editadas/cut60.png" alt="Mano sosteniendo un abanico rosa abierto" style="height: 130px; width: auto; max-width: 30%; transform: rotate(8deg)">
+</div>
+</div>
+<div style="background: #FFFFFF; padding: 30px; box-shadow: 0 14px 30px rgba(155,27,79,.16); display: flex; flex-direction: column; gap: 12px; align-items: flex-start">
+<span class="tagk">Acceso inmediato</span>
+<div class="ser" style="font-size: 64px; font-weight: 900; line-height: 1; color: #9B1B4F">USD 27</div>
+<div class="note">Precio sugerido (recomendación, no dato de mercado).</div>
+<a class="btn" href="#comprar">Quiero Menopausia Equilibrada</a>
+<div class="note">Nota para quien vende: reemplaza cada enlace «#comprar» por tu enlace de pago (Hotmart u otra plataforma).</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="wrap">
+<div class="sec">
+<div class="lbl">Preguntas frecuentes</div>
+<h2 class="h2">Antes de decidir</h2>
+<div style="display: flex; gap: 40px; align-items: flex-start; margin-top: 22px">
+<div style="flex: 1 1 auto; max-width: 820px">
+<details open><summary>¿Esta guía reemplaza a mi médica?</summary><p>No. Te ayuda a entender lo que vives, a cuidarte en el día a día y a preparar tu consulta. Cualquier decisión sobre medicamentos o suplementos se toma con un profesional de salud.</p></details>
+<details><summary>¿Me sirve si todavía tengo la regla?</summary><p>Sí. En la perimenopausia los ciclos se vuelven irregulares y muchas mujeres notan los primeros síntomas. La guía te ayuda a ubicarte y a saber cuándo consultar.</p></details>
+<details><summary>¿Cómo funciona la app? ¿Necesito una cuenta?</summary><p>La app funciona en el navegador del celular o del computador. Tus registros se guardan y puedes sincronizarlos entre tus dispositivos con tu enlace personal. No necesitas instalar nada.</p></details>
+<details><summary>¿Las plantillas se pueden rellenar sin imprimir?</summary><p>Sí. Son PDF rellenables: puedes escribir en ellos desde el computador o el celular con un lector de PDF. También puedes imprimirlos si te gusta el papel.</p></details>
+<details><summary>¿Habla de terapia hormonal y de suplementos?</summary><p>Sí, con lo que dicen las sociedades científicas y un semáforo de evidencia. No recomienda marcas ni dosis de medicamentos: eso le corresponde a tu médica.</p></details>
+<details><summary>¿Las recetas son para bajar de peso?</summary><p>No son una dieta. Son platos ricos y fáciles, pensados para sumar proteína, calcio y fibra a tu día. Si tienes una condición de salud o alergias, adáptalas con tu profesional.</p></details>
+<details><summary>¿En qué formato lo recibo?</summary><p>La guía, los bonos y las plantillas llegan en PDF tamaño A4. La app se abre con un enlace.</p></details>
+</div>
+<div class="aside" style="flex: 0 0 200px; position: relative; padding-top: 30px"><img class="stk" src="../../imagenes-soul/editadas/cut15a.png" alt="Mujer de unos 56 años con el pelo largo plateado sonriendo frente a un espejo rosa en forma de corazón" style="width: 200px; height: auto; transform: rotate(3deg)"></div>
+</div>
+</div>
+</div>
+
+<div style="background: #F7A8C7">
+<div class="wrap" style="padding-top: 48px; padding-bottom: 48px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
+<div style="display: flex; align-items: flex-end; justify-content: center; gap: 10px"><img class="stk" src="../../imagenes-soul/editadas/cut68.png" alt="Ramo de peonías rosas" style="height: 120px; width: auto; transform: rotate(-8deg)"><img class="stk" src="../../imagenes-soul/editadas/cut22a.png" alt="Mujer de unos 55 años bailando feliz con los brazos arriba, vestido rosa" style="height: 240px; width: auto"><img class="stk" src="../../imagenes-soul/editadas/cut71.png" alt="Espejo rosa en forma de corazón" style="height: 100px; width: auto; transform: rotate(10deg)"></div>
+<div class="ser" style="font-size: clamp(30px, 5vw, 48px); font-weight: 900; line-height: 1.05; max-width: 760px">Esto es una etapa de la vida, no el final de nada.</div>
+<a class="btn" href="#comprar" style="background: #1E1419">Empezar ahora · USD 27</a>
+</div>
+</div>
+
+<div class="wrap" style="padding-top: 28px; padding-bottom: 48px; display: flex; flex-direction: column; gap: 10px">
+<div class="note"><b style="color: #9B1B4F">Aviso médico.</b> Menopausia Equilibrada es contenido educativo y de bienestar. No diagnostica, no trata enfermedades y no sustituye la consulta con un profesional de salud. Si tienes sangrado después de 12 meses sin regla, pensamientos de hacerte daño o cualquier síntoma que te preocupe, consulta de inmediato.</div>
+<div class="note">Imágenes generadas con IA con fines ilustrativos. Los resultados dependen de cada persona; no se garantizan resultados de salud.</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":6000}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

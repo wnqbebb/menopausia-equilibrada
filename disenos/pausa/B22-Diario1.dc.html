@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PAUSA — Diario semanas 1 y 2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.wk{background:#FFFFFF;border:2px solid #2B1B24;border-radius:14px;overflow:hidden}
+.wkh{background:#F7A8C7;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:13px}
+.row{display:grid;grid-template-columns:26px 78px 66px 50px 58px 60px 58px 66px minmax(0,1fr);column-gap:6px;align-items:center;padding:0 12px;height:31px}
+.hdr{height:34px;font-size:10.5px;font-weight:700;line-height:1.15;color:#9B1B4F;text-transform:uppercase;letter-spacing:.02em}
+.cell{height:24px;border:1.5px solid #E7AFC6;border-radius:6px;background:#FFFFFF;box-sizing:border-box}
+.dn{font-family:'Playfair Display',serif;font-weight:900;font-size:16px;color:#E0337A}
+.cb{display:flex;justify-content:center}
+.tot{display:flex;gap:16px;align-items:center;padding:8px 14px;background:#FCE4EC;font-size:12.5px;font-weight:700}
+.tc{width:56px;height:24px;border:1.5px solid #E7AFC6;border-radius:6px;background:#fff;box-sizing:border-box}
+.chip{display:inline-flex;gap:6px;align-items:center;background:#FFFFFF;border:1.5px solid #F2B8CD;border-radius:99px;padding:4px 10px;font-size:12px}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg lined">
+<div class="rh"><span>PAUSA · El manual de la menopausia</span><span class="px" style="font-size: 12px">Herramienta 04</span></div>
+<div style="position: absolute; left: 44px; top: 56px; width: 520px">
+<span class="tag" style="transform: rotate(-2deg)">Imprimible y rellenable</span>
+<div class="ser" style="font-size: 40px; font-weight: 900; line-height: 1.05; margin-top: 10px">Diario · semanas 1 y 2</div>
+</div>
+<div class="scr" style="position: absolute; right: 60px; top: 40px; font-size: 96px; line-height: 1; color: #E0337A; transform: rotate(-6deg)">1 y 2</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 152px; display: flex; flex-wrap: wrap; gap: 6px">
+<span class="chip"><b>Sofocos:</b> n.º del día</span>
+<span class="chip"><b>Sudor:</b> marca si te despertó</span>
+<span class="chip"><b>Calidad y ánimo:</b> 0 nada · 1 leve · 2 medio · 3 fuerte</span>
+<span class="chip"><b>Sangrado:</b> N nada · M manchado · R regla</span>
+</div>
+<div class="wk" style="position: absolute; left: 44px; right: 44px; top: 222px">
+<div class="wkh"><span>Semana 1</span><span style="display: flex; gap: 8px; align-items: center; font-weight: 600">del <span class="tc" data-fill="text" data-name="p22_s1_desde" style="width: 90px"></span> al <span class="tc" data-fill="text" data-name="p22_s1_hasta" style="width: 90px"></span></span></div>
+<div class="row hdr"><span>Día</span><span>Fecha</span><span>Sofocos</span><span>Sudor</span><span>Sueño (h)</span><span>Calidad</span><span>Ánimo</span><span>Sangrado</span><span>Nota</span></div>
+<div class="row"><span class="dn">1</span><div class="cell" data-fill="text" data-name="p22_d1_fecha"></div><div class="cell" data-fill="text" data-name="p22_d1_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d1_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d1_sueno"></div><div class="cell" data-fill="text" data-name="p22_d1_calidad"></div><div class="cell" data-fill="text" data-name="p22_d1_animo"></div><div class="cell" data-fill="text" data-name="p22_d1_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d1_nota"></div></div>
+<div class="row"><span class="dn">2</span><div class="cell" data-fill="text" data-name="p22_d2_fecha"></div><div class="cell" data-fill="text" data-name="p22_d2_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d2_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d2_sueno"></div><div class="cell" data-fill="text" data-name="p22_d2_calidad"></div><div class="cell" data-fill="text" data-name="p22_d2_animo"></div><div class="cell" data-fill="text" data-name="p22_d2_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d2_nota"></div></div>
+<div class="row"><span class="dn">3</span><div class="cell" data-fill="text" data-name="p22_d3_fecha"></div><div class="cell" data-fill="text" data-name="p22_d3_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d3_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d3_sueno"></div><div class="cell" data-fill="text" data-name="p22_d3_calidad"></div><div class="cell" data-fill="text" data-name="p22_d3_animo"></div><div class="cell" data-fill="text" data-name="p22_d3_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d3_nota"></div></div>
+<div class="row"><span class="dn">4</span><div class="cell" data-fill="text" data-name="p22_d4_fecha"></div><div class="cell" data-fill="text" data-name="p22_d4_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d4_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d4_sueno"></div><div class="cell" data-fill="text" data-name="p22_d4_calidad"></div><div class="cell" data-fill="text" data-name="p22_d4_animo"></div><div class="cell" data-fill="text" data-name="p22_d4_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d4_nota"></div></div>
+<div class="row"><span class="dn">5</span><div class="cell" data-fill="text" data-name="p22_d5_fecha"></div><div class="cell" data-fill="text" data-name="p22_d5_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d5_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d5_sueno"></div><div class="cell" data-fill="text" data-name="p22_d5_calidad"></div><div class="cell" data-fill="text" data-name="p22_d5_animo"></div><div class="cell" data-fill="text" data-name="p22_d5_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d5_nota"></div></div>
+<div class="row"><span class="dn">6</span><div class="cell" data-fill="text" data-name="p22_d6_fecha"></div><div class="cell" data-fill="text" data-name="p22_d6_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d6_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d6_sueno"></div><div class="cell" data-fill="text" data-name="p22_d6_calidad"></div><div class="cell" data-fill="text" data-name="p22_d6_animo"></div><div class="cell" data-fill="text" data-name="p22_d6_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d6_nota"></div></div>
+<div class="row"><span class="dn">7</span><div class="cell" data-fill="text" data-name="p22_d7_fecha"></div><div class="cell" data-fill="text" data-name="p22_d7_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d7_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d7_sueno"></div><div class="cell" data-fill="text" data-name="p22_d7_calidad"></div><div class="cell" data-fill="text" data-name="p22_d7_animo"></div><div class="cell" data-fill="text" data-name="p22_d7_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d7_nota"></div></div>
+<div class="tot"><span>Total sofocos</span><span class="tc" data-fill="text" data-name="p22_s1_tot_sofocos"></span><span>Noches con sudor</span><span class="tc" data-fill="text" data-name="p22_s1_tot_sudor"></span><span>/ 7</span><span>Sueño medio</span><span class="tc" data-fill="text" data-name="p22_s1_tot_sueno"></span><span>h</span></div>
+</div>
+<div class="wk" style="position: absolute; left: 44px; right: 44px; top: 576px">
+<div class="wkh"><span>Semana 2</span><span style="display: flex; gap: 8px; align-items: center; font-weight: 600">del <span class="tc" data-fill="text" data-name="p22_s2_desde" style="width: 90px"></span> al <span class="tc" data-fill="text" data-name="p22_s2_hasta" style="width: 90px"></span></span></div>
+<div class="row hdr"><span>Día</span><span>Fecha</span><span>Sofocos</span><span>Sudor</span><span>Sueño (h)</span><span>Calidad</span><span>Ánimo</span><span>Sangrado</span><span>Nota</span></div>
+<div class="row"><span class="dn">8</span><div class="cell" data-fill="text" data-name="p22_d8_fecha"></div><div class="cell" data-fill="text" data-name="p22_d8_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d8_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d8_sueno"></div><div class="cell" data-fill="text" data-name="p22_d8_calidad"></div><div class="cell" data-fill="text" data-name="p22_d8_animo"></div><div class="cell" data-fill="text" data-name="p22_d8_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d8_nota"></div></div>
+<div class="row"><span class="dn">9</span><div class="cell" data-fill="text" data-name="p22_d9_fecha"></div><div class="cell" data-fill="text" data-name="p22_d9_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d9_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d9_sueno"></div><div class="cell" data-fill="text" data-name="p22_d9_calidad"></div><div class="cell" data-fill="text" data-name="p22_d9_animo"></div><div class="cell" data-fill="text" data-name="p22_d9_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d9_nota"></div></div>
+<div class="row"><span class="dn">10</span><div class="cell" data-fill="text" data-name="p22_d10_fecha"></div><div class="cell" data-fill="text" data-name="p22_d10_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d10_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d10_sueno"></div><div class="cell" data-fill="text" data-name="p22_d10_calidad"></div><div class="cell" data-fill="text" data-name="p22_d10_animo"></div><div class="cell" data-fill="text" data-name="p22_d10_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d10_nota"></div></div>
+<div class="row"><span class="dn">11</span><div class="cell" data-fill="text" data-name="p22_d11_fecha"></div><div class="cell" data-fill="text" data-name="p22_d11_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d11_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d11_sueno"></div><div class="cell" data-fill="text" data-name="p22_d11_calidad"></div><div class="cell" data-fill="text" data-name="p22_d11_animo"></div><div class="cell" data-fill="text" data-name="p22_d11_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d11_nota"></div></div>
+<div class="row"><span class="dn">12</span><div class="cell" data-fill="text" data-name="p22_d12_fecha"></div><div class="cell" data-fill="text" data-name="p22_d12_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d12_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d12_sueno"></div><div class="cell" data-fill="text" data-name="p22_d12_calidad"></div><div class="cell" data-fill="text" data-name="p22_d12_animo"></div><div class="cell" data-fill="text" data-name="p22_d12_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d12_nota"></div></div>
+<div class="row"><span class="dn">13</span><div class="cell" data-fill="text" data-name="p22_d13_fecha"></div><div class="cell" data-fill="text" data-name="p22_d13_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d13_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d13_sueno"></div><div class="cell" data-fill="text" data-name="p22_d13_calidad"></div><div class="cell" data-fill="text" data-name="p22_d13_animo"></div><div class="cell" data-fill="text" data-name="p22_d13_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d13_nota"></div></div>
+<div class="row"><span class="dn">14</span><div class="cell" data-fill="text" data-name="p22_d14_fecha"></div><div class="cell" data-fill="text" data-name="p22_d14_sofocos"></div><div class="cb"><div class="bx" data-fill="check" data-name="p22_d14_sudor"></div></div><div class="cell" data-fill="text" data-name="p22_d14_sueno"></div><div class="cell" data-fill="text" data-name="p22_d14_calidad"></div><div class="cell" data-fill="text" data-name="p22_d14_animo"></div><div class="cell" data-fill="text" data-name="p22_d14_sangrado"></div><div class="cell" data-fill="text" data-name="p22_d14_nota"></div></div>
+<div class="tot"><span>Total sofocos</span><span class="tc" data-fill="text" data-name="p22_s2_tot_sofocos"></span><span>Noches con sudor</span><span class="tc" data-fill="text" data-name="p22_s2_tot_sudor"></span><span>/ 7</span><span>Sueño medio</span><span class="tc" data-fill="text" data-name="p22_s2_tot_sueno"></span><span>h</span></div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; top: 936px; display: grid; grid-template-columns: 1fr 1.25fr; column-gap: 18px">
+<div class="note" style="padding: 12px 16px; transform: rotate(-1deg)">
+<div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #9B1B4F">Otros síntomas estas 2 semanas</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 10px; margin-top: 4px">
+<div class="ck" style="border: 0; padding: 4px 0"><div class="bx" data-fill="check" data-name="p22_otro_sequedad"></div><span>Sequedad o dolor íntimo</span></div>
+<div class="ck" style="border: 0; padding: 4px 0"><div class="bx" data-fill="check" data-name="p22_otro_escapes"></div><span>Escapes de orina</span></div>
+<div class="ck" style="border: 0; padding: 4px 0"><div class="bx" data-fill="check" data-name="p22_otro_ansiedad"></div><span>Ansiedad</span></div>
+<div class="ck" style="border: 0; padding: 4px 0"><div class="bx" data-fill="check" data-name="p22_otro_irritabilidad"></div><span>Irritabilidad</span></div>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 2px dashed #E0337A; border-radius: 14px; padding: 10px 14px">
+<div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: #9B1B4F">Lo que más me afectó</div>
+<div data-fill="multi" data-name="p22_mas_afecto" style="height: 72px; margin-top: 4px; background: repeating-linear-gradient(transparent 0 23px, #F2B8CD 23px 24px)"></div>
+</div>
+</div>
+<div class="ft"><span>04 · Tu diario de síntomas</span><span>22</span></div>
+<img class="stk" src="../../imagenes-soul/editadas/cut61.png" alt="" aria-hidden="true" style="position: absolute; left: 470px; top: 52px; width: 150px; height: auto; transform: rotate(-8deg)">
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

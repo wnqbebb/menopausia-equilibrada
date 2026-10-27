@@ -1,0 +1,1171 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-27T08:00:00Z"
+ },
+ "title": "Menopausia Equilibrada — Guía Integral + 6 bonos",
+ "launch": {
+  "view": "canvas",
+  "page": "guia"
+ },
+ "pages": [
+  {
+   "id": "guia",
+   "name": "Guía Integral"
+  },
+  {
+   "id": "recetario",
+   "name": "Bono 1 · Recetario"
+  },
+  {
+   "id": "plan30",
+   "name": "Bono 2 · Plan 30 días"
+  },
+  {
+   "id": "vitaminas",
+   "name": "Bono 3 · Vitaminas"
+  },
+  {
+   "id": "diario",
+   "name": "Bono 4 · Diario"
+  },
+  {
+   "id": "yoga",
+   "name": "Bono 5 · Yoga en calma"
+  },
+  {
+   "id": "aroma",
+   "name": "Bono 6 · Aromaterapia"
+  },
+  {
+   "id": "tienda",
+   "name": "Tienda"
+  }
+ ],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "G01 Portada",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G02-Bienvenida.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "G02 Bienvenida",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G03-Indice.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "G03 Índice",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G04-Kit.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "G04 Tu kit completo",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G05-Dolores.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "G05 Los 7 dolores",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G06-S1.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "G06 Sección 1 · Síntomas",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G07-Sofocos.dc.html": {
+   "x": 0,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "G07 Sofocos",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G08-Peso.dc.html": {
+   "x": 874,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "G08 Peso y cuerpo",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G09-Cansancio.dc.html": {
+   "x": 1748,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "G09 Cansancio y niebla",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G10-Animo.dc.html": {
+   "x": 2622,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "G10 Ánimo y autoestima",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G11-Intima.dc.html": {
+   "x": 3496,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "G11 Zona íntima, piel y articulaciones",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G12-S2.dc.html": {
+   "x": 4370,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "G12 Sección 2 · Alimentación",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G13-Plato.dc.html": {
+   "x": 0,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "G13 El plato equilibrado",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G14-Nutrientes.dc.html": {
+   "x": 874,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "G14 Nutrientes clave",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G15-Limitar.dc.html": {
+   "x": 1748,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "G15 Qué limitar + lista",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G16-S3.dc.html": {
+   "x": 2622,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "G16 Sección 3 · Movimiento",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G17-Fuerza.dc.html": {
+   "x": 3496,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "G17 Fuerza",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G18-Cardio.dc.html": {
+   "x": 4370,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "G18 Cardio y equilibrio",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G19-S4.dc.html": {
+   "x": 0,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "G19 Sección 4 · Sueño",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G20-Rutina.dc.html": {
+   "x": 874,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "G20 Rutina nocturna",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G21-Noches.dc.html": {
+   "x": 1748,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "G21 Noches con sofocos",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G22-S5.dc.html": {
+   "x": 2622,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "G22 Sección 5 · Salud hormonal",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G23-Etapas.dc.html": {
+   "x": 3496,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "G23 Etapas y cuándo consultar",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G24-THM.dc.html": {
+   "x": 4370,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "G24 Terapia hormonal",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G25-NoHormonal.dc.html": {
+   "x": 0,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "G25 Opciones no hormonales",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G26-Chequeos.dc.html": {
+   "x": 874,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "G26 Chequeos",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G27-S6.dc.html": {
+   "x": 1748,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "G27 Sección 6 · Bienestar emocional",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G28-Ansiedad.dc.html": {
+   "x": 2622,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "G28 Ansiedad y estrés",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G29-Autoestima.dc.html": {
+   "x": 3496,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "G29 Autoestima",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G30-Relaciones.dc.html": {
+   "x": 4370,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "G30 Relaciones",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G31-Alarma.dc.html": {
+   "x": 0,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "G31 Señales de alarma",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G32-Plan1.dc.html": {
+   "x": 874,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "G32 Tu plan en 1 página",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G33-App.dc.html": {
+   "x": 1748,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "G33 Cómo usar la app",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G34-FAQ.dc.html": {
+   "x": 2622,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "G34 Preguntas frecuentes",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G35-Glosario.dc.html": {
+   "x": 3496,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "G35 Glosario",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G36-Fuentes1.dc.html": {
+   "x": 4370,
+   "y": 6215,
+   "w": 794,
+   "h": 1123,
+   "title": "G36 Fuentes 1",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G37-Fuentes2.dc.html": {
+   "x": 0,
+   "y": 7458,
+   "w": 794,
+   "h": 1123,
+   "title": "G37 Fuentes 2",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "G38-Contra.dc.html": {
+   "x": 874,
+   "y": 7458,
+   "w": 794,
+   "h": 1123,
+   "title": "G38 Contraportada",
+   "page": "guia",
+   "paper": "a4"
+  },
+  "R01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Portada",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Cómo usar + plato",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Despensa y lista",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Desayuno 1",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Desayuno 2",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Desayuno 3",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R07.dc.html": {
+   "x": 0,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Desayuno 4",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R08.dc.html": {
+   "x": 874,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Desayuno 5",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R09.dc.html": {
+   "x": 1748,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Almuerzo 1",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R10.dc.html": {
+   "x": 2622,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Almuerzo 2",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R11.dc.html": {
+   "x": 3496,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Almuerzo 3",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R12.dc.html": {
+   "x": 4370,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Almuerzo 4",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R13.dc.html": {
+   "x": 0,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Almuerzo 5",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R14.dc.html": {
+   "x": 874,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Cena 1",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R15.dc.html": {
+   "x": 1748,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Cena 2",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R16.dc.html": {
+   "x": 2622,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Cena 3",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R17.dc.html": {
+   "x": 3496,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Cena 4",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R18.dc.html": {
+   "x": 4370,
+   "y": 2486,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Cena 5",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R19.dc.html": {
+   "x": 0,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Snack 1",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R20.dc.html": {
+   "x": 874,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Snack 2",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R21.dc.html": {
+   "x": 1748,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Snack 3",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R22.dc.html": {
+   "x": 2622,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Snack 4",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R23.dc.html": {
+   "x": 3496,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Snack 5",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R24.dc.html": {
+   "x": 4370,
+   "y": 3729,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Menú semanal",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "R25.dc.html": {
+   "x": 0,
+   "y": 4972,
+   "w": 794,
+   "h": 1123,
+   "title": "Recetario · Fuentes y cierre",
+   "page": "recetario",
+   "paper": "a4"
+  },
+  "E01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Portada",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Cómo funciona",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Hábitos base",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Hidratación",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Movimiento",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Semana 1",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E07.dc.html": {
+   "x": 0,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Semana 2",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E08.dc.html": {
+   "x": 874,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Semana 3",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E09.dc.html": {
+   "x": 1748,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Semana 4",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E10.dc.html": {
+   "x": 2622,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Checklist diario",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E11.dc.html": {
+   "x": 3496,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Tracker 30 días",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "E12.dc.html": {
+   "x": 4370,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Plan 30 días · Cierre y fuentes",
+   "page": "plan30",
+   "paper": "a4"
+  },
+  "V01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Portada",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "V02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Semáforo y regla de oro",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "V03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Magnesio",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "V04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Omega 3",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "V05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Vitamina D",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "V06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Calcio",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "V07.dc.html": {
+   "x": 0,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Lo que no funciona",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "V08.dc.html": {
+   "x": 874,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Interacciones y médico",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "V09.dc.html": {
+   "x": 1748,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Hoja para tu consulta",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "V10.dc.html": {
+   "x": 2622,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Vitaminas · Fuentes",
+   "page": "vitaminas",
+   "paper": "a4"
+  },
+  "D01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Diario · Portada",
+   "page": "diario",
+   "paper": "a4"
+  },
+  "D02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Diario · Cómo usarlo",
+   "page": "diario",
+   "paper": "a4"
+  },
+  "D03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Diario · Semana 1",
+   "page": "diario",
+   "paper": "a4"
+  },
+  "D04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Diario · Semana 2",
+   "page": "diario",
+   "paper": "a4"
+  },
+  "D05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Diario · Semana 3",
+   "page": "diario",
+   "paper": "a4"
+  },
+  "D06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Diario · Semana 4",
+   "page": "diario",
+   "paper": "a4"
+  },
+  "D07.dc.html": {
+   "x": 0,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Diario · Resumen mensual",
+   "page": "diario",
+   "paper": "a4"
+  },
+  "D08.dc.html": {
+   "x": 874,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Diario · Mi progreso",
+   "page": "diario",
+   "paper": "a4"
+  },
+  "Y01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Portada",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "Y02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Beneficios y evidencia",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "Y03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Seguridad",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "Y04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Secuencia 1",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "Y05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Secuencia 2",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "Y06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Secuencia 3",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "Y07.dc.html": {
+   "x": 0,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Relajación final",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "Y08.dc.html": {
+   "x": 874,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Respiración",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "Y09.dc.html": {
+   "x": 1748,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Rutina semanal",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "Y10.dc.html": {
+   "x": 2622,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Yoga · Fuentes",
+   "page": "yoga",
+   "paper": "a4"
+  },
+  "A01.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Aromaterapia · Portada",
+   "page": "aroma",
+   "paper": "a4"
+  },
+  "A02.dc.html": {
+   "x": 874,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Aromaterapia · Qué dice la evidencia",
+   "page": "aroma",
+   "paper": "a4"
+  },
+  "A03.dc.html": {
+   "x": 1748,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Aromaterapia · Seguridad",
+   "page": "aroma",
+   "paper": "a4"
+  },
+  "A04.dc.html": {
+   "x": 2622,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Aromaterapia · Aceites",
+   "page": "aroma",
+   "paper": "a4"
+  },
+  "A05.dc.html": {
+   "x": 3496,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Aromaterapia · Rituales",
+   "page": "aroma",
+   "paper": "a4"
+  },
+  "A06.dc.html": {
+   "x": 4370,
+   "y": 0,
+   "w": 794,
+   "h": 1123,
+   "title": "Aromaterapia · Cómo usarlos",
+   "page": "aroma",
+   "paper": "a4"
+  },
+  "A07.dc.html": {
+   "x": 0,
+   "y": 1243,
+   "w": 794,
+   "h": 1123,
+   "title": "Aromaterapia · Fuentes y cierre",
+   "page": "aroma",
+   "paper": "a4"
+  },
+  "S01-PortadaTienda.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1080,
+   "h": 1350,
+   "title": "Portada para la tienda",
+   "page": "tienda"
+  },
+  "S02-PaginaVenta.dc.html": {
+   "x": 1160,
+   "y": 0,
+   "w": 1280,
+   "h": 8900,
+   "title": "Página de venta",
+   "page": "tienda",
+   "expand": "fill"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "G02-Bienvenida.dc.html",
+  "G03-Indice.dc.html",
+  "G04-Kit.dc.html",
+  "G05-Dolores.dc.html",
+  "G06-S1.dc.html",
+  "G07-Sofocos.dc.html",
+  "G08-Peso.dc.html",
+  "G09-Cansancio.dc.html",
+  "G10-Animo.dc.html",
+  "G11-Intima.dc.html",
+  "G12-S2.dc.html",
+  "G13-Plato.dc.html",
+  "G14-Nutrientes.dc.html",
+  "G15-Limitar.dc.html",
+  "G16-S3.dc.html",
+  "G17-Fuerza.dc.html",
+  "G18-Cardio.dc.html",
+  "G19-S4.dc.html",
+  "G20-Rutina.dc.html",
+  "G21-Noches.dc.html",
+  "G22-S5.dc.html",
+  "G23-Etapas.dc.html",
+  "G24-THM.dc.html",
+  "G25-NoHormonal.dc.html",
+  "G26-Chequeos.dc.html",
+  "G27-S6.dc.html",
+  "G28-Ansiedad.dc.html",
+  "G29-Autoestima.dc.html",
+  "G30-Relaciones.dc.html",
+  "G31-Alarma.dc.html",
+  "G32-Plan1.dc.html",
+  "G33-App.dc.html",
+  "G34-FAQ.dc.html",
+  "G35-Glosario.dc.html",
+  "G36-Fuentes1.dc.html",
+  "G37-Fuentes2.dc.html",
+  "G38-Contra.dc.html",
+  "R01.dc.html",
+  "R02.dc.html",
+  "R03.dc.html",
+  "R04.dc.html",
+  "R05.dc.html",
+  "R06.dc.html",
+  "R07.dc.html",
+  "R08.dc.html",
+  "R09.dc.html",
+  "R10.dc.html",
+  "R11.dc.html",
+  "R12.dc.html",
+  "R13.dc.html",
+  "R14.dc.html",
+  "R15.dc.html",
+  "R16.dc.html",
+  "R17.dc.html",
+  "R18.dc.html",
+  "R19.dc.html",
+  "R20.dc.html",
+  "R21.dc.html",
+  "R22.dc.html",
+  "R23.dc.html",
+  "R24.dc.html",
+  "R25.dc.html",
+  "E01.dc.html",
+  "E02.dc.html",
+  "E03.dc.html",
+  "E04.dc.html",
+  "E05.dc.html",
+  "E06.dc.html",
+  "E07.dc.html",
+  "E08.dc.html",
+  "E09.dc.html",
+  "E10.dc.html",
+  "E11.dc.html",
+  "E12.dc.html",
+  "V01.dc.html",
+  "V02.dc.html",
+  "V03.dc.html",
+  "V04.dc.html",
+  "V05.dc.html",
+  "V06.dc.html",
+  "V07.dc.html",
+  "V08.dc.html",
+  "V09.dc.html",
+  "V10.dc.html",
+  "D01.dc.html",
+  "D02.dc.html",
+  "D03.dc.html",
+  "D04.dc.html",
+  "D05.dc.html",
+  "D06.dc.html",
+  "D07.dc.html",
+  "D08.dc.html",
+  "Y01.dc.html",
+  "Y02.dc.html",
+  "Y03.dc.html",
+  "Y04.dc.html",
+  "Y05.dc.html",
+  "Y06.dc.html",
+  "Y07.dc.html",
+  "Y08.dc.html",
+  "Y09.dc.html",
+  "Y10.dc.html",
+  "A01.dc.html",
+  "A02.dc.html",
+  "A03.dc.html",
+  "A04.dc.html",
+  "A05.dc.html",
+  "A06.dc.html",
+  "A07.dc.html",
+  "S01-PortadaTienda.dc.html",
+  "S02-PaginaVenta.dc.html"
+ ],
+ "notes": {},
+ "designSystems": []
+}

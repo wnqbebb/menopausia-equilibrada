@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diario — Cómo usarlo</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Great+Vibes&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Silkscreen:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFF5F8}
+.pg{width:794px;height:1123px;position:relative;overflow:hidden;background:#FFF5F8;color:#2B1B24;font-family:'Poppins',Arial,sans-serif;box-sizing:border-box}
+.ser{font-family:'Playfair Display',Georgia,serif}
+.scr{font-family:'Great Vibes',cursive;font-weight:400}
+.px{font-family:'Silkscreen',monospace;text-transform:uppercase}
+.bd{font-size:14px;line-height:1.7;margin:0 0 10px 0;color:#2B1B24}
+.lead{font-size:16px;line-height:1.6;font-weight:500;margin:0}
+.tag{display:inline-block;background:#F7A8C7;color:#2B1B24;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.tagk{display:inline-block;background:#1E1419;color:#FFD3E3;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px}
+.hl{background:linear-gradient(transparent 58%,#FFC2D9 58%)}
+.note{background:#FFFFFF;padding:16px 18px;box-shadow:0 10px 26px rgba(155,27,79,.14)}
+.stk{filter:drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff) drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff) drop-shadow(0 14px 18px rgba(120,20,60,.22))}
+.lined{background-color:#FFFDFB;background-image:repeating-linear-gradient(transparent 0 31px,#D7E5F4 31px 32px)}
+.src{font-size:11px;line-height:1.45;color:#6B4E5C}
+.rh{position:absolute;top:22px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9B1B4F}
+.ft{position:absolute;bottom:20px;left:44px;right:44px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9B1B4F}
+.ck{display:grid;grid-template-columns:20px 1fr;column-gap:10px;align-items:start;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.bx{width:16px;height:16px;border:2px solid #9B1B4F;border-radius:4px;box-sizing:border-box;margin-top:2px;background:#fff}
+.fld{border-bottom:1.5px solid #C98AA5;height:30px}
+.st{display:grid;grid-template-columns:40px 1fr;column-gap:12px;align-items:start;padding:7px 0}
+.sn{width:36px;height:36px;border-radius:50%;background:#E0337A;color:#fff;font-family:'Playfair Display',serif;font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center}
+.lg{display:grid;grid-template-columns:120px 1fr;column-gap:10px;font-size:13.5px;line-height:1.45;padding:7px 0;border-bottom:1px dashed #F2B8CD}
+.lg b{color:#9B1B4F}
+.ex{display:grid;grid-template-columns:70px 70px 70px 70px 70px 70px 1fr;font-size:12.5px;text-align:center;align-items:center}
+.ex div{padding:7px 4px;border-right:1px solid #F2B8CD}
+.exh div{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#9B1B4F}
+a{color:#9B1B4F}a:hover{color:#E0337A}
+</style>
+</helmet>
+<div class="pg">
+<div class="rh"><span>Diario de síntomas y progreso</span><span class="px" style="font-size: 12px">Bono #4</span></div>
+<div class="scr" style="position: absolute; top: 40px; right: 44px; font-size: 96px; line-height: 1; color: #F7A8C7; transform: rotate(-6deg)">anota</div>
+<div style="position: absolute; top: 66px; left: 44px; width: 560px">
+<span class="tag">Cómo usarlo</span>
+<div class="ser" style="font-size: 44px; font-weight: 900; line-height: 1.04; margin-top: 14px">Tus síntomas <span class="hl">son datos</span></div>
+<p class="lead" style="margin-top: 12px; max-width: 520px">En consulta, la memoria falla: «creo que duermo mal… a veces». Con este diario llegas con números de 4 semanas, y eso cambia la conversación.</p>
+</div>
+<div style="position: absolute; top: 290px; left: 44px; width: 360px">
+<div style="background: #1E1419; color: #FFFFFF; padding: 16px 18px; transform: rotate(-1deg)">
+<div class="px" style="font-size: 13px; color: #F7A8C7">¿Por qué importa?</div>
+<div style="font-size: 13.5px; line-height: 1.6; margin-top: 8px">La guía NICE indica que, en mujeres sanas <b>mayores de 45 años</b>, la perimenopausia y la menopausia se diagnostican <b>por los síntomas</b> (y por cómo cambian las reglas), sin necesidad de análisis. Tus síntomas son la prueba principal.</div>
+<div style="font-size: 11px; color: #F2C9D7; margin-top: 8px">Fuente: NICE NG23, «Menopause: diagnosis and management».</div>
+</div>
+<div class="ser" style="font-size: 24px; font-weight: 800; margin-top: 24px">En 3 pasos</div>
+<div class="st"><span class="sn">1</span><div style="font-size: 14px; line-height: 1.6">Cada noche, <b>2 minutos</b>: rellena la fila del día (págs. 3 a 6).</div></div>
+<div class="st"><span class="sn">2</span><div style="font-size: 14px; line-height: 1.6">Al cerrar cada semana, escribe qué te afectó y qué te ayudó.</div></div>
+<div class="st"><span class="sn">3</span><div style="font-size: 14px; line-height: 1.6">Al terminar el mes, pasa tus números al <b>resumen</b> (pág. 7) y llévalo a tu consulta.</div></div>
+</div>
+<div class="note" style="position: absolute; top: 290px; left: 436px; right: 44px; transform: rotate(1deg)">
+<div class="px" style="font-size: 13px; color: #E0337A">Las escalas</div>
+<div class="lg"><b>Horas de sueño</b><span>Las que crees que dormiste, aunque sea aproximado.</span></div>
+<div class="lg"><b>Calidad 0–3</b><span>0 fatal · 1 mala · 2 regular · 3 buena.</span></div>
+<div class="lg"><b>Ánimo 0–3</b><span>0 muy bajo · 1 bajo · 2 estable · 3 muy bien.</span></div>
+<div class="lg"><b>Sofocos</b><span>Cuántos notaste en el día y la noche (número).</span></div>
+<div class="lg"><b>Energía 0–3</b><span>0 agotada · 1 baja · 2 normal · 3 mucha.</span></div>
+<div class="lg" style="border-bottom: 0"><b>Sangrado</b><span>Marca si tuviste regla o manchado ese día.</span></div>
+</div>
+<div style="position: absolute; top: 760px; left: 44px; right: 44px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><div class="ser" style="font-size: 22px; font-weight: 800">Así se ve un día anotado</div><span class="tagk" style="font-size: 11px">Ejemplo inventado</span></div>
+<div class="lined" style="margin-top: 10px; border: 1.5px solid #F2B8CD; border-radius: 12px; overflow: hidden">
+<div class="ex exh" style="background: #FCE4EC"><div>Día</div><div>Horas</div><div>Calidad</div><div>Ánimo</div><div>Sofocos</div><div>Energía</div><div style="border-right: 0; text-align: left">Notas</div></div>
+<div class="ex" style="background: #FFFFFF"><div><b>Mar</b></div><div>5,5</div><div>1</div><div>2</div><div>6</div><div>1</div><div style="border-right: 0; text-align: left">Me desperté 3 veces con calor. Reunión difícil.</div></div>
+</div>
+</div>
+<div style="position: absolute; left: 44px; right: 44px; bottom: 50px; background: #FCE4EC; border-radius: 16px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<div style="font-size: 13.5px; line-height: 1.5"><b>¿Prefieres el celular?</b> Registra lo mismo en la app y mira tus gráficas solas.<br><a href="https://menopausia-equilibrada.vercel.app/#hoy">menopausia-equilibrada.vercel.app/#hoy</a></div>
+<svg width="44" height="42" viewBox="0 0 32 30" aria-hidden="true"><path d="M16 29S2 20 2 10.5C2 5.8 5.6 2 10 2c2.6 0 4.8 1.3 6 3.4C17.2 3.3 19.4 2 22 2c4.4 0 8 3.8 8 8.5C30 20 16 29 16 29z" fill="#E0337A"/></svg>
+</div>
+<div class="ft"><span>Diario · Cómo usarlo</span><span>2</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":794,"height":1123}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

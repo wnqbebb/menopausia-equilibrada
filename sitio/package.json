@@ -1,0 +1,12 @@
+{
+  "name": "menopausia-equilibrada",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^10.0.0"
+  },
+  "scripts": {
+    "prueba-carga": "node pruebas/carga-1000-compras.mjs 1000"
+  }
+}

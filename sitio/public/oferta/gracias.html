@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>¡Gracias! · Tus descargas · Menopausia sin tabú</title>
+<meta name="theme-color" content="#E0337A">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Great+Vibes&family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#FFF5F8;--blush:#FCE4EC;--rosa:#F7A8C7;--fucsia:#E0337A;--berry:#9B1B4F;--ink:#2B1B24;--negro:#1E1419;--muted:#6B4E5C;--line:#F2C6D6;--sun:#FFD95A;--ok:#1F7A52}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Poppins',system-ui,Arial,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;line-height:1.1;margin:0}
+.scr{font-family:'Great Vibes',cursive;color:var(--fucsia);font-weight:400}
+header{padding:18px 0;border-bottom:1px solid var(--line);background:#fff}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:22px;color:var(--ink);text-decoration:none}
+.logo i{font-family:'Great Vibes',cursive;font-style:normal;color:var(--fucsia);font-size:28px;font-weight:400}
+.hero{text-align:center;padding:46px 0 26px;position:relative}
+.hero .big{font-family:'Great Vibes',cursive;font-size:clamp(64px,12vw,110px);color:var(--fucsia);line-height:1}
+.hero h1{font-size:clamp(30px,5vw,46px);margin-top:6px}
+.hero p{color:var(--muted);max-width:36em;margin:12px auto 0}
+.card{background:#fff;border-radius:24px;box-shadow:0 14px 34px rgba(155,27,79,.12);border:1px solid #FBE3EC;padding:22px;margin:18px 0}
+.card h2{font-size:26px;margin-bottom:12px}
+.dl{display:grid;gap:10px}
+.dl a{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--bg);border:2px solid var(--line);border-radius:16px;padding:14px 16px;text-decoration:none;color:var(--ink);font-weight:600;transition:border-color .2s,transform .2s}
+.dl a:hover{border-color:var(--fucsia);transform:translateY(-2px)}
+.dl a span:last-child{flex:0 0 auto;background:var(--fucsia);color:#fff;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:800}
+.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:800;border-radius:999px;padding:15px 24px;min-height:52px;text-decoration:none}
+.btn-p{background:var(--fucsia);color:#fff}.btn-d{background:var(--negro);color:#fff}.btn-g{background:#fff;border:2px solid var(--line);color:var(--ink)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;counter-reset:s}
+.steps div{background:var(--blush);border-radius:18px;padding:16px}
+.steps div::before{counter-increment:s;content:counter(s);display:block;font-family:'Playfair Display',serif;font-weight:900;font-size:40px;color:var(--fucsia);line-height:1}
+.steps b{display:block;margin:4px 0}
+.steps span{font-size:15px;color:var(--muted)}
+.app{background:var(--negro);color:#fff;border-radius:24px;padding:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.app h2{color:#fff}.app p{color:#F6D5E1;margin-top:6px;max-width:32em}
+.kits{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.kit{border:2px solid var(--line);border-radius:16px;padding:10px;display:grid;gap:8px;cursor:pointer;background:#fff;text-align:left;font:inherit}
+.kit img{width:100%;border-radius:4px;box-shadow:0 6px 14px rgba(0,0,0,.15)}
+.kit.on{border-color:var(--fucsia);background:var(--blush)}
+.kit b{font-size:15px;line-height:1.3}.kit small{color:var(--berry);font-weight:800}
+.err{background:#FDECEA;color:#B3261E;border-radius:12px;padding:12px;font-weight:600}
+.note{font-size:14px;color:var(--muted)}
+.wait{display:inline-block;width:46px;height:46px;border-radius:50%;border:5px solid var(--blush);border-top-color:var(--fucsia);animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+.confetti i{position:absolute;top:-30px;animation:fall 2.6s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.2}}
+@media (max-width:700px){.steps{grid-template-columns:1fr}.kits{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+body.nlb main{padding-bottom:90px}
+.app .acc,.acc{font-family:ui-monospace,Menlo,monospace;font-size:18px;font-weight:700;background:#fff;color:#2B1B24;border-radius:12px;padding:10px 14px;display:inline-block;margin:6px 0;word-break:break-all}
+.pill-o{display:inline-block;background:var(--sun);color:var(--ink);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.upw{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-top:14px;background:var(--blush);border-radius:18px;padding:14px 16px}
+.upv s{display:block;color:var(--muted);font-size:14px}.upv b{font-family:'Playfair Display',serif;font-size:36px;color:var(--fucsia);line-height:1}
+</style>
+<!-- EMBUDO / MEDICIÓN: pega aquí el código base de tu Píxel de Meta, TikTok o Google (gtag).
+     La página ya envía los eventos solos si existen: ViewContent, AddToCart, InitiateCheckout (en la oferta) y Purchase (aquí).
+     Ver docs/08-EMBUDO-Y-PIXEL.md -->
+<script>window.meTrack=function(ev,data){try{data=data||{};if(window.fbq)fbq('track',ev,data);if(window.ttq&&ttq.track)ttq.track(ev==='Purchase'?'CompletePayment':ev,data);if(window.gtag)gtag('event',{ViewContent:'view_item',AddToCart:'add_to_cart',InitiateCheckout:'begin_checkout',Purchase:'purchase'}[ev]||ev,{value:data.value,currency:data.currency,transaction_id:data.id});window.dispatchEvent(new CustomEvent('me:'+ev,{detail:data}))}catch(e){}};</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="/oferta/">Menopausia <i>sin tabú</i></a></div></header>
+<main class="wrap">
+  <section class="hero" id="loading"><span class="wait" aria-hidden="true"></span><h1 style="margin-top:16px">Confirmando tu pago…</h1><p>Esto toma unos segundos.</p></section>
+
+  <section id="pending" hidden class="hero"><div class="big">Casi lista</div><h1>Tu pago aún no aparece confirmado</h1><p id="pendingMsg">Si acabas de pagar, espera un minuto y vuelve a intentarlo. Si ya pasó un rato, escríbenos respondiendo al correo de tu pedido.</p><p style="margin-top:18px"><button class="btn btn-p" type="button" onclick="location.reload()">Volver a comprobar</button></p></section>
+
+  <section id="ok" hidden>
+    <div class="hero"><div class="big">¡Gracias<span id="nm"></span>!</div><h1>Ya es tuyo. Empieza por aquí.</h1><p>Descarga tus archivos y guárdalos en tu celular o computador. <b>Guarda también esta página</b> (agrégala a favoritos): es tu acceso a las descargas.</p></div>
+    <div class="card"><h2>Tus descargas</h2><div class="dl" id="files"></div><p class="note" style="margin-top:12px">Para llenar los PDF en el celular, ábrelos con una app de PDF (por ejemplo, Adobe Acrobat Reader, gratis).</p></div>
+    <div class="card"><h2>Tus primeros 10 minutos</h2><div class="steps"><div><b>Abre PAUSA</b><span>Lee «Empieza aquí» y elige tu síntoma número 1.</span></div><div><b>Abre la app</b><span>Si tu compra la incluye: registra tu día de hoy y guarda tu enlace personal.</span></div><div><b>Empieza el plan</b><span>Día 1 del Plan de 30 días: solo 6 hábitos sencillos.</span></div></div></div>
+    <div class="app" id="appBox" hidden><div><h2>Tu app Menopausia Equilibrada</h2><p>Tu código de acceso personal (guárdalo):</p><p class="acc" id="accCode"></p><p>Funciona en el navegador, sin contraseñas. Ábrela con este botón en tu celular y en tu computador.</p></div><a class="btn btn-p" id="appLink" href="/" target="_blank" rel="noopener">Abrir mi app</a></div>
+    <div class="card" id="upsell" hidden>
+      <span class="pill-o">Solo para ti, ahora</span>
+      <h2 style="margin-top:10px">Completa tu pack <span class="scr" style="font-size:34px">por la diferencia</span></h2>
+      <p>Te llevas <b>todo lo que te falta</b>: las 2 guías, los 6 bonos, las 3 plantillas, los 4 kits y la app. Solo pagas la diferencia con lo que ya compraste.</p>
+      <div class="upw"><div class="upv"><s id="upValue"></s><b id="upPrice"></b></div><button class="btn btn-d" type="button" id="upBtn">Completar mi pack</button></div>
+      <div class="err" id="upErr" role="alert" hidden style="margin-top:10px"></div>
+    </div>
+    <p class="note" style="text-align:center;margin:26px 0 60px">Este material es educativo y no sustituye a tu profesional de salud.</p>
+  </section>
+</main>
+<script>
+(function(){
+var q=new URLSearchParams(location.search);var who={};
+function $(s){return document.querySelector(s)}
+function usd(c){return 'USD '+(c/100).toFixed(c%100?2:0)}
+var url='/api/entrega?'+(q.get('session_id')?'session_id='+encodeURIComponent(q.get('session_id')):'pedido='+encodeURIComponent(q.get('pedido')||'')+'&t='+encodeURIComponent(q.get('t')||''));
+// Al volver de la pasarela, la confirmación puede tardar unos segundos: se reintenta sola durante ~2 minutos.
+var tries=0;
+function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+  if(!d.paid&&d.pending&&!d.review&&tries<24&&(q.get('session_id')||q.get('t'))){tries++;$('#loading').hidden=false;setTimeout(load,tries<6?2500:5000);return}
+  $('#loading').hidden=true;
+  if(!d.paid){$('#pending').hidden=false;if(!q.get('session_id')&&!q.get('pedido'))$('#pendingMsg').textContent='Este enlace no tiene un pedido. Usa el enlace que te enviamos por correo.';else if(d.review)$('#pendingMsg').textContent='Recibimos tu pago y lo estamos revisando. En cuanto se confirme te llegará el enlace de descarga a tu correo.';return}
+  who=d;$('#ok').hidden=false;if(d.name)$('#nm').textContent=', '+d.name.split(' ')[0];
+  $('#files').innerHTML=d.files.length?d.files.map(function(f){return '<a href="'+f.url+'" download target="_blank" rel="noopener"><span>'+f.title.replace(/</g,'&lt;')+'</span><span>Descargar</span></a>'}).join(''):'<p class="note">Tu compra es la app: ábrela abajo.</p>';
+  if(d.access){$('#appBox').hidden=false;$('#accCode').textContent=d.access;$('#appLink').href='/#acceso?k='+encodeURIComponent(d.access)}
+  if((d.items||[]).indexOf('todo')<0){var diff=Math.max(500,(d.bundleCents||1900)-(d.cents||0));$('#upsell').hidden=false;$('#upValue').textContent='Valor '+usd(d.valueCents||10400);$('#upPrice').textContent=usd(diff);$('#upBtn').textContent='Completar mi pack · '+usd(diff)}
+  try{var pk='mePurch:'+d.id;if(!localStorage.getItem(pk)){localStorage.setItem(pk,'1');meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}}catch(e){meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}
+  confetti();
+}).catch(function(){$('#loading').hidden=true;$('#pending').hidden=false})}
+load();
+$('#upBtn').addEventListener('click',function(){var btn=this;btn.disabled=true;$('#upErr').hidden=true;
+  fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:who.name||'Cliente',email:who.email||'',items:['todo'],upgradeFrom:who.id,upgradeT:who.t||''})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){
+    if(!x.ok)throw new Error(x.d.error||'No se pudo continuar.');
+    if(x.d.url){location.href=x.d.url;return}
+    $('#upsell').innerHTML='<h2>¡Listo!</h2><p>Reservamos tu pack completo. Te escribiremos a <b>'+(who.email||'tu correo').replace(/</g,'&lt;')+'</b> con el enlace de pago.</p>';
+  }).catch(function(ex){$('#upErr').textContent=ex.message;$('#upErr').hidden=false;btn.disabled=false})});
+function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var c=document.createElement('div');c.className='confetti';var cols=['#E0337A','#F7A8C7','#FFD95A','#CFE3F7','#9B1B4F'];for(var i=0;i<50;i++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.background=cols[i%5];s.style.borderRadius=i%3?'50%':'3px';s.style.animationDelay=Math.random()*.7+'s';s.style.width=s.style.height=(10+Math.random()*12)+'px';c.appendChild(s)}document.body.appendChild(c);setTimeout(function(){c.remove()},3600)}
+})();
+</script>
+<script>(function(){function chk(){if(document.getElementById('nl-badge-frame')){document.body.classList.add('nlb');return true}return false}if(!chk()){var mo=new MutationObserver(function(){if(chk())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}})();</script>
+</body>
+</html>
