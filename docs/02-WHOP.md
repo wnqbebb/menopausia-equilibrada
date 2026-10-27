@@ -50,6 +50,9 @@ Vuelve a desplegar Netlify. Desde ese momento el botón de pago abre Whop autom�
 
 ### 4. Probar
 
+> La integración se verificó con webhooks firmados simulados (firma, importe, pedidos duplicados, 1.000 y 5.000 pagos) en `sitio/pruebas/`. Todavía no se probó con una cuenta real de Whop, así que **haz una compra real de prueba antes de lanzar**.
+
+
 - Whop tiene un entorno de pruebas (*sandbox*). Para usarlo, cambia `https://api.whop.com` por `https://sandbox-api.whop.com` en `sitio/netlify/functions/checkout.mjs`.
 - Haz una compra de prueba y comprueba en el panel que el pedido pasa a «pagado» con su `pago_id`.
 - Si no pasa a pagado, en Whop → Developer → Webhooks revisa los intentos de entrega. Las causas habituales son una URL mal escrita o un secreto mal copiado.

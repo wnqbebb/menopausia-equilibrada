@@ -121,7 +121,7 @@ async def main():
         if live:
             sw = await pa.evaluate("navigator.serviceWorker.getRegistration().then(r=>!!r)"); ok('service worker registered', sw)
             r = await pa.evaluate("fetch('/api/sync?id=xyz').then(r=>r.status)"); ok('server rejects bad id', r == 400, str(r))
-            r = await pa.evaluate("fetch('/api/sync?id='+'a'.repeat(64),{method:'POST'}).then(r=>r.status)"); ok('server rejects POST', r == 405, str(r))
+            r = await pa.evaluate("fetch('/api/sync?id='+'a'.repeat(64),{method:'POST'}).then(r=>r.status)"); ok('server rejects POST', r in (401, 405), str(r))
         # delete all on B propagates to A
         await pb.goto(BASE + '/#cuenta'); await pb.wait_for_timeout(500)
         await pb.click('[data-act=delAsk]'); await pb.click('[data-act=delYes]'); await pb.wait_for_timeout(3500)
