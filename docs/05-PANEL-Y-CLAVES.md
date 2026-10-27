@@ -25,13 +25,13 @@ Estados:
 
 | Clave | Dónde vive | Qué protege |
 |---|---|---|
-| `ADMIN_KEY` | Variable de entorno de Netlify | Entrada al panel. También firma (HMAC-SHA256) los enlaces de entrega, los códigos de la app y la oferta de 15 min. |
+| `ADMIN_KEY` | Variable de entorno de Vercel | Entrada al panel. También firma (HMAC-SHA256) los enlaces de entrega, los códigos de la app y la oferta de 15 min. |
 | `WHOP_*`, `STRIPE_SECRET_KEY` | Variables de entorno | Cobros. |
 
 Reglas:
 
 - **Nunca** pongas claves reales en el código ni en GitHub. Usa siempre las variables de entorno del hosting.
-- Para **cambiar la `ADMIN_KEY`**: cámbiala en Netlify y vuelve a desplegar. Todos los enlaces de entrega y códigos de la app anteriores dejan de valer, así que los nuevos se generan desde el panel.
+- Para **cambiar la `ADMIN_KEY`**: cámbiala en Vercel (**Settings → Environment Variables**) y vuelve a desplegar. Todos los enlaces de entrega y códigos de la app anteriores dejan de valer, así que los nuevos se generan desde el panel.
 - Si crees que alguien vio tu clave, cámbiala.
 
 ## Enlaces que genera el sistema
@@ -43,4 +43,9 @@ Los dos se generan solos tras el pago (Whop o Stripe) y también en el panel.
 
 ## Base de datos
 
-Netlify Blobs, almacén `me-pedidos` (pedidos) y `me-sync` (datos de la app de cada usuaria). Se ven en Netlify → **Blobs**. Exporta el CSV con frecuencia como copia de seguridad.
+La elige sola `sitio/lib/store.js`:
+
+- **Upstash Redis** (recomendada): cada pedido es la clave `ped:<id>`, el índice ordenado es `ped:idx` y los datos de la app están en `sync:<hash>`.
+- **Vercel Blob privado**: archivos `pedidos/<id>.json` y `sync/<hash>.json`.
+
+Exporta el CSV desde el panel con frecuencia como copia de seguridad.

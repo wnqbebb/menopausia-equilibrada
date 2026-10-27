@@ -32,7 +32,7 @@ Los PDF están en `sitio/public/entrega-f92e9c4d594a8499f33676e3c3fd18c8/`.
 
 Hay que tocar **dos sitios** y mantenerlos iguales:
 
-1. **Servidor**, en `sitio/netlify/lib/catalog.mjs`:
+1. **Servidor**, en `sitio/lib/catalog.js`:
    - `ITEMS`: nombre, precio en centavos (`cents: 1400` = 14 USD) y archivos.
    - `BUNDLE_LAUNCH` (1900) y `BUNDLE_REGULAR` (3700): precios del pack.
    - `OFFER_WINDOW_MS`: duración de la oferta (15 min = `15 * 60 * 1000`).

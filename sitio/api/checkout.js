@@ -4,8 +4,8 @@
 //  2) stripe → STRIPE_SECRET_KEY.
 //  3) link   → PAY_LINK_TODO / PAY_LINK_<ID> (Hotmart, Mercado Pago, etc.; se marca pagado a mano en el panel).
 //  4) pedido → sin pasarela: registra el pedido y la administradora envía el enlace de pago.
-import { getStore } from "@netlify/blobs";
-import { cleanItems, quote, json, CURRENCY, BUNDLE_LAUNCH, BUNDLE_REGULAR, VALUE_CENTS, OFFER_WINDOW_MS, itemsOf, checkOffer, createOrder, hmac, envGet as env } from "../lib/catalog.mjs";
+import { db } from "../lib/store.js";
+import { cleanItems, quote, json, CURRENCY, BUNDLE_LAUNCH, BUNDLE_REGULAR, VALUE_CENTS, OFFER_WINDOW_MS, itemsOf, checkOffer, hmac, envGet as env } from "../lib/catalog.js";
 
 function mode() {
   if (env("WHOP_API_KEY") && env("WHOP_COMPANY_ID") && env("WHOP_PRODUCT_ID")) return "whop";
@@ -15,7 +15,7 @@ function mode() {
 }
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 
-export default async (req) => {
+async function handler(req) {
   const url = new URL(req.url);
   const ORIGIN = (env("PUBLIC_URL") || url.origin).replace(/\/$/, "");
   if (req.method === "GET") return json({ mode: mode(), launchCents: BUNDLE_LAUNCH, regularCents: BUNDLE_REGULAR, windowMs: OFFER_WINDOW_MS, valueCents: VALUE_CENTS, now: Date.now() });
@@ -30,13 +30,13 @@ export default async (req) => {
   if (!EMAIL.test(email)) return json({ error: "Revisa tu correo: así te llega tu compra." }, 400);
   if (!items.length) return json({ error: "Tu carrito está vacío." }, 400);
 
-  const store = getStore({ name: "me-pedidos", consistency: "strong" });
+  const store = db().orders;
   // Mejora a «Todo junto» desde una compra anterior pagada: pagas solo la diferencia
   let upgradeFromCents = 0, upgradeFrom = "";
   if (b.upgradeFrom) {
     const upId = String(b.upgradeFrom).replace(/[^a-z0-9]/gi, "");
     if (!env("ADMIN_KEY") || String(b.upgradeT || "") !== (await hmac(env("ADMIN_KEY"), upId))) return json({ error: "Este enlace de mejora no es válido." }, 403);
-    const prev = await store.get(upId, { type: "json" });
+    const prev = await store.get(upId);
     if (prev && prev.status === "pagado" && !itemsOf(prev).includes("todo")) { upgradeFromCents = prev.cents || 0; upgradeFrom = prev.id; items = ["todo"]; }
   }
   const offer = await checkOffer(env("ADMIN_KEY"), b.offer);
@@ -45,7 +45,7 @@ export default async (req) => {
   const rec = { v: 2, id: "", createdAt: new Date().toISOString(), name, email, phone, items: q.items, cents: q.cents, currency: CURRENCY, mode: m, status: "pendiente", upgradeFrom, offer: !!(offer.ok && offer.active), origin: ORIGIN };
 
   let id;
-  try { id = await createOrder(store, rec); } catch (err) { console.error("checkout id", err); return json({ error: "No se pudo registrar tu pedido. Inténtalo de nuevo." }, 500); }
+  try { id = await store.create(rec); } catch (err) { console.error("checkout id", err); return json({ error: "No se pudo registrar tu pedido. Inténtalo de nuevo." }, 500); }
   try {
     if (m === "whop") {
       const t = await hmac(env("ADMIN_KEY"), id);
@@ -71,7 +71,7 @@ export default async (req) => {
       const c = await r.json().catch(() => ({}));
       if (!r.ok || !c.purchase_url) { console.error("whop", r.status, JSON.stringify(c).slice(0, 500)); return json({ error: "No se pudo abrir el pago. Inténtalo de nuevo en un momento." }, 502); }
       rec.checkoutId = c.id;
-      await store.setJSON(id, rec);
+      await store.save(rec);
       const u = new URL(c.purchase_url, "https://whop.com");
       if (!u.searchParams.has("email")) u.searchParams.set("email", email);
       return json({ mode: m, url: u.toString(), id, cents: q.cents, items: q.items, upgraded: q.upgraded });
@@ -100,13 +100,13 @@ export default async (req) => {
       const s = await r.json();
       if (!r.ok || !s.url) { console.error("stripe", s); return json({ error: "No se pudo abrir el pago. Inténtalo de nuevo en un momento." }, 502); }
       rec.sessionId = s.id;
-      await store.setJSON(id, rec);
+      await store.save(rec);
       return json({ mode: m, url: s.url, id, cents: q.cents, items: q.items, upgraded: q.upgraded });
     }
     if (m === "link") {
       const key = q.items.length === 1 ? "PAY_LINK_" + q.items[0].toUpperCase() : "";
       const link = (key && env(key)) || env("PAY_LINK_TODO");
-      await store.setJSON(id, rec);
+      await store.save(rec);
       if (q.items[0] !== "todo" && !(key && env(key))) {
         // sin enlace para esta combinación: se registra como pedido y se envía el enlace a mano
         return json({ mode: "pedido", ok: true, id, cents: q.cents, items: q.items, upgraded: q.upgraded });
@@ -115,12 +115,12 @@ export default async (req) => {
       if (!u.searchParams.has("email")) u.searchParams.set("email", email);
       return json({ mode: m, url: u.toString(), id, cents: q.cents, items: q.items, upgraded: q.upgraded });
     }
-    await store.setJSON(id, rec);
+    await store.save(rec);
     return json({ mode: m, ok: true, id, cents: q.cents, items: q.items, upgraded: q.upgraded });
   } catch (err) {
     console.error("checkout", err);
     return json({ error: "No se pudo registrar tu pedido. Inténtalo de nuevo." }, 500);
   }
-};
+}
 
-export const config = { path: "/api/checkout" };
+export { handler as GET, handler as POST };

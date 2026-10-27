@@ -2,8 +2,8 @@
 // Configúralo en Whop → Developer → Webhooks con la URL https://TU-DOMINIO/api/whop-webhook
 // y el evento payment.succeeded. Copia el secreto (ws_...) en la variable WHOP_WEBHOOK_SECRET.
 // Firma: estándar «Standard Webhooks» (cabeceras webhook-id, webhook-timestamp, webhook-signature).
-import { getStore } from "@netlify/blobs";
-import { json, envGet as env } from "../lib/catalog.mjs";
+import { db } from "../lib/store.js";
+import { json, envGet as env } from "../lib/catalog.js";
 
 const enc = new TextEncoder();
 const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
@@ -50,7 +50,7 @@ const toCents = (money) => {
   return Number.isFinite(n) ? Math.round(n * 100) : null;
 };
 
-export default async (req) => {
+async function handler(req) {
   if (req.method !== "POST") return json({ error: "Método no permitido." }, 405);
   const secret = env("WHOP_WEBHOOK_SECRET");
   const body = await req.text();
@@ -60,8 +60,8 @@ export default async (req) => {
   const p = ev.data || {};
   const pid = String(p.metadata?.pedido || "").replace(/[^a-z0-9]/gi, "");
   if (!pid) return json({ ok: true, note: "Pago sin pedido asociado (venta hecha directamente en Whop)." });
-  const store = getStore({ name: "me-pedidos", consistency: "strong" });
-  const rec = await store.get(pid, { type: "json" });
+  const store = db().orders;
+  const rec = await store.get(pid);
   if (!rec) return json({ ok: true, note: "Pedido no encontrado." });
   if (rec.status === "pagado") return json({ ok: true, already: true });
   const paidCents = toCents(p.usd_total) ?? toCents(p.total) ?? toCents(p.subtotal);
@@ -75,8 +75,8 @@ export default async (req) => {
     rec.status = "pagado";
     rec.paidAt = new Date().toISOString();
   }
-  await store.setJSON(pid, rec);
+  await store.save(rec);
   return json({ ok: true, status: rec.status });
-};
+}
 
-export const config = { path: "/api/whop-webhook" };
+export { handler as POST, handler as GET };

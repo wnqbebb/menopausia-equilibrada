@@ -1,7 +1,5 @@
 node_modules/
-.netlify/
 .vercel/
-sitio/public/_src/
 .env
 *.log
 __pycache__/

@@ -21,7 +21,7 @@
    Ejemplos/escenarios inventados se marcan como «ejemplo».
 4. Formato: páginas A4 794×1123 fijas (root .pg). Nada fuera de la página; márgenes ≥44px. Pie con número de
    página = el número/orden del board en canvas.json de ese canvas.
-5. Enlaces a la app: https://menopausia-equilibrada.netlify.app/#ruta (rutas: hoy, progreso, ciclo, plan30,
+5. Enlaces a la app: https://menopausia-equilibrada.vercel.app/#ruta (rutas: hoy, progreso, ciclo, plan30,
    plantillas, consulta, alarma, cuenta). Siempre como <a href> con el texto visible de la URL.
 6. Campos rellenables (plantillas, diarios, checklists): marca cada campo con data-fill="text|multi|check" y
    data-name único (ver BRAND.md).

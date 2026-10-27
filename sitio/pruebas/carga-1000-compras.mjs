@@ -1,15 +1,19 @@
-import { BlobsServer } from "@netlify/blobs/server";
-import fs from "node:fs"; import os from "node:os"; import path from "node:path"; import crypto from "node:crypto";
-const F=new URL("../netlify/functions/",import.meta.url).pathname;//"/netlify/functions/";
-const dir=fs.mkdtempSync(path.join(os.tmpdir(),"blobs-"));
-const token="tok", port=8971;
-const server=new BlobsServer({directory:dir,token,port}); await server.start();
-const ctx={edgeURL:`http://localhost:${port}`,uncachedEdgeURL:`http://localhost:${port}`,siteID:"site1",token};
-process.env.NETLIFY_BLOBS_CONTEXT=Buffer.from(JSON.stringify(ctx)).toString("base64");
-const KEY="testkey_"+crypto.randomBytes(6).toString("hex");
-process.env.ADMIN_KEY=KEY; process.env.PUBLIC_URL="https://x.test"; process.env.WHOP_WEBHOOK_SECRET="ws_abc";
-const imp=async n=>(await import(F+n+".mjs")).default;
-const checkout=await imp("checkout"),pedidos=await imp("pedidos"),entrega=await imp("entrega"),acceso=await imp("acceso"),sync=await imp("sync"),oferta=await imp("oferta"),wh=await imp("whop-webhook");
+// Prueba de carga local: ejecuta las funciones reales de /api contra una base de datos en memoria.
+// Uso: npm run prueba-carga   (o: ME_STORE=memory ADMIN_KEY=x node pruebas/carga-1000-compras.mjs 5000)
+import crypto from "node:crypto";
+process.env.ME_STORE = "memory";
+const KEY = process.env.ADMIN_KEY || "prueba-local-123";
+process.env.ADMIN_KEY = KEY; process.env.PUBLIC_URL = "https://x.test"; process.env.WHOP_WEBHOOK_SECRET = "ws_abc";
+for (const k of ["WHOP_API_KEY", "STRIPE_SECRET_KEY", "PAY_LINK_TODO"]) delete process.env[k];
+const A = (n) => import(new URL(`../api/${n}.js`, import.meta.url).href);
+const H_ = async (n, m) => (await A(n))[m];
+const checkout = (r) => H_("checkout", r.method).then((f) => f(r));
+const pedidos = (r) => H_("pedidos", r.method).then((f) => f(r));
+const entrega = (r) => H_("entrega", "GET").then((f) => f(r));
+const acceso = (r) => H_("acceso", "POST").then((f) => f(r));
+const sync = (r) => H_("sync", r.method).then((f) => f(r));
+const oferta = (r) => H_("oferta", "POST").then((f) => f(r));
+const wh = (r) => H_("whop-webhook", "POST").then((f) => f(r));
 const J=(u,m="GET",b,h={})=>new Request("https://x.test"+u,{method:m,headers:{"content-type":"application/json",...h},body:b?JSON.stringify(b):undefined});
 const rj=async r=>{const t=await r.text();try{return {s:r.status,d:JSON.parse(t)}}catch{return {s:r.status,d:t}}};
 let t0=Date.now(); const N=+process.argv[2]||1000;
@@ -46,4 +50,4 @@ r=await rj(await sync(J(`/api/sync?id=${sid}`,"GET",null,{"x-me-acc":acc}))); co
 const k1=ids[2]; const tk1=crypto.createHmac("sha256",KEY).update(k1.id).digest("hex").slice(0,32);
 r=await rj(await checkout(J("/api/checkout","POST",{name:"a",email:"a@b.co",items:["todo"],upgradeFrom:k1.id}))); console.log("mejora sin token", r.s);
 r=await rj(await checkout(J("/api/checkout","POST",{name:"a",email:"a@b.co",items:["todo"],upgradeFrom:k1.id,upgradeT:tk1}))); console.log("mejora con token", r.s, r.d.cents);
-await server.stop(); process.exit(0);
+console.log("OK: prueba terminada"); process.exit(0);

@@ -1,7 +1,7 @@
 // Oferta de bienvenida: entrega (o confirma) el token firmado con la hora de inicio de la visitante.
-import { json, makeOffer, checkOffer, OFFER_WINDOW_MS, BUNDLE_LAUNCH, BUNDLE_REGULAR, envGet as env } from "../lib/catalog.mjs";
+import { json, makeOffer, checkOffer, OFFER_WINDOW_MS, BUNDLE_LAUNCH, BUNDLE_REGULAR, envGet as env } from "../lib/catalog.js";
 
-export default async (req) => {
+async function handler(req) {
   if (req.method !== "POST") return json({ error: "Método no permitido." }, 405);
   const key = env("ADMIN_KEY");
   let b = {}; try { b = await req.json(); } catch {}
@@ -10,6 +10,6 @@ export default async (req) => {
   let token = b.token;
   if (!c.ok) { token = await makeOffer(key, now); c = await checkOffer(key, token, now); }
   return json({ token, issuedAt: c.issuedAt, expiresAt: c.expiresAt, active: c.active, now, windowMs: OFFER_WINDOW_MS, launchCents: BUNDLE_LAUNCH, regularCents: BUNDLE_REGULAR });
-};
+}
 
-export const config = { path: "/api/oferta" };
+export { handler as POST, handler as GET };

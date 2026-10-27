@@ -58,7 +58,7 @@ async def main():
         B = await new_ctx(b, mobile=False); pb = await B.new_page()
         pb.on('pageerror', lambda e: errs.append('B:' + str(e)))
         pb.on('console', lambda m: errs.append('B console:' + m.text) if m.type == 'error' else None)
-        linkB = link.replace('https://menopausia-equilibrada.netlify.app', BASE) if not live else link
+        linkB = link.replace('https://menopausia-equilibrada.vercel.app', BASE) if not live else link
         await pb.goto(linkB); await pb.wait_for_timeout(4500)
         await pb.goto(BASE + '/#progreso'); await pb.wait_for_timeout(800)
         txt = await pb.inner_text('#view')

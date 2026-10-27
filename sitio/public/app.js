@@ -1,6 +1,6 @@
 /* Menopausia Equilibrada — app de seguimiento.
    Guarda todo en este dispositivo (localStorage) y lo sincroniza con una copia
-   privada en la nube (Netlify Blobs) identificada por el hash de un código personal. */
+   privada en la nube (base de datos del sitio en Vercel) identificada por el hash de un código personal. */
 (function () {
 'use strict';
 

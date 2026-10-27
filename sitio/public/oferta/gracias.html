@@ -54,7 +54,6 @@ header{padding:18px 0;border-bottom:1px solid var(--line);background:#fff}
 @media (max-width:700px){.steps{grid-template-columns:1fr}.kits{grid-template-columns:repeat(2,1fr)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 
-body.nlb main{padding-bottom:90px}
 .app .acc,.acc{font-family:ui-monospace,Menlo,monospace;font-size:18px;font-weight:700;background:#fff;color:#2B1B24;border-radius:12px;padding:10px 14px;display:inline-block;margin:6px 0;word-break:break-all}
 .pill-o{display:inline-block;background:var(--sun);color:var(--ink);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
 .upw{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-top:14px;background:var(--blush);border-radius:18px;padding:14px 16px}
@@ -116,6 +115,5 @@ $('#upBtn').addEventListener('click',function(){var btn=this;btn.disabled=true;$
 function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var c=document.createElement('div');c.className='confetti';var cols=['#E0337A','#F7A8C7','#FFD95A','#CFE3F7','#9B1B4F'];for(var i=0;i<50;i++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.background=cols[i%5];s.style.borderRadius=i%3?'50%':'3px';s.style.animationDelay=Math.random()*.7+'s';s.style.width=s.style.height=(10+Math.random()*12)+'px';c.appendChild(s)}document.body.appendChild(c);setTimeout(function(){c.remove()},3600)}
 })();
 </script>
-<script>(function(){function chk(){if(document.getElementById('nl-badge-frame')){document.body.classList.add('nlb');return true}return false}if(!chk()){var mo=new MutationObserver(function(){if(chk())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}})();</script>
 </body>
 </html>

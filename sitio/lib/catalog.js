@@ -1,5 +1,5 @@
 // Catálogo y precios (fuente única para el servidor). Precios en centavos de USD.
-// Para cambiar precios o la fecha de lanzamiento: edita aquí Y el objeto CAT en public/oferta/index.html.
+// Para cambiar precios: edita aquí Y el arreglo CAT en public/oferta/index.html.
 export const CURRENCY = "usd";
 export const DELIVERY_DIR = "/entrega-f92e9c4d594a8499f33676e3c3fd18c8/";
 
@@ -86,17 +86,7 @@ export async function hmac(key, msg, len = 32) {
   return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, len);
 }
 
-// Guarda un pedido nuevo con un id que no exista (escritura condicional: nunca pisa otro pedido).
-export async function createOrder(store, rec) {
-  for (let i = 0; i < 8; i++) {
-    rec.id = newId();
-    const r = await store.setJSON(rec.id, rec, { onlyIfNew: true });
-    if (r?.modified !== false) return rec.id;
-  }
-  throw new Error("No se pudo crear un id de pedido único.");
-}
-
-export const envGet = (k) => (typeof Netlify !== "undefined" ? Netlify.env.get(k) : process.env[k]) || "";
+export const envGet = (k) => (typeof process !== "undefined" && process.env ? process.env[k] : "") || "";
 
 // Código de acceso a la app: <id del pedido>-<firma>. Se valida en /api/acceso.
 export async function accessCode(key, id) { return `${id}-${await hmac(key, "app:" + id, 10)}`; }

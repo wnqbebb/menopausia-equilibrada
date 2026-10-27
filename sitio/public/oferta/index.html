@@ -338,10 +338,6 @@ dialog.lb p{color:#fff;text-align:center;margin-top:10px;font-weight:600}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
 
-/* insignia de Netlify (plan gratis): que no tape los botones */
-body.nlb .mbar{padding-bottom:calc(78px + env(safe-area-inset-bottom,0px))}
-body.nlb .co-f{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
-body.nlb footer{padding-bottom:180px}
 
 /* ===== v2 ===== */
 .ann .cd{display:inline-block;background:var(--fucsia);color:#fff;border-radius:999px;padding:1px 10px;margin-left:4px;font-variant-numeric:tabular-nums}
@@ -790,7 +786,7 @@ body.nlb footer{padding-bottom:180px}
 <script>
 (function(){
 'use strict';
-// Catálogo (debe coincidir con netlify/lib/catalog.mjs)
+// Catálogo (debe coincidir con lib/catalog.js)
 var CAT=[
  ['pausa','PAUSA · El manual de la menopausia','60 páginas · 10 capítulos · 10 herramientas','Qué es cada etapa, tratamientos con evidencia y guiones para tu consulta, tu pareja y tu trabajo.',14,'c-pausa','Núcleo'],
  ['guia','Guía Integral Menopausia Equilibrada','38 páginas · 6 áreas','Síntomas, alimentación, ejercicio, sueño, salud hormonal y bienestar emocional.',12,'c-guia','Núcleo'],
@@ -953,6 +949,5 @@ if(/[?&]pago=cancelado/.test(location.search)){setTimeout(function(){openCo();va
 render();tick();observe();onScroll();
 })();
 </script>
-<script>(function(){function chk(){if(document.getElementById('nl-badge-frame')){document.body.classList.add('nlb');return true}return false}if(!chk()){var mo=new MutationObserver(function(){if(chk())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}})();</script>
 </body>
 </html>

@@ -14,7 +14,7 @@ Puedes ver el modo activo en `GET /api/checkout`.
 ## Stripe
 
 1. En https://dashboard.stripe.com, en **Developers → API keys**, copia la **Secret key** (`sk_live_…`; para pruebas, `sk_test_…`).
-2. Créala en Netlify como `STRIPE_SECRET_KEY` y vuelve a desplegar.
+2. Créala en Vercel (**Settings → Environment Variables**) como `STRIPE_SECRET_KEY` y vuelve a desplegar.
 3. El sistema crea una sesión de Stripe Checkout con el importe exacto del carrito. Al pagar, la clienta vuelve a `gracias.html?session_id=…`, el servidor consulta a Stripe y marca el pedido como pagado.
 
 ## Hotmart, Mercado Pago, PayPal u otro enlace de pago
@@ -24,7 +24,7 @@ Puedes ver el modo activo en `GET /api/checkout`.
 3. Si alguien compra una combinación sin enlace propio, el pedido queda registrado y le envías el enlace a mano.
 4. Cuando veas el pago en tu plataforma, abre el panel, pulsa **Marcar pagado** y envía el **enlace de entrega** a la clienta.
 
-> Con enlaces externos no hay confirmación automática. Para automatizarla habría que añadir el webhook de esa plataforma siguiendo el modelo de `sitio/netlify/functions/whop-webhook.mjs`.
+> Con enlaces externos no hay confirmación automática. Para automatizarla habría que añadir el webhook de esa plataforma siguiendo el modelo de `sitio/api/whop-webhook.js`.
 
 ## Sin pasarela (modo «pedido»)
 

@@ -1,8 +1,8 @@
 // Valida el código de acceso a la app (solo compras pagadas que incluyen la app).
-import { getStore } from "@netlify/blobs";
-import { json, hmac, hasApp, itemsOf, envGet as env } from "../lib/catalog.mjs";
+import { db } from "../lib/store.js";
+import { json, hmac, hasApp, itemsOf, envGet as env } from "../lib/catalog.js";
 
-export default async (req) => {
+async function handler(req) {
   if (req.method !== "POST") return json({ ok: false, error: "Método no permitido." }, 405);
   let b; try { b = await req.json(); } catch { return json({ ok: false }, 400); }
   const code = String(b.code || "").trim().toLowerCase();
@@ -10,10 +10,10 @@ export default async (req) => {
   const key = env("ADMIN_KEY");
   if (!m || !key) return json({ ok: false, error: "Ese código no es válido." });
   if (m[2] !== (await hmac(key, "app:" + m[1], 10))) return json({ ok: false, error: "Ese código no es válido." });
-  const store = getStore({ name: "me-pedidos", consistency: "strong" });
-  const rec = await store.get(m[1], { type: "json" });
+  const store = db().orders;
+  const rec = await store.get(m[1]);
   if (!rec || rec.status !== "pagado" || !hasApp(itemsOf(rec)) || rec.revoked) return json({ ok: false, error: "Ese código no está activo." });
   return json({ ok: true, name: (rec.name || "").split(" ")[0] });
-};
+}
 
-export const config = { path: "/api/acceso" };
+export { handler as POST, handler as GET };

@@ -1,13 +1,13 @@
 // Menopausia Equilibrada — sincronización entre dispositivos.
-// Guarda el documento JSON completo de cada usuaria en Netlify Blobs,
+// Guarda el documento JSON completo de cada usuaria en la base de datos (lib/store.js),
 // con la clave = SHA-256 (calculado en el navegador) de su código privado.
 // El código nunca llega al servidor; solo su hash.
 // Solo sincronizan las compradoras: la petición debe llevar su código de acceso a la app (cabecera x-me-acc),
 // que se comprueba con la firma (sin leer la base de datos, para que sea barato con miles de usuarias).
-import { getStore } from "@netlify/blobs";
-import { hmac, envGet as env } from "../lib/catalog.mjs";
+import { db } from "../lib/store.js";
+import { hmac, envGet as env } from "../lib/catalog.js";
 
-const MAX_BYTES = 1024 * 1024; // 1 MB
+const MAX_BYTES = 900 * 1024; // 900 KB (límite cómodo para Redis/Blob)
 
 function json(body, status = 200, extra = {}) {
   return new Response(JSON.stringify(body), {
@@ -21,7 +21,7 @@ function json(body, status = 200, extra = {}) {
   });
 }
 
-export default async (req) => {
+async function handler(req) {
   const url = new URL(req.url);
   const id = (url.searchParams.get("id") || "").toLowerCase();
   if (!/^[0-9a-f]{64}$/.test(id)) {
@@ -34,11 +34,11 @@ export default async (req) => {
     return json({ error: "Se necesita un acceso válido a la app." }, 401);
   }
 
-  const store = getStore({ name: "me-sync", consistency: "strong" });
+  const store = db().sync;
 
   if (req.method === "GET") {
     try {
-      const data = await store.get(id, { type: "json" });
+      const data = await store.get(id);
       return json({ data: data ?? null });
     } catch (err) {
       console.error("sync GET failed", err);
@@ -67,7 +67,7 @@ export default async (req) => {
       return json({ error: "Formato no válido." }, 400);
     }
     try {
-      await store.setJSON(id, body);
+      await store.put(id, body);
       return json({ ok: true, savedAt: Date.now() });
     } catch (err) {
       console.error("sync PUT failed", err);
@@ -76,6 +76,6 @@ export default async (req) => {
   }
 
   return json({ error: "Método no permitido." }, 405, { allow: "GET, PUT" });
-};
+}
 
-export const config = { path: "/api/sync" };
+export { handler as GET, handler as PUT, handler as POST };

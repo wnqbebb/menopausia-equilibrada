@@ -97,7 +97,7 @@ resultados. Semáforo de evidencia (verde = buena evidencia, amarillo = evidenci
 recomendado) cuando se hable de suplementos, aromaterapia, yoga o remedios.
 
 ## App
-URL: https://menopausia-equilibrada.netlify.app
+URL: https://menopausia-equilibrada.vercel.app
 Rutas: #hoy (registro diario) · #progreso (gráficas e historial) · #ciclo · #plan30 · #plantillas (editables)
 · #consulta (resumen para la médica) · #alarma · #cuenta (sincronizar celular y computador).
-Enlaza con <a href="https://menopausia-equilibrada.netlify.app/#ruta">menopausia-equilibrada.netlify.app/#ruta</a>.
+Enlaza con <a href="https://menopausia-equilibrada.vercel.app/#ruta">menopausia-equilibrada.vercel.app/#ruta</a>.

@@ -28,7 +28,7 @@ Hay dos formas de usar Whop. Se pueden combinar.
    - Evento: `payment.succeeded`
    - Copia el **secreto** (`ws_…`). Solo se muestra una vez.
 
-### 2. Pon las variables en Netlify
+### 2. Pon las variables en Vercel
 
 | Variable | Valor |
 |---|---|
@@ -37,7 +37,7 @@ Hay dos formas de usar Whop. Se pueden combinar.
 | `WHOP_PRODUCT_ID` | `prod_…` |
 | `WHOP_WEBHOOK_SECRET` | `ws_…` |
 
-Vuelve a desplegar Netlify. Desde ese momento el botón de pago abre Whop automáticamente: el modo `whop` tiene prioridad sobre Stripe, enlaces y pedido manual.
+En Vercel: **Settings → Environment Variables**, añade las 4 y vuelve a desplegar (**Deployments → ⋯ → Redeploy**). Desde ese momento el botón de pago abre Whop automáticamente: el modo `whop` tiene prioridad sobre Stripe, enlaces y pedido manual.
 
 ### 3. Cómo funciona por dentro
 
@@ -53,7 +53,7 @@ Vuelve a desplegar Netlify. Desde ese momento el botón de pago abre Whop autom�
 > La integración se verificó con webhooks firmados simulados (firma, importe, pedidos duplicados, 1.000 y 5.000 pagos) en `sitio/pruebas/`. Todavía no se probó con una cuenta real de Whop, así que **haz una compra real de prueba antes de lanzar**.
 
 
-- Whop tiene un entorno de pruebas (*sandbox*). Para usarlo, cambia `https://api.whop.com` por `https://sandbox-api.whop.com` en `sitio/netlify/functions/checkout.mjs`.
+- Whop tiene un entorno de pruebas (*sandbox*). Para usarlo, cambia `https://api.whop.com` por `https://sandbox-api.whop.com` en `sitio/api/checkout.js`.
 - Haz una compra de prueba y comprueba en el panel que el pedido pasa a «pagado» con su `pago_id`.
 - Si no pasa a pagado, en Whop → Developer → Webhooks revisa los intentos de entrega. Las causas habituales son una URL mal escrita o un secreto mal copiado.
 

@@ -1,72 +1,82 @@
-# 1 · Desplegar el sitio
+# 1 · Desplegar el sitio (solo Vercel)
 
-El sistema tiene dos piezas:
+Todo vive en **un solo proyecto de Vercel**:
 
 ```
-Compradora ──► Vercel (frontal, opcional) ──► Netlify (motor: páginas, app, funciones, base de datos, PDF)
+Compradora ──► Vercel
+                ├─ public/   páginas, app, imágenes (CDN de Vercel)
+                ├─ api/      funciones: checkout, entrega, acceso, oferta, panel, sincronización, webhook de Whop
+                └─ Storage   base de datos (Upstash Redis o Vercel Blob)
+PDF ──► jsDelivr (CDN gratis que lee este repositorio de GitHub)
 ```
 
-- **Netlify** ejecuta todo: páginas, app, API (`/api/*`) y base de datos (Netlify Blobs). Con Netlify solo ya funciona.
-- **Vercel** es opcional. Sirve el mismo sitio desde un dominio de Vercel, sin la insignia que Netlify muestra en el plan gratis. Si usas tu propio dominio en un plan de pago de Netlify, no necesitas Vercel.
+## 1. Importar el proyecto
 
-## A. Netlify (obligatorio)
+1. Entra en https://vercel.com → **Add New → Project** → **Import Git Repository** y elige este repositorio. Si no aparece, pulsa **Adjust GitHub App Permissions** y dale acceso.
+2. Configura:
+   - **Root Directory:** `sitio`
+   - **Framework Preset:** `Other`
+   - **Build Command:** vacío
+   - **Output Directory:** `public` (ya viene en `sitio/vercel.json`)
+3. Pulsa **Deploy**. La primera vez fallarán las compras porque falta la base de datos. Es normal; sigue con el paso 2.
 
-1. Crea una cuenta en https://app.netlify.com.
-2. **Add new site → Import an existing project → GitHub** y elige este repositorio.
-3. En la configuración de compilación:
-   - **Base directory:** `sitio`
-   - **Build command:** (déjalo vacío; lo toma de `sitio/netlify.toml`)
-   - **Publish directory:** `sitio/public`
-   - **Functions directory:** `sitio/netlify/functions`
-4. **Site configuration → Environment variables** y crea:
-   - `ADMIN_KEY`: tu clave larga. Para generarla: `node -e "console.log(require('crypto').randomBytes(24).toString('base64url'))"`.
-   - `PUBLIC_URL`: la dirección pública, por ejemplo `https://mi-sitio.netlify.app` (o tu dominio de Vercel o propio).
-5. **Deploys → Trigger deploy**.
-6. Comprueba:
-   - `https://TU-SITIO.netlify.app/oferta/` muestra la página de ventas.
-   - `https://TU-SITIO.netlify.app/oferta/admin.html` pide la clave; escribe tu `ADMIN_KEY`.
-   - Haz un pedido de prueba, márcalo «pagado» en el panel y abre su «enlace de entrega».
+## 2. Conectar la base de datos
 
-> Las variables de entorno se aplican **en el siguiente despliegue**. Después de cambiar una, vuelve a desplegar.
+En el proyecto → **Storage**. Elige **una** de estas dos:
 
-> En el plan gratis nuevo de Netlify (por créditos), cada despliegue a producción consume créditos. No despliegues por cada cambio pequeño: agrupa cambios. Ver [07-ESCALA-Y-LIMITES.md](07-ESCALA-Y-LIMITES.md).
+| Opción | Cuándo | Cómo |
+|---|---|---|
+| **Upstash Redis** (recomendada) | Para cientos o miles de ventas. Plan gratis amplio (del orden de cientos de miles de operaciones al mes). | **Storage → Create Database → Upstash for Redis → Free** → **Connect Project**. Crea solas `KV_REST_API_URL` y `KV_REST_API_TOKEN` (o `UPSTASH_REDIS_REST_*`). |
+| **Vercel Blob (privado)** | Para empezar. | **Storage → Create → Blob**, acceso **Private** → **Connect Project**. Crea sola `BLOB_READ_WRITE_TOKEN`. |
 
-## B. Vercel como frontal (opcional, sin insignia)
+Si están las dos, el sistema usa Redis. El código está en `sitio/lib/store.js`.
 
-1. Cuenta en https://vercel.com → **Add New → Project → Import** este repositorio.
-2. **Root Directory:** `frontal-vercel`. Framework: **Other**. Sin comando de compilación.
-3. Edita `frontal-vercel/vercel.json`: en la última regla `rewrites` cambia `https://menopausia-equilibrada.netlify.app` por **tu** dirección de Netlify.
-4. En Vercel → **Settings → Environment Variables** crea `BACKEND_URL` = tu dirección de Netlify.
-5. Despliega. Tu tienda queda en `https://TU-PROYECTO.vercel.app/oferta/`.
-6. En Netlify cambia `PUBLIC_URL` a la dirección de Vercel y vuelve a desplegar Netlify.
+## 3. Variables de entorno
 
-Cómo funciona:
+**Settings → Environment Variables** (Production, Preview y Development):
 
-- Las páginas HTML las sirve Vercel (`api/page.js` las lee de `/_src/` en Netlify como texto, por eso no aparece la insignia).
-- El resto (imágenes, app, API, PDF) pasa por Vercel hacia Netlify, y las imágenes quedan en la caché de Vercel.
+| Variable | Valor |
+|---|---|
+| `ADMIN_KEY` | Tu clave larga. Genera una con `node -e "console.log(require('crypto').randomBytes(24).toString('base64url'))"`. |
+| `PUBLIC_URL` | `https://TU-PROYECTO.vercel.app` (o tu dominio propio) |
+| `FILES_BASE` | `https://cdn.jsdelivr.net/gh/USUARIO/REPO@main/sitio/public/entrega-f92e9c4d594a8499f33676e3c3fd18c8/` |
+| `WHOP_*` / `STRIPE_SECRET_KEY` / `PAY_LINK_*` | Según la pasarela (guías 02 y 03) |
 
-> **Importante:** el plan Hobby (gratis) de Vercel es solo para uso **no comercial**. Para vender, pasa el proyecto a Vercel Pro (unos 20 USD/mes) o usa solo Netlify con tu dominio.
+Después: **Deployments → ⋯ → Redeploy**. Las variables solo se aplican en el siguiente despliegue.
 
-## C. Dominio propio
+## 4. Comprobar
 
-- Con Vercel: **Settings → Domains → Add** y sigue los registros DNS que indica.
-- Con Netlify: **Domain management → Add a domain**.
-- Después actualiza `PUBLIC_URL` y vuelve a desplegar.
+1. `https://TU-PROYECTO.vercel.app/oferta/`: muestra la página de ventas con el contador.
+2. `https://TU-PROYECTO.vercel.app/api/checkout`: devuelve un JSON con `mode`.
+3. `https://TU-PROYECTO.vercel.app/oferta/admin.html`: entra con tu `ADMIN_KEY`.
+4. Haz un pedido de prueba, márcalo «pagado» en el panel, abre su enlace de entrega y descarga un PDF.
+5. En el panel, crea una **cortesía** para ti y abre el enlace de la app.
 
-## D. Probar en local
+## 5. Dominio propio
+
+**Settings → Domains → Add** y sigue los registros DNS que te indique Vercel. Luego cambia `PUBLIC_URL` y vuelve a desplegar.
+
+## 6. Cada cambio se publica solo
+
+Con el repositorio conectado, cada `git push` a `main` vuelve a desplegar el sitio automáticamente.
+
+> **Plan de Vercel:** Hobby (gratis) es solo para uso **no comercial**. Para vender, pasa el equipo a **Pro** (unos 20 USD al mes). Ver [07-ESCALA-Y-LIMITES.md](07-ESCALA-Y-LIMITES.md).
+
+## Probar en local
 
 ```bash
 cd sitio
 npm install
-npm run prueba-carga                 # 1.000 compras simuladas con base de datos local
-npx netlify-cli dev                  # sitio completo en http://localhost:8888 (pide iniciar sesión en Netlify)
+npm run prueba-carga          # 1.000 compras simuladas contra las funciones reales (base de datos en memoria)
+npx vercel dev                # sitio completo en http://localhost:3000 (pide iniciar sesión en Vercel)
 ```
 
-## Enlaces útiles una vez desplegado
+## Direcciones del sitio
 
 | Qué | Dirección |
 |---|---|
 | Página de ventas | `/oferta/` (también `/comprar` y `/pack`) |
-| Página de descargas | `/oferta/gracias.html?pedido=ID&t=FIRMA` (el panel la genera) |
+| Descargas | `/oferta/gracias.html?pedido=ID&t=FIRMA` (las genera el sistema) |
 | Panel | `/oferta/admin.html` |
 | App | `/` (pide código de acceso) |
+| Webhook de Whop | `/api/whop-webhook` |

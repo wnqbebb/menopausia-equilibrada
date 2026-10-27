@@ -1,0 +1,41 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "public",
+  "buildCommand": "",
+  "framework": null,
+  "redirects": [
+    { "source": "/comprar", "destination": "/oferta/", "permanent": true },
+    { "source": "/pack", "destination": "/oferta/", "permanent": true },
+    { "source": "/oferta", "destination": "/oferta/", "permanent": true }
+  ],
+  "functions": {
+    "api/*.js": { "maxDuration": 30 }
+  },
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] },
+    { "source": "/", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+    { "source": "/index.html", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+    { "source": "/app.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+    { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
+    { "source": "/oferta/", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+    { "source": "/oferta/gracias.html", "headers": [
+      { "key": "Cache-Control", "value": "no-store" },
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+    ] },
+    { "source": "/oferta/admin.html", "headers": [
+      { "key": "Cache-Control", "value": "no-store" },
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+    ] },
+    { "source": "/oferta/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }] },
+    { "source": "/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
+    { "source": "/icons/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
+    { "source": "/vendor/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }] },
+    { "source": "/entrega-(.*)", "headers": [
+      { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+      { "key": "Cache-Control", "value": "public, max-age=86400" }
+    ] }
+  ]
+}
