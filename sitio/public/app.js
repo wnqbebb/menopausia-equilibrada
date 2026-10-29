@@ -462,6 +462,27 @@ function segs(name, opts, val, extraAttr) {
   return opts.map(function (o, i) { return '<label class="seg"><input type="radio" name="' + name + '" id="' + name + '_' + i + '" value="' + i + '"' + (val === i ? ' checked' : '') + (extraAttr || '') + '><span>' + esc(o) + '</span></label>'; }).join('');
 }
 
+/* Guía de la app: bienvenida paso a paso (también en #guia) */
+var GUIA = [
+  { k: 'Bienvenida', t: 'Tu diario, tu plan y tu memoria para la consulta', d: 'Esta app te acompaña en la menopausia: registras cómo te sientes en un minuto al día, ves tu progreso en gráficas y llevas a tu cita un informe claro. Funciona en el celular y en el computador. Te enseñamos todo en cinco pasos cortos.', img: '' },
+  { k: 'Paso 1 · Hoy', t: 'Registra tu día en un minuto', d: 'En la pestaña <b>Hoy</b>: toca <b>+</b> cada vez que tengas un sofoco, suma tus vasos de agua, elige tu energía y tu ánimo, escribe cuántas horas dormiste y marca tus síntomas de <b>0</b> (nada) a <b>3</b> (fuerte). No hay botón de guardar: se guarda solo.', img: 'app-hoy' },
+  { k: 'Paso 2 · Progreso', t: 'Así se ve tu progreso', d: 'En <b>Progreso</b> aparecen tus gráficas de sofocos, sueño, ánimo y energía, tus síntomas principales y el historial día a día. Con unas semanas de registro verás patrones claros. Puedes probarlo ahora con datos de ejemplo (no se mezclan con los tuyos).', img: 'app-progreso', demo: true },
+  { k: 'Paso 3 · Tu informe', t: 'Descarga tu informe en PDF', d: 'Cuando tengas algunos días registrados: <b>Progreso → «Descargar mi informe en PDF»</b>. En <b>Mi cuenta → «Tu informe en PDF»</b> eliges 30 días, 90 días o todo tu historial. Y en <b>Mi consulta</b> tienes un resumen de una página con tus preguntas para tu médica.', img: 'app-consulta' },
+  { k: 'Paso 4 · Plan y plantillas', t: 'Tu plan de 30 días y tus plantillas', d: '<b>Plan 30 días</b>: seis hábitos sencillos para recuperar energía; marca los que cumples cada día. <b>Plantillas</b>: menú semanal, lista de compras, hoja de consulta y más, para rellenar aquí. <b>Ciclo</b>: anota tus reglas. <b>Señales de alarma</b>: cuándo no esperar.', img: 'app-plan30' },
+  { k: 'Paso 5 · Privacidad', t: 'Tus datos, en tus manos', d: 'Todo se guarda en este dispositivo. Si quieres verlo igual en tu celular y en tu computador, activa la <b>copia cifrada</b>: se cifra aquí con tu código personal y nadie más puede leerla. Tu enlace personal está en <b>Mi cuenta</b>.', img: '' }
+];
+function viewGuia(first) {
+  var i = Math.max(0, Math.min(GUIA.length - 1, ui.gstep || 0)), g = GUIA[i], last = i === GUIA.length - 1;
+  var h = '<div class="guia card" id="guia"><div class="gdots">' + GUIA.map(function (x, j) { return '<i class="' + (j <= i ? 'on' : '') + '"></i>'; }).join('') + '</div>' +
+    '<div class="ggrid"><div><span class="kick">' + esc(g.k) + ' · ' + (i + 1) + ' de ' + GUIA.length + '</span><h2>' + g.t + '</h2><p>' + g.d + '</p>' +
+    (g.demo ? '<div class="row"><button type="button" class="ghost" data-act="gDemo">Ver mi app con datos de ejemplo</button></div>' : '') +
+    (last ? cloudConsent('cloudOk') : '') + '</div>' +
+    (g.img ? '<figure class="gshot"><img src="/oferta/img/' + g.img + '.webp" alt="Pantalla de ejemplo de la app: ' + esc(g.k) + '" loading="lazy"><figcaption>Pantalla de ejemplo</figcaption></figure>' : '<div class="gcol" aria-hidden="true">' + cutImg('cut02a', 'c1') + cutImg('cut22a', 'c2') + '</div>') + '</div>' +
+    '<div class="row gnav">' + (i ? '<button type="button" class="ghost" data-act="gPrev">Atrás</button>' : (first ? '<button type="button" class="ghost" data-act="gSkip">Saltar la guía</button>' : '<a class="btn ghost" href="#hoy">Cerrar</a>')) + '<span style="flex:1"></span>' +
+    (last ? (first ? '<button type="button" class="primary" data-act="welcomeOk">Empezar a usar mi diario</button>' : '<button type="button" class="primary" data-act="gDone">Listo</button>') : '<button type="button" class="primary" data-act="gNext">Siguiente</button>') + '</div></div>';
+  return h;
+}
+function viewGuiaPage() { return head('Guía', 'Cómo se usa <span class="script">tu diario</span>', 'Seis pasos cortos para sacarle todo el provecho: registrar, ver tu progreso, descargar tu informe y cuidar tu privacidad.') + viewGuia(false); }
 function viewWelcome() {
   return '<div class="welcome" id="welcome"><div class="collage" aria-hidden="true">' + cutImg('cut02a', 'c1') + cutImg('cut22a', 'c2') + cutImg('cut68', 'c3') + sk('heart', '#E0337A', 34, 'left:38%;top:0;z-index:3', 'flt', -12) + sk('star', '#FFD95A', 28, 'right:6%;top:4px;z-index:3', 'flt2', 10) + sk('spark', '#fff', 22, 'left:6%;top:10px', 'flt', 0) + '</div><div class="big">¡Bienvenida!</div>' +
     '<p style="font-weight:600;font-size:17px;line-height:1.5">Esta app es tu diario, tu plan y tu memoria para la consulta. Funciona en el celular y en el computador, y guarda tu progreso sola.</p>' +
@@ -480,7 +501,7 @@ function viewHoy() {
   var k = ui.day, d = getDay(k) || normDay({}), isToday = k === today(), dt = parse(k);
   var h = '';
   if (lsGet('me.pack') === '1' && !demo && !EMBED) h += '<a class="card plena-cta" href="/plena/"><span class="kick">Incluida en tu pack</span><b>PLENA · tu academia de menopausia y psicomenopausia</b><span class="note">Tu ruta personal, tus libros para hojear, tus logros y este diario, en un solo lugar.</span><span class="go">Entrar →</span></a>';
-  if (!onboarded && !demo) h += viewWelcome();
+  if (!onboarded && !demo) h += viewGuia(true);
   else if (onboarded && !demo && cloud === '') h += '<div class="card pink"><h2>Tu privacidad, primero</h2><p>Ahora tus registros se guardan solo en este dispositivo. Si usas la app en varios dispositivos, puedes activar una <b>copia cifrada</b> en la nube: se cifra aquí con tu código personal y nadie más puede leerla.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="ghost" data-act="cloudNo">Solo en este dispositivo</button></div><p class="note"><a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></p></div>';
   h += head('Registro diario', isToday ? '¿Cómo estás <span class="script" style="font-size:1.25em">hoy</span>?' : 'Registro del ' + fmtLong(k), 'Un minuto al día. 0 nada · 1 leve · 2 media · 3 fuerte. Se guarda solo y se sincroniza con tus otros dispositivos.');
   h += '<div class="card"><div class="daybar"><button type="button" class="ghost" data-act="prevDay" aria-label="Día anterior">‹</button><div class="d"><strong>' + (isToday ? 'Hoy' : cap(DIAS[dt.getDay()])) + '</strong><label class="sr" for="dayPick">Elegir fecha</label><input type="date" id="dayPick" value="' + k + '" max="' + today() + '" style="max-width:200px;margin:6px auto 0;display:block"></div><button type="button" class="ghost" data-act="nextDay" aria-label="Día siguiente"' + (isToday ? ' disabled' : '') + '>›</button></div><p class="status" id="saveStatus">' + (data.days[k] ? 'Hay un registro guardado para este día.' : 'Aún no hay registro para este día.') + '</p></div>';
@@ -789,6 +810,7 @@ function viewCuenta() {
   var h = head('Mi cuenta', 'Tu progreso, <span class="script" style="font-size:1.2em">en todos lados</span>', 'Sin contraseñas ni correos: tu enlace personal es tu llave. Ábrelo en tu celular y en tu computador y verás lo mismo en los dos.');
   if (cloud === '1') h += '<div class="card"><div class="row between"><h2>Copia cifrada en la nube</h2><span class="kick" id="syncBadge">' + (syncState === 'off' ? 'Sin conexión' : 'Activa') + '</span></div><p class="status" id="syncStatus">' + syncLine() + '</p><p class="note">Tus registros se cifran en este dispositivo con tu código personal (AES-256) antes de salir. Al servidor solo llega texto cifrado.</p><div class="row"><button type="button" class="primary" data-act="syncNow">Sincronizar ahora</button><button type="button" class="ghost" data-act="cloudNo">Desactivar</button><button type="button" class="danger small" data-act="cloudDel">Borrar mi copia en la nube</button></div></div>';
   else h += '<div class="card"><div class="row between"><h2>Copia cifrada en la nube</h2><span class="kick" id="syncBadge">Desactivada</span></div><p class="status" id="syncStatus">' + syncLine() + '</p><p class="note">Actívala si quieres ver lo mismo en tu celular y en tu computador. Se cifra en este dispositivo con tu código personal: nadie más puede leerla. <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="danger small" data-act="cloudDel">Borrar mi copia en la nube</button></div></div>';
+  h += '<div class="card"><div class="row between"><div><h2>¿Cómo se usa la app?</h2><p class="note">Repasa la guía: registrar tu día, ver tu progreso, descargar tu informe y tu privacidad.</p></div><a class="btn primary" href="#guia">Ver la guía</a></div></div>';
   h += '<div class="card pink"><h2>Tu enlace personal</h2><p>Guárdalo en un lugar seguro (por ejemplo, envíatelo por mensaje). Quien tenga este enlace puede ver tus registros, así que no lo publiques.</p>' +
     '<div class="code" id="myLink">' + esc(personalLink()) + '</div><div class="row"><button type="button" class="dark" data-act="copyLink">Copiar enlace</button><button type="button" data-act="copyCode">Copiar solo el código</button></div>' +
     '<div class="row" style="align-items:flex-start;gap:16px"><div class="qr" id="qr" aria-label="Código QR de tu enlace personal" role="img"></div><p class="note" style="flex:1;min-width:180px">Escanea este código con la cámara de tu celular para abrir la app con tus datos. Tu código: <b>' + esc(code) + '</b></p></div></div>';
@@ -821,7 +843,7 @@ function drawQR() {
 /* =========================================================
    Enrutador
    ========================================================= */
-var VIEWS = { hoy: viewHoy, progreso: viewProgreso, plan30: viewPlan30, plantillas: viewPlantillas, consulta: viewConsulta, ciclo: viewCiclo, alarma: viewAlarma, cuenta: viewCuenta };
+var VIEWS = { hoy: viewHoy, progreso: viewProgreso, plan30: viewPlan30, plantillas: viewPlantillas, consulta: viewConsulta, ciclo: viewCiclo, alarma: viewAlarma, cuenta: viewCuenta, guia: viewGuiaPage };
 var ALIAS = { tendencias: 'progreso', ajustes: 'cuenta', sync: 'cuenta', sincronizar: 'cuenta', inicio: 'hoy', diario: 'hoy', historial: 'progreso', plan: 'plan30' };
 function parseHash() {
   var raw = (location.hash || '').replace(/^#\/?/, '');
@@ -904,7 +926,7 @@ function render() {
   if (lastView !== r.v || lastSub !== ui.tplSub) { vEl.classList.remove('enter'); void vEl.offsetWidth; vEl.classList.add('enter'); }
   $('#demoBanner').hidden = !demo;
   $('#storeWarn').hidden = storageOK;
-  document.title = { hoy: 'Hoy', progreso: 'Mi progreso', plan30: 'Plan de 30 días', plantillas: 'Plantillas', consulta: 'Mi consulta', ciclo: 'Ciclo', alarma: 'Señales de alarma', cuenta: 'Mi cuenta' }[r.v] + ' · Menopausia Equilibrada';
+  document.title = { guia: 'Guía', hoy: 'Hoy', progreso: 'Mi progreso', plan30: 'Plan de 30 días', plantillas: 'Plantillas', consulta: 'Mi consulta', ciclo: 'Ciclo', alarma: 'Señales de alarma', cuenta: 'Mi cuenta' }[r.v] + ' · Menopausia Equilibrada';
   if (r.v === 'cuenta') drawQR();
   if (lastView !== r.v || lastSub !== ui.tplSub) {
     window.scrollTo(0, 0); lastView = r.v; lastSub = ui.tplSub;
@@ -1025,6 +1047,11 @@ document.addEventListener('click', function (e) {
   }
   var a = b.dataset.act; if (!a) return;
   switch (a) {
+    case 'gNext': ui.gstep = (ui.gstep || 0) + 1; rerenderKeepFocus(); var gg = $('#guia'); if (gg && gg.scrollIntoView) gg.scrollIntoView({ block: 'start', behavior: 'smooth' }); break;
+    case 'gPrev': ui.gstep = Math.max(0, (ui.gstep || 0) - 1); rerenderKeepFocus(); break;
+    case 'gSkip': ui.gstep = GUIA.length - 1; rerenderKeepFocus(); break;
+    case 'gDemo': enterDemo(); location.hash = '#progreso'; break;
+    case 'gDone': ui.gstep = 0; location.hash = '#hoy'; toast('¡Listo! La guía está siempre en Mi cuenta.'); break;
     case 'welcomeOk': var ck = $('#cloudOk'); setCloud(ck && ck.checked ? '1' : '0'); onboarded = true; lsSet('me.onboarded', '1'); render(); if (cloud === '1') sync(); break;
     case 'cloudYes': setCloud('1'); render(); sync({ toast: 'Copia cifrada activada.' }).then(function () { if (curView === 'cuenta') render(); }); break;
     case 'cloudNo': setCloud('0'); setSync('local'); render(); toast('Listo: tus datos se quedan solo en este dispositivo.'); break;

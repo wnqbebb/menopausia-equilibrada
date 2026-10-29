@@ -2,7 +2,7 @@
  "nombre": "PLENA",
  "subtitulo": "Academia de Menopausia y Psicomenopausia",
  "lema": "No estás rota. Estás en transición.",
- "version": "2026-10-29b",
+ "version": "2026-10-29c",
  "aviso": "Contenido educativo. No sustituye la consulta, el diagnóstico ni el tratamiento de tu profesional de salud.",
  "cierre": "No es el final de nada: es una graduación.",
  "objetivos": [
@@ -224,6 +224,17 @@
     "patron": "lineas",
     "insignia": "Primer latido",
     "palabra": "hola"
+   },
+   "intro": {
+    "texto": [
+     "Este primer módulo es tu punto de partida. Aquí entiendes por qué lo que sientes es real, cómo está organizada PLENA y cómo convertir tus síntomas en datos que te ayudan en consulta.",
+     "Son tres lecciones cortas. Al terminar tendrás tu diario en marcha y sabrás exactamente qué hacer cada día."
+    ],
+    "logros": [
+     "Entender que tus síntomas tienen explicación y opciones",
+     "Moverte por PLENA sin perderte: cursos, videos, libros y diario",
+     "Empezar tu diario de síntomas con dos minutos al día"
+    ]
    }
   },
   {
@@ -411,6 +422,17 @@
     "patron": "puntos",
     "insignia": "Mapa en mano",
     "palabra": "etapas"
+   },
+   "intro": {
+    "texto": [
+     "Perimenopausia, menopausia y posmenopausia no son lo mismo. Saber en qué etapa estás cambia cómo entiendes tus síntomas y qué preguntas haces en consulta.",
+     "Verás qué hacen tus hormonas, por qué un análisis aislado puede salir normal y qué mitos conviene dejar atrás."
+    ],
+    "logros": [
+     "Identificar en qué etapa estás",
+     "Entender el papel del estrógeno, la progesterona y la FSH",
+     "Reconocer los mitos que te han hecho aguantar en silencio"
+    ]
    }
   },
   {
@@ -584,6 +606,17 @@
     "patron": "rayos",
     "insignia": "Volcán en calma",
     "palabra": "calor"
+   },
+   "intro": {
+    "texto": [
+     "Los sofocos y los sudores nocturnos son de los síntomas más frecuentes y pueden durar años. No tienes que esperar a que pasen solos.",
+     "Aprenderás por qué ocurren, cómo descubrir tus desencadenantes y qué tratamientos tienen evidencia, con y sin hormonas."
+    ],
+    "logros": [
+     "Entender qué pasa en tu cuerpo durante un sofoco",
+     "Descubrir tus desencadenantes con un registro de dos semanas",
+     "Conocer las opciones con evidencia para hablarlas con tu médica"
+    ]
    }
   },
   {
@@ -759,6 +792,17 @@
     "insignia": "Noche serena",
     "palabra": "dormir",
     "oscuro": true
+   },
+   "intro": {
+    "texto": [
+     "Despertarte a las 3 a. m. tiene explicación: sudores, ansiedad, hormonas y hábitos se juntan en esta etapa.",
+     "Este módulo te da un plan paso a paso: entender por qué te despiertas, crear un ritual de noche y saber cuándo pedir ayuda profesional."
+    ],
+    "logros": [
+     "Saber qué fragmenta tu sueño",
+     "Armar un ritual de noche de 10 minutos",
+     "Reconocer cuándo el insomnio necesita tratamiento (TCC-I)"
+    ]
    }
   },
   {
@@ -997,6 +1041,17 @@
     "patron": "cuadros",
     "insignia": "Mente clara",
     "palabra": "mente"
+   },
+   "intro": {
+    "texto": [
+     "La niebla mental, la irritabilidad, la ansiedad y el ánimo bajo también son parte de esta transición. Tienen una base biológica y no son falta de carácter.",
+     "Aquí cuidamos tu mente: memoria, emociones, señales de alarma y autoestima, con herramientas concretas para el día a día."
+    ],
+    "logros": [
+     "Entender la niebla mental y cómo aligerarla",
+     "Tener herramientas para la ansiedad y la irritabilidad",
+     "Saber cuándo pedir ayuda y cómo hablarte con amabilidad"
+    ]
    }
   },
   {
@@ -1175,6 +1230,17 @@
     "patron": "diagonal",
     "insignia": "Fuerza imparable",
     "palabra": "fuerza"
+   },
+   "intro": {
+    "texto": [
+     "Con la bajada de estrógenos se pierde músculo y hueso con más facilidad, y la grasa se acumula más en el abdomen. La buena noticia: la fuerza lo cambia.",
+     "Verás por qué cambia tu figura, cómo empezar a entrenar fuerza en casa y cómo cuidar tu suelo pélvico."
+    ],
+    "logros": [
+     "Entender los cambios de tu cuerpo sin culpas",
+     "Hacer tu primera rutina de fuerza segura",
+     "Practicar ejercicios de suelo pélvico con constancia"
+    ]
    }
   },
   {
@@ -1368,6 +1434,17 @@
     "patron": "vichy",
     "insignia": "Plato feliz",
     "palabra": "nutre"
+   },
+   "intro": {
+    "texto": [
+     "No necesitas otra dieta extrema. Necesitas un plato que puedas mantener y que cuide tu músculo, tus huesos y tu energía.",
+     "Aprenderás a armar el plato equilibrado, qué nutrientes importan más ahora y qué dice la ciencia sobre la soja, el café y el alcohol."
+    ],
+    "logros": [
+     "Armar un plato equilibrado con tu comida de siempre",
+     "Saber qué suplementos tienen evidencia y cuáles no",
+     "Decidir con información sobre soja, café y alcohol"
+    ]
    }
   },
   {
@@ -1543,6 +1620,17 @@
     "insignia": "Corazón abierto",
     "palabra": "deseo",
     "oscuro": true
+   },
+   "intro": {
+    "texto": [
+     "La sequedad, el dolor y los cambios en el deseo son frecuentes y tienen tratamiento. Es el síntoma del que menos se habla y uno de los que más se pueden aliviar.",
+     "Hablaremos del síndrome genitourinario, del deseo y de cómo abrir la conversación con tu pareja, con respeto y sin culpas."
+    ],
+    "logros": [
+     "Reconocer el síndrome genitourinario y sus opciones",
+     "Entender qué influye en tu deseo",
+     "Tener un guion para hablarlo con tu pareja"
+    ]
    }
   },
   {
@@ -1733,6 +1821,17 @@
     "patron": "cuadros",
     "insignia": "Voz informada",
     "palabra": "decide"
+   },
+   "intro": {
+    "texto": [
+     "Tienes derecho a una conversación informada sobre tu salud. Este módulo te prepara para llegar a consulta con datos, preguntas y opciones claras.",
+     "Repasamos la terapia hormonal sin miedos ni mitos, las alternativas sin hormonas, los chequeos de esta etapa y cómo preparar tu cita en diez minutos."
+    ],
+    "logros": [
+     "Entender riesgos y beneficios de la terapia hormonal",
+     "Conocer las opciones sin hormonas",
+     "Llegar a tu cita con un resumen y tres preguntas"
+    ]
    }
   },
   {
@@ -1908,6 +2007,17 @@
     "insignia": "Nueva etapa",
     "palabra": "libre",
     "oscuro": true
+   },
+   "intro": {
+    "texto": [
+     "Esta etapa también es una oportunidad para poner límites, pedir lo que necesitas y decidir cómo quieres vivir la segunda mitad de tu vida.",
+     "Cerramos con el trabajo, tu red de apoyo y tu plan de 30 días. Al terminar, te espera tu graduación."
+    ],
+    "logros": [
+     "Pedir ajustes en el trabajo con confianza",
+     "Construir tu red de apoyo",
+     "Empezar tu plan de 30 días y graduarte"
+    ]
    }
   }
  ],

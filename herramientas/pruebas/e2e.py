@@ -27,7 +27,10 @@ async def main():
         pa.on('pageerror', lambda e: errs.append('A:' + str(e)))
         pa.on('console', lambda m: errs.append('A console:' + m.text) if m.type == 'error' else None)
         await pa.goto(BASE + '/#hoy'); await pa.wait_for_timeout(1500)
-        ok('welcome visible first time', await pa.is_visible('#welcome'))
+        ok('welcome visible first time', await pa.is_visible('#welcome') or await pa.is_visible('#guia'))
+        if await pa.is_visible('[data-act=gSkip]'):
+            ok('guide shown on first run', True)
+            await pa.click('[data-act=gSkip]'); await pa.wait_for_timeout(400)
         ok('consent checkbox shown unchecked', await pa.is_visible('#cloudOk') and not await pa.is_checked('#cloudOk'))
         await pa.check('#cloudOk', force=True)
         await pa.click('[data-act=welcomeOk]')
