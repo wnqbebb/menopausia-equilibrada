@@ -7,7 +7,7 @@ Compradora ──► Vercel
                 ├─ public/   páginas, app, imágenes (CDN de Vercel)
                 ├─ api/      funciones: checkout, entrega, acceso, oferta, panel, sincronización, webhook de Whop
                 └─ Storage   base de datos (Upstash Redis o Vercel Blob)
-PDF ──► jsDelivr (CDN gratis que lee este repositorio de GitHub)
+PDF ──► también desde Vercel (public/entrega-…/), con la misma dirección del sitio
 ```
 
 ## 1. Importar el proyecto
@@ -39,7 +39,6 @@ Si están las dos, el sistema usa Redis. El código está en `sitio/lib/store.js
 |---|---|
 | `ADMIN_KEY` | Tu clave larga. Genera una con `node -e "console.log(require('crypto').randomBytes(24).toString('base64url'))"`. |
 | `PUBLIC_URL` | `https://TU-PROYECTO.vercel.app` (o tu dominio propio) |
-| `FILES_BASE` | `https://cdn.jsdelivr.net/gh/USUARIO/REPO@main/sitio/public/entrega-f92e9c4d594a8499f33676e3c3fd18c8/` |
 | `WHOP_*` / `STRIPE_SECRET_KEY` / `PAY_LINK_*` | Según la pasarela (guías 02 y 03) |
 
 Después: **Deployments → ⋯ → Redeploy**. Las variables solo se aplican en el siguiente despliegue.

@@ -56,7 +56,7 @@ Pasos en Vercel (detalle en la guía 01):
 
 1. **Import** del repositorio con **Root Directory** `sitio`.
 2. Conecta la base de datos en **Storage**: Upstash Redis (recomendada) o Blob privado.
-3. Crea las variables `ADMIN_KEY`, `PUBLIC_URL` y `FILES_BASE`.
+3. Crea las variables `ADMIN_KEY` y `PUBLIC_URL`.
 4. Añade las variables de tu pasarela (Whop, Stripe o enlaces).
 5. Haz **Redeploy**.
 
@@ -66,7 +66,7 @@ Pasos en Vercel (detalle en la guía 01):
 |---|---|---|
 | `ADMIN_KEY` | Sí | Clave del panel y firma de enlaces, códigos de la app y ofertas. |
 | `PUBLIC_URL` | Recomendada | Dominio público, usado en los enlaces de entrega. |
-| `FILES_BASE` | Recomendada | Dónde están los PDF (jsDelivr, gratis). |
+| `FILES_BASE` | Opcional | Otra carpeta o CDN para los PDF. Si no se pone, salen del propio Vercel (recomendado). |
 | `KV_REST_API_URL` + `KV_REST_API_TOKEN` (o `UPSTASH_REDIS_REST_*`) | Una base de datos | Upstash Redis. Se crean solas al conectarla en Storage. |
 | `BLOB_READ_WRITE_TOKEN` | Una base de datos | Vercel Blob privado. Se crea sola al conectarlo en Storage. |
 | `WHOP_API_KEY`, `WHOP_COMPANY_ID`, `WHOP_PRODUCT_ID`, `WHOP_WEBHOOK_SECRET` | Para Whop | Cobro y entrega automática. |
@@ -78,7 +78,7 @@ Plantilla: [`sitio/.env.example`](sitio/.env.example).
 ## Seguridad
 
 - **Nunca** subas tu `ADMIN_KEY` real ni las claves de pago al repositorio. Van solo en **Vercel → Settings → Environment Variables**.
-- El repositorio es público: cualquiera puede ver el código y descargar los PDF. Si eso te importa, usa un repositorio privado y otro `FILES_BASE`.
+- El repositorio es público: cualquiera puede ver el código y descargar los PDF. Si eso te importa, usa un repositorio privado.
 - Los enlaces de descarga y los accesos a la app van firmados con `ADMIN_KEY`. Si la cambias, los enlaces antiguos dejan de funcionar.
 - Vercel Hobby es solo para uso no comercial: para vender, usa **Vercel Pro**.
 

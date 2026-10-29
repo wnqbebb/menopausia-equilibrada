@@ -57,7 +57,7 @@ export function quote(items, { upgradeFromCents = 0, offerActive = false } = {})
 
 export function hasApp(items) { return items.includes("todo") || items.includes("app"); }
 
-// FILES_BASE (opcional): carpeta pública donde están los PDF, p. ej. una «Release» de GitHub
+// FILES_BASE (opcional): otra carpeta o CDN para los PDF. Vacía = se sirven desde el propio sitio (Vercel)
 // (https://github.com/USUARIO/REPO/releases/download/v1/). Así las descargas no gastan el ancho de banda del hosting.
 export function filesFor(items, filesBase = "") {
   const base = String(filesBase || "").trim() ? String(filesBase).trim().replace(/\/?$/, "/") : DELIVERY_DIR;

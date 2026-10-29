@@ -20,24 +20,24 @@ Medidas para que aguante:
 - Los pedidos se crean con escritura condicional (`SET NX` o sin sobrescribir), así que dos compras simultáneas nunca se pisan.
 - La app sincroniza de forma moderada (ver guía 06) y solo con un código de acceso válido.
 - Los precios se calculan siempre en el servidor y los enlaces van firmados.
-- Los PDF (unos 50 MB por pack) salen de **jsDelivr**, no de Vercel, así que no consumen tu transferencia.
+- Los PDF (unos 50 MB por pack) salen del propio Vercel, desde el CDN y con caché.
 
 ## Límites que importan
 
 | Recurso | Qué consume | Recomendación |
 |---|---|---|
 | **Plan de Vercel** | Hobby es solo para uso **no comercial** | **Vercel Pro** (unos 20 USD/mes) en cuanto vendas |
-| Transferencia de Vercel | Páginas e imágenes (unos 1–2 MB por visita, con caché) | Hobby incluye 100 GB al mes; Pro, bastante más |
+| Transferencia de Vercel | Páginas e imágenes (unos 1–2 MB por visita, con caché) más los PDF | Hobby incluye 100 GB al mes; Pro, bastante más |
 | Funciones de Vercel | Unas 10–20 llamadas por compra + sincronización de la app | Sobra con 1.000–5.000 compras al mes |
 | **Base de datos** | Cada compra y cada cambio en la app es una escritura | **Upstash Redis** para cientos o miles de ventas. Vercel Blob gratis tiene un cupo de escrituras pequeño: úsalo solo para empezar. |
-| Descargas de PDF | 50 MB por pack | `FILES_BASE` en jsDelivr: gratis y sin límite práctico (máx. 20 MB por archivo; el mayor pesa 15,8 MB) |
+| Descargas de PDF | 50 MB por pack completo | Hobby: 100 GB al mes (unos 2.000 packs). Pro: bastante más (del orden de 1 TB, unos 20.000 packs; revisa la tabla de precios vigente de Vercel). |
 
 ## Recomendación según volumen
 
 | Ventas al mes | Configuración |
 |---|---|
-| Pruebas | Vercel Hobby + Vercel Blob + jsDelivr |
-| Desde la primera venta real | **Vercel Pro** + **Upstash Redis** + jsDelivr + Whop |
+| Pruebas | Vercel Hobby + Vercel Blob |
+| Desde la primera venta real | **Vercel Pro** + **Upstash Redis** + Whop |
 | 2.000+ | Lo mismo. Revisa el uso de Upstash (Storage → tu base de datos → Usage) y sube de plan si se acerca al límite. |
 
 ## Vigilar
