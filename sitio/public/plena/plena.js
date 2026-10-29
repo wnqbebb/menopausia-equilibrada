@@ -3,7 +3,8 @@
    - Contenido: /api/curso (contenido/curso.json, libros.json y videos.json).
    - Progreso y logros: este dispositivo + /api/progreso (sin datos de salud).
    - Cursos al estilo aula: cada módulo tiene introducción, lecciones, videos, lecturas y cierre.
-   - Videoteca: cada categoría es un curso con su lista de videos; el reproductor es propio (Plyr).
+   - Cursos de práctica en video (dentro de Cursos): cada categoría tiene su lista de videos; el reproductor es propio (Plyr).
+   - Mi ruta: el mapa personal con el progreso de cada módulo.
    - Biblioteca: los libros se leen aquí mismo, a pantalla completa, pasando las hojas.
    - Mi diario: la app Menopausia Equilibrada completa, integrada (mismo origen: comparte acceso y datos). */
 (function () {
@@ -269,17 +270,17 @@ function badges() {
   add('perfecto', 2, 'Día perfecto', 'Cumpliste las 4 misiones de un día', 'sol', 'Constancia', function (S) { return S.perfect; }, 1);
   add('perfecto7', 3, 'Semana perfecta', '7 días perfectos', 'sol', 'Constancia', function (S) { return S.perfect; }, 7);
   add('perfecto21', 4, 'Brillo absoluto', '21 días perfectos', 'sol', 'Constancia', function (S) { return S.perfect; }, 21);
-  add('video1', 1, 'Primera función', 'Tu primer video completo', 'play', 'Videoteca', function (S) { return S.vids; }, 1);
-  add('baile', 1, 'A bailar', 'Un cardio o baile completo', 'nota', 'Videoteca', function (S) { return S.vcat.cardio || 0; }, 1);
-  add('escucha', 1, 'Oído atento', 'Un podcast o audiolibro', 'auri', 'Videoteca', function (S) { return (S.vcat.podcast || 0) + (S.vcat.audio || 0); }, 1);
-  add('video10', 2, 'Maratón PLENA', '10 videos completos', 'video', 'Videoteca', function (S) { return S.vids; }, 10);
-  add('fuerza5', 2, 'Fuerza de acero', '5 rutinas de fuerza', 'pesa', 'Videoteca', function (S) { return S.vcat.fuerza || 0; }, 5);
-  add('taichi5', 2, 'Flujo zen', '5 prácticas de taichi', 'chispa', 'Videoteca', function (S) { return S.vcat.taichi || 0; }, 5);
-  add('escucha3', 2, 'Escucha profunda', '3 podcast o audiolibros', 'auri', 'Videoteca', function (S) { return (S.vcat.podcast || 0) + (S.vcat.audio || 0); }, 3);
-  add('video30', 3, 'Cinéfila del bienestar', '30 videos completos', 'video', 'Videoteca', function (S) { return S.vids; }, 30);
-  add('fuerza15', 3, 'Titanio', '15 rutinas de fuerza', 'pesa', 'Videoteca', function (S) { return S.vcat.fuerza || 0; }, 15);
-  add('taichi15', 3, 'Maestra del flujo', '15 prácticas de taichi', 'chispa', 'Videoteca', function (S) { return S.vcat.taichi || 0; }, 15);
-  add('video75', 4, 'Videoteca infinita', '75 videos completos', 'video', 'Videoteca', function (S) { return S.vids; }, 75);
+  add('video1', 1, 'Primera función', 'Tu primer video completo', 'play', 'Práctica en video', function (S) { return S.vids; }, 1);
+  add('baile', 1, 'A bailar', 'Un cardio o baile completo', 'nota', 'Práctica en video', function (S) { return S.vcat.cardio || 0; }, 1);
+  add('escucha', 1, 'Oído atento', 'Un podcast o audiolibro', 'auri', 'Práctica en video', function (S) { return (S.vcat.podcast || 0) + (S.vcat.audio || 0); }, 1);
+  add('video10', 2, 'Maratón PLENA', '10 videos completos', 'video', 'Práctica en video', function (S) { return S.vids; }, 10);
+  add('fuerza5', 2, 'Fuerza de acero', '5 rutinas de fuerza', 'pesa', 'Práctica en video', function (S) { return S.vcat.fuerza || 0; }, 5);
+  add('taichi5', 2, 'Flujo zen', '5 prácticas de taichi', 'chispa', 'Práctica en video', function (S) { return S.vcat.taichi || 0; }, 5);
+  add('escucha3', 2, 'Escucha profunda', '3 podcast o audiolibros', 'auri', 'Práctica en video', function (S) { return (S.vcat.podcast || 0) + (S.vcat.audio || 0); }, 3);
+  add('video30', 3, 'Cinéfila del bienestar', '30 videos completos', 'video', 'Práctica en video', function (S) { return S.vids; }, 30);
+  add('fuerza15', 3, 'Titanio', '15 rutinas de fuerza', 'pesa', 'Práctica en video', function (S) { return S.vcat.fuerza || 0; }, 15);
+  add('taichi15', 3, 'Maestra del flujo', '15 prácticas de taichi', 'chispa', 'Práctica en video', function (S) { return S.vcat.taichi || 0; }, 15);
+  add('video75', 4, 'Práctica infinita', '75 videos completos', 'video', 'Práctica en video', function (S) { return S.vids; }, 75);
   add('lectora', 1, 'Lectora', '50 páginas leídas', 'libro', 'Biblioteca', function (S) { return S.pages; }, 50);
   add('libro1', 2, 'Libro terminado', 'Leíste un libro entero', 'check', 'Biblioteca', function (S) { return S.booksFull; }, 1);
   add('devora', 2, 'Devoralibros', '150 páginas leídas', 'libro', 'Biblioteca', function (S) { return S.pages; }, 150);
@@ -321,7 +322,7 @@ function misiones() {
   var rv = recVideos(1, true)[0];
   return [
     { ok: !!(b & 1), t: 'Completa una lección', s: 'Tu siguiente paso del curso', rw: XP.leccion, href: nextHref(), ic: 'cursos' },
-    { ok: !!(b & 32), t: 'Mira un video completo', s: rv ? rv.titulo : 'De tu videoteca', rw: XP.video, href: rv ? vHref(rv) : '#videos', ic: 'play' },
+    { ok: !!(b & 32), t: 'Mira un video completo', s: rv ? rv.titulo : 'De tus cursos', rw: XP.video, href: rv ? vHref(rv) : '#cursos', ic: 'play' },
     { ok: !!(b & 2), t: 'Lee 5 páginas', s: Math.min(5, pagHoy()) + ' de 5 páginas hoy', rw: 5 * XP.pagina, href: '#biblioteca', ic: 'libro' },
     { ok: !!(b & 4), t: 'Registra tu día', s: APP.today ? 'Registrado hoy' : 'En Mi diario, dos minutos', rw: XP.diario, href: '#diario/hoy', ic: 'tel' }
   ];
@@ -330,19 +331,37 @@ function misiones() {
 /* ---------- celebraciones (en cola, una a la vez) ---------- */
 var AC = null, CELQ = [];
 function sonidoOn() { return ls(KEY_SON) !== '0'; }
+function audioCtx() { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume(); } catch (e) { AC = null; } return AC; }
+function noiseBuf(len) { var b = AC.createBuffer(1, Math.max(1, Math.floor(AC.sampleRate * len)), AC.sampleRate), d = b.getChannelData(0); for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; return b; }
+function note(fr, t0, dur, vol, type) { var o = AC.createOscillator(), g = AC.createGain(); o.type = type || 'sine'; o.frequency.value = fr; g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(vol, t0 + .012); g.gain.exponentialRampToValueAtTime(.0008, t0 + dur); o.connect(g); g.connect(AC.destination); o.start(t0); o.stop(t0 + dur + .05); }
+/* Efectos de sonido sintetizados (sin archivos): hoja de libro, toques y celebraciones */
 function tone(kind) {
-  if (!sonidoOn()) return;
+  if (!sonidoOn() || !audioCtx()) return;
   try {
-    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
-    var t = AC.currentTime;
+    var t = AC.currentTime + .01, r = .9 + Math.random() * .2;
     if (kind === 'page') {
-      var len = .32, buf = AC.createBuffer(1, AC.sampleRate * len, AC.sampleRate), d = buf.getChannelData(0);
-      for (var i = 0; i < d.length; i++) { var x = i / d.length; d[i] = (Math.random() * 2 - 1) * Math.pow(1 - x, 2) * Math.min(1, x * 12); }
-      var s = AC.createBufferSource(); s.buffer = buf; var f = AC.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 2400; f.Q.value = .7;
-      var g = AC.createGain(); g.gain.value = .22; s.connect(f); f.connect(g); g.connect(AC.destination); s.start(t); return;
+      // 1) roce del papel: ruido con filtro que barre de grave a agudo y un leve aleteo
+      var len = .34 * r, s = AC.createBufferSource(); s.buffer = noiseBuf(len);
+      var bp = AC.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = .9; bp.frequency.setValueAtTime(700 * r, t); bp.frequency.exponentialRampToValueAtTime(3600 * r, t + len * .8);
+      var hp = AC.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 350;
+      var g = AC.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.32, t + .05); g.gain.setValueAtTime(.32, t + len * .45); g.gain.exponentialRampToValueAtTime(.001, t + len);
+      var lfo = AC.createOscillator(), lg = AC.createGain(); lfo.frequency.value = 28 + Math.random() * 10; lg.gain.value = .1; lfo.connect(lg); lg.connect(g.gain); lfo.start(t); lfo.stop(t + len);
+      s.connect(hp); hp.connect(bp); bp.connect(g); g.connect(AC.destination); s.start(t); s.stop(t + len);
+      // 2) la hoja cae: golpe suave y grave
+      var t2 = t + len * .78, s2 = AC.createBufferSource(); s2.buffer = noiseBuf(.09);
+      var lp = AC.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 520; var g2 = AC.createGain(); g2.gain.setValueAtTime(.38, t2); g2.gain.exponentialRampToValueAtTime(.001, t2 + .09);
+      s2.connect(lp); lp.connect(g2); g2.connect(AC.destination); s2.start(t2); return;
     }
+    if (kind === 'tap') { note(1320, t, .09, .06); note(1980, t + .015, .07, .03); return; }
+    if (kind === 'step') { note(784, t, .25, .08, 'triangle'); note(1175, t + .07, .3, .08, 'triangle'); note(1568, t + .14, .35, .05, 'sine'); return; }
+    if (kind === 'magic') {
+      [1047, 1319, 1568, 2093, 2637, 3136].forEach(function (f, i) { note(f, t + i * .07, .6, .05, 'sine'); note(f * 1.004, t + i * .07, .6, .03, 'triangle'); });
+      var sw = AC.createBufferSource(); sw.buffer = noiseBuf(.7); var f2 = AC.createBiquadFilter(); f2.type = 'bandpass'; f2.Q.value = 2; f2.frequency.setValueAtTime(2000, t); f2.frequency.exponentialRampToValueAtTime(8000, t + .7);
+      var g3 = AC.createGain(); g3.gain.setValueAtTime(0, t); g3.gain.linearRampToValueAtTime(.05, t + .2); g3.gain.exponentialRampToValueAtTime(.001, t + .7); sw.connect(f2); f2.connect(g3); g3.connect(AC.destination); sw.start(t); return;
+    }
+    if (kind === 'done') { [523, 659, 784, 1047].forEach(function (f, i) { note(f, t + i * .06, .9, .07, 'triangle'); }); return; }
     var notes = kind === 'level' ? [523, 659, 784, 1047] : kind === 'badge' ? [784, 988, 1319] : [659, 880];
-    notes.forEach(function (fr, i) { var o = AC.createOscillator(), g2 = AC.createGain(); o.type = 'triangle'; o.frequency.value = fr; g2.gain.setValueAtTime(0, t + i * .09); g2.gain.linearRampToValueAtTime(.12, t + i * .09 + .02); g2.gain.exponentialRampToValueAtTime(.001, t + i * .09 + .45); o.connect(g2); g2.connect(AC.destination); o.start(t + i * .09); o.stop(t + i * .09 + .5); });
+    notes.forEach(function (fr, i) { note(fr, t + i * .09, .45, .12, 'triangle'); });
   } catch (e) { }
 }
 function confetti(n) {
@@ -464,10 +483,9 @@ function vInicio() {
     '</div><p class="bonus">' + ic('regalo', 16) + ' Las 4 misiones = día perfecto <b>+' + XP.perfecto + ' XP</b></p><div class="lati">' + glassHeart(52, misOk === 4 ? 'love' : 'happy') + '<span class="bb">' + esc(latiDice(S)) + '</span></div></div>';
   h += '</div></section>';
   var R = ruta();
-  h += '<section class="sec pt0"><div class="wrap"><div class="sec-h"><div><span class="kick">Tu recorrido · ' + t.d + ' de ' + t.n + ' lecciones</span><h2>Tu ruta <em>personal</em></h2></div><a class="btn btn-g btn-s" href="#cursos">Ver todos los cursos ' + ic('der', 14) + '</a></div><div class="steps-rail">' +
+  h += '<section class="sec pt0"><div class="wrap"><div class="sec-h"><div><span class="kick">Tu recorrido · ' + t.d + ' de ' + t.n + ' lecciones</span><h2>Tu ruta <em>personal</em></h2></div><a class="btn btn-g btn-s" href="#ruta">Ver mi mapa de ruta ' + ic('der', 14) + '</a></div><div class="steps-rail">' +
     R.map(function (m, i) { var p = modPct(m), here = nx && nx.m.id === m.id; return '<a class="srail lg' + (p.p === 100 ? ' ok' : '') + (here ? ' here' : '') + '" href="#m/' + m.id + '" style="' + themeVars(m) + '"><span class="sr-n">' + (i + 1) + '</span><span class="sr-ph"><img src="' + img(m.foto) + '" alt="" loading="lazy"></span><b>' + esc(m.titulo) + '</b><small>' + (p.p === 100 ? '✓ Completado' : here ? 'Estás aquí · ' + p.p + '%' : p.p + '%') + (paraTi(m) ? ' · ♥ Para ti' : '') + '</small><span class="sr-bar"><i style="width:' + p.p + '%"></i></span></a>'; }).join('') + '</div></div></section>';
-  var rec = recVideos(10, false);
-  h += '<section class="sec pt0"><div class="wrap"><div class="sec-h"><div><span class="kick">Videoteca · ' + VIDS.length + ' clases</span><h2>Para moverte <em>hoy</em></h2></div><a class="btn btn-g btn-s" href="#videos">Abrir la videoteca ' + ic('der', 14) + '</a></div><div class="rail">' + rec.map(vidCard).join('') + '</div></div></section>';
+
   var B = badges(), got = earned(S), next = B.filter(function (b) { return got.indexOf(b.id) < 0; }).sort(function (a, b) { var pa = a.pr ? a.pr(S) : [0, 1], pb2 = b.pr ? b.pr(S) : [0, 1]; return (pb2[0] / pb2[1]) - (pa[0] / pa[1]) || a.tier - b.tier; }).slice(0, 3), last = B.filter(function (b) { return got.indexOf(b.id) >= 0; }).slice(-2);
   h += '<section class="sec pt0"><div class="wrap"><div class="sec-h"><div><span class="kick">' + got.length + ' de ' + B.length + ' insignias · 4 dificultades</span><h2>Tus <em>logros</em></h2></div><a class="btn btn-g btn-s" href="#logros">Ver el álbum ' + ic('der', 14) + '</a></div><div class="bgrid five">' +
     last.map(function (b) { return bcard(b, true, S); }).join('') + next.map(function (b) { return bcard(b, false, S); }).join('') + '</div></div></section>';
@@ -491,7 +509,7 @@ function vCursos() {
         '<div class="cc-body"><span class="kick">Módulo ' + m.num + '</span><h3>' + esc(m.titulo) + '</h3><p>' + esc((m.intro && m.intro.texto[0] || m.subtitulo).split('. ')[0].replace(/\.$/, '')) + '.</p>' +
         '<div class="cc-meta"><span>' + ic('lista', 14) + plural(m.lecciones.length, 'lección', 'lecciones') + '</span><span>' + ic('play', 13) + plural(nv, 'video', 'videos') + '</span><span>' + ic('libro', 14) + plural(nr, 'lectura', 'lecturas') + '</span><span>' + ic('reloj', 14) + '≈ ' + modMins(m) + ' min</span></div>' + pbar(p.p) + '</div></a>';
     }).join('') + '</div>' +
-    '<a class="certcta lg" href="#certificado">' + ic('corona', 26) + '<span><b>Tu graduación</b><small>' + (t.p === 100 ? 'Tu certificado está listo' : 'Al completar las ' + t.n + ' lecciones se desbloquea tu certificado y la insignia legendaria «Graduada PLENA»') + '</small></span>' + ic('der', 18) + '</a></div></section>';
+    vPractica() + '<a class="certcta lg" href="#certificado">' + ic('corona', 26) + '<span><b>Tu graduación</b><small>' + (t.p === 100 ? 'Tu certificado está listo' : 'Al completar las ' + t.n + ' lecciones se desbloquea tu certificado y la insignia legendaria «Graduada PLENA»') + '</small></span>' + ic('der', 18) + '</a></div></section>';
   return h;
 }
 
@@ -589,7 +607,7 @@ function roomClose(m, S) {
 }
 
 /* =========================================================
-   Videoteca
+   Cursos de práctica en video
    ========================================================= */
 function vc(v) { return VCAT[v.cat] || {}; }
 function vHref(v) { return '#vc/' + v.cat + '/' + v.id; }
@@ -615,33 +633,57 @@ function recVideos(n, onlyPending) {
   return onlyPending ? pend.slice(0, n) : pend.slice(0, n).concat(vis.slice(0, 3));
 }
 function catPct(cat) { var l = VIDS.filter(function (v) { return v.cat === cat; }), d = l.filter(function (v) { return prog.vid[v.id]; }).length; return { n: l.length, d: d, p: l.length ? Math.round(d / l.length * 100) : 0 }; }
-function vVideos() {
-  var cats = C.videos.categorias, S = stats(), VP = lsJSON(KEY_VPOS, {});
-  var h = phead({ kick: 'Videoteca · ' + VIDS.length + ' clases · ' + S.vids + ' completadas', title: 'Muévete, escucha y <em>respira</em>', color: '#8B6CC9', fondo: '#EDE7F6', photo: img('f32a'), cut: img('cut06b'),
-    desc: 'Diez cursos de video: fuerza, taichi, pilates, cardio, movilidad, meditación, nutrición, podcast, audiolibros y música. Entra en un curso y verás su lista de clases a la izquierda; las que terminas quedan con ✓. Todo se reproduce aquí mismo y cada video completo suma +' + XP.video + ' XP.',
-    extra: '<label class="vsearch lg">' + ic('buscar', 18) + '<input id="vq" type="search" placeholder="Busca: fuerza, sin saltos, dormir, soja…" autocomplete="off" aria-label="Buscar videos"></label>' });
-  h += '<section class="sec pt0"><div class="wrap">' + tip('videos', 'Cómo usar la videoteca', 'Elige un curso (por ejemplo <b>Fuerza y músculo</b>) o busca por tema. Un video cuenta como completado al ver el 60 % (o 8 minutos en los largos), o si pulsas el ✓. Los videos con la etiqueta «Opinión de la autora» tienen ideas que no coinciden con la evidencia del curso.', 'play') +
-    '<div id="vres" hidden><div class="sec-h"><h2>Resultados</h2></div><div class="vgrid" id="vresg"></div></div><div id="vbrowse">';
-  var cont = VIDS.filter(function (v) { return VP[v.id] && !prog.vid[v.id] && VP[v.id].t > 20; }).sort(function (a, b) { return VP[b.id].at - VP[a.id].at; }).slice(0, 6);
-  if (cont.length) h += '<div class="sec-h"><h2>Sigue viendo</h2></div><div class="rail">' + cont.map(vidCard).join('') + '</div>';
-  h += '<div class="sec-h"><h2>Recomendados <em>para ti</em></h2></div><div class="rail">' + recVideos(8, false).map(vidCard).join('') + '</div>';
-  h += '<div class="sec-h" style="margin-top:30px"><h2>Cursos de <em>video</em></h2></div><div class="cgrid vc-grid">' + cats.map(function (c) {
+function vPractica() {
+  var cats = C.videos.categorias;
+  return '<div class="sec-h" style="margin-top:38px"><div><span class="kick">' + VIDS.length + ' clases en video · +' + XP.video + ' XP cada una</span><h2>Cursos de <em>práctica</em></h2><p class="muted" style="margin:6px 0 0;max-width:680px">Fuerza, taichi, pilates, cardio, movilidad, meditación, nutrición, podcast, audiolibros y música. Cada curso abre su lista de clases; las que terminas quedan con ✓. Algunas llevan la etiqueta «Opinión de la autora»: son ideas que no coinciden con la evidencia del curso.</p></div></div><div class="cgrid vc-grid">' + cats.map(function (c) {
     var l = VIDS.filter(function (v) { return v.cat === c.id; }), p = catPct(c.id), th = l.slice(0, 3);
     return '<a class="ccard lg" href="#vc/' + c.id + '" style="--vc:' + c.color + ';--vf:' + c.fondo + '"><div class="vcc-cov"><div class="vcc-in">' + th.map(function (v, i) { return '<img class="t' + i + '" src="' + ytimg(v.id) + '" alt="" loading="lazy">'; }).join('') + '<span class="vcc-ic">' + ic(c.icono, 22) + '</span></div></div>' +
       '<div class="cc-body"><span class="kick" style="color:' + c.color + '">' + plural(l.length, 'clase', 'clases') + '</span><h3>' + esc(c.nombre) + '</h3><p>' + esc(c.desc) + '</p>' + pbar(p.p, p.d + ' de ' + p.n + ' completadas') + '</div></a>';
-  }).join('') + '</div></div>';
-  h += '<p class="vdisc">Videos públicos de sus autoras y canales en YouTube, seleccionados para acompañar el curso. Son un complemento: no sustituyen la consulta con tu profesional de salud.</p></div></section>';
-  return h;
+  }).join('') + '</div><p class="vdisc">Videos públicos de sus autoras y canales en YouTube, seleccionados para acompañar el curso. Son un complemento: no sustituyen la consulta con tu profesional de salud.</p>';
+}
+/* ---------- Mi ruta: el mapa con bolitas y caminitos ---------- */
+var XS = [50, 26, 50, 74];
+function vRuta() {
+  var t = totalPct(), S = stats(), mods = C.modulos.filter(function (m) { return modPct(m).p === 100; }).length;
+  return '<section class="sec"><div class="wrap"><div class="sec-h"><div><span class="kick">' + C.modulos.length + ' módulos · ' + t.n + ' lecciones · ' + t.p + '% completado</span><h2>Mi <em>ruta</em> personal</h2><p class="muted" style="margin:6px 0 0;max-width:680px">Tu camino por PLENA, ordenado según lo que más te pesa. Cada bolita es un módulo: el anillo muestra tu avance, el camino se pinta a medida que completas y a su lado está la insignia que ganas. Al final te espera tu graduación.</p></div><div class="cstats">' + chipStat(t.d + '/' + t.n, 'lecciones') + chipStat(mods + '/' + C.modulos.length, 'módulos') + chipStat(S.xp, 'XP') + '</div></div>' +
+    tip('ruta', 'Cómo leer tu mapa', 'Toca una bolita para entrar en ese módulo. <b>«Estás aquí»</b> marca tu lección actual, <b>♥ Para ti</b> son tus prioridades y el camino dorado es lo que ya completaste. Puedes cambiar el orden en tu perfil.', 'bandera') +
+    mapa(ruta()) + '</div></section>';
+}
+function mapa(list) {
+  var n = list.length, nx = siguiente(), rows = '', H = 200, top = 70, lastDone = -1, S = stats(), B = badges(), got = earned(S);
+  var mob = window.innerWidth < 700, xs = mob ? [17, 29, 17, 29] : XS;
+  list.forEach(function (m, i) { if (modPct(m).p === 100) lastDone = i; });
+  var pts = list.map(function (m, i) { return [xs[i % 4], top + i * H + 84]; });
+  var endY = top + n * H + 60;
+  var d = 'M50 30 C50 ' + (top + 40) + ' ' + pts[0][0] + ' ' + (pts[0][1] - 70) + ' ' + pts[0][0] + ' ' + pts[0][1], dDone = '';
+  pts.forEach(function (p, i) {
+    if (!i) return;
+    var q = pts[i - 1], seg = ' C' + q[0] + ' ' + (q[1] + H / 2) + ' ' + p[0] + ' ' + (p[1] - H / 2) + ' ' + p[0] + ' ' + p[1];
+    d += seg; if (i <= lastDone) dDone += (dDone ? '' : 'M' + q[0] + ' ' + q[1]) + seg;
+  });
+  var lp = pts[n - 1]; d += ' C' + lp[0] + ' ' + (lp[1] + 90) + ' 50 ' + (endY - 70) + ' 50 ' + endY;
+  list.forEach(function (m, i) {
+    var p = modPct(m), here = nx && nx.m.id === m.id, x = xs[i % 4], right = !mob && x > 60, bx = x < 50 ? 80 : x > 50 ? 20 : 17;
+    var b = B.filter(function (q) { return q.id === 'mod-' + m.id; })[0], won = got.indexOf(b.id) >= 0;
+    rows += '<div class="mrow" style="top:' + (top + i * H) + 'px">' +
+      '<a class="node' + (right ? ' r' : '') + (here ? ' here' : '') + (p.p === 100 ? ' ok' : '') + '" href="#m/' + m.id + '" style="left:' + x + '%;--p:' + p.p + ';' + themeVars(m) + '">' +
+      '<span class="disc">' + (here ? '<span class="heretag pill hot">' + ic('corazon', 12) + ' Estás aquí</span>' : '') + '<span class="in"><img src="' + img(m.foto) + '" alt="" loading="lazy"></span><span class="num">' + (p.p === 100 ? ic('check', 16, 3) : m.num) + '</span></span>' +
+      '<span class="lab lg"><b>' + esc(m.titulo) + '</b><small>' + p.d + '/' + p.n + ' lecciones · ' + p.p + '%</small><span class="pills">' + (paraTi(m) ? '<span class="pill hot">♥ Para ti</span>' : '') + (p.p === 100 ? '<span class="pill ok">✓ Completado</span>' : here ? '<span class="pill lav">En curso</span>' : '<span class="pill">+' + XP.modulo + ' XP</span>') + '</span></span></a>' +
+      '<div class="prize" style="left:' + bx + '%"><span class="pz ' + TIER[b.tier].k + (won ? '' : ' off') + '"><img src="' + img('b-' + b.id) + '" alt="" loading="lazy"><i>' + ic(won ? 'check' : 'candado', 12, 3) + '</i></span><b>' + esc(b.n) + '</b><small>' + (won ? '¡Ganada!' : 'Insignia del módulo') + '</small></div></div>';
+  });
+  var fin = '<a class="mfin" href="#certificado" style="top:' + (endY - 10) + 'px"><span class="crown">' + ic('corona', 32, 2) + '</span><b>Graduación PLENA</b><small>' + (totalPct().p === 100 ? 'Tu certificado te espera' : 'Completa la ruta y recibe tu certificado') + '</small></a>';
+  return '<div class="board lg"><div class="map" style="height:' + (endY + 130) + 'px"><span class="mstart pill">' + ic('bandera', 14) + ' Inicio de tu ruta</span>' +
+    '<svg class="path" viewBox="0 0 100 ' + (endY + 20) + '" preserveAspectRatio="none" aria-hidden="true" style="height:' + (endY + 20) + 'px"><path d="' + d + '" fill="none" stroke="#fff" stroke-width="18" vector-effect="non-scaling-stroke" stroke-linecap="round"/><path d="' + d + '" fill="none" stroke="#E8A5B3" stroke-width="4" stroke-dasharray="2 13" vector-effect="non-scaling-stroke" stroke-linecap="round"/>' + (dDone ? '<path d="' + dDone + '" fill="none" stroke="url(#dg)" stroke-width="7" vector-effect="non-scaling-stroke" stroke-linecap="round"/><defs><linearGradient id="dg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD95A"/><stop offset="1" stop-color="#FF1A5D"/></linearGradient></defs>' : '') + '</svg>' + rows + fin + '</div></div>';
 }
 function vCatRoom(cat, vid) {
-  var c = VCAT[cat]; if (!c) return vVideos();
+  var c = VCAT[cat]; if (!c) return vCursos();
   var list = VIDS.filter(function (v) { return v.cat === cat; }), p = catPct(cat);
   var v = VBY[vid] && VBY[vid].cat === cat ? VBY[vid] : (list.filter(function (x) { return !prog.vid[x.id]; })[0] || list[0]);
   var groups = [];
   if (cat === 'taichi') Object.keys(C.videos.subcategorias).forEach(function (s) { var l = list.filter(function (x) { return x.sub === s; }); if (l.length) groups.push({ t: C.videos.subcategorias[s], c: l.filter(function (x) { return prog.vid[x.id]; }).length + '/' + l.length, items: l }); });
   else groups.push({ t: 'Clases', c: p.d + '/' + p.n, items: list });
   groups = groups.map(function (g) { g.items = g.items.map(function (x) { return { t: x.titulo, s: durTag(x) || (x.tags || [])[0] || (x.opinion ? 'Opinión de la autora' : ''), href: vHref(x), ok: !!prog.vid[x.id], cur: x.id === v.id }; }); return g; });
-  return '<section class="room" style="--m-acc:' + c.color + ';--m-bg:' + c.fondo + ';--m-bg2:' + c.fondo + '"><div class="wrap room-g">' + roomSide({ back: '#videos', backTxt: 'Videoteca', title: c.nombre, pct: p.p, count: p.d + '/' + p.n, groups: groups }) + '<article class="rmain">' + roomVideo(v, { list: list, base: '#vc/' + cat + '/', backTo: '#videos' }) + '</article></div></section>';
+  return '<section class="room" style="--m-acc:' + c.color + ';--m-bg:' + c.fondo + ';--m-bg2:' + c.fondo + '"><div class="wrap room-g">' + roomSide({ back: '#cursos', backTxt: 'Cursos', title: c.nombre, pct: p.p, count: p.d + '/' + p.n, groups: groups }) + '<article class="rmain">' + roomVideo(v, { list: list, base: '#vc/' + cat + '/', backTo: '#cursos' }) + '</article></div></section>';
 }
 function roomVideo(v, o) {
   if (!v) return '';
@@ -734,7 +776,7 @@ function obDots() { return '<div class="dots">' + [0, 1, 2, 3].map(function (i) 
 function vOnboarding() {
   if (obStep === 0) return '<div class="ov"><div class="obwrap"><div class="box lg obox">' + obDots() + '<span class="kick">Bienvenida · paso 1 de 4</span><h1>Esto es <span class="plena sm">Plena</span></h1><p class="lead">Tu academia para entender la menopausia y cuidar tu mente en esta etapa. Todo está en un solo lugar, y te guiamos paso a paso para que nunca te pierdas.</p>' +
     '<div class="obgrid">' +
-    [['cursos', 'Cursos', '10 módulos con introducción, lecciones cortas, tareas y cierre.'], ['play', 'Videoteca', '132 clases de fuerza, taichi, pilates, meditación y más.'], ['libro', 'Biblioteca', 'Tus 13 libros para leer pasando las hojas.'], ['tel', 'Mi diario', 'Tu app: registra tu día y descarga tu informe.'], ['trofeo', 'Logros', 'XP, 15 niveles y ' + badges().length + ' insignias en 4 dificultades.']].map(function (x) { return '<div class="obi"><span class="obic">' + ic(x[0], 20) + '</span><b>' + x[1] + '</b><small>' + x[2] + '</small></div>'; }).join('') +
+    [['cursos', 'Cursos', '10 módulos y 10 cursos de práctica en video, con introducción y cierre.'], ['bandera', 'Mi ruta', 'Tu mapa con bolitas y caminitos que muestra tu progreso.'], ['libro', 'Biblioteca', 'Tus 13 libros para leer pasando las hojas.'], ['tel', 'Mi diario', 'Tu app: registra tu día y descarga tu informe.'], ['trofeo', 'Logros', 'XP, 15 niveles y ' + badges().length + ' insignias en 4 dificultades.']].map(function (x) { return '<div class="obi"><span class="obic">' + ic(x[0], 20) + '</span><b>' + x[1] + '</b><small>' + x[2] + '</small></div>'; }).join('') +
     '</div><p class="muted sm">Primero te hacemos 3 preguntas para ordenar tu ruta. Luego un recorrido de un minuto te muestra dónde está cada cosa.</p><button class="btn btn-p" data-act="obNext" style="width:100%">Empezar</button></div><img class="obcut" src="' + img('cut13a') + '" alt="" aria-hidden="true"></div></div>';
   var tt = ['', 'Hagamos esto <em>tuyo</em>', 'Tu <em>etapa</em>', 'Lo que más te <em>pesa</em>'][obStep];
   var dsc = ['', 'Tus respuestas se quedan en este dispositivo.', 'Así adaptamos los textos a tu momento. Si no lo sabes, no pasa nada: el módulo 1 te ayuda.', 'Pondremos primero los módulos que más te ayudan. Puedes cambiarlo cuando quieras en tu perfil.'][obStep];
@@ -808,6 +850,7 @@ function openReader(item, page, range) {
     '<div class="thumbs" id="rThumbs"></div>';
   document.body.appendChild(el); document.body.style.overflow = 'hidden';
   RD = { el: el, item: item, a: a, b: b, range: range || null, pf: null, page: page, rangeDone: range ? lecturaOk({ item: item, desde: range.desde, hasta: range.hasta }) : false };
+  audioCtx();
   try { history.pushState({ plenaReader: 1 }, '', location.href); RD.pushed = true; } catch (e) { }
   var P = lsJSON(KEY_POS, {}); P[item] = { p: page, t: Date.now() }; ls(KEY_POS, JSON.stringify(P));
   buildBook(page);
@@ -835,7 +878,7 @@ function buildBook(page) {
   var pages = [];
   for (var i = 1; i <= a.n; i++) {
     var d = document.createElement('div'); d.className = 'pg'; d.setAttribute('data-density', (i === 1 || i === a.n) ? 'hard' : 'soft');
-    d.innerHTML = '<img alt="Página ' + i + '" data-src="' + a.dir + 'p' + pad3(i) + '.webp" draggable="false"><span class="sk">Página ' + i + '</span>';
+    d.innerHTML = '<span class="sk">Página ' + i + '</span><img class="th" alt="" data-src="' + a.dir + 't' + pad3(i) + '.webp" draggable="false"><img class="full" alt="Página ' + i + '" data-src="' + a.dir + 'p' + pad3(i) + '.webp" draggable="false"' + (Math.abs(i - page) <= 2 ? ' fetchpriority="high"' : '') + '>';
     pages.push(d);
   }
   RD.pages = null; RD.simple = null;
@@ -846,7 +889,8 @@ function buildBook(page) {
   try {
     var pf = new St.PageFlip(bk, { width: s.pw, height: s.ph, size: 'fixed', showCover: true, usePortrait: true, startPage: page - 1, maxShadowOpacity: .4, flippingTime: 750, mobileScrollSupport: false, drawShadow: true, autoSize: false, showPageCorners: true, swipeDistance: 24 });
     pf.loadFromHTML(pages);
-    pf.on('flip', function (e) { tone('page'); onPage(e.data); });
+    pf.on('flip', function (e) { onPage(e.data); });
+    pf.on('changeState', function (e) { if (e.data === 'flipping' || e.data === 'user_fold') { if (!RD.snd || Date.now() - RD.snd > 450) { RD.snd = Date.now(); tone('page'); } } });
     RD.pf = pf; RD.pages = pages;
     loadAround(page - 1); onPage(page - 1);
   } catch (e) {
@@ -854,9 +898,12 @@ function buildBook(page) {
     RD.simple = pages; onPage(page - 1);
   }
 }
+/* Carga rápida: miniatura al instante (borrosa) y la página nítida encima; las siguientes se precargan */
 function loadAround(idx) {
   var ps = RD.pages || RD.simple; if (!ps) return;
-  for (var i = idx - 2; i <= idx + 4; i++) { var p = ps[i]; if (!p) continue; var im = p.querySelector('img'); if (im && !im.getAttribute('src')) { im.onload = function () { this.classList.add('ld'); }; im.src = im.dataset.src; } }
+  for (var i = idx - 4; i <= idx + 10; i++) { var p = ps[i]; if (!p) continue; var th = p.querySelector('img.th'); if (th && !th.getAttribute('src')) th.src = th.dataset.src; }
+  for (var j = idx - 2; j <= idx + 5; j++) { var q = ps[j]; if (!q) continue; var im = q.querySelector('img.full'); if (im && !im.getAttribute('src')) { im.onload = function () { this.classList.add('ld'); }; im.decoding = 'async'; im.src = im.dataset.src; } }
+  clearTimeout(RD.pre); RD.pre = setTimeout(function () { if (!RD) return; for (var k = idx + 6; k <= idx + 12; k++) { var x = ps[k]; if (!x) continue; var f = x.querySelector('img.full'); if (f && !f.dataset.pre) { f.dataset.pre = 1; var pi = new Image(); pi.src = f.dataset.src; } } }, 700);
 }
 function visible(idx) {
   var n = RD.a.n;
@@ -925,8 +972,8 @@ var TOUR = [
   { r: 'inicio', s: '.hcard', t: 'Este es tu inicio', d: 'Cada día empieza aquí: tu saludo, tu nivel y el botón para continuar donde lo dejaste.' },
   { r: 'inicio', s: '#nextStep', t: 'Tu siguiente paso', d: 'PLENA siempre te dice qué lección toca. Con un paso al día es suficiente.' },
   { r: 'inicio', s: '#misiones', t: 'Misiones de hoy', d: 'Cuatro misiones pequeñas: una lección, un video, 5 páginas y tu diario. Si cumples las cuatro, ganas el día perfecto.' },
-  { s: '[data-v=cursos]', t: 'Cursos', d: 'Tus 10 módulos. Cada uno tiene introducción, lecciones, videos, lecturas y un cierre con su insignia. Lo que terminas queda con ✓.' },
-  { s: '[data-v=videos]', t: 'Videoteca', d: VIDS_N_TXT() + ' Están organizadas como cursos y se reproducen aquí mismo.' },
+  { s: '[data-v=cursos]', t: 'Cursos', d: 'Tus 10 módulos (introducción, lecciones, videos, lecturas y cierre con insignia) y, más abajo, 10 cursos de práctica en video. Lo que terminas queda con ✓.' },
+  { s: '[data-v=ruta]', t: 'Mi ruta', d: 'Tu mapa personal: cada bolita es un módulo con su progreso y su insignia, el camino se pinta mientras avanzas y al final está tu graduación.' },
   { s: '[data-v=biblioteca]', t: 'Biblioteca', d: 'Tus 13 libros. Se abren a pantalla completa y pasas las hojas como en un libro de verdad.' },
   { s: '[data-v=diario]', t: 'Mi diario', d: 'Tu app integrada: registra tu día en dos minutos, mira tu progreso y descarga tu informe en PDF para la consulta.' },
   { s: '#me .xpchip', t: 'Tus logros', d: 'Tu nivel, tu XP y tu racha. Hay 15 niveles y 50 insignias en cuatro dificultades: fácil, media, difícil y legendaria.' },
@@ -937,7 +984,7 @@ var TOURI = -1;
 function startTour() {
   closeModal();
   if (parse().v !== 'inicio') { location.hash = '#inicio'; setTimeout(function () { TOURI = 0; showTour(); }, 500); return; }
-  TOURI = 0; showTour();
+  TOURI = 0; tone('magic'); showTour();
 }
 function tourEl(st) { return $$(st.s).filter(function (e) { var r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== 'hidden'; })[0]; }
 function showTour() {
@@ -962,13 +1009,13 @@ function placeTour() {
 function endTour(done) {
   var ov = $('.tour'); if (ov) ov.remove(); TOURI = -1;
   if (ls(KEY_TOUR) !== 'hecho') { var b = snapshot(); ls(KEY_TOUR, 'hecho'); afterAward(b, null); }
-  if (done) toast('¡Listo! Si te pierdes, el botón ? te lo vuelve a mostrar.');
+  if (done) { tone('done'); toast('¡Listo! Si te pierdes, el botón ? te lo vuelve a mostrar.'); }
 }
 function closeModal() { var m = $('.modal'); if (m) m.remove(); }
 function openGuide() {
   closeModal(); var S = stats();
   var d = document.createElement('div'); d.className = 'modal'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true');
-  var sec = [['inicio', 'Inicio', 'Tu resumen del día: siguiente lección, misiones, tu ruta, videos recomendados y logros.'], ['cursos', 'Cursos', '10 módulos. Cada uno: introducción, lecciones (texto, ideas esenciales, video, lecturas, mito, pregunta y tarea), videos, lecturas y cierre con insignia. Lo terminado queda con ✓.'], ['play', 'Videoteca', '10 cursos de video. Un video cuenta como completado al ver el 60 % (o 8 minutos), o al pulsar ✓.'], ['libro', 'Biblioteca', 'Tus 13 libros a pantalla completa: pasa las hojas, usa miniaturas y lupa, y descarga el PDF.'], ['tel', 'Mi diario', 'La app completa: registra tu día, sigue el plan de 30 días y descarga tu informe en PDF para la consulta.'], ['trofeo', 'Logros', '15 niveles y ' + badges().length + ' insignias en cuatro dificultades. Tus XP vienen de todo lo que haces.']];
+  var sec = [['inicio', 'Inicio', 'Tu resumen del día: siguiente lección, misiones, tu ruta y tus próximos logros.'], ['cursos', 'Cursos', '10 módulos. Cada uno: introducción, lecciones (texto, ideas esenciales, video, lecturas, mito, pregunta y tarea), videos, lecturas y cierre con insignia. Lo terminado queda con ✓.'], ['bandera', 'Mi ruta', 'Tu mapa personal: cada bolita es un módulo con su progreso y su insignia; al final, tu graduación.'], ['play', 'Cursos de práctica', 'Dentro de Cursos: 10 cursos en video. Un video cuenta como completado al ver el 60 % (o 8 minutos), o al pulsar ✓.'], ['libro', 'Biblioteca', 'Tus 13 libros a pantalla completa: pasa las hojas, usa miniaturas y lupa, y descarga el PDF.'], ['tel', 'Mi diario', 'La app completa: registra tu día, sigue el plan de 30 días y descarga tu informe en PDF para la consulta.'], ['trofeo', 'Logros', '15 niveles y ' + badges().length + ' insignias en cuatro dificultades. Tus XP vienen de todo lo que haces.']];
   d.innerHTML = '<div class="box lg guide"><button class="x" data-act="cerrarModal" aria-label="Cerrar">' + ic('x', 20) + '</button><span class="kick">Guía rápida</span><h2>Cómo funciona <span class="plena sm">Plena</span></h2>' +
     '<div class="gsec">' + sec.map(function (x) { return '<div><span class="obic">' + ic(x[0], 18) + '</span><b>' + x[1] + '</b><p>' + x[2] + '</p></div>'; }).join('') + '</div>' +
     '<h3>Cuánto suma cada cosa</h3><table class="xpt"><tr><td>Lección completada</td><td>' + XP.leccion + ' XP</td></tr><tr><td>Tarea hecha</td><td>' + XP.tarea + ' XP</td></tr><tr><td>Pregunta acertada a la primera / intento</td><td>' + XP.quizOk + ' / ' + XP.quizNo + ' XP</td></tr><tr><td>Mito descubierto</td><td>' + XP.mito + ' XP</td></tr><tr><td>Lectura de lección completa</td><td>' + XP.lectura + ' XP</td></tr><tr><td>Página nueva leída</td><td>' + XP.pagina + ' XP</td></tr><tr><td>Video completado</td><td>' + XP.video + ' XP</td></tr><tr><td>Módulo completado</td><td>' + XP.modulo + ' XP</td></tr><tr><td>Día registrado en tu diario</td><td>' + XP.diario + ' XP</td></tr><tr><td>Día perfecto (4 misiones)</td><td>' + XP.perfecto + ' XP</td></tr></table>' +
@@ -993,14 +1040,14 @@ function render(keepScroll) {
   if (!perfil) { main.innerHTML = vOnboarding(); bindForms(); setNav(''); paintMe(); document.body.classList.remove('is-diario'); return; }
   var r = parse(), h, route = r.v + '/' + r.a + '/' + r.b;
   if (r.v === 'v' && VBY[r.a]) { location.replace(vHref(VBY[r.a])); return; }
-  if (r.v === 'ruta') { location.replace('#cursos'); return; }
+  if (r.v === 'videos') { location.replace('#cursos'); return; }
   destroyPlayers();
   if (r.v === 'cursos') h = vCursos();
   else if (r.v === 'm') h = vRoom(r.a, 'intro');
   else if (r.v === 'l') h = vRoom(r.a, 'leccion', r.b);
   else if (r.v === 'mv') h = vRoom(r.a, 'video', r.b);
   else if (r.v === 'mc') h = vRoom(r.a, 'cierre');
-  else if (r.v === 'videos') h = vVideos();
+  else if (r.v === 'ruta') h = vRuta();
   else if (r.v === 'vc') h = vCatRoom(r.a, r.b);
   else if (r.v === 'biblioteca') h = vBiblioteca();
   else if (r.v === 'diario') h = vDiario(r.a);
@@ -1010,7 +1057,7 @@ function render(keepScroll) {
   else h = vInicio();
   var y = window.scrollY;
   main.innerHTML = '<div class="view">' + h + (r.v === 'diario' ? '' : '<footer class="f"><div class="wrap"><span class="plena sm">Plena</span><span>Academia de Menopausia y Psicomenopausia · © 2026 DisierTECH</span><span class="muted">' + esc(C.aviso) + ' · <a href="/privacidad.html">Privacidad</a> · <button class="lnk" data-act="guia">Guía rápida</button></span></div></footer>') + '</div>';
-  var nav = { m: 'cursos', l: 'cursos', mv: 'cursos', mc: 'cursos', vc: 'videos', certificado: '', perfil: '' };
+  var nav = { m: 'cursos', l: 'cursos', mv: 'cursos', mc: 'cursos', vc: 'cursos', certificado: '', perfil: '' };
   setNav(r.v in nav ? nav[r.v] : r.v);
   document.body.classList.toggle('is-diario', r.v === 'diario');
   bindForms(); reveal(); paintMe();
@@ -1020,7 +1067,7 @@ function render(keepScroll) {
   setTimeout(function () { $$('.ring .fg').forEach(function (c) { c.style.strokeDashoffset = c.dataset.off; }); }, 90);
   var f = $('#appf'); if (f) f.addEventListener('load', function () { var l = $('.appframe .ld'); if (l) l.remove(); });
   var vq = $('#vq'); if (vq) vq.addEventListener('input', vSearch);
-  document.title = ({ l: 'Lección', m: 'Módulo', mv: 'Video', mc: 'Cierre del módulo', cursos: 'Cursos', biblioteca: 'Biblioteca', diario: 'Mi diario', logros: 'Logros', perfil: 'Perfil', certificado: 'Certificado', videos: 'Videoteca', vc: 'Videoteca' }[r.v] || 'Inicio') + ' · PLENA';
+  document.title = ({ l: 'Lección', m: 'Módulo', mv: 'Video', mc: 'Cierre del módulo', cursos: 'Cursos', ruta: 'Mi ruta', biblioteca: 'Biblioteca', diario: 'Mi diario', logros: 'Logros', perfil: 'Perfil', certificado: 'Certificado', vc: 'Práctica en video' }[r.v] || 'Inicio') + ' · PLENA';
 }
 function setNav(v) { $$('[data-v]').forEach(function (a) { if (a.dataset.v === v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); }); }
 var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -30px 0px' }) : null;
@@ -1035,23 +1082,26 @@ function bindForms() {
     function fail(m) { er.textContent = m; er.hidden = false; }
     var nmI = $('#pfN'), et = (pf.querySelector('input[name=etapa]:checked') || {}).value, ob = $$('input[name=obj]:checked', pf).map(function (i) { return i.value; });
     if (step) {
-      if (step === 1) { obDraft.nombre = nmI.value.trim().slice(0, 40); obStep = 2; render(); return; }
-      if (step === 2) { if (!et) return fail('Elige tu etapa (si no lo sabes, marca «No lo tengo claro»).'); obDraft.etapa = et; obStep = 3; render(); return; }
-      if (!ob.length) return fail('Elige al menos una cosa.'); if (ob.length > 3) return fail('Elige como máximo 3.');
+      if (step === 1) { tone('step'); obDraft.nombre = nmI.value.trim().slice(0, 40); obStep = 2; render(); return; }
+      if (step === 2) { if (!et) { tone('tap'); return fail('Elige tu etapa (si no lo sabes, marca «No lo tengo claro»).'); } tone('step'); obDraft.etapa = et; obStep = 3; render(); return; }
+      if (!ob.length) { tone('tap'); return fail('Elige al menos una cosa.'); } if (ob.length > 3) return fail('Elige como máximo 3.');
+      tone('magic');
       var before = { xp: 0, lv: 1, b: [] };
       perfil = { nombre: obDraft.nombre || '', etapa: obDraft.etapa, objetivos: ob, at: Date.now() }; ls(KEY_PERFIL, JSON.stringify(perfil));
       if (perfil.nombre && !ls('me.name')) ls('me.name', perfil.nombre);
       markDay(8); saveProg(true);
       $('#main').innerHTML = vMagic(); var msgs = ['Ordenando los módulos según lo que más te pesa', 'Eligiendo tus primeras lecturas y videos', 'Preparando tus misiones de hoy', '¡Lista! Ahora te enseño dónde está todo'], k = 0;
       var tm = setInterval(function () { k++; var el = $('#mgT'); if (el && msgs[k]) el.textContent = msgs[k]; }, 700);
-      setTimeout(function () { clearInterval(tm); location.hash = '#inicio'; render(); confetti(100); afterAward(before, null); if (ls(KEY_TOUR) !== 'hecho') setTimeout(startTour, 900); }, 2900);
+      var tk2 = setInterval(function () { tone('tap'); }, 700);
+      setTimeout(function () { clearInterval(tm); clearInterval(tk2); location.hash = '#inicio'; render(); tone('done'); confetti(100); afterAward(before, null); if (ls(KEY_TOUR) !== 'hecho') setTimeout(startTour, 1200); }, 2900);
       return;
     }
     if (!et) return fail('Elige tu etapa.'); if (!ob.length) return fail('Elige al menos una cosa.'); if (ob.length > 3) return fail('Elige como máximo 3.');
     perfil = { nombre: nmI.value.trim().slice(0, 40), etapa: et, objetivos: ob, at: perfil ? perfil.at : Date.now() }; ls(KEY_PERFIL, JSON.stringify(perfil));
     toast('Listo: tu ruta se actualizó.'); location.hash = '#cursos';
   });
-  $$('input[name=obj]').forEach(function (i) { i.addEventListener('change', function () { if ($$('input[name=obj]:checked').length > 3) { i.checked = false; toast('Elige como máximo 3.'); } }); });
+  $$('input[name=obj]').forEach(function (i) { i.addEventListener('change', function () { if ($$('input[name=obj]:checked').length > 3) { i.checked = false; toast('Elige como máximo 3.'); } else tone('tap'); }); });
+  $$('input[name=etapa]').forEach(function (i) { i.addEventListener('change', function () { tone('tap'); }); });
   var lk = $('#lk');
   if (lk) lk.addEventListener('submit', function (e) { e.preventDefault(); var a = findAcc($('#lkIn').value); if (!a) { var er = $('#lkErr'); er.textContent = 'Revisa el código: son 14 letras y números, un guion y 10 más.'; er.hidden = false; return; } access = a; ls(KEY_ACC, a); boot(); });
 }
@@ -1100,11 +1150,11 @@ document.addEventListener('click', function (e) {
   if (a === 'cerrarCel') { var c = b.closest('.cel'); if (c) c.remove(); setTimeout(nextCel, 250); return; }
   if (a === 'cerrarModal') { closeModal(); return; }
   if (a === 'tipOk') { var T = lsJSON(KEY_TIPS, {}); T[b.dataset.k] = 1; ls(KEY_TIPS, JSON.stringify(T)); var tp = b.closest('.tip'); if (tp) tp.remove(); return; }
-  if (a === 'obNext') { obStep = 1; render(); return; }
-  if (a === 'atras') { obStep = Math.max(0, obStep - 1); render(); return; }
+  if (a === 'obNext') { tone('step'); obStep = 1; render(); return; }
+  if (a === 'atras') { tone('tap'); obStep = Math.max(0, obStep - 1); render(); return; }
   if (a === 'tour') { startTour(); return; }
-  if (a === 'tourNext') { TOURI++; if (TOURI >= TOUR.length) endTour(true); else showTour(); return; }
-  if (a === 'tourPrev') { TOURI = Math.max(0, TOURI - 1); showTour(); return; }
+  if (a === 'tourNext') { TOURI++; if (TOURI >= TOUR.length) endTour(true); else { tone('step'); showTour(); } return; }
+  if (a === 'tourPrev') { tone('tap'); TOURI = Math.max(0, TOURI - 1); showTour(); return; }
   if (a === 'tourSkip') { endTour(false); return; }
   if (a === 'guia') { openGuide(); return; }
   if (a === 'appGuia') { var fr = $('#appf'); try { fr.contentWindow.location.hash = 'guia'; } catch (x) { fr.src = '/?embed=1#guia'; } return; }
@@ -1151,4 +1201,5 @@ function boot() {
   }).catch(function (err) { if (window.console) console.error(err); main.innerHTML = '<div class="ov"><div class="box lg obox" style="text-align:center"><h1>Sin conexión</h1><p>No pudimos cargar tu academia. Revisa tu internet e inténtalo de nuevo.</p><button class="btn btn-p" onclick="location.reload()">Reintentar</button></div></div>'; });
 }
 boot();
+if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () { }); });
 })();

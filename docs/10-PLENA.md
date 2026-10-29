@@ -9,15 +9,16 @@ Todo pasa dentro de la misma página: los libros se leen ahí mismo, los videos 
 | Sección | Qué hace |
 |---|---|
 | **Bienvenida (4 pasos)** | Explica qué es PLENA y sus cinco áreas; luego nombre, etapa y lo que más le pesa (hasta 3). Las respuestas se quedan en el dispositivo. |
-| **Recorrido guiado** | Al terminar la bienvenida, un recorrido de 9 pasos ilumina cada parte (siguiente paso, misiones, cursos, videoteca, biblioteca, diario, logros y ayuda). Se repite desde el botón **?** de la cabecera o desde el perfil. Cada sección muestra además un aviso corto la primera vez («Entendido» lo oculta). |
+| **Recorrido guiado** | Al terminar la bienvenida, un recorrido de 9 pasos ilumina cada parte (siguiente paso, misiones, cursos, mi ruta, biblioteca, diario, logros y ayuda), con efectos de sonido suaves. Se repite desde el botón **?** de la cabecera o desde el perfil. Cada sección muestra además un aviso corto la primera vez («Entendido» lo oculta). |
 | **Inicio** | Saludo con su nombre, nivel, «tu siguiente paso», misiones de hoy, su ruta en tarjetas, videos recomendados, próximas insignias y su diario. |
 | **Cursos** | Los 10 módulos como tarjetas de curso (portada enmarcada, descripción, lecciones, videos, lecturas, minutos y barra de progreso). |
 | **Aula del módulo** | A la izquierda, todo el contenido: **Introducción**, **Lecciones**, **Videos**, **Lecturas** y **Cierre**. Lo terminado queda con ✓ y sigue en la lista. A la derecha, el contenido elegido con el botón ✓ arriba. |
 | **Introducción** | Portada, la frase del avatar y su respuesta, qué es el módulo, «Al terminar podrás», qué incluye, cómo avanzar y la insignia que se gana. |
 | **Lección** | Video para practicar, texto, ideas esenciales, lecturas (abren el libro en las páginas exactas), «¿mito o realidad?», pregunta rápida, tarea con «¡La hice!», herramientas de la app y botón de completar. |
 | **Cierre** | Resumen del módulo (lecciones, tareas, aciertos, videos, lecturas), lo que falta y el paso al siguiente módulo. Al completarlo, celebración e insignia. |
-| **Videoteca** | 132 videos, podcast, audiolibros y música en 10 cursos de video, con buscador, «sigue viendo» y recomendados. Cada curso abre su aula con la lista de clases (✓ las vistas). Reproductor propio (Plyr). |
-| **Biblioteca** | Los 13 libros con su portada. Se abren a pantalla completa como un libro de verdad: se pasan las hojas, miniaturas, lupa, sonido de página, «sigue leyendo» y descarga del PDF. |
+| **Cursos de práctica (dentro de Cursos)** | 132 videos, podcast, audiolibros y música en 10 cursos de video. Cada curso abre su aula con la lista de clases (✓ las vistas). Reproductor propio (Plyr). |
+| **Mi ruta** | El mapa personal con bolitas y caminitos: cada módulo con su anillo de progreso, «Estás aquí», «Para ti», la insignia de cada módulo al lado y la graduación al final. El camino se pinta a medida que completas. |
+| **Biblioteca** | Los 13 libros con su portada. Se abren a pantalla completa como un libro de verdad: se pasan las hojas con sonido de hoja, la miniatura aparece al instante mientras carga la página nítida, las siguientes se precargan y quedan guardadas en el dispositivo, miniaturas, lupa, sonido de página, «sigue leyendo» y descarga del PDF. |
 | **Mi diario** | La app Menopausia Equilibrada completa, integrada. «Cómo se usa» abre su guía. Lo que se registra suma XP y cumple la misión del día. |
 | **Logros** | 15 niveles y 50 insignias coleccionables, cada una con su protagonista Soul 2.0, en cuatro dificultades con su color: **fácil** (rosa), **media** (lavanda), **difícil** (oro) y **legendaria** (iridiscente). |
 | **Perfil, guía y certificado** | Edita sus respuestas, repite el recorrido, abre la guía rápida, sonidos y sesión. Al completar el curso se desbloquea el certificado. |

@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Poppins:wght@400;500;600;700;800&family=Shrikhand&family=Silkscreen&display=swap">
 <link rel="stylesheet" href="/plena/vendor/plyr.css">
-<link rel="stylesheet" href="/plena/plena.css?v=5">
+<link rel="stylesheet" href="/plena/plena.css?v=6">
 <script>/* Reintento de imágenes: si una imagen falla por conexión lenta, se vuelve a pedir 2 veces. */
 document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!=='IMG'||!i.getAttribute('src'))return;var n=+(i.dataset.retry||0);if(n<2){i.dataset.retry=n+1;var u=i.src.replace(/([?&])r=\d+/,'').replace(/[?&]$/,'');setTimeout(function(){i.src=u+(u.indexOf('?')<0?'?':'&')+'r='+(n+1)},800*(n+1))}else{i.style.visibility='hidden'}},true);</script>
 </head>
@@ -23,7 +23,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     <a href="#inicio" data-v="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Inicio</a>
     <a href="#cursos" data-v="cursos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3zM21 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z"/></svg>Cursos</a>
     <a href="#biblioteca" data-v="biblioteca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5c3-1.3 6.5-1.3 10 1 3.5-2.3 7-2.3 10-1v14c-3-1.3-6.5-1.3-10 1-3.5-2.3-7-2.3-10-1z"/><path d="M12 6v14"/></svg>Biblioteca</a>
-    <a href="#videos" data-v="videos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M10 9.2v5.6l4.6-2.8z" fill="currentColor"/></svg>Videoteca</a>
+    <a href="#ruta" data-v="ruta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6H16a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h7.5"/></svg>Mi ruta</a>
     <a href="#diario" data-v="diario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10 18h4M9.5 9.5c0-1.2 1-2 2.5-.6 1.5-1.4 2.5-.6 2.5.6 0 1.6-2.5 3-2.5 3s-2.5-1.4-2.5-3z"/></svg>Mi diario</a>
     <a href="#logros" data-v="logros"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 14v4M8 21h8"/></svg>Logros</a>
   </nav>
@@ -33,13 +33,13 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 <nav class="bottom" aria-label="Secciones">
   <a href="#inicio" data-v="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Inicio</a>
   <a href="#cursos" data-v="cursos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3zM21 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z"/></svg>Cursos</a>
-  <a href="#videos" data-v="videos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M10 9.2v5.6l4.6-2.8z" fill="currentColor"/></svg>Videos</a>
+  <a href="#ruta" data-v="ruta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6H16a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h7.5"/></svg>Ruta</a>
   <a href="#biblioteca" data-v="biblioteca"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5c3-1.3 6.5-1.3 10 1 3.5-2.3 7-2.3 10-1v14c-3-1.3-6.5-1.3-10 1-3.5-2.3-7-2.3-10-1z"/><path d="M12 6v14"/></svg>Libros</a>
   <a href="#diario" data-v="diario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10 18h4M9.5 9.5c0-1.2 1-2 2.5-.6 1.5-1.4 2.5-.6 2.5.6 0 1.6-2.5 3-2.5 3s-2.5-1.4-2.5-3z"/></svg>Diario</a>
 </nav>
 <div id="toast" role="status" aria-live="polite" hidden></div>
 <script src="/plena/vendor/page-flip.js" defer></script>
 <script src="/plena/vendor/plyr.js" defer></script>
-<script src="/plena/plena.js?v=5" defer></script>
+<script src="/plena/plena.js?v=6" defer></script>
 </body>
 </html>
