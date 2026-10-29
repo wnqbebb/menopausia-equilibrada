@@ -1,277 +1,2020 @@
 {
-  "nombre": "PLENA",
-  "subtitulo": "Academia de Menopausia y Psicomenopausia",
-  "lema": "No estás rota. Estás en transición.",
-  "version": "2026-10-29",
-  "aviso": "Contenido educativo. No sustituye la consulta, el diagnóstico ni el tratamiento de tu profesional de salud.",
-  "cierre": "No es el final de nada: es una graduación.",
-  "objetivos": [
-    { "id": "sofocos", "texto": "Sofocos y sudores nocturnos", "modulo": "m2" },
-    { "id": "sueno", "texto": "Dormir de un tirón", "modulo": "m3" },
-    { "id": "mente", "texto": "Niebla mental, ansiedad o ánimo bajo", "modulo": "m4" },
-    { "id": "cuerpo", "texto": "Peso en el abdomen, músculo y huesos", "modulo": "m5" },
-    { "id": "comida", "texto": "Saber qué comer sin dietas extremas", "modulo": "m6" },
-    { "id": "intimidad", "texto": "Intimidad, deseo o dolor en las relaciones", "modulo": "m7" },
-    { "id": "consulta", "texto": "Entender los tratamientos y preparar mi consulta", "modulo": "m8" },
-    { "id": "trabajo", "texto": "Trabajo, pareja y volver a sentirme yo", "modulo": "m9" },
-    { "id": "etapa", "texto": "Saber en qué etapa estoy", "modulo": "m1" }
-  ],
-  "modulos": [
+ "nombre": "PLENA",
+ "subtitulo": "Academia de Menopausia y Psicomenopausia",
+ "lema": "No estás rota. Estás en transición.",
+ "version": "2026-10-29b",
+ "aviso": "Contenido educativo. No sustituye la consulta, el diagnóstico ni el tratamiento de tu profesional de salud.",
+ "cierre": "No es el final de nada: es una graduación.",
+ "objetivos": [
+  {
+   "id": "sofocos",
+   "texto": "Sofocos y sudores nocturnos",
+   "modulo": "m2"
+  },
+  {
+   "id": "sueno",
+   "texto": "Dormir de un tirón",
+   "modulo": "m3"
+  },
+  {
+   "id": "mente",
+   "texto": "Niebla mental, ansiedad o ánimo bajo",
+   "modulo": "m4"
+  },
+  {
+   "id": "cuerpo",
+   "texto": "Peso en el abdomen, músculo y huesos",
+   "modulo": "m5"
+  },
+  {
+   "id": "comida",
+   "texto": "Saber qué comer sin dietas extremas",
+   "modulo": "m6"
+  },
+  {
+   "id": "intimidad",
+   "texto": "Intimidad, deseo o dolor en las relaciones",
+   "modulo": "m7"
+  },
+  {
+   "id": "consulta",
+   "texto": "Entender los tratamientos y preparar mi consulta",
+   "modulo": "m8"
+  },
+  {
+   "id": "trabajo",
+   "texto": "Trabajo, pareja y volver a sentirme yo",
+   "modulo": "m9"
+  },
+  {
+   "id": "etapa",
+   "texto": "Saber en qué etapa estoy",
+   "modulo": "m1"
+  }
+ ],
+ "modulos": [
+  {
+   "id": "m0",
+   "num": 0,
+   "titulo": "Bienvenida",
+   "subtitulo": "No estás rota: estás en transición",
+   "frase": "Algo estaba profundamente mal conmigo… me sentía rota y terriblemente sola.",
+   "respuesta": "No es que estés rota. Tu cuerpo está cambiando de etapa, y eso tiene nombre, explicación y un plan.",
+   "foto": "f37a",
+   "recorte": "cut22a",
+   "color": "#F7A8C7",
+   "lecciones": [
     {
-      "id": "m0", "num": 0, "titulo": "Bienvenida", "subtitulo": "No estás rota: estás en transición",
-      "frase": "Algo estaba profundamente mal conmigo… me sentía rota y terriblemente sola.",
-      "respuesta": "No es que estés rota. Tu cuerpo está cambiando de etapa, y eso tiene nombre, explicación y un plan.",
-      "foto": "f37a", "recorte": "cut22a", "color": "#F7A8C7",
-      "lecciones": [
-        { "id": "m0-1", "titulo": "Lo que sientes es real", "min": 6, "video": "",
-          "texto": ["Los sofocos, el insomnio, la niebla mental o la irritabilidad no son «cosas de la edad» que haya que aguantar en silencio. Son señales de un cambio hormonal que la medicina conoce bien y que se puede acompañar.", "La mayoría de las mujeres pasa por síntomas en esta etapa, y muchas no reciben información clara. Aquí vas a entender qué pasa en tu cuerpo, qué funciona según la evidencia y cómo pedir ayuda sin que te despachen."],
-          "claves": ["Tus síntomas tienen explicación y tienen opciones.", "No estás sola: es una etapa que viven millones de mujeres.", "Medir lo que sientes es el primer paso para que te escuchen."],
-          "tarea": "Escribe en una frase cómo te sientes hoy. La releerás al graduarte.",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Empieza aquí (pág. 55)" }, { "tipo": "app", "ruta": "hoy", "texto": "Registra tu primer día en la app" }] },
-        { "id": "m0-2", "titulo": "Cómo usar PLENA", "min": 4, "video": "",
-          "texto": ["PLENA reúne todo en un solo lugar: los módulos con video, tus libros y bonos, las plantillas y tu app Menopausia Equilibrada.", "Tu ruta está ordenada según lo que más te pesa. No tienes que hacerlo todo: una lección corta al día y una acción pequeña bastan."],
-          "claves": ["Cada lección dura menos de 10 minutos.", "Al final de cada lección hay una tarea sencilla.", "Tus recursos (PDF y app) están en la Biblioteca."],
-          "tarea": "Marca esta lección como completada y abre tu app una vez.",
-          "recursos": [{ "tipo": "app", "ruta": "cuenta", "texto": "Guarda tu enlace personal de la app" }] },
-        { "id": "m0-3", "titulo": "Tu diario: tus síntomas son datos", "min": 5, "video": "",
-          "texto": ["En consulta la memoria falla. Llegar con 2 a 4 semanas de registro cambia la conversación: muestras frecuencia, intensidad y cómo afecta a tu vida.", "Puedes hacerlo en papel (Diario de síntomas) o en la app, que te arma las gráficas y un resumen para tu médica."],
-          "claves": ["Dos minutos cada noche son suficientes.", "Anota sofocos, sueño, ánimo, energía y sangrados.", "El resumen mensual es lo que le enseñas a tu profesional."],
-          "tarea": "Registra hoy tus síntomas en la app o en el diario.",
-          "recursos": [{ "tipo": "pdf", "item": "diario", "texto": "Diario de síntomas y progreso" }, { "tipo": "app", "ruta": "hoy", "texto": "Registro diario en la app" }] }
-      ]
+     "id": "m0-1",
+     "titulo": "Lo que sientes es real",
+     "min": 6,
+     "texto": [
+      "Los sofocos, el insomnio, la niebla mental o la irritabilidad no son «cosas de la edad» que haya que aguantar en silencio. Son señales de un cambio hormonal que la medicina conoce bien y que se puede acompañar.",
+      "La mayoría de las mujeres pasa por síntomas en esta etapa, y muchas no reciben información clara. Aquí vas a entender qué pasa en tu cuerpo, qué funciona según la evidencia y cómo pedir ayuda sin que te despachen."
+     ],
+     "claves": [
+      "Tus síntomas tienen explicación y tienen opciones.",
+      "No estás sola: es una etapa que viven millones de mujeres.",
+      "Medir lo que sientes es el primer paso para que te escuchen."
+     ],
+     "tarea": "Escribe en una frase cómo te sientes hoy. La releerás al graduarte.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Empieza aquí (pág. 55)"
+      },
+      {
+       "tipo": "app",
+       "ruta": "hoy",
+       "texto": "Registra tu primer día en la app"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 2,
+       "hasta": 3,
+       "titulo": "Hola: una carta para ti"
+      },
+      {
+       "item": "guia",
+       "desde": 5,
+       "hasta": 5,
+       "titulo": "No estás exagerando"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Qué son los sofocos, el insomnio o la niebla mental en esta etapa?",
+      "opciones": [
+       "Cosas de la edad que hay que aguantar",
+       "Señales de un cambio hormonal que se puede acompañar",
+       "Algo que solo te pasa a ti"
+      ],
+      "correcta": 1,
+      "explica": "Son señales de un cambio que la medicina conoce bien, y tienen opciones."
+     }
     },
     {
-      "id": "m1", "num": 1, "titulo": "Entiende tu etapa", "subtitulo": "Perimenopausia, menopausia y posmenopausia",
-      "frase": "¿Esto es normal? ¿Me pasa a mí sola?",
-      "respuesta": "Saber en qué etapa estás te quita miedo y te da un mapa.",
-      "foto": "f73", "recorte": "cut28a", "color": "#FCE4EC",
-      "lecciones": [
-        { "id": "m1-1", "titulo": "Las 3 etapas, sin enredos", "min": 7, "video": "",
-          "texto": ["La perimenopausia es la transición: las reglas cambian (más cortas, más largas, más o menos abundantes) y aparecen los síntomas. Suele empezar en la década de los 40 y puede durar años.", "La menopausia es un momento concreto: se confirma cuando llevas 12 meses seguidos sin regla. A partir de ahí hablamos de posmenopausia, que es una parte larga y valiosa de tu vida."],
-          "claves": ["Menopausia = 12 meses seguidos sin regla.", "La perimenopausia puede durar varios años.", "La edad media de la menopausia está alrededor de los 50 años."],
-          "mito": { "mito": "La menopausia es un proceso que dura años.", "verdad": "La menopausia es un punto en el calendario. Lo que dura años es la transición (perimenopausia) y lo que viene después (posmenopausia)." },
-          "tarea": "Apunta la fecha de tu última regla en la app (sección Ciclo).",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Capítulo 01: Qué es (y qué no es)" }, { "tipo": "app", "ruta": "ciclo", "texto": "Registra tu ciclo en la app" }] },
-        { "id": "m1-2", "titulo": "Tus hormonas, explicadas fácil", "min": 6, "video": "",
-          "texto": ["El estrógeno sube y baja sin orden en la perimenopausia, y tras la última regla queda bajo. De ahí vienen muchos síntomas: calores, sequedad, sueño. La progesterona baja antes, cuando los ciclos dejan de ovular.", "La FSH es la señal del cerebro al ovario. Por eso un solo análisis puede salir normal en plena transición: en mujeres sanas de más de 45 años el diagnóstico se basa sobre todo en los síntomas y el patrón de la regla."],
-          "claves": ["Los altibajos de estrógeno explican gran parte de los síntomas.", "Un análisis aislado no descarta la perimenopausia.", "Lo que sientes es la prueba principal."],
-          "tarea": "Haz el mapa de síntomas de PAUSA (pág. 12) y marca la intensidad.",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Mapa de síntomas (pág. 12)" }, { "tipo": "pdf", "item": "guia", "texto": "Guía Integral · Síntomas" }] },
-        { "id": "m1-3", "titulo": "Mitos que te han hecho sufrir", "min": 6, "video": "",
-          "texto": ["«Es lo que toca», «aguántate», «es psicológico»… Los mitos hacen que muchas mujeres pasen años sin ayuda. Los síntomas son señales de un cambio que se puede acompañar con hábitos y, si hace falta, con tratamiento.", "En este módulo y en PAUSA tienes los mitos más comunes con lo que dice la evidencia."],
-          "claves": ["Los síntomas no hay que aguantarlos en silencio.", "Hay opciones con y sin hormonas.", "Pedir ayuda no es exagerar."],
-          "mito": { "mito": "Los síntomas son «lo que toca por la edad» y hay que aguantarlos.", "verdad": "La menopausia no es una enfermedad, pero sus síntomas se pueden aliviar con estilo de vida y tratamientos adecuados." },
-          "tarea": "Elige el mito que más te ha afectado y compártelo con alguien de confianza.",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Mitos y realidad" }] }
-      ]
+     "id": "m0-2",
+     "titulo": "Cómo usar PLENA",
+     "min": 4,
+     "texto": [
+      "PLENA reúne todo en un solo lugar: los módulos, tus libros y bonos para leer aquí mismo (pasando las páginas), las plantillas y tu app Menopausia Equilibrada integrada como «Mi diario».",
+      "Tu ruta está ordenada según lo que más te pesa. No tienes que hacerlo todo: una lección corta al día y una acción pequeña bastan."
+     ],
+     "claves": [
+      "Cada lección dura menos de 10 minutos.",
+      "Al final de cada lección hay una tarea sencilla.",
+      "Cada lección te lleva a las páginas exactas de tus libros."
+     ],
+     "tarea": "Marca esta lección como completada y abre tu app una vez.",
+     "recursos": [
+      {
+       "tipo": "app",
+       "ruta": "cuenta",
+       "texto": "Guarda tu enlace personal de la app"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 4,
+       "hasta": 5,
+       "titulo": "Tu ruta y tus herramientas"
+      },
+      {
+       "item": "guia",
+       "desde": 3,
+       "hasta": 4,
+       "titulo": "Índice y tu kit completo"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuánto necesitas hacer al día para avanzar en PLENA?",
+      "opciones": [
+       "Todo un módulo",
+       "Una lección corta y una acción pequeña",
+       "Leer un libro entero"
+      ],
+      "correcta": 1,
+      "explica": "Pequeño y constante: así se cambia una etapa."
+     }
     },
     {
-      "id": "m2", "num": 2, "titulo": "Sofocos sin drama", "subtitulo": "Los «volcanes internos» y los sudores nocturnos",
-      "frase": "La sala de juntas estaba helada… pero para mí era un volcán a punto de entrar en erupción.",
-      "respuesta": "Los sofocos tienen desencadenantes, trucos que ayudan y tratamientos eficaces.",
-      "foto": "f29a", "recorte": "cut03a", "color": "#FFD3E3",
-      "lecciones": [
-        { "id": "m2-1", "titulo": "Qué es un sofoco y por qué ocurre", "min": 6, "video": "",
-          "texto": ["El sofoco es una sensación súbita de calor que sube por el pecho y la cara, a veces con sudor y palpitaciones. Ocurre porque el «termostato» del cerebro se vuelve más sensible cuando bajan los estrógenos.", "Son muy frecuentes y en muchas mujeres duran varios años. Por eso merece la pena tratarlos en serio, no solo esperar."],
-          "claves": ["El termostato del cerebro se vuelve más sensible.", "Pueden durar años: no hay que esperar a que pasen solos.", "De noche, se convierten en sudores que rompen el sueño."],
-          "tarea": "Cuenta tus sofocos de hoy en la app con el botón +.",
-          "recursos": [{ "tipo": "app", "ruta": "hoy", "texto": "Contador de sofocos" }, { "tipo": "pdf", "item": "guia", "texto": "Guía Integral · Sofocos y sudores nocturnos" }] },
-        { "id": "m2-2", "titulo": "Tus desencadenantes", "min": 6, "video": "",
-          "texto": ["Alcohol, bebidas muy calientes, picante, cafeína, estrés y habitaciones cálidas son desencadenantes habituales, pero cambian de una mujer a otra.", "Durante dos semanas, anota cuándo aparecen. Verás patrones que puedes ajustar."],
-          "claves": ["Cada mujer tiene sus propios desencadenantes.", "El alcohol empeora los sofocos y el sueño.", "Ropa por capas y un ventilador cerca ayudan mucho."],
-          "tarea": "Anota 3 sofocos con lo que hacías justo antes.",
-          "recursos": [{ "tipo": "pdf", "item": "k1", "texto": "Kit Noches frescas" }] },
-        { "id": "m2-3", "titulo": "Qué funciona según la evidencia", "min": 8, "video": "",
-          "texto": ["La terapia hormonal es el tratamiento más eficaz para los sofocos en muchas mujeres. También hay opciones sin hormonas con evidencia, que tu médica puede valorar según tu caso.", "La terapia cognitivo-conductual y la hipnosis clínica han mostrado ayudar a sobrellevarlos. Muchos suplementos populares no tienen evidencia sólida: pregunta antes de gastar."],
-          "claves": ["Hay tratamientos con y sin hormonas.", "La TCC ayuda a vivir mejor con los sofocos.", "Consulta antes de tomar suplementos por tu cuenta."],
-          "tarea": "Escribe tu pregunta sobre sofocos para tu próxima consulta.",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Tratamientos con evidencia" }, { "tipo": "app", "ruta": "consulta", "texto": "Prepara tu consulta en la app" }] }
-      ]
-    },
-    {
-      "id": "m3", "num": 3, "titulo": "Dormir de un tirón", "subtitulo": "Del despertar de las 3 a. m. al descanso profundo",
-      "frase": "Me despierto 4 o 5 veces por noche y a las 3 ya no me vuelvo a dormir.",
-      "respuesta": "El sueño se puede recuperar con un plan, paso a paso.",
-      "foto": "f34a", "recorte": "cut09a", "color": "#CFE3F7",
-      "lecciones": [
-        { "id": "m3-1", "titulo": "Por qué te despiertas de madrugada", "min": 6, "video": "",
-          "texto": ["En la transición, los sudores nocturnos, la ansiedad y los cambios hormonales fragmentan el sueño. El alcohol y las cenas tardías lo empeoran.", "Entender por qué te despiertas te ayuda a elegir qué cambiar primero."],
-          "claves": ["Sudores, ansiedad y hormonas fragmentan el sueño.", "El alcohol empeora la segunda mitad de la noche.", "El insomnio crónico tiene tratamiento eficaz (TCC-I)."],
-          "tarea": "Anota en la app a qué hora te despertaste anoche.",
-          "recursos": [{ "tipo": "app", "ruta": "hoy", "texto": "Registra tu sueño" }] },
-        { "id": "m3-2", "titulo": "Tu ritual de noche", "min": 7, "video": "",
-          "texto": ["Habitación fresca y oscura, horario regular, luz de la mañana y pantallas fuera de la cama son la base. Cenar ligero y un par de horas antes de acostarte ayuda.", "Un ritual corto (ducha tibia, respiración lenta, aroma que te guste) le avisa a tu cuerpo de que toca descansar."],
-          "claves": ["Luz natural por la mañana, oscuridad por la noche.", "Habitación fresca y ropa de cama transpirable.", "Si no duermes en 20 minutos, levántate y vuelve con sueño."],
-          "tarea": "Elige un ritual de 10 minutos y pruébalo 7 noches.",
-          "recursos": [{ "tipo": "pdf", "item": "aroma", "texto": "Aromaterapia · Ritual de noche" }, { "tipo": "pdf", "item": "yoga", "texto": "Yoga en calma" }] },
-        { "id": "m3-3", "titulo": "Cuando el insomnio no se va", "min": 5, "video": "",
-          "texto": ["Si llevas meses durmiendo mal, la terapia cognitivo-conductual para el insomnio (TCC-I) es el tratamiento de primera elección según las guías. También conviene revisar sofocos, ánimo y apnea del sueño con tu profesional.", "Lleva tu registro de sueño a la consulta: es la mejor prueba."],
-          "claves": ["La TCC-I es la primera opción para el insomnio crónico.", "Ronquidos fuertes o pausas al respirar: consulta.", "Tu registro de sueño es tu mejor aliado."],
-          "tarea": "Pide cita si llevas más de 3 meses durmiendo mal.",
-          "recursos": [{ "tipo": "pdf", "item": "k1", "texto": "Kit Noches frescas" }] }
-      ]
-    },
-    {
-      "id": "m4", "num": 4, "titulo": "Psicomenopausia", "subtitulo": "Mente, memoria y emociones",
-      "frase": "¿Me estoy volviendo tonta? No sé qué me pasa, pero no soy yo.",
-      "respuesta": "No te estás volviendo tonta: tu cerebro se está adaptando a un cambio hormonal. Y hay mucho que puedes hacer.",
-      "foto": "f35a", "recorte": "cut17a", "color": "#E9D7F5",
-      "lecciones": [
-        { "id": "m4-1", "titulo": "La niebla mental tiene explicación", "min": 7, "video": "",
-          "texto": ["Olvidar palabras, perder el hilo o entrar a una habitación sin saber a qué: muchas mujeres lo notan en la transición. Los estudios muestran que suele ser temporal y mejora tras la menopausia.", "Dormir mal, el estrés y el ánimo bajo lo empeoran. Cuidarlos es cuidar tu memoria."],
-          "claves": ["La niebla mental es frecuente y suele ser pasajera.", "Sueño, estrés y ánimo influyen mucho.", "Si los olvidos te preocupan de verdad, coméntalo en consulta."],
-          "tarea": "Durante una semana, usa listas y una agenda: quítale carga a tu memoria.",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Mente y emociones" }] },
-        { "id": "m4-2", "titulo": "Ansiedad, irritabilidad y la montaña rusa emocional", "min": 7, "video": "",
-          "texto": ["Los cambios hormonales pueden hacer que todo te afecte más: impaciencia, enfados que no reconoces, ansiedad sin motivo claro. No es falta de carácter.", "La respiración lenta, el movimiento, el contacto social y la terapia psicológica ayudan. Nombrar lo que sientes ya baja la intensidad."],
-          "claves": ["No es falta de carácter: hay una base biológica.", "La terapia psicológica tiene buena evidencia.", "Moverte y hablar con alguien de confianza ayuda."],
-          "tarea": "Practica 3 minutos de respiración lenta (inhala 4, exhala 6) hoy.",
-          "recursos": [{ "tipo": "pdf", "item": "yoga", "texto": "Yoga en calma · Respiración" }, { "tipo": "pdf", "item": "aroma", "texto": "Aromaterapia · Ritual de estrés" }] },
-        { "id": "m4-3", "titulo": "Ánimo bajo: cuándo pedir ayuda", "min": 6, "video": "",
-          "texto": ["En la perimenopausia aumenta el riesgo de depresión. Si casi todos los días te sientes triste, vacía o sin ganas de lo que antes disfrutabas, y dura semanas, coméntalo con un profesional: tiene tratamiento.", "Si alguna vez piensas en hacerte daño, busca ayuda de inmediato: servicios de emergencia o alguien de confianza que te acompañe."],
-          "claves": ["El ánimo bajo persistente es motivo de consulta.", "Hay tratamientos eficaces.", "Pedir ayuda es un acto de cuidado, no de debilidad."],
-          "tarea": "Revisa las señales de alarma en la app.",
-          "recursos": [{ "tipo": "app", "ruta": "alarma", "texto": "Señales de alarma" }] },
-        { "id": "m4-4", "titulo": "Autoestima: verte de nuevo", "min": 6, "video": "",
-          "texto": ["Muchas mujeres sienten que se vuelven invisibles. Esta etapa también es una oportunidad para poner límites, cuidar tu cuerpo por lo que hace y no solo por cómo se ve, y decidir qué quieres para la segunda mitad de tu vida.", "Escribirte con la amabilidad con la que le hablarías a tu mejor amiga cambia la conversación interna."],
-          "claves": ["Tu valor no depende de tu edad.", "Cuidarte es poner límites claros.", "Habla contigo como hablarías con tu mejor amiga."],
-          "tarea": "Escribe una frase amable para ti y déjala a la vista.",
-          "recursos": [{ "tipo": "pdf", "item": "diario", "texto": "Diario · Mi progreso" }] }
-      ]
-    },
-    {
-      "id": "m5", "num": 5, "titulo": "Cuerpo fuerte", "subtitulo": "Músculo, huesos y la grasa del abdomen",
-      "frase": "Como lo mismo que antes y aun así engordo… y he perdido la cintura.",
-      "respuesta": "Tu cuerpo no te está fallando: está cambiando. El músculo es tu mejor aliado.",
-      "foto": "f36a", "recorte": "cut26a", "color": "#FFE7A8",
-      "lecciones": [
-        { "id": "m5-1", "titulo": "Por qué cambia la figura", "min": 6, "video": "",
-          "texto": ["Con la bajada de estrógenos, la grasa tiende a acumularse más en el abdomen y se pierde masa muscular con más facilidad. No es solo cuestión de comer menos.", "Por eso el objetivo no es la báscula, sino cuidar el músculo, el corazón y los huesos."],
-          "claves": ["La grasa se redistribuye hacia el abdomen.", "Se pierde músculo con más facilidad.", "El objetivo es la salud, no un número en la báscula."],
-          "mito": { "mito": "Hay que comer muy poco y hacer mucho cardio.", "verdad": "Comer muy poco favorece la pérdida de músculo. La combinación que más ayuda es fuerza 2 o 3 días por semana, movimiento diario y proteína suficiente." },
-          "tarea": "Mide tu cintura y anótala: es más útil que el peso.",
-          "recursos": [{ "tipo": "pdf", "item": "guia", "texto": "Guía Integral · Peso y cuerpo" }] },
-        { "id": "m5-2", "titulo": "Fuerza: tu escudo para músculos y huesos", "min": 8, "video": "",
-          "texto": ["Entrenar fuerza 2 o 3 días por semana ayuda a conservar músculo, mejora la glucosa y protege los huesos. Se puede empezar en casa, con poco peso y buena técnica.", "Los ejercicios con algo de impacto (caminar rápido, subir escaleras, bailar) también estimulan el hueso, siempre adaptados a ti."],
-          "claves": ["Fuerza 2–3 días por semana.", "Empieza suave y sube poco a poco.", "El impacto adaptado ayuda a tus huesos."],
-          "tarea": "Haz hoy tu primera rutina de fuerza (15 minutos).",
-          "recursos": [{ "tipo": "pdf", "item": "k4", "texto": "Kit Fuerte después de los 45" }, { "tipo": "app", "ruta": "plan30", "texto": "Marca tus días de fuerza" }] },
-        { "id": "m5-3", "titulo": "Suelo pélvico y core", "min": 6, "video": "",
-          "texto": ["Las pérdidas de orina al toser, reír o saltar son frecuentes y tienen solución. Los ejercicios de suelo pélvico, bien hechos y constantes, son el primer tratamiento.", "Si no notas mejoría, una fisioterapeuta de suelo pélvico puede guiarte."],
-          "claves": ["Las pérdidas de orina no son «normales» de por vida.", "Los ejercicios de suelo pélvico funcionan con constancia.", "La fisioterapia especializada ayuda mucho."],
-          "tarea": "Practica 3 series de contracciones de suelo pélvico hoy.",
-          "recursos": [{ "tipo": "pdf", "item": "k2", "texto": "Kit Intimidad sin dolor" }] }
-      ]
-    },
-    {
-      "id": "m6", "num": 6, "titulo": "Comer sin dietas extremas", "subtitulo": "El plato que sí funciona en esta etapa",
-      "frase": "Probé la dieta de la piña, la keto, la de lechuga y pechuga… y gané el doble.",
-      "respuesta": "No necesitas otra dieta. Necesitas un plato equilibrado que puedas mantener.",
-      "foto": "f45", "recorte": "cut16a", "color": "#D9F2E3",
-      "lecciones": [
-        { "id": "m6-1", "titulo": "El plato equilibrado", "min": 7, "video": "",
-          "texto": ["Medio plato de verduras, un cuarto de proteína y un cuarto de carbohidratos integrales, con grasas saludables como el aceite de oliva. Así de sencillo, y adaptable a tu cocina de siempre.", "La proteína en cada comida ayuda a conservar el músculo."],
-          "claves": ["½ verduras · ¼ proteína · ¼ integrales.", "Proteína en cada comida.", "Aceite de oliva, frutos secos y semillas."],
-          "mito": { "mito": "Hay que eliminar por completo los carbohidratos.", "verdad": "Los carbohidratos integrales, legumbres y tubérculos en raciones adecuadas forman parte de una alimentación saludable y ayudan a mantener la energía." },
-          "tarea": "Arma hoy un plato equilibrado y hazle una foto.",
-          "recursos": [{ "tipo": "pdf", "item": "recetario", "texto": "Recetario: 20 recetas" }, { "tipo": "pdf", "item": "guia", "texto": "Guía Integral · El plato equilibrado" }] },
-        { "id": "m6-2", "titulo": "Calcio, vitamina D y lo que sí vale la pena", "min": 6, "video": "",
-          "texto": ["Tus huesos necesitan calcio (lácteos, sardinas con espina, legumbres, verduras de hoja) y vitamina D. Pide a tu médica que valore si necesitas suplementos.", "Muchos suplementos «para la menopausia» no tienen evidencia sólida. Antes de gastar, revisa el semáforo de evidencia."],
-          "claves": ["Calcio y vitamina D para tus huesos.", "Suplementos: mejor con indicación profesional.", "Revisa la evidencia antes de comprar."],
-          "tarea": "Revisa el semáforo de suplementos y marca los que ya tomas.",
-          "recursos": [{ "tipo": "pdf", "item": "vitaminas", "texto": "Guía de vitaminas y suplementos" }] },
-        { "id": "m6-3", "titulo": "Soja, café y alcohol: lo que dice la ciencia", "min": 6, "video": "",
-          "texto": ["Los alimentos de soja (tofu, tempeh, bebida de soja) son seguros como parte de una dieta variada y pueden aliviar un poco los sofocos en algunas mujeres.", "El alcohol empeora sofocos y sueño, y la cafeína tarde puede quitarte descanso. No hace falta prohibirse todo: observa cómo te sientan."],
-          "claves": ["Los alimentos de soja son seguros en una dieta variada.", "El alcohol empeora sofocos y sueño.", "Café: mejor por la mañana."],
-          "mito": { "mito": "La soja produce cáncer de mama.", "verdad": "Los estudios en mujeres no muestran que los alimentos de soja aumenten ese riesgo; en una dieta variada son seguros." },
-          "tarea": "Prueba una receta con tofu o legumbres esta semana.",
-          "recursos": [{ "tipo": "pdf", "item": "recetario", "texto": "Recetario · Tofu salteado" }, { "tipo": "pdf", "item": "plan30", "texto": "Plan de 30 días" }] }
-      ]
-    },
-    {
-      "id": "m7", "num": 7, "titulo": "Intimidad y pareja", "subtitulo": "Deseo, dolor y conexión",
-      "frase": "No es que no te desee: mi cuerpo no funciona como antes y tengo miedo de que me veas diferente.",
-      "respuesta": "La sequedad y el dolor tienen tratamiento, y hablarlo acerca a la pareja.",
-      "foto": "f31a", "recorte": "cut25a", "color": "#FFD3E3",
-      "lecciones": [
-        { "id": "m7-1", "titulo": "El síntoma del que menos se habla", "min": 7, "video": "",
-          "texto": ["Sequedad, ardor, dolor en las relaciones, urgencia para orinar o infecciones urinarias repetidas: es el síndrome genitourinario de la menopausia. Es muy frecuente y, a diferencia de los sofocos, tiende a empeorar si no se trata.", "Hay tratamientos eficaces y seguros: hidratantes y lubricantes, y estrógenos vaginales en dosis bajas que tu médica puede valorar."],
-          "claves": ["Es frecuente y tiene tratamiento.", "Hidratantes y lubricantes son el primer paso.", "Los estrógenos vaginales en dosis bajas son una opción muy eficaz."],
-          "tarea": "Anota tus síntomas íntimos para tu próxima cita.",
-          "recursos": [{ "tipo": "pdf", "item": "k2", "texto": "Kit Intimidad sin dolor" }] },
-        { "id": "m7-2", "titulo": "Deseo: no estás rota", "min": 6, "video": "",
-          "texto": ["El deseo cambia con las hormonas, el cansancio, el estrés y el dolor. Cuando el dolor desaparece y se descansa mejor, muchas mujeres recuperan las ganas.", "La intimidad no es solo penetración: el tiempo, el tacto y la comunicación cuentan mucho."],
-          "claves": ["El deseo depende de muchos factores, no solo hormonas.", "Tratar el dolor es el primer paso.", "La intimidad es más amplia que el coito."],
-          "tarea": "Piensa qué te hace sentir deseada y escríbelo.",
-          "recursos": [{ "tipo": "pdf", "item": "k2", "texto": "Kit Intimidad sin dolor · Guion" }] },
-        { "id": "m7-3", "titulo": "Cómo hablarlo con tu pareja", "min": 6, "video": "",
-          "texto": ["Muchas parejas se distancian por malentendidos: «¿ya no me deseas?». Contar lo que te pasa, en un momento tranquilo, cambia la historia.", "En PAUSA tienes guiones para empezar esa conversación con tu pareja y tu familia."],
-          "claves": ["Elige un momento tranquilo, no en plena discusión.", "Habla de lo que sientes, no de culpas.", "Pide lo que necesitas de forma concreta."],
-          "tarea": "Usa el guion de pareja de PAUSA esta semana.",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Guiones para pareja y familia" }, { "tipo": "pdf", "item": "plantillas", "texto": "Plantilla: la conversación" }] }
-      ]
-    },
-    {
-      "id": "m8", "num": 8, "titulo": "Tu consulta y tus tratamientos", "subtitulo": "Terapia hormonal sin miedo y sin mitos",
-      "frase": "Me dieron un ansiolítico y me dijeron que era la edad.",
-      "respuesta": "Tienes derecho a una conversación informada. Llega preparada.",
-      "foto": "f30a", "recorte": "cut19a", "color": "#CFE3F7",
-      "lecciones": [
-        { "id": "m8-1", "titulo": "Terapia hormonal: lo que cambió desde 2002", "min": 9, "video": "",
-          "texto": ["El miedo a la terapia hormonal viene en gran parte del estudio WHI de 2002, que incluyó a mujeres de edad media de 63 años con un tipo concreto de hormonas. Los análisis posteriores mostraron que el balance riesgo-beneficio depende mucho de la edad, el momento de inicio, el tipo y la vía.", "Para muchas mujeres menores de 60 años o en los primeros 10 años tras la menopausia, y sin contraindicaciones, los beneficios suelen superar a los riesgos. La decisión es individual y se toma con tu médica."],
-          "claves": ["El riesgo depende de edad, momento, tipo y vía.", "Los estrógenos por la piel no aumentan el riesgo de trombosis como los orales.", "Es una decisión personal, informada y revisable."],
-          "mito": { "mito": "La terapia hormonal siempre produce cáncer de mama y trombosis.", "verdad": "Los riesgos existen pero son pequeños y dependen del tipo, la vía y tu historia. Muchas mujeres pueden usarla de forma segura con seguimiento." },
-          "tarea": "Lee la mesa de decisión de PAUSA y marca tus dudas.",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Tu mesa de decisión" }] },
-        { "id": "m8-2", "titulo": "Opciones sin hormonas", "min": 6, "video": "",
-          "texto": ["Si no puedes o no quieres usar hormonas, hay medicamentos sin hormonas para los sofocos y terapias psicológicas con evidencia. Tu profesional puede valorar cuál encaja contigo.", "Revisa también tus chequeos: tensión, colesterol, glucosa, densitometría y cribados según tu edad."],
-          "claves": ["Hay alternativas eficaces sin hormonas.", "La TCC ayuda con sofocos, sueño y ánimo.", "Esta etapa es un buen momento para tus chequeos."],
-          "tarea": "Revisa tu mapa de chequeos y apunta lo que te falta.",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Mapa de chequeos (pág. 19)" }] },
-        { "id": "m8-3", "titulo": "Prepara tu consulta en 10 minutos", "min": 5, "video": "",
-          "texto": ["Llega con tu resumen de síntomas, tus 3 preguntas principales y lo que ya has probado. La hoja de consulta y la app te lo ponen fácil.", "Si sientes que no te escuchan, tienes derecho a pedir una segunda opinión."],
-          "claves": ["Resumen + 3 preguntas + lo que ya probaste.", "Pide que te expliquen opciones con y sin hormonas.", "Una segunda opinión es tu derecho."],
-          "tarea": "Genera tu resumen en la app y descárgalo en PDF.",
-          "recursos": [{ "tipo": "app", "ruta": "consulta", "texto": "Mi consulta (resumen en PDF)" }, { "tipo": "pdf", "item": "plantillas", "texto": "Hoja de consulta" }] }
-      ]
-    },
-    {
-      "id": "m9", "num": 9, "titulo": "Trabajo, vida y una nueva etapa", "subtitulo": "Volver a sentirte tú, con límites y libertad",
-      "frase": "Sentía que llevaba un cartel que decía: vieja, acabada.",
-      "respuesta": "No es el final: es una graduación. La segunda mitad de tu vida también es tuya.",
-      "foto": "f38a", "recorte": "cut12a", "color": "#FFE7A8",
-      "lecciones": [
-        { "id": "m9-1", "titulo": "Menopausia en el trabajo", "min": 7, "video": "",
-          "texto": ["Sofocos en una reunión, olvidos, cansancio: muchas mujeres piensan en dejar su trabajo por síntomas que se podrían manejar con pequeños ajustes.", "Tú decides cuánto contar. Un ventilador, flexibilidad horaria o pausas pueden marcar la diferencia."],
-          "claves": ["Tú decides qué y cuánto contar.", "Pedir un ajuste es cuidar tu rendimiento.", "Prepárate con datos de tu diario."],
-          "tarea": "Rellena tu mapa laboral del Kit Trabajo.",
-          "recursos": [{ "tipo": "pdf", "item": "k3", "texto": "Kit Menopausia en el trabajo" }] },
-        { "id": "m9-2", "titulo": "Tu red de apoyo", "min": 5, "video": "",
-          "texto": ["Hablar con amigas, familia o grupos de mujeres en la misma etapa reduce la sensación de soledad. Lo que se nombra pesa menos.", "Comparte lo que aprendes: muchas mujeres a tu alrededor lo están viviendo en silencio."],
-          "claves": ["Nombrarlo quita peso.", "Busca a otras mujeres en la misma etapa.", "Comparte lo que te sirve."],
-          "tarea": "Cuéntale a una amiga algo que aprendiste en PLENA.",
-          "recursos": [{ "tipo": "pdf", "item": "pausa", "texto": "PAUSA · Guiones para familia" }] },
-        { "id": "m9-3", "titulo": "Tu plan de 30 días y tu graduación", "min": 6, "video": "",
-          "texto": ["Seis hábitos sencillos durante 30 días: agua, movimiento, fuerza, luz natural, proteína y rutina de sueño. Pequeño, constante y tuyo.", "Cuando completes la ruta, descarga tu certificado de graduación. Te lo has ganado."],
-          "claves": ["Pequeños hábitos, todos los días.", "Lo que mides, mejora.", "Celebra cada avance."],
-          "tarea": "Empieza hoy tu Plan de 30 días en la app.",
-          "recursos": [{ "tipo": "app", "ruta": "plan30", "texto": "Plan de 30 días en la app" }, { "tipo": "pdf", "item": "plan30", "texto": "Plan de 30 días (PDF)" }] }
-      ]
+     "id": "m0-3",
+     "titulo": "Tu diario: tus síntomas son datos",
+     "min": 5,
+     "texto": [
+      "En consulta la memoria falla. Llegar con 2 a 4 semanas de registro cambia la conversación: muestras frecuencia, intensidad y cómo afecta a tu vida.",
+      "Puedes hacerlo en papel (Diario de síntomas) o en la app, que te arma las gráficas y un resumen para tu médica."
+     ],
+     "claves": [
+      "Dos minutos cada noche son suficientes.",
+      "Anota sofocos, sueño, ánimo, energía y sangrados.",
+      "El resumen mensual es lo que le enseñas a tu profesional."
+     ],
+     "tarea": "Registra hoy tus síntomas en la app o en el diario.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "diario",
+       "texto": "Diario de síntomas y progreso"
+      },
+      {
+       "tipo": "app",
+       "ruta": "hoy",
+       "texto": "Registro diario en la app"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "diario",
+       "desde": 1,
+       "hasta": 2,
+       "titulo": "Cómo usar tu diario"
+      },
+      {
+       "item": "pausa",
+       "desde": 21,
+       "hasta": 24,
+       "titulo": "Tu diario de síntomas en 2 minutos"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuántas semanas de registro conviene llevar a la consulta?",
+      "opciones": [
+       "De 2 a 4 semanas",
+       "Un día",
+       "Un año"
+      ],
+      "correcta": 0,
+      "explica": "Con 2 a 4 semanas muestras frecuencia, intensidad y cómo afecta a tu vida."
+     }
     }
-  ],
-  "biblioteca": [
-    { "item": "pausa", "titulo": "PAUSA · El manual de la menopausia", "desc": "60 páginas, 10 capítulos y 10 herramientas.", "portada": "c-pausa" },
-    { "item": "guia", "titulo": "Guía Integral Menopausia Equilibrada", "desc": "38 páginas: síntomas, alimentación, movimiento, sueño y emociones.", "portada": "c-guia" },
-    { "item": "plantillas", "titulo": "3 plantillas rellenables", "desc": "Hoja de consulta, rastreador de 30 días y conversación.", "portada": "c-pl1" },
-    { "item": "diario", "titulo": "Diario de síntomas y progreso", "desc": "4 semanas rellenables y resumen mensual.", "portada": "c-diario" },
-    { "item": "plan30", "titulo": "Plan de 30 días", "desc": "Checklist diario para recuperar energía.", "portada": "c-plan30" },
-    { "item": "recetario", "titulo": "Recetario: 20 recetas", "desc": "Desayunos, almuerzos, cenas y snacks.", "portada": "c-recetario" },
-    { "item": "vitaminas", "titulo": "Vitaminas y suplementos", "desc": "Semáforo de evidencia.", "portada": "c-vitaminas" },
-    { "item": "yoga", "titulo": "Yoga en calma", "desc": "12 posturas suaves y respiración.", "portada": "c-yoga" },
-    { "item": "aroma", "titulo": "Aromaterapia", "desc": "Tres rituales seguros.", "portada": "c-aroma" },
-    { "item": "k1", "titulo": "Kit Noches frescas", "desc": "Sofocos e insomnio.", "portada": "c-k1" },
-    { "item": "k2", "titulo": "Kit Intimidad sin dolor", "desc": "Sequedad, deseo y conversación.", "portada": "c-k2" },
-    { "item": "k3", "titulo": "Kit Menopausia en el trabajo", "desc": "Ajustes y conversación con tu empresa.", "portada": "c-k3" },
-    { "item": "k4", "titulo": "Kit Fuerte después de los 45", "desc": "Fuerza, huesos y corazón.", "portada": "c-k4" }
-  ]
+   ],
+   "tema": {
+    "estilo": "collage",
+    "bg": "#FFDBDA",
+    "bg2": "#FFF3F1",
+    "acc": "#DB7F8E",
+    "deep": "#604D53",
+    "ink": "#3A2730",
+    "icono": "corazon",
+    "patron": "lineas",
+    "insignia": "Primer latido",
+    "palabra": "hola"
+   }
+  },
+  {
+   "id": "m1",
+   "num": 1,
+   "titulo": "Entiende tu etapa",
+   "subtitulo": "Perimenopausia, menopausia y posmenopausia",
+   "frase": "¿Esto es normal? ¿Me pasa a mí sola?",
+   "respuesta": "Saber en qué etapa estás te quita miedo y te da un mapa.",
+   "foto": "f73",
+   "recorte": "cut28a",
+   "color": "#FCE4EC",
+   "lecciones": [
+    {
+     "id": "m1-1",
+     "titulo": "Las 3 etapas, sin enredos",
+     "min": 7,
+     "texto": [
+      "La perimenopausia es la transición: las reglas cambian (más cortas, más largas, más o menos abundantes) y aparecen los síntomas. Suele empezar en la década de los 40 y puede durar años.",
+      "La menopausia es un momento concreto: se confirma cuando llevas 12 meses seguidos sin regla. A partir de ahí hablamos de posmenopausia, que es una parte larga y valiosa de tu vida."
+     ],
+     "claves": [
+      "Menopausia = 12 meses seguidos sin regla.",
+      "La perimenopausia puede durar varios años.",
+      "La edad media de la menopausia está alrededor de los 50 años."
+     ],
+     "mito": {
+      "mito": "La menopausia es un proceso que dura años.",
+      "verdad": "La menopausia es un punto en el calendario. Lo que dura años es la transición (perimenopausia) y lo que viene después (posmenopausia)."
+     },
+     "tarea": "Apunta la fecha de tu última regla en la app (sección Ciclo).",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Capítulo 01: Qué es (y qué no es)"
+      },
+      {
+       "tipo": "app",
+       "ruta": "ciclo",
+       "texto": "Registra tu ciclo en la app"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 6,
+       "hasta": 10,
+       "titulo": "Capítulo 01: qué es (y qué no es)"
+      },
+      {
+       "item": "guia",
+       "desde": 22,
+       "hasta": 23,
+       "titulo": "¿En qué etapa estoy?"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuándo se confirma la menopausia?",
+      "opciones": [
+       "Con el primer sofoco",
+       "Tras 12 meses seguidos sin regla",
+       "A los 50 años exactos"
+      ],
+      "correcta": 1,
+      "explica": "Es un punto en el calendario: 12 meses seguidos sin regla."
+     }
+    },
+    {
+     "id": "m1-2",
+     "titulo": "Tus hormonas, explicadas fácil",
+     "min": 6,
+     "texto": [
+      "El estrógeno sube y baja sin orden en la perimenopausia, y tras la última regla queda bajo. De ahí vienen muchos síntomas: calores, sequedad, sueño. La progesterona baja antes, cuando los ciclos dejan de ovular.",
+      "La FSH es la señal del cerebro al ovario. Por eso un solo análisis puede salir normal en plena transición: en mujeres sanas de más de 45 años el diagnóstico se basa sobre todo en los síntomas y el patrón de la regla."
+     ],
+     "claves": [
+      "Los altibajos de estrógeno explican gran parte de los síntomas.",
+      "Un análisis aislado no descarta la perimenopausia.",
+      "Lo que sientes es la prueba principal."
+     ],
+     "tarea": "Haz el mapa de síntomas de PAUSA (pág. 12) y marca la intensidad.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Mapa de síntomas (pág. 12)"
+      },
+      {
+       "tipo": "pdf",
+       "item": "guia",
+       "texto": "Guía Integral · Síntomas"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 8,
+       "hasta": 9,
+       "titulo": "Tus hormonas, explicadas"
+      },
+      {
+       "item": "pausa",
+       "desde": 11,
+       "hasta": 15,
+       "titulo": "Capítulo 02: los síntomas, sin tabú"
+      },
+      {
+       "item": "guia",
+       "desde": 6,
+       "hasta": 11,
+       "titulo": "Los 7 síntomas"
+      }
+     ],
+     "quiz": {
+      "pregunta": "Si tienes más de 45 años y un análisis de FSH sale normal…",
+      "opciones": [
+       "Seguro no estás en la perimenopausia",
+       "Puede ser perimenopausia: cuentan sobre todo tus síntomas y tu regla",
+       "Debes repetirlo cada semana"
+      ],
+      "correcta": 1,
+      "explica": "Las hormonas suben y bajan: un análisis aislado no la descarta."
+     }
+    },
+    {
+     "id": "m1-3",
+     "titulo": "Mitos que te han hecho sufrir",
+     "min": 6,
+     "texto": [
+      "«Es lo que toca», «aguántate», «es psicológico»… Los mitos hacen que muchas mujeres pasen años sin ayuda. Los síntomas son señales de un cambio que se puede acompañar con hábitos y, si hace falta, con tratamiento.",
+      "En este módulo y en PAUSA tienes los mitos más comunes con lo que dice la evidencia."
+     ],
+     "claves": [
+      "Los síntomas no hay que aguantarlos en silencio.",
+      "Hay opciones con y sin hormonas.",
+      "Pedir ayuda no es exagerar."
+     ],
+     "mito": {
+      "mito": "Los síntomas son «lo que toca por la edad» y hay que aguantarlos.",
+      "verdad": "La menopausia no es una enfermedad, pero sus síntomas se pueden aliviar con estilo de vida y tratamientos adecuados."
+     },
+     "tarea": "Elige el mito que más te ha afectado y compártelo con alguien de confianza.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Mitos y realidad"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 51,
+       "hasta": 53,
+       "titulo": "Capítulo 10: 10 mitos y la verdad"
+      },
+      {
+       "item": "guia",
+       "desde": 34,
+       "hasta": 34,
+       "titulo": "Preguntas frecuentes"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Qué es lo más útil frente a los síntomas?",
+      "opciones": [
+       "Aguantar en silencio",
+       "Buscar información y ayuda: hay opciones con y sin hormonas",
+       "Esperar a que pasen solos"
+      ],
+      "correcta": 1,
+      "explica": "Pedir ayuda no es exagerar."
+     }
+    }
+   ],
+   "tema": {
+    "estilo": "revista",
+    "bg": "#F1E4DB",
+    "bg2": "#FBF5F1",
+    "acc": "#92333C",
+    "deep": "#372937",
+    "ink": "#372937",
+    "icono": "luna",
+    "patron": "puntos",
+    "insignia": "Mapa en mano",
+    "palabra": "etapas"
+   }
+  },
+  {
+   "id": "m2",
+   "num": 2,
+   "titulo": "Sofocos sin drama",
+   "subtitulo": "Los «volcanes internos» y los sudores nocturnos",
+   "frase": "La sala de juntas estaba helada… pero para mí era un volcán a punto de entrar en erupción.",
+   "respuesta": "Los sofocos tienen desencadenantes, trucos que ayudan y tratamientos eficaces.",
+   "foto": "f29a",
+   "recorte": "cut03a",
+   "color": "#FFD3E3",
+   "lecciones": [
+    {
+     "id": "m2-1",
+     "titulo": "Qué es un sofoco y por qué ocurre",
+     "min": 6,
+     "texto": [
+      "El sofoco es una sensación súbita de calor que sube por el pecho y la cara, a veces con sudor y palpitaciones. Ocurre porque el «termostato» del cerebro se vuelve más sensible cuando bajan los estrógenos.",
+      "Son muy frecuentes y en muchas mujeres duran varios años. Por eso merece la pena tratarlos en serio, no solo esperar."
+     ],
+     "claves": [
+      "El termostato del cerebro se vuelve más sensible.",
+      "Pueden durar años: no hay que esperar a que pasen solos.",
+      "De noche, se convierten en sudores que rompen el sueño."
+     ],
+     "tarea": "Cuenta tus sofocos de hoy en la app con el botón +.",
+     "recursos": [
+      {
+       "tipo": "app",
+       "ruta": "hoy",
+       "texto": "Contador de sofocos"
+      },
+      {
+       "tipo": "pdf",
+       "item": "guia",
+       "texto": "Guía Integral · Sofocos y sudores nocturnos"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "guia",
+       "desde": 7,
+       "hasta": 7,
+       "titulo": "Calor: el síntoma 1"
+      },
+      {
+       "item": "k1",
+       "desde": 1,
+       "hasta": 2,
+       "titulo": "Noches frescas: la evidencia"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Por qué ocurre un sofoco?",
+      "opciones": [
+       "Por nervios",
+       "El termostato del cerebro se vuelve más sensible",
+       "Por comer mucho"
+      ],
+      "correcta": 1,
+      "explica": "Con la bajada de estrógenos, el termostato del cerebro se vuelve más sensible."
+     }
+    },
+    {
+     "id": "m2-2",
+     "titulo": "Tus desencadenantes",
+     "min": 6,
+     "texto": [
+      "Alcohol, bebidas muy calientes, picante, cafeína, estrés y habitaciones cálidas son desencadenantes habituales, pero cambian de una mujer a otra.",
+      "Durante dos semanas, anota cuándo aparecen. Verás patrones que puedes ajustar."
+     ],
+     "claves": [
+      "Cada mujer tiene sus propios desencadenantes.",
+      "El alcohol empeora los sofocos y el sueño.",
+      "Ropa por capas y un ventilador cerca ayudan mucho."
+     ],
+     "tarea": "Anota 3 sofocos con lo que hacías justo antes.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "k1",
+       "texto": "Kit Noches frescas"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "k1",
+       "desde": 3,
+       "hasta": 5,
+       "titulo": "Protocolo de 3 semanas y registro"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuál de estos es un desencadenante habitual de sofocos?",
+      "opciones": [
+       "El alcohol",
+       "Beber agua fresca",
+       "Dormir con la ventana abierta"
+      ],
+      "correcta": 0,
+      "explica": "El alcohol empeora los sofocos y el sueño. Cada mujer tiene los suyos: anótalos."
+     }
+    },
+    {
+     "id": "m2-3",
+     "titulo": "Qué funciona según la evidencia",
+     "min": 8,
+     "texto": [
+      "La terapia hormonal es el tratamiento más eficaz para los sofocos en muchas mujeres. También hay opciones sin hormonas con evidencia, que tu médica puede valorar según tu caso.",
+      "La terapia cognitivo-conductual y la hipnosis clínica han mostrado ayudar a sobrellevarlos. Muchos suplementos populares no tienen evidencia sólida: pregunta antes de gastar."
+     ],
+     "claves": [
+      "Hay tratamientos con y sin hormonas.",
+      "La TCC ayuda a vivir mejor con los sofocos.",
+      "Consulta antes de tomar suplementos por tu cuenta."
+     ],
+     "tarea": "Escribe tu pregunta sobre sofocos para tu próxima consulta.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Tratamientos con evidencia"
+      },
+      {
+       "tipo": "app",
+       "ruta": "consulta",
+       "texto": "Prepara tu consulta en la app"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 29,
+       "hasta": 30,
+       "titulo": "Capítulo 06: opciones y terapia hormonal"
+      },
+      {
+       "item": "pausa",
+       "desde": 33,
+       "hasta": 33,
+       "titulo": "Opciones sin hormonas"
+      },
+      {
+       "item": "k1",
+       "desde": 6,
+       "hasta": 6,
+       "titulo": "Cuándo pedir ayuda"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Qué conviene antes de comprar suplementos para los sofocos?",
+      "opciones": [
+       "Comprar el más caro",
+       "Consultar: muchos no tienen evidencia sólida",
+       "Tomar varios a la vez"
+      ],
+      "correcta": 1,
+      "explica": "Pregunta antes de gastar: hay tratamientos con y sin hormonas que sí tienen evidencia."
+     }
+    }
+   ],
+   "tema": {
+    "estilo": "poster",
+    "bg": "#FFC1CC",
+    "bg2": "#FFE6EB",
+    "acc": "#FF1A5D",
+    "deep": "#5A0F2A",
+    "ink": "#3D0A1D",
+    "icono": "llama",
+    "patron": "rayos",
+    "insignia": "Volcán en calma",
+    "palabra": "calor"
+   }
+  },
+  {
+   "id": "m3",
+   "num": 3,
+   "titulo": "Dormir de un tirón",
+   "subtitulo": "Del despertar de las 3 a. m. al descanso profundo",
+   "frase": "Me despierto 4 o 5 veces por noche y a las 3 ya no me vuelvo a dormir.",
+   "respuesta": "El sueño se puede recuperar con un plan, paso a paso.",
+   "foto": "f34a",
+   "recorte": "cut09a",
+   "color": "#CFE3F7",
+   "lecciones": [
+    {
+     "id": "m3-1",
+     "titulo": "Por qué te despiertas de madrugada",
+     "min": 6,
+     "texto": [
+      "En la transición, los sudores nocturnos, la ansiedad y los cambios hormonales fragmentan el sueño. El alcohol y las cenas tardías lo empeoran.",
+      "Entender por qué te despiertas te ayuda a elegir qué cambiar primero."
+     ],
+     "claves": [
+      "Sudores, ansiedad y hormonas fragmentan el sueño.",
+      "El alcohol empeora la segunda mitad de la noche.",
+      "El insomnio crónico tiene tratamiento eficaz (TCC-I)."
+     ],
+     "tarea": "Anota en la app a qué hora te despertaste anoche.",
+     "recursos": [
+      {
+       "tipo": "app",
+       "ruta": "hoy",
+       "texto": "Registra tu sueño"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 13,
+       "hasta": 13,
+       "titulo": "Cuando la noche se rompe"
+      },
+      {
+       "item": "guia",
+       "desde": 19,
+       "hasta": 21,
+       "titulo": "Sección 04: sueño y descanso"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Qué empeora sobre todo la segunda mitad de la noche?",
+      "opciones": [
+       "El alcohol",
+       "La luz de la mañana",
+       "Una ducha tibia"
+      ],
+      "correcta": 0,
+      "explica": "El alcohol fragmenta el sueño, sobre todo de madrugada."
+     }
+    },
+    {
+     "id": "m3-2",
+     "titulo": "Tu ritual de noche",
+     "min": 7,
+     "texto": [
+      "Habitación fresca y oscura, horario regular, luz de la mañana y pantallas fuera de la cama son la base. Cenar ligero y un par de horas antes de acostarte ayuda.",
+      "Un ritual corto (ducha tibia, respiración lenta, aroma que te guste) le avisa a tu cuerpo de que toca descansar."
+     ],
+     "claves": [
+      "Luz natural por la mañana, oscuridad por la noche.",
+      "Habitación fresca y ropa de cama transpirable.",
+      "Si no duermes en 20 minutos, levántate y vuelve con sueño."
+     ],
+     "tarea": "Elige un ritual de 10 minutos y pruébalo 7 noches.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "aroma",
+       "texto": "Aromaterapia · Ritual de noche"
+      },
+      {
+       "tipo": "pdf",
+       "item": "yoga",
+       "texto": "Yoga en calma"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 38,
+       "hasta": 38,
+       "titulo": "Plan de sueño"
+      },
+      {
+       "item": "aroma",
+       "desde": 4,
+       "hasta": 6,
+       "titulo": "Seis aceites y tres rituales"
+      },
+      {
+       "item": "yoga",
+       "desde": 8,
+       "hasta": 8,
+       "titulo": "Respiración: 5 minutos"
+      }
+     ],
+     "quiz": {
+      "pregunta": "Si no te duermes en unos 20 minutos…",
+      "opciones": [
+       "Quédate en la cama mirando el celular",
+       "Levántate y vuelve cuando tengas sueño",
+       "Toma un café"
+      ],
+      "correcta": 1,
+      "explica": "Así la cama vuelve a ser sinónimo de dormir."
+     }
+    },
+    {
+     "id": "m3-3",
+     "titulo": "Cuando el insomnio no se va",
+     "min": 5,
+     "texto": [
+      "Si llevas meses durmiendo mal, la terapia cognitivo-conductual para el insomnio (TCC-I) es el tratamiento de primera elección según las guías. También conviene revisar sofocos, ánimo y apnea del sueño con tu profesional.",
+      "Lleva tu registro de sueño a la consulta: es la mejor prueba."
+     ],
+     "claves": [
+      "La TCC-I es la primera opción para el insomnio crónico.",
+      "Ronquidos fuertes o pausas al respirar: consulta.",
+      "Tu registro de sueño es tu mejor aliado."
+     ],
+     "tarea": "Pide cita si llevas más de 3 meses durmiendo mal.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "k1",
+       "texto": "Kit Noches frescas"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "guia",
+       "desde": 20,
+       "hasta": 20,
+       "titulo": "Dulces sueños con TCC"
+      },
+      {
+       "item": "k1",
+       "desde": 4,
+       "hasta": 6,
+       "titulo": "Tu rutina y cuándo pedir ayuda"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuál es el tratamiento de primera elección para el insomnio crónico?",
+      "opciones": [
+       "La terapia cognitivo-conductual para el insomnio (TCC-I)",
+       "Dormir más horas el fin de semana",
+       "Cenar más tarde"
+      ],
+      "correcta": 0,
+      "explica": "Las guías recomiendan primero la TCC-I."
+     }
+    }
+   ],
+   "tema": {
+    "estilo": "poster",
+    "bg": "#2E2440",
+    "bg2": "#F1EDF7",
+    "acc": "#D2CADF",
+    "deep": "#17112A",
+    "ink": "#FFFFFF",
+    "icono": "noche",
+    "patron": "estrellas",
+    "insignia": "Noche serena",
+    "palabra": "dormir",
+    "oscuro": true
+   }
+  },
+  {
+   "id": "m4",
+   "num": 4,
+   "titulo": "Psicomenopausia",
+   "subtitulo": "Mente, memoria y emociones",
+   "frase": "¿Me estoy volviendo tonta? No sé qué me pasa, pero no soy yo.",
+   "respuesta": "No te estás volviendo tonta: tu cerebro se está adaptando a un cambio hormonal. Y hay mucho que puedes hacer.",
+   "foto": "f35a",
+   "recorte": "cut17a",
+   "color": "#E9D7F5",
+   "lecciones": [
+    {
+     "id": "m4-1",
+     "titulo": "La niebla mental tiene explicación",
+     "min": 7,
+     "texto": [
+      "Olvidar palabras, perder el hilo o entrar a una habitación sin saber a qué: muchas mujeres lo notan en la transición. Los estudios muestran que suele ser temporal y mejora tras la menopausia.",
+      "Dormir mal, el estrés y el ánimo bajo lo empeoran. Cuidarlos es cuidar tu memoria."
+     ],
+     "claves": [
+      "La niebla mental es frecuente y suele ser pasajera.",
+      "Sueño, estrés y ánimo influyen mucho.",
+      "Si los olvidos te preocupan de verdad, coméntalo en consulta."
+     ],
+     "tarea": "Durante una semana, usa listas y una agenda: quítale carga a tu memoria.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Mente y emociones"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "guia",
+       "desde": 9,
+       "hasta": 9,
+       "titulo": "Cansancio y niebla mental"
+      },
+      {
+       "item": "pausa",
+       "desde": 14,
+       "hasta": 14,
+       "titulo": "Ánimo y mente"
+      },
+      {
+       "item": "pausa",
+       "desde": 18,
+       "hasta": 18,
+       "titulo": "Lo que no se ve: la mente"
+      }
+     ],
+     "quiz": {
+      "pregunta": "La niebla mental de la transición…",
+      "opciones": [
+       "Es permanente",
+       "Suele ser temporal y mejora tras la menopausia",
+       "Significa que tienes demencia"
+      ],
+      "correcta": 1,
+      "explica": "Es frecuente y suele ser pasajera. Sueño, estrés y ánimo influyen mucho."
+     }
+    },
+    {
+     "id": "m4-2",
+     "titulo": "Ansiedad, irritabilidad y la montaña rusa emocional",
+     "min": 7,
+     "texto": [
+      "Los cambios hormonales pueden hacer que todo te afecte más: impaciencia, enfados que no reconoces, ansiedad sin motivo claro. No es falta de carácter.",
+      "La respiración lenta, el movimiento, el contacto social y la terapia psicológica ayudan. Nombrar lo que sientes ya baja la intensidad."
+     ],
+     "claves": [
+      "No es falta de carácter: hay una base biológica.",
+      "La terapia psicológica tiene buena evidencia.",
+      "Moverte y hablar con alguien de confianza ayuda."
+     ],
+     "tarea": "Practica 3 minutos de respiración lenta (inhala 4, exhala 6) hoy.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "yoga",
+       "texto": "Yoga en calma · Respiración"
+      },
+      {
+       "tipo": "pdf",
+       "item": "aroma",
+       "texto": "Aromaterapia · Ritual de estrés"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "guia",
+       "desde": 27,
+       "hasta": 28,
+       "titulo": "Sección 06: emociones y caja de calma"
+      },
+      {
+       "item": "yoga",
+       "desde": 8,
+       "hasta": 8,
+       "titulo": "Inhala, exhala"
+      },
+      {
+       "item": "aroma",
+       "desde": 5,
+       "hasta": 5,
+       "titulo": "Rituales para la calma"
+      }
+     ],
+     "quiz": {
+      "pregunta": "La irritabilidad y la ansiedad en esta etapa…",
+      "opciones": [
+       "Son falta de carácter",
+       "Tienen una base biológica y hay herramientas que ayudan",
+       "No tienen solución"
+      ],
+      "correcta": 1,
+      "explica": "Respiración lenta, movimiento, contacto social y terapia psicológica ayudan."
+     }
+    },
+    {
+     "id": "m4-3",
+     "titulo": "Ánimo bajo: cuándo pedir ayuda",
+     "min": 6,
+     "texto": [
+      "En la perimenopausia aumenta el riesgo de depresión. Si casi todos los días te sientes triste, vacía o sin ganas de lo que antes disfrutabas, y dura semanas, coméntalo con un profesional: tiene tratamiento.",
+      "Si alguna vez piensas en hacerte daño, busca ayuda de inmediato: servicios de emergencia o alguien de confianza que te acompañe."
+     ],
+     "claves": [
+      "El ánimo bajo persistente es motivo de consulta.",
+      "Hay tratamientos eficaces.",
+      "Pedir ayuda es un acto de cuidado, no de debilidad."
+     ],
+     "tarea": "Revisa las señales de alarma en la app.",
+     "recursos": [
+      {
+       "tipo": "app",
+       "ruta": "alarma",
+       "texto": "Señales de alarma"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 18,
+       "hasta": 18,
+       "titulo": "Pedir ayuda no es rendirse"
+      },
+      {
+       "item": "pausa",
+       "desde": 44,
+       "hasta": 44,
+       "titulo": "Señales de alarma"
+      },
+      {
+       "item": "guia",
+       "desde": 31,
+       "hasta": 31,
+       "titulo": "Cuándo no esperar"
+      }
+     ],
+     "quiz": {
+      "pregunta": "Si te sientes triste o vacía casi todos los días durante semanas…",
+      "opciones": [
+       "Coméntalo con un profesional: tiene tratamiento",
+       "Es normal, aguanta",
+       "Espera a que pase sola"
+      ],
+      "correcta": 0,
+      "explica": "Pedir ayuda es un acto de cuidado. Y si piensas en hacerte daño, busca ayuda de inmediato."
+     }
+    },
+    {
+     "id": "m4-4",
+     "titulo": "Autoestima: verte de nuevo",
+     "min": 6,
+     "texto": [
+      "Muchas mujeres sienten que se vuelven invisibles. Esta etapa también es una oportunidad para poner límites, cuidar tu cuerpo por lo que hace y no solo por cómo se ve, y decidir qué quieres para la segunda mitad de tu vida.",
+      "Escribirte con la amabilidad con la que le hablarías a tu mejor amiga cambia la conversación interna."
+     ],
+     "claves": [
+      "Tu valor no depende de tu edad.",
+      "Cuidarte es poner límites claros.",
+      "Habla contigo como hablarías con tu mejor amiga."
+     ],
+     "tarea": "Escribe una frase amable para ti y déjala a la vista.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "diario",
+       "texto": "Diario · Mi progreso"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 41,
+       "hasta": 42,
+       "titulo": "La empatía empieza por ti"
+      },
+      {
+       "item": "guia",
+       "desde": 29,
+       "hasta": 29,
+       "titulo": "Autoestima y cuerpo"
+      },
+      {
+       "item": "diario",
+       "desde": 8,
+       "hasta": 8,
+       "titulo": "Mírate: cierre del mes"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cómo cambiar la conversación interna?",
+      "opciones": [
+       "Exigirte más",
+       "Hablarte como le hablarías a tu mejor amiga",
+       "Compararte con otras"
+      ],
+      "correcta": 1,
+      "explica": "La amabilidad contigo también se entrena."
+     }
+    }
+   ],
+   "tema": {
+    "estilo": "revista",
+    "bg": "#D2CADF",
+    "bg2": "#F4F1F8",
+    "acc": "#7B5EA7",
+    "deep": "#372937",
+    "ink": "#2A2138",
+    "icono": "mente",
+    "patron": "cuadros",
+    "insignia": "Mente clara",
+    "palabra": "mente"
+   }
+  },
+  {
+   "id": "m5",
+   "num": 5,
+   "titulo": "Cuerpo fuerte",
+   "subtitulo": "Músculo, huesos y la grasa del abdomen",
+   "frase": "Como lo mismo que antes y aun así engordo… y he perdido la cintura.",
+   "respuesta": "Tu cuerpo no te está fallando: está cambiando. El músculo es tu mejor aliado.",
+   "foto": "f36a",
+   "recorte": "cut26a",
+   "color": "#FFE7A8",
+   "lecciones": [
+    {
+     "id": "m5-1",
+     "titulo": "Por qué cambia la figura",
+     "min": 6,
+     "texto": [
+      "Con la bajada de estrógenos, la grasa tiende a acumularse más en el abdomen y se pierde masa muscular con más facilidad. No es solo cuestión de comer menos.",
+      "Por eso el objetivo no es la báscula, sino cuidar el músculo, el corazón y los huesos."
+     ],
+     "claves": [
+      "La grasa se redistribuye hacia el abdomen.",
+      "Se pierde músculo con más facilidad.",
+      "El objetivo es la salud, no un número en la báscula."
+     ],
+     "mito": {
+      "mito": "Hay que comer muy poco y hacer mucho cardio.",
+      "verdad": "Comer muy poco favorece la pérdida de músculo. La combinación que más ayuda es fuerza 2 o 3 días por semana, movimiento diario y proteína suficiente."
+     },
+     "tarea": "Mide tu cintura y anótala: es más útil que el peso.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "guia",
+       "texto": "Guía Integral · Peso y cuerpo"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "guia",
+       "desde": 8,
+       "hasta": 8,
+       "titulo": "Peso y cuerpo"
+      },
+      {
+       "item": "pausa",
+       "desde": 15,
+       "hasta": 17,
+       "titulo": "Tu cuerpo, huesos y corazón"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Qué medida es más útil que el peso en esta etapa?",
+      "opciones": [
+       "La cintura",
+       "La talla de zapato",
+       "Las calorías del día"
+      ],
+      "correcta": 0,
+      "explica": "La grasa se redistribuye al abdomen: la cintura dice más que la báscula."
+     }
+    },
+    {
+     "id": "m5-2",
+     "titulo": "Fuerza: tu escudo para músculos y huesos",
+     "min": 8,
+     "texto": [
+      "Entrenar fuerza 2 o 3 días por semana ayuda a conservar músculo, mejora la glucosa y protege los huesos. Se puede empezar en casa, con poco peso y buena técnica.",
+      "Los ejercicios con algo de impacto (caminar rápido, subir escaleras, bailar) también estimulan el hueso, siempre adaptados a ti."
+     ],
+     "claves": [
+      "Fuerza 2–3 días por semana.",
+      "Empieza suave y sube poco a poco.",
+      "El impacto adaptado ayuda a tus huesos."
+     ],
+     "tarea": "Haz hoy tu primera rutina de fuerza (15 minutos).",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "k4",
+       "texto": "Kit Fuerte después de los 45"
+      },
+      {
+       "tipo": "app",
+       "ruta": "plan30",
+       "texto": "Marca tus días de fuerza"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "k4",
+       "desde": 1,
+       "hasta": 4,
+       "titulo": "Fuerte después de los 45: el plan"
+      },
+      {
+       "item": "pausa",
+       "desde": 35,
+       "hasta": 36,
+       "titulo": "Cuerpo en movimiento: fuerza en casa"
+      },
+      {
+       "item": "guia",
+       "desde": 16,
+       "hasta": 18,
+       "titulo": "Sección 03: movimiento"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuántos días por semana se recomienda entrenar fuerza?",
+      "opciones": [
+       "Ninguno",
+       "2 o 3 días",
+       "Solo cardio, todos los días"
+      ],
+      "correcta": 1,
+      "explica": "Fuerza 2–3 días por semana para músculo, glucosa y huesos."
+     }
+    },
+    {
+     "id": "m5-3",
+     "titulo": "Suelo pélvico y core",
+     "min": 6,
+     "texto": [
+      "Las pérdidas de orina al toser, reír o saltar son frecuentes y tienen solución. Los ejercicios de suelo pélvico, bien hechos y constantes, son el primer tratamiento.",
+      "Si no notas mejoría, una fisioterapeuta de suelo pélvico puede guiarte."
+     ],
+     "claves": [
+      "Las pérdidas de orina no son «normales» de por vida.",
+      "Los ejercicios de suelo pélvico funcionan con constancia.",
+      "La fisioterapia especializada ayuda mucho."
+     ],
+     "tarea": "Practica 3 series de contracciones de suelo pélvico hoy.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "k2",
+       "texto": "Kit Intimidad sin dolor"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 12,
+       "hasta": 12,
+       "titulo": "La zona íntima"
+      },
+      {
+       "item": "yoga",
+       "desde": 5,
+       "hasta": 5,
+       "titulo": "Fuerza suave y suelo"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuál es el primer tratamiento para las pérdidas de orina al toser o reír?",
+      "opciones": [
+       "Ejercicios de suelo pélvico constantes",
+       "Beber menos agua",
+       "Resignarse"
+      ],
+      "correcta": 0,
+      "explica": "Funcionan con constancia, y una fisioterapeuta especializada ayuda mucho."
+     }
+    }
+   ],
+   "tema": {
+    "estilo": "collage",
+    "bg": "#F6D2C4",
+    "bg2": "#FDF1EC",
+    "acc": "#D2553F",
+    "deep": "#604D53",
+    "ink": "#3A2420",
+    "icono": "pesa",
+    "patron": "diagonal",
+    "insignia": "Fuerza imparable",
+    "palabra": "fuerza"
+   }
+  },
+  {
+   "id": "m6",
+   "num": 6,
+   "titulo": "Comer sin dietas extremas",
+   "subtitulo": "El plato que sí funciona en esta etapa",
+   "frase": "Probé la dieta de la piña, la keto, la de lechuga y pechuga… y gané el doble.",
+   "respuesta": "No necesitas otra dieta. Necesitas un plato equilibrado que puedas mantener.",
+   "foto": "f45",
+   "recorte": "cut16a",
+   "color": "#D9F2E3",
+   "lecciones": [
+    {
+     "id": "m6-1",
+     "titulo": "El plato equilibrado",
+     "min": 7,
+     "texto": [
+      "Medio plato de verduras, un cuarto de proteína y un cuarto de carbohidratos integrales, con grasas saludables como el aceite de oliva. Así de sencillo, y adaptable a tu cocina de siempre.",
+      "La proteína en cada comida ayuda a conservar el músculo."
+     ],
+     "claves": [
+      "½ verduras · ¼ proteína · ¼ integrales.",
+      "Proteína en cada comida.",
+      "Aceite de oliva, frutos secos y semillas."
+     ],
+     "mito": {
+      "mito": "Hay que eliminar por completo los carbohidratos.",
+      "verdad": "Los carbohidratos integrales, legumbres y tubérculos en raciones adecuadas forman parte de una alimentación saludable y ayudan a mantener la energía."
+     },
+     "tarea": "Arma hoy un plato equilibrado y hazle una foto.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "recetario",
+       "texto": "Recetario: 20 recetas"
+      },
+      {
+       "tipo": "pdf",
+       "item": "guia",
+       "texto": "Guía Integral · El plato equilibrado"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "guia",
+       "desde": 12,
+       "hasta": 13,
+       "titulo": "Sección 02: tu guía visual para comer"
+      },
+      {
+       "item": "recetario",
+       "desde": 2,
+       "hasta": 4,
+       "titulo": "Antes de cocinar y tu lista de compras"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cómo es el plato equilibrado?",
+      "opciones": [
+       "Solo proteína",
+       "½ verduras · ¼ proteína · ¼ integrales",
+       "Sin carbohidratos"
+      ],
+      "correcta": 1,
+      "explica": "Con grasas saludables como el aceite de oliva, y proteína en cada comida."
+     }
+    },
+    {
+     "id": "m6-2",
+     "titulo": "Calcio, vitamina D y lo que sí vale la pena",
+     "min": 6,
+     "texto": [
+      "Tus huesos necesitan calcio (lácteos, sardinas con espina, legumbres, verduras de hoja) y vitamina D. Pide a tu médica que valore si necesitas suplementos.",
+      "Muchos suplementos «para la menopausia» no tienen evidencia sólida. Antes de gastar, revisa el semáforo de evidencia."
+     ],
+     "claves": [
+      "Calcio y vitamina D para tus huesos.",
+      "Suplementos: mejor con indicación profesional.",
+      "Revisa la evidencia antes de comprar."
+     ],
+     "tarea": "Revisa el semáforo de suplementos y marca los que ya tomas.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "vitaminas",
+       "texto": "Guía de vitaminas y suplementos"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "vitaminas",
+       "desde": 2,
+       "hasta": 7,
+       "titulo": "El semáforo de vitaminas"
+      },
+      {
+       "item": "pausa",
+       "desde": 37,
+       "hasta": 37,
+       "titulo": "Comida para el hueso"
+      },
+      {
+       "item": "guia",
+       "desde": 14,
+       "hasta": 14,
+       "titulo": "Los 4 imprescindibles"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Qué necesitan tus huesos?",
+      "opciones": [
+       "Calcio y vitamina D",
+       "Azúcar",
+       "Ayuno prolongado"
+      ],
+      "correcta": 0,
+      "explica": "Y antes de tomar suplementos, mejor con indicación profesional."
+     }
+    },
+    {
+     "id": "m6-3",
+     "titulo": "Soja, café y alcohol: lo que dice la ciencia",
+     "min": 6,
+     "texto": [
+      "Los alimentos de soja (tofu, tempeh, bebida de soja) son seguros como parte de una dieta variada y pueden aliviar un poco los sofocos en algunas mujeres.",
+      "El alcohol empeora sofocos y sueño, y la cafeína tarde puede quitarte descanso. No hace falta prohibirse todo: observa cómo te sientan."
+     ],
+     "claves": [
+      "Los alimentos de soja son seguros en una dieta variada.",
+      "El alcohol empeora sofocos y sueño.",
+      "Café: mejor por la mañana."
+     ],
+     "mito": {
+      "mito": "La soja produce cáncer de mama.",
+      "verdad": "Los estudios en mujeres no muestran que los alimentos de soja aumenten ese riesgo; en una dieta variada son seguros."
+     },
+     "tarea": "Prueba una receta con tofu o legumbres esta semana.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "recetario",
+       "texto": "Recetario · Tofu salteado"
+      },
+      {
+       "tipo": "pdf",
+       "item": "plan30",
+       "texto": "Plan de 30 días"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "guia",
+       "desde": 15,
+       "hasta": 15,
+       "titulo": "Lo que conviene limitar"
+      },
+      {
+       "item": "vitaminas",
+       "desde": 7,
+       "hasta": 8,
+       "titulo": "Lo que no funciona y antes de mezclar"
+      },
+      {
+       "item": "recetario",
+       "desde": 14,
+       "hasta": 18,
+       "titulo": "Cinco cenas ligeras"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿A qué hora conviene el café si te cuesta dormir?",
+      "opciones": [
+       "Por la mañana",
+       "Después de cenar",
+       "Justo antes de dormir"
+      ],
+      "correcta": 0,
+      "explica": "La cafeína tarde puede quitarte descanso."
+     }
+    }
+   ],
+   "tema": {
+    "estilo": "collage",
+    "bg": "#DCEFE2",
+    "bg2": "#F2FAF4",
+    "acc": "#2F855A",
+    "deep": "#1F3D2B",
+    "ink": "#1F3D2B",
+    "icono": "hoja",
+    "patron": "vichy",
+    "insignia": "Plato feliz",
+    "palabra": "nutre"
+   }
+  },
+  {
+   "id": "m7",
+   "num": 7,
+   "titulo": "Intimidad y pareja",
+   "subtitulo": "Deseo, dolor y conexión",
+   "frase": "No es que no te desee: mi cuerpo no funciona como antes y tengo miedo de que me veas diferente.",
+   "respuesta": "La sequedad y el dolor tienen tratamiento, y hablarlo acerca a la pareja.",
+   "foto": "f31a",
+   "recorte": "cut25a",
+   "color": "#FFD3E3",
+   "lecciones": [
+    {
+     "id": "m7-1",
+     "titulo": "El síntoma del que menos se habla",
+     "min": 7,
+     "texto": [
+      "Sequedad, ardor, dolor en las relaciones, urgencia para orinar o infecciones urinarias repetidas: es el síndrome genitourinario de la menopausia. Es muy frecuente y, a diferencia de los sofocos, tiende a empeorar si no se trata.",
+      "Hay tratamientos eficaces y seguros: hidratantes y lubricantes, y estrógenos vaginales en dosis bajas que tu médica puede valorar."
+     ],
+     "claves": [
+      "Es frecuente y tiene tratamiento.",
+      "Hidratantes y lubricantes son el primer paso.",
+      "Los estrógenos vaginales en dosis bajas son una opción muy eficaz."
+     ],
+     "tarea": "Anota tus síntomas íntimos para tu próxima cita.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "k2",
+       "texto": "Kit Intimidad sin dolor"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "k2",
+       "desde": 1,
+       "hasta": 3,
+       "titulo": "Intimidad sin dolor: ponerle nombre"
+      },
+      {
+       "item": "pausa",
+       "desde": 32,
+       "hasta": 32,
+       "titulo": "Tratamiento local"
+      }
+     ],
+     "quiz": {
+      "pregunta": "A diferencia de los sofocos, la sequedad vaginal sin tratar…",
+      "opciones": [
+       "Tiende a empeorar",
+       "Desaparece sola",
+       "No tiene tratamiento"
+      ],
+      "correcta": 0,
+      "explica": "Es el síndrome genitourinario: frecuente y con tratamientos eficaces."
+     }
+    },
+    {
+     "id": "m7-2",
+     "titulo": "Deseo: no estás rota",
+     "min": 6,
+     "texto": [
+      "El deseo cambia con las hormonas, el cansancio, el estrés y el dolor. Cuando el dolor desaparece y se descansa mejor, muchas mujeres recuperan las ganas.",
+      "La intimidad no es solo penetración: el tiempo, el tacto y la comunicación cuentan mucho."
+     ],
+     "claves": [
+      "El deseo depende de muchos factores, no solo hormonas.",
+      "Tratar el dolor es el primer paso.",
+      "La intimidad es más amplia que el coito."
+     ],
+     "tarea": "Piensa qué te hace sentir deseada y escríbelo.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "k2",
+       "texto": "Kit Intimidad sin dolor · Guion"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 43,
+       "hasta": 43,
+       "titulo": "Deseo"
+      },
+      {
+       "item": "k2",
+       "desde": 6,
+       "hasta": 6,
+       "titulo": "Tu bienestar íntimo"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuál es el primer paso para recuperar el deseo cuando hay dolor?",
+      "opciones": [
+       "Tratar el dolor",
+       "Forzarse",
+       "Evitar el tema"
+      ],
+      "correcta": 0,
+      "explica": "Cuando el dolor desaparece y se descansa mejor, muchas mujeres recuperan las ganas."
+     }
+    },
+    {
+     "id": "m7-3",
+     "titulo": "Cómo hablarlo con tu pareja",
+     "min": 6,
+     "texto": [
+      "Muchas parejas se distancian por malentendidos: «¿ya no me deseas?». Contar lo que te pasa, en un momento tranquilo, cambia la historia.",
+      "En PAUSA tienes guiones para empezar esa conversación con tu pareja y tu familia."
+     ],
+     "claves": [
+      "Elige un momento tranquilo, no en plena discusión.",
+      "Habla de lo que sientes, no de culpas.",
+      "Pide lo que necesitas de forma concreta."
+     ],
+     "tarea": "Usa el guion de pareja de PAUSA esta semana.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Guiones para pareja y familia"
+      },
+      {
+       "tipo": "pdf",
+       "item": "plantillas",
+       "texto": "Plantilla: la conversación"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "k2",
+       "desde": 4,
+       "hasta": 5,
+       "titulo": "La conversación de pareja"
+      },
+      {
+       "item": "pausa",
+       "desde": 45,
+       "hasta": 46,
+       "titulo": "Para tu pareja"
+      },
+      {
+       "item": "plantillas",
+       "desde": 3,
+       "hasta": 3,
+       "titulo": "Plantilla: hablarlo, con plan"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuándo es mejor hablar con tu pareja de lo que te pasa?",
+      "opciones": [
+       "En plena discusión",
+       "En un momento tranquilo",
+       "Por mensaje a las 3 a. m."
+      ],
+      "correcta": 1,
+      "explica": "Habla de lo que sientes, no de culpas, y pide algo concreto."
+     }
+    }
+   ],
+   "tema": {
+    "estilo": "poster",
+    "bg": "#92333C",
+    "bg2": "#FBEDEF",
+    "acc": "#FFC1CC",
+    "deep": "#4A1219",
+    "ink": "#FFFFFF",
+    "icono": "corazones",
+    "patron": "corazones",
+    "insignia": "Corazón abierto",
+    "palabra": "deseo",
+    "oscuro": true
+   }
+  },
+  {
+   "id": "m8",
+   "num": 8,
+   "titulo": "Tu consulta y tus tratamientos",
+   "subtitulo": "Terapia hormonal sin miedo y sin mitos",
+   "frase": "Me dieron un ansiolítico y me dijeron que era la edad.",
+   "respuesta": "Tienes derecho a una conversación informada. Llega preparada.",
+   "foto": "f30a",
+   "recorte": "cut19a",
+   "color": "#CFE3F7",
+   "lecciones": [
+    {
+     "id": "m8-1",
+     "titulo": "Terapia hormonal: lo que cambió desde 2002",
+     "min": 9,
+     "texto": [
+      "El miedo a la terapia hormonal viene en gran parte del estudio WHI de 2002, que incluyó a mujeres de edad media de 63 años con un tipo concreto de hormonas. Los análisis posteriores mostraron que el balance riesgo-beneficio depende mucho de la edad, el momento de inicio, el tipo y la vía.",
+      "Para muchas mujeres menores de 60 años o en los primeros 10 años tras la menopausia, y sin contraindicaciones, los beneficios suelen superar a los riesgos. La decisión es individual y se toma con tu médica."
+     ],
+     "claves": [
+      "El riesgo depende de edad, momento, tipo y vía.",
+      "Los estrógenos por la piel no aumentan el riesgo de trombosis como los orales.",
+      "Es una decisión personal, informada y revisable."
+     ],
+     "mito": {
+      "mito": "La terapia hormonal siempre produce cáncer de mama y trombosis.",
+      "verdad": "Los riesgos existen pero son pequeños y dependen del tipo, la vía y tu historia. Muchas mujeres pueden usarla de forma segura con seguimiento."
+     },
+     "tarea": "Lee la mesa de decisión de PAUSA y marca tus dudas.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Tu mesa de decisión"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 30,
+       "hasta": 31,
+       "titulo": "Terapia hormonal y riesgos en contexto"
+      },
+      {
+       "item": "guia",
+       "desde": 24,
+       "hasta": 24,
+       "titulo": "THM: ni milagro ni monstruo"
+      },
+      {
+       "item": "pausa",
+       "desde": 34,
+       "hasta": 34,
+       "titulo": "Tu mesa de decisión"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿De qué depende el balance riesgo-beneficio de la terapia hormonal?",
+      "opciones": [
+       "Solo del precio",
+       "De la edad, el momento de inicio, el tipo y la vía",
+       "De nada: siempre es igual"
+      ],
+      "correcta": 1,
+      "explica": "Es una decisión personal, informada y revisable con tu médica."
+     }
+    },
+    {
+     "id": "m8-2",
+     "titulo": "Opciones sin hormonas",
+     "min": 6,
+     "texto": [
+      "Si no puedes o no quieres usar hormonas, hay medicamentos sin hormonas para los sofocos y terapias psicológicas con evidencia. Tu profesional puede valorar cuál encaja contigo.",
+      "Revisa también tus chequeos: tensión, colesterol, glucosa, densitometría y cribados según tu edad."
+     ],
+     "claves": [
+      "Hay alternativas eficaces sin hormonas.",
+      "La TCC ayuda con sofocos, sueño y ánimo.",
+      "Esta etapa es un buen momento para tus chequeos."
+     ],
+     "tarea": "Revisa tu mapa de chequeos y apunta lo que te falta.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Mapa de chequeos (pág. 19)"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 33,
+       "hasta": 33,
+       "titulo": "Semáforo sin hormonas"
+      },
+      {
+       "item": "guia",
+       "desde": 25,
+       "hasta": 25,
+       "titulo": "Si no puedes o no quieres hormonas"
+      },
+      {
+       "item": "pausa",
+       "desde": 16,
+       "hasta": 19,
+       "titulo": "Lo que no se ve y tu mapa de chequeos"
+      }
+     ],
+     "quiz": {
+      "pregunta": "Si no puedes o no quieres usar hormonas…",
+      "opciones": [
+       "No hay nada que hacer",
+       "Hay medicamentos sin hormonas y terapias con evidencia",
+       "Solo queda aguantar"
+      ],
+      "correcta": 1,
+      "explica": "Tu profesional puede valorar cuál encaja contigo."
+     }
+    },
+    {
+     "id": "m8-3",
+     "titulo": "Prepara tu consulta en 10 minutos",
+     "min": 5,
+     "texto": [
+      "Llega con tu resumen de síntomas, tus 3 preguntas principales y lo que ya has probado. La hoja de consulta y la app te lo ponen fácil.",
+      "Si sientes que no te escuchan, tienes derecho a pedir una segunda opinión."
+     ],
+     "claves": [
+      "Resumen + 3 preguntas + lo que ya probaste.",
+      "Pide que te expliquen opciones con y sin hormonas.",
+      "Una segunda opinión es tu derecho."
+     ],
+     "tarea": "Genera tu resumen en la app y descárgalo en PDF.",
+     "recursos": [
+      {
+       "tipo": "app",
+       "ruta": "consulta",
+       "texto": "Mi consulta (resumen en PDF)"
+      },
+      {
+       "tipo": "pdf",
+       "item": "plantillas",
+       "texto": "Hoja de consulta"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 25,
+       "hasta": 28,
+       "titulo": "La consulta que mereces"
+      },
+      {
+       "item": "plantillas",
+       "desde": 1,
+       "hasta": 1,
+       "titulo": "Hoja de consulta"
+      },
+      {
+       "item": "guia",
+       "desde": 26,
+       "hasta": 26,
+       "titulo": "Herramienta para rellenar"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Con qué conviene llegar a la consulta?",
+      "opciones": [
+       "Con las manos vacías",
+       "Resumen de síntomas, 3 preguntas y lo que ya probaste",
+       "Con una lista de 40 preguntas"
+      ],
+      "correcta": 1,
+      "explica": "Y si no te escuchan, una segunda opinión es tu derecho."
+     }
+    }
+   ],
+   "tema": {
+    "estilo": "revista",
+    "bg": "#DDE3EA",
+    "bg2": "#F3F6F9",
+    "acc": "#4A6A8A",
+    "deep": "#2C3440",
+    "ink": "#232B36",
+    "icono": "consulta",
+    "patron": "cuadros",
+    "insignia": "Voz informada",
+    "palabra": "decide"
+   }
+  },
+  {
+   "id": "m9",
+   "num": 9,
+   "titulo": "Trabajo, vida y una nueva etapa",
+   "subtitulo": "Volver a sentirte tú, con límites y libertad",
+   "frase": "Sentía que llevaba un cartel que decía: vieja, acabada.",
+   "respuesta": "No es el final: es una graduación. La segunda mitad de tu vida también es tuya.",
+   "foto": "f38a",
+   "recorte": "cut12a",
+   "color": "#FFE7A8",
+   "lecciones": [
+    {
+     "id": "m9-1",
+     "titulo": "Menopausia en el trabajo",
+     "min": 7,
+     "texto": [
+      "Sofocos en una reunión, olvidos, cansancio: muchas mujeres piensan en dejar su trabajo por síntomas que se podrían manejar con pequeños ajustes.",
+      "Tú decides cuánto contar. Un ventilador, flexibilidad horaria o pausas pueden marcar la diferencia."
+     ],
+     "claves": [
+      "Tú decides qué y cuánto contar.",
+      "Pedir un ajuste es cuidar tu rendimiento.",
+      "Prepárate con datos de tu diario."
+     ],
+     "tarea": "Rellena tu mapa laboral del Kit Trabajo.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "k3",
+       "texto": "Kit Menopausia en el trabajo"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "k3",
+       "desde": 1,
+       "hasta": 6,
+       "titulo": "Kit Menopausia en el trabajo"
+      },
+      {
+       "item": "pausa",
+       "desde": 48,
+       "hasta": 50,
+       "titulo": "En el trabajo y para RR. HH."
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Quién decide cuánto contar en el trabajo?",
+      "opciones": [
+       "Tu jefe",
+       "Tú",
+       "Recursos Humanos"
+      ],
+      "correcta": 1,
+      "explica": "Pedir un ajuste es cuidar tu rendimiento."
+     }
+    },
+    {
+     "id": "m9-2",
+     "titulo": "Tu red de apoyo",
+     "min": 5,
+     "texto": [
+      "Hablar con amigas, familia o grupos de mujeres en la misma etapa reduce la sensación de soledad. Lo que se nombra pesa menos.",
+      "Comparte lo que aprendes: muchas mujeres a tu alrededor lo están viviendo en silencio."
+     ],
+     "claves": [
+      "Nombrarlo quita peso.",
+      "Busca a otras mujeres en la misma etapa.",
+      "Comparte lo que te sirve."
+     ],
+     "tarea": "Cuéntale a una amiga algo que aprendiste en PLENA.",
+     "recursos": [
+      {
+       "tipo": "pdf",
+       "item": "pausa",
+       "texto": "PAUSA · Guiones para familia"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "pausa",
+       "desde": 45,
+       "hasta": 47,
+       "titulo": "Juntas: pareja, familia y amigas"
+      },
+      {
+       "item": "guia",
+       "desde": 30,
+       "hasta": 30,
+       "titulo": "Pareja, familia y trabajo"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Qué reduce la sensación de soledad en esta etapa?",
+      "opciones": [
+       "Callarlo",
+       "Hablar con mujeres que viven lo mismo",
+       "Trabajar más"
+      ],
+      "correcta": 1,
+      "explica": "Lo que se nombra pesa menos."
+     }
+    },
+    {
+     "id": "m9-3",
+     "titulo": "Tu plan de 30 días y tu graduación",
+     "min": 6,
+     "texto": [
+      "Seis hábitos sencillos durante 30 días: agua, movimiento, fuerza, luz natural, proteína y rutina de sueño. Pequeño, constante y tuyo.",
+      "Cuando completes la ruta, descarga tu certificado de graduación. Te lo has ganado."
+     ],
+     "claves": [
+      "Pequeños hábitos, todos los días.",
+      "Lo que mides, mejora.",
+      "Celebra cada avance."
+     ],
+     "tarea": "Empieza hoy tu Plan de 30 días en la app.",
+     "recursos": [
+      {
+       "tipo": "app",
+       "ruta": "plan30",
+       "texto": "Plan de 30 días en la app"
+      },
+      {
+       "tipo": "pdf",
+       "item": "plan30",
+       "texto": "Plan de 30 días (PDF)"
+      }
+     ],
+     "lecturas": [
+      {
+       "item": "plan30",
+       "desde": 1,
+       "hasta": 9,
+       "titulo": "Plan de 30 días"
+      },
+      {
+       "item": "pausa",
+       "desde": 55,
+       "hasta": 56,
+       "titulo": "Empieza aquí y tu calendario"
+      },
+      {
+       "item": "guia",
+       "desde": 32,
+       "hasta": 32,
+       "titulo": "Mi plan"
+      }
+     ],
+     "quiz": {
+      "pregunta": "¿Cuál es la clave del plan de 30 días?",
+      "opciones": [
+       "Cambiarlo todo de golpe",
+       "Pequeños hábitos, todos los días",
+       "Hacerlo solo los lunes"
+      ],
+      "correcta": 1,
+      "explica": "Pequeño, constante y tuyo. Y celebra cada avance."
+     }
+    }
+   ],
+   "tema": {
+    "estilo": "poster",
+    "bg": "#372937",
+    "bg2": "#F7F1F6",
+    "acc": "#FFD95A",
+    "deep": "#1B121B",
+    "ink": "#FFFFFF",
+    "icono": "corona",
+    "patron": "destellos",
+    "insignia": "Nueva etapa",
+    "palabra": "libre",
+    "oscuro": true
+   }
+  }
+ ],
+ "biblioteca": [
+  {
+   "item": "pausa",
+   "titulo": "PAUSA · El manual de la menopausia",
+   "desc": "60 páginas, 10 capítulos y 10 herramientas.",
+   "portada": "c-pausa",
+   "categoria": "Libros",
+   "lomo": "#E0337A"
+  },
+  {
+   "item": "guia",
+   "titulo": "Guía Integral Menopausia Equilibrada",
+   "desc": "38 páginas: síntomas, alimentación, movimiento, sueño y emociones.",
+   "portada": "c-guia",
+   "categoria": "Libros",
+   "lomo": "#92333C"
+  },
+  {
+   "item": "plantillas",
+   "titulo": "3 plantillas rellenables",
+   "desc": "Hoja de consulta, rastreador de 30 días y conversación.",
+   "portada": "c-pl1",
+   "categoria": "Plantillas",
+   "lomo": "#DB7F8E"
+  },
+  {
+   "item": "diario",
+   "titulo": "Diario de síntomas y progreso",
+   "desc": "4 semanas rellenables y resumen mensual.",
+   "portada": "c-diario",
+   "categoria": "Plantillas",
+   "lomo": "#B5838D"
+  },
+  {
+   "item": "plan30",
+   "titulo": "Plan de 30 días",
+   "desc": "Checklist diario para recuperar energía.",
+   "portada": "c-plan30",
+   "categoria": "Bonos",
+   "lomo": "#FF1A5D"
+  },
+  {
+   "item": "recetario",
+   "titulo": "Recetario: 20 recetas",
+   "desc": "Desayunos, almuerzos, cenas y snacks.",
+   "portada": "c-recetario",
+   "categoria": "Bonos",
+   "lomo": "#2F855A"
+  },
+  {
+   "item": "vitaminas",
+   "titulo": "Vitaminas y suplementos",
+   "desc": "Semáforo de evidencia.",
+   "portada": "c-vitaminas",
+   "categoria": "Bonos",
+   "lomo": "#E1A49A"
+  },
+  {
+   "item": "yoga",
+   "titulo": "Yoga en calma",
+   "desc": "12 posturas suaves y respiración.",
+   "portada": "c-yoga",
+   "categoria": "Bonos",
+   "lomo": "#7B5EA7"
+  },
+  {
+   "item": "aroma",
+   "titulo": "Aromaterapia",
+   "desc": "Tres rituales seguros.",
+   "portada": "c-aroma",
+   "categoria": "Bonos",
+   "lomo": "#9B5DE5"
+  },
+  {
+   "item": "k1",
+   "titulo": "Kit Noches frescas",
+   "desc": "Sofocos e insomnio.",
+   "portada": "c-k1",
+   "categoria": "Kits",
+   "lomo": "#4A6A8A"
+  },
+  {
+   "item": "k2",
+   "titulo": "Kit Intimidad sin dolor",
+   "desc": "Sequedad, deseo y conversación.",
+   "portada": "c-k2",
+   "categoria": "Kits",
+   "lomo": "#C2185B"
+  },
+  {
+   "item": "k3",
+   "titulo": "Kit Menopausia en el trabajo",
+   "desc": "Ajustes y conversación con tu empresa.",
+   "portada": "c-k3",
+   "categoria": "Kits",
+   "lomo": "#604D53"
+  },
+  {
+   "item": "k4",
+   "titulo": "Kit Fuerte después de los 45",
+   "desc": "Fuerza, huesos y corazón.",
+   "portada": "c-k4",
+   "categoria": "Kits",
+   "lomo": "#D2553F"
+  }
+ ]
 }

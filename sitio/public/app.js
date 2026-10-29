@@ -14,6 +14,10 @@ var KEY_SYNC = 'me.lastSync';
 var KEY_CLOUD = 'me.cloud'; // '1' = autorizó la copia cifrada en la nube · '0' = solo este dispositivo · '' = sin decidir
 var OLD_KEY = 'miPausa.v1';
 var APP_URL = location.origin;
+// Integrada en PLENA (Mi diario): sin cabecera propia y avisando a la academia de cada cambio.
+var EMBED = /[?&]embed=1/.test(location.search) || (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
+if (EMBED) document.documentElement.classList.add('embed');
+function tellParent(msg) { if (!EMBED) return; try { window.parent.postMessage(msg, location.origin); } catch (e) { } }
 
 var SYMS = [
   { g: 'Temperatura', items: [['calores', 'Calores / sofocos'], ['sudores', 'Sudores nocturnos']] },
@@ -322,7 +326,7 @@ function sync(opts) {
     if (syncAgain) { syncAgain = false; scheduleSync(400); }
   });
 }
-function changed() { saveLocal(); scheduleSync(); }
+function changed() { saveLocal(); scheduleSync(); tellParent({ type: 'me:data' }); }
 function cloudDelete() {
   if (!confirm('¿Borrar tu copia cifrada de la nube? Tus datos de este dispositivo no se tocan.')) return;
   hashOf(code).then(function (id) { return fetch('/api/sync?id=' + id, { method: 'DELETE', headers: { 'x-me-acc': access || '' } }); })
@@ -475,7 +479,7 @@ function cloudConsent(id) {
 function viewHoy() {
   var k = ui.day, d = getDay(k) || normDay({}), isToday = k === today(), dt = parse(k);
   var h = '';
-  if (lsGet('me.pack') === '1' && !demo) h += '<a class="card plena-cta" href="/plena/"><span class="kick">Incluida en tu pack</span><b>PLENA · tu academia de menopausia y psicomenopausia</b><span class="note">Módulos con video, tu ruta personal y todos tus libros en un solo lugar.</span><span class="go">Entrar →</span></a>';
+  if (lsGet('me.pack') === '1' && !demo && !EMBED) h += '<a class="card plena-cta" href="/plena/"><span class="kick">Incluida en tu pack</span><b>PLENA · tu academia de menopausia y psicomenopausia</b><span class="note">Tu ruta personal, tus libros para hojear, tus logros y este diario, en un solo lugar.</span><span class="go">Entrar →</span></a>';
   if (!onboarded && !demo) h += viewWelcome();
   else if (onboarded && !demo && cloud === '') h += '<div class="card pink"><h2>Tu privacidad, primero</h2><p>Ahora tus registros se guardan solo en este dispositivo. Si usas la app en varios dispositivos, puedes activar una <b>copia cifrada</b> en la nube: se cifra aquí con tu código personal y nadie más puede leerla.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="ghost" data-act="cloudNo">Solo en este dispositivo</button></div><p class="note"><a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></p></div>';
   h += head('Registro diario', isToday ? '¿Cómo estás <span class="script" style="font-size:1.25em">hoy</span>?' : 'Registro del ' + fmtLong(k), 'Un minuto al día. 0 nada · 1 leve · 2 media · 3 fuerte. Se guarda solo y se sincroniza con tus otros dispositivos.');
@@ -894,6 +898,7 @@ function render() {
   }
   $$('nav.tabs a').forEach(function (a) { if (a.dataset.v === r.v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   curView = r.v;
+  tellParent({ type: 'me:nav', v: r.v });
   var vEl = $('#view');
   vEl.innerHTML = VIEWS[r.v]();
   if (lastView !== r.v || lastSub !== ui.tplSub) { vEl.classList.remove('enter'); void vEl.offsetWidth; vEl.classList.add('enter'); }
