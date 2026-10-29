@@ -2,7 +2,7 @@
 
 La academia vive en **`/plena/`** (también `/academia`). Está **incluida en el pack completo**: se entra con el mismo código de acceso de la app. Quien solo compró la app ve una invitación a completar su pack.
 
-Todo pasa dentro de la misma página: los libros se leen ahí mismo y la app está integrada. No hay videos: el curso se arma con el texto de cada lección y las páginas exactas de los libros del pack.
+Todo pasa dentro de la misma página: los libros se leen ahí mismo, los videos se reproducen ahí mismo y la app está integrada. Cada lección combina texto, las páginas exactas de los libros del pack y un video para practicar.
 
 ## Qué tiene
 
@@ -13,9 +13,10 @@ Todo pasa dentro de la misma página: los libros se leen ahí mismo y la app est
 | **Mi ruta** | Mapa tipo juego con los 10 módulos ordenados según sus prioridades («Para ti»), progreso de cada uno e insignias ganadas. |
 | **Módulo** | Cada módulo tiene su propio diseño (estilo collage, póster o revista, con su paleta y su patrón), la frase real del avatar, la respuesta, sus lecciones, su insignia y sus lecturas. |
 | **Lección** | Texto, «lo esencial» en notas adhesivas, **lecturas** (abren el libro en las páginas exactas), carta «¿mito o realidad?», pregunta rápida, tarea con «¡La hice!», herramientas de la app y botón de completar. |
-| **Biblioteca** | Los 13 libros en estanterías 3D. Se abren **dentro de la página como un libro de verdad**: se pasan las hojas (con sonido opcional), miniaturas, zoom, barra para saltar de página, «sigue leyendo» y descarga del PDF. |
-| **Mi diario** | La app Menopausia Equilibrada integrada (no es un enlace aparte). Lo que se registra en la app suma XP y cumple la misión del día al momento. |
-| **Logros** | Nivel (10 niveles: de Curiosa a Plena), álbum de 24 insignias, calendario de racha y el detalle de los XP. |
+| **Biblioteca** | Los 13 libros con su portada. Se abren **a pantalla completa como un libro de verdad**: se pasan las hojas (con sonido opcional), los controles se ocultan solos, miniaturas, zoom, barra para saltar de página, «sigue leyendo» y descarga del PDF. |
+| **Videoteca** | 132 videos, podcast, audiolibros y música en 10 categorías (taichi dividido en tres bloques), con buscador, filtros (sin saltos, con pesas, de pie…), «sigue viendo» y recomendados según sus objetivos. El reproductor es propio (Plyr): portada de PLENA, controles rosas y sin videos relacionados. Cada módulo muestra sus videos y cada lección trae uno para practicar. |
+| **Mi diario** | La app Menopausia Equilibrada completa, integrada en la página (con sus pestañas). Lo que se registra en la app suma XP y cumple la misión del día al momento. |
+| **Logros** | Nivel (10 niveles: de Curiosa a Plena), álbum de 31 insignias personalizadas (cada una con su protagonista Soul 2.0), calendario de racha y el detalle de los XP. |
 | **Perfil y certificado** | Edita sus respuestas, sonidos y sesión. Al completar la ruta se desbloquea un certificado imprimible con su nombre. |
 
 ### Gamificación
@@ -29,10 +30,11 @@ Todo pasa dentro de la misma página: los libros se leen ahí mismo y la app est
 | Completar una lectura de lección | 25 |
 | Cada página nueva leída | 2 |
 | Completar un módulo | 200 |
+| Cada video completado (60 % o 8 minutos vistos) | 15 |
 | Cada día registrado en Mi diario | 10 |
-| Día perfecto (las 3 misiones) | 50 |
+| Día perfecto (las 4 misiones) | 60 |
 
-Misiones del día: completar una lección, leer 5 páginas y registrar el día en Mi diario. La racha cuenta los días seguidos con alguna actividad.
+Misiones del día: completar una lección, ver un video, leer 5 páginas y registrar el día en Mi diario. La racha cuenta los días seguidos con alguna actividad.
 
 El progreso (lecciones, tareas, respuestas, páginas leídas y días con actividad) se guarda en el dispositivo y en la base de datos con su acceso, así se ve igual en el celular y en el computador. **No incluye datos de salud.** Los datos de la app siguen en el dispositivo (y, si ella lo autoriza, en su copia cifrada): PLENA solo cuenta cuántos días registró.
 
@@ -52,9 +54,21 @@ Todo el curso está en ese archivo. Después de editarlo, haz `git push` y Verce
   - `recursos`: herramientas de la app con `{ "tipo": "app", "ruta": "hoy", "texto" }` (rutas: hoy, progreso, plan30, plantillas, consulta, ciclo, alarma, cuenta).
 - **Biblioteca:** la lista `biblioteca` (`item`, `titulo`, `desc`, `portada` de `sitio/public/oferta/img/`, `categoria` y `lomo`).
 
+## Editar la videoteca: `herramientas/videoteca.py`
+
+La lista de videos está en ese archivo (ID de YouTube, categoría, título, descripción, etiquetas, módulos y si es «opinión de la autora»). También define el video de cada lección. Después de editarlo:
+
+```bash
+python herramientas/videoteca.py sitio/contenido/videos.json
+```
+
+- Solo funcionan los videos que su canal permite insertar. Dos enlaces del cuaderno no lo permiten y quedaron fuera (`ImDuug_R_OE` y `pvhqPkKgNOk`).
+- Los videos marcados como opinión muestran un aviso: algunas ideas de sus autoras no coinciden con la evidencia del curso.
+- El logo y el nombre del canal: el reproductor oculta casi toda la interfaz de YouTube, pero las normas de YouTube no permiten taparla del todo. PLENA da el crédito al canal debajo del video.
+
 ## Si cambias un PDF
 
-El lector usa una imagen por página en `sitio/public/plena/libros/<item>/` (`p001.webp` grande y `t001.webp` miniatura) y el número de páginas de `sitio/contenido/libros.json`. Para regenerarlas:
+El lector usa una imagen por página en `sitio/public/plena/libros/<item>/` (`p001.webp` de 1400 px y `t001.webp` miniatura) y el número de páginas de `sitio/contenido/libros.json`. Para regenerarlas:
 
 ```bash
 pip install pymupdf pillow

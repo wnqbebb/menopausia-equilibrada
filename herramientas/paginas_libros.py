@@ -10,9 +10,9 @@ M={'pausa':'PAUSA_Libro_60_paginas.pdf','guia':'01_Guia_Integral_Menopausia_Equi
 def job(item):
     doc=pymupdf.open(D+M[item]); o=OUT+item+'/'; os.makedirs(o,exist_ok=True)
     for i,pg in enumerate(doc,1):
-        z=1000/pg.rect.width; pix=pg.get_pixmap(matrix=pymupdf.Matrix(z,z),alpha=False)
+        z=1400/pg.rect.width; pix=pg.get_pixmap(matrix=pymupdf.Matrix(z,z),alpha=False)
         im=Image.frombytes('RGB',(pix.w,pix.h),pix.samples)
-        im.save(o+'p%03d.webp'%i,'WEBP',quality=80,method=5)
+        im.save(o+'p%03d.webp'%i,'WEBP',quality=78,method=5)
         t=im.copy(); t.thumbnail((180,260)); t.save(o+'t%03d.webp'%i,'WEBP',quality=70)
     return item
 with ProcessPoolExecutor(6) as ex: print(list(ex.map(job,M)))

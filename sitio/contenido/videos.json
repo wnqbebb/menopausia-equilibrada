@@ -1,0 +1,2038 @@
+{
+ "categorias": [
+  {
+   "id": "nutri",
+   "nombre": "Nutrición y hormonas",
+   "desc": "Charlas sobre alimentación, soja y hábitos para tu energía.",
+   "icono": "hoja",
+   "color": "#2F855A",
+   "fondo": "#DCEFE2"
+  },
+  {
+   "id": "fuerza",
+   "nombre": "Fuerza y músculo",
+   "desc": "Pesas, bandas, botellas o tu propio peso: la base contra la sarcopenia.",
+   "icono": "pesa",
+   "color": "#D2553F",
+   "fondo": "#F6D2C4"
+  },
+  {
+   "id": "cardio",
+   "nombre": "Cardio y baile",
+   "desc": "Para tu corazón, casi todo sin saltos.",
+   "icono": "llama",
+   "color": "#FF1A5D",
+   "fondo": "#FFC1CC"
+  },
+  {
+   "id": "taichi",
+   "nombre": "Taichi y qigong",
+   "desc": "Prácticas orientales suaves, de pie y sin saltos.",
+   "icono": "chispa",
+   "color": "#7B5EA7",
+   "fondo": "#D2CADF"
+  },
+  {
+   "id": "pilates",
+   "nombre": "Pilates y suelo pélvico",
+   "desc": "Musculatura profunda: abdomen, postura y suelo pélvico.",
+   "icono": "diana",
+   "color": "#92333C",
+   "fondo": "#F1E4DB"
+  },
+  {
+   "id": "movil",
+   "nombre": "Movilidad y circulación",
+   "desc": "Piernas ligeras, huesos, espalda y manos.",
+   "icono": "rayo",
+   "color": "#4A6A8A",
+   "fondo": "#DDE3EA"
+  },
+  {
+   "id": "calma",
+   "nombre": "Meditación y descanso",
+   "desc": "Para dormir mejor y bajar la ansiedad.",
+   "icono": "noche",
+   "color": "#372937",
+   "fondo": "#E6E0F3"
+  },
+  {
+   "id": "podcast",
+   "nombre": "Podcast",
+   "desc": "Conversaciones con especialistas.",
+   "icono": "consulta",
+   "color": "#604D53",
+   "fondo": "#F1E4DB"
+  },
+  {
+   "id": "audio",
+   "nombre": "Audiolibros",
+   "desc": "Libros completos para escuchar.",
+   "icono": "libro",
+   "color": "#E0337A",
+   "fondo": "#FFE3EA"
+  },
+  {
+   "id": "musica",
+   "nombre": "Música",
+   "desc": "Para acompañar tus rutinas y tu calma.",
+   "icono": "corazon",
+   "color": "#DB7F8E",
+   "fondo": "#FFDBDA"
+  }
+ ],
+ "subcategorias": {
+  "grasa": "Para moverte y quemar energía",
+  "energia": "Menopausia, cerebro y energía",
+  "antiedad": "Vitalidad y longevidad"
+ },
+ "videos": [
+  {
+   "id": "aiEKmMxrb-w",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "Soja (1): ¿es saludable?",
+   "desc": "Qué aporta la soja: proteína completa, grasas insaturadas y por qué conviene elegir derivados fermentados o artesanales.",
+   "tags": [],
+   "mods": [
+    "m6"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "0kkUCmpIvhE",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "Soja (2): pros y contras",
+   "desc": "La autora repasa la polémica sobre la soja y por qué, a su juicio, muchos estudios negativos usan productos ultraprocesados.",
+   "tags": [],
+   "mods": [
+    "m6"
+   ],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "W3zkBE3u760",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "Soja (3): isoflavonas y sus beneficios",
+   "desc": "Qué son las isoflavonas de la soja y cómo pueden ayudar en esta etapa dentro de una dieta variada.",
+   "tags": [],
+   "mods": [
+    "m6"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "NOBGrJn0krw",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "Soja (4): fitoestrógenos y cáncer de mama",
+   "desc": "Por qué los alimentos de soja no se asocian a más cáncer de mama y qué otros factores pesan más, según la ponente.",
+   "tags": [],
+   "mods": [
+    "m6"
+   ],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "ryrNFWPsJ3k",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "¿Anticonceptivos o soja?",
+   "desc": "La autora sostiene que el problema hormonal no es la soja sino las hormonas sintéticas. Opinión personal: coméntalo con tu médica antes de cambiar nada.",
+   "tags": [],
+   "mods": [
+    "m6"
+   ],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "K8sQVTn6Fo8",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "4 alimentos que cuidan tus hormonas",
+   "desc": "Legumbres, soja artesanal, grasas de calidad y crucíferas: cuatro grupos para cocinar más vegetal en la menopausia.",
+   "tags": [],
+   "mods": [
+    "m6"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "8zkUWL6-XnE",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "Qué comer ahora para equilibrar tu menopausia",
+   "desc": "Directo sobre vegetales frescos, caldos e hidratación. Incluye ideas de la autora (como la «acidificación») que no tienen respaldo científico.",
+   "tags": [],
+   "mods": [
+    "m6"
+   ],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "mKK6WKhvISs",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "Por qué engordas aunque comas igual",
+   "desc": "Cuatro pilares que sí tienen sentido: agua, fuerza, luz natural y más vegetales en el plato.",
+   "tags": [],
+   "mods": [
+    "m5",
+    "m6"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "_34V-WFXo70",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "8 soluciones naturales para el cansancio",
+   "desc": "Pantallas, cenas tardías, estimulantes y luz solar: hábitos que influyen en tu energía y tu sueño.",
+   "tags": [],
+   "mods": [
+    "m3"
+   ],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "vjfWNfXKMWE",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "Tus hormonas y la luz del otoño",
+   "desc": "Cómo la luz del día marca nuestros ritmos y por qué notamos más el cambio de estación.",
+   "tags": [],
+   "mods": [
+    "m1"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "a2KnT0vOWYM",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "8 hábitos de las mujeres que envejecen bien",
+   "desc": "Hidratación, fuerza y luz de la mañana, junto a otras costumbres personales de la autora (limpiezas, duchas frías).",
+   "tags": [],
+   "mods": [
+    "m9"
+   ],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "Pgr_hqD9oaA",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "La menopausia desde la macrobiótica",
+   "desc": "Una mirada desde la medicina china y la macrobiótica. Ojo: cuestiona la densitometría y la terapia hormonal, que el curso sí recomienda valorar con tu médica.",
+   "tags": [],
+   "mods": [
+    "m6"
+   ],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "rarqk03X1p8",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "Menos grasa, más energía después de los 40",
+   "desc": "Músculo, grasa abdominal e inflamación después de los 40, con nutrición basada en comida real y ejercicio adaptado.",
+   "tags": [],
+   "mods": [
+    "m5",
+    "m6"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "ziZpUf45NaM",
+   "cat": "nutri",
+   "sub": "",
+   "titulo": "¿Baja libido a partir de los 40?",
+   "desc": "Qué influye en el deseo en esta etapa más allá de la edad, y qué hábitos pueden ayudar.",
+   "tags": [],
+   "mods": [
+    "m7"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rosa Tugores • Salud digestiva y Metabolismo"
+  },
+  {
+   "id": "SEL-py6M9pw",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Evita perder músculo · 30 min",
+   "desc": "Fuerza con mancuernas pequeñas para mayores de 50 y menopausia, con variaciones para cuidar la zona lumbar.",
+   "tags": [
+    "con pesas",
+    "30 min"
+   ],
+   "mods": [
+    "m5"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Bien"
+  },
+  {
+   "id": "bB0zkmr2OFo",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Evita perder músculo II · 25 min",
+   "desc": "Mancuernas, intervalos de cardio y equilibrio para prevenir la pérdida muscular desde casa.",
+   "tags": [
+    "con pesas",
+    "25 min"
+   ],
+   "mods": [
+    "m5"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Bien"
+  },
+  {
+   "id": "wGQO-ti2OHg",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Fuerza para la menopausia: músculo y hueso",
+   "desc": "Rutina completa con mancuernas para frenar la pérdida muscular y ósea, con equilibrio y postura.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [
+    "m5"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "onda8cmZ1qg",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Glúteos y abdomen firmes",
+   "desc": "Sin impacto y con sobrecarga progresiva para abdomen, glúteos, piernas y espalda.",
+   "tags": [
+    "con pesas",
+    "sin saltos"
+   ],
+   "mods": [
+    "m5"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "HUKYIYKrUWo",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Full body para mujeres de más de 40",
+   "desc": "Movilidad, core y pesas por etapas, con un baile final de recompensa.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [
+    "m5"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "DmpZ5sPS86I",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Brazos y abdomen · 30 min",
+   "desc": "Mancuernas ligeras o botellas para hombros, brazos y abdomen, cuidando la espalda.",
+   "tags": [
+    "con pesas",
+    "botellas",
+    "30 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Bien"
+  },
+  {
+   "id": "HzUV1M6IRAU",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Eleva y fortalece tus glúteos · 24 min",
+   "desc": "Tren inferior con una garrafa de agua como peso: postura, articulaciones y metabolismo.",
+   "tags": [
+    "botellas",
+    "24 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Bien"
+  },
+  {
+   "id": "EJN-KhQXZ5o",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Cuerpo completo contra la sarcopenia",
+   "desc": "Pesas en dos series por ejercicio para brazos, piernas, abdomen y espalda.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "BpNPZKxuk3k",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Gana músculo sin material",
+   "desc": "Sin pesas ni saltos: sentadillas modificadas y movimientos controlados.",
+   "tags": [
+    "sin material",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "BtEzj1ppTdE",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Fuerza de pie, sin saltos",
+   "desc": "Sin equipo y siempre de pie: piernas, glúteos, pecho, hombros y espalda.",
+   "tags": [
+    "sin material",
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "h200-umT0kE",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Cuerpo completo con pesas",
+   "desc": "Series para todo el cuerpo con sentadillas y zancadas, y estiramientos finales.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "cONs5dUoDXQ",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Adiós sarcopenia con botellas (1)",
+   "desc": "Bajo impacto, de pie y con botellas: fuerza, coordinación y agilidad.",
+   "tags": [
+    "botellas",
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "p1bz6iJ3IUs",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Adiós sarcopenia con botellas (2)",
+   "desc": "Segunda sesión con botellas para piernas, glúteos, brazos, espalda y abdomen.",
+   "tags": [
+    "botellas",
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "6pzJsJj6fTs",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Gana músculo en casa · 20 min",
+   "desc": "Fuerza y resistencia con pesas ligeras para brazos, piernas, glúteos y abdomen.",
+   "tags": [
+    "con pesas",
+    "20 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "3ecEb7vkRhI",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Pesas en casa · 45 min",
+   "desc": "Sesión larga de fuerza, coordinación y equilibrio con pausas para hidratarte.",
+   "tags": [
+    "con pesas",
+    "45 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "47hCwECZwUk",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "HIIT de fuerza con pesas",
+   "desc": "Tres series de cuatro ejercicios para toda la musculatura, con abdomen activo.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "WAD1bGkDwY0",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Intervalos para la menopausia",
+   "desc": "Cuatro series combinadas con mancuernas para brazos, piernas, glúteos y core.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "B1iht4HDZ6o",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Abdomen, glúteos y brazos · 25 min",
+   "desc": "Pesas pequeñas, de pie y sin saltos, por bloques combinados.",
+   "tags": [
+    "con pesas",
+    "de pie",
+    "sin saltos",
+    "25 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "bioyy57mlhM",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Abdomen y glúteos sin equipo",
+   "desc": "Sentadillas dinámicas y trabajo de cintura con respiraciones finales.",
+   "tags": [
+    "sin material"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "iuUSTfWYc04",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Abdomen y glúteos con pesas, de pie",
+   "desc": "Sentadillas sumo, torsiones y elevaciones de rodilla con mancuernas ligeras.",
+   "tags": [
+    "con pesas",
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "I7_c_GcOI6o",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Piernas y glúteos sin material",
+   "desc": "Puentes, zancadas y sentadillas desde varios ángulos.",
+   "tags": [
+    "sin material"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "EfNEdpEZ5T8",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Piernas y glúteos isométricos",
+   "desc": "Posturas sostenidas para ganar resistencia en el tren inferior, especial menopausia.",
+   "tags": [
+    "sin material"
+   ],
+   "mods": [
+    "m5"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "ak1Y7f0_HM4",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Piernas tonificadas sin saltar",
+   "desc": "Zancadas, sentadillas pulsadas y trabajo de cadera de pie y en el suelo.",
+   "tags": [
+    "sin material",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "dvUQq1128DA",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Piernas y muslos firmes",
+   "desc": "Peso corporal con foco en la cara interna del muslo.",
+   "tags": [
+    "sin material"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "Nz6HCNquTOw",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Glúteo y abdomen con bandas",
+   "desc": "Intervalos con bandas elásticas para glúteos, cuádriceps y cintura.",
+   "tags": [
+    "bandas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "bwPhmblqPao",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Bíceps, tríceps y hombros",
+   "desc": "Tren superior con mancuernas ligeras y movimientos de boxeo controlado.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "dtUbhypZ8ek",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Brazos y hombros sin pesas",
+   "desc": "Tren superior sin equipo, con movimientos que simulan resistencia.",
+   "tags": [
+    "sin material"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "0M7CkvXMcx0",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Brazos firmes con pesas ligeras",
+   "desc": "Tríceps y torso superior con pesas, automasaje y consejos de postura.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "FdCP27MtuNU",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Brazos y espalda con bandas",
+   "desc": "Hombros, brazos y espalda con la resistencia de la banda elástica.",
+   "tags": [
+    "bandas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "EDQ-oUmLI8k",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Espalda y brazos con pesas",
+   "desc": "Espalda, hombros y brazos con técnicas de postura en la pared.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "ZgmAcvewBsw",
+   "cat": "fuerza",
+   "sub": "",
+   "titulo": "Brazos, espalda y abdomen con banda",
+   "desc": "Movimientos pausados tipo pilates con banda elástica y equilibrio.",
+   "tags": [
+    "bandas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "eh_dr7au4K0",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Cardio para mujeres 40+",
+   "desc": "Intensidad media con opción con o sin saltos: corazón, energía y huesos.",
+   "tags": [
+    "con o sin saltos"
+   ],
+   "mods": [
+    "m5",
+    "m9"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "UuI8hVRtPNI",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Cardio sin saltos con pesas · 25 min",
+   "desc": "Cardio dinámico sin impacto con mancuernas ligeras opcionales.",
+   "tags": [
+    "sin saltos",
+    "con pesas",
+    "25 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Bien"
+  },
+  {
+   "id": "Z_nYhbSSF7E",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Cardio sin saltos con pesas II",
+   "desc": "Resistencia y fuerza a la vez, activando abdomen y suelo pélvico.",
+   "tags": [
+    "sin saltos",
+    "con pesas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "f1pM4X2rNSY",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Power walking con pesas · 30 min",
+   "desc": "Caminata en casa al ritmo de la música con pesas y tobilleras opcionales.",
+   "tags": [
+    "con pesas",
+    "30 min"
+   ],
+   "mods": [
+    "m9"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "kYKN8SHPphQ",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Walk & Tone: cardio y fuerza",
+   "desc": "Bajo impacto y tonificación con distintos niveles.",
+   "tags": [
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "igH2CKp_9p4",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Aeróbic y tonificación · 38 min",
+   "desc": "Pasos coreografiados que se repiten y pesas para brazos y piernas.",
+   "tags": [
+    "con pesas",
+    "38 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "aIKa1ZB7qbg",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Cardio suave para la menopausia",
+   "desc": "De pie y sin saltos: caminatas, torsiones y sentadillas para activar la energía.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "H2BO8zzuGZE",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Cardio con pesas para ganar músculo",
+   "desc": "Boxeo, sentadillas y descanso activo para mantener el pulso alto.",
+   "tags": [
+    "con pesas"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "SWKadvJYJwA",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Cardio exprés · 15 min",
+   "desc": "Sentadillas sumo y elevaciones de talón con mancuernas, de pie y sin saltos.",
+   "tags": [
+    "de pie",
+    "sin saltos",
+    "15 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "xmeEXBdeMkA",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Cardio de pie, sin saltos",
+   "desc": "Sentadillas, zancadas, giros y boxeo para subir el pulso con seguridad.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "IEejp0Kjnls",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Cardio boxeo sin saltos",
+   "desc": "Golpes con la fuerza de caderas y pies, con una mini lección de defensa personal.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "RsvUjciL-tk",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Baile latino · 20 min",
+   "desc": "Salsa, bachata, merengue y reguetón para moverte y divertirte.",
+   "tags": [
+    "baile",
+    "20 min"
+   ],
+   "mods": [
+    "m9"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "KXbKAwZo9T8",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Cardio dance para principiantes",
+   "desc": "Clase completa de baile para empezar con energía.",
+   "tags": [
+    "baile",
+    "principiantes"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "pznCCeIen-g",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Rutina con bastón",
+   "desc": "Sin impacto ni pesas: postura, fuerza y equilibrio con un palo de escoba.",
+   "tags": [
+    "bastón",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "TltShTFlJFk",
+   "cat": "cardio",
+   "sub": "",
+   "titulo": "Abdomen y cardio sin saltos",
+   "desc": "Cardio de pie con trabajo de cintura y abdomen.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "f3DDdUwOrZ4",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Activación linfática con taichi",
+   "desc": "Movimiento consciente, golpecitos suaves y respiración para activarte de pie.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "_7L5cw4GgYw",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Caminata y taichi flow",
+   "desc": "Caminata estática y taichi en una práctica fluida, amable con las articulaciones.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "ddw-F2OpMic",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Taichi y aeróbic (1)",
+   "desc": "Rebotes suaves, posturas y sentadillas controladas con respiración profunda.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "W5c1GKcPLz8",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Taichi y aeróbic (2)",
+   "desc": "Taichi fluido, aeróbic de bajo impacto y automasaje.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "2Duibidk9ps",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Caminata de taichi y kung fu",
+   "desc": "Caminata fluida con posturas y respiración para bajar el estrés.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "jzL4ghrYukU",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Taichi cardio de 10 días",
+   "desc": "Taichi y cardio suave para cintura, piernas, brazos y espalda.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "LbafnihWhfY",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Taichi, qigong y kung fu",
+   "desc": "Movimientos dinámicos y respiración para abdomen, espalda, piernas y glúteos.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "M4rEBFeRXKs",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Calma tu sistema nervioso: taichi flow",
+   "desc": "Movimientos fluidos y respiración lenta para bajar el estrés y trabajar la zona media.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [
+    "m4"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "cbSVHPss5M8",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Taichi flow y pilates asiático",
+   "desc": "Equilibrio, core y respiración, con automasaje final para relajarte.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "AIJ7QGygdt4",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Cintura y zona lumbar con qigong",
+   "desc": "Estiramientos, sentadillas y giros para la cintura y la espalda baja.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "tdmM5xduBPw",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Ejercicios asiáticos para el abdomen",
+   "desc": "Rutinas inspiradas en la cultura asiática para la zona media.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "IjcT9bXrO-U",
+   "cat": "taichi",
+   "sub": "grasa",
+   "titulo": "Taichi, kung fu y qigong para moverte",
+   "desc": "Rutina de pie de bajo impacto para activar el cuerpo entero.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "CFvvCLvF6lo",
+   "cat": "taichi",
+   "sub": "energia",
+   "titulo": "Taichi para sofocos, fatiga y ansiedad",
+   "desc": "Movimientos suaves y respiración consciente para transitar la perimenopausia con más calma.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [
+    "m2"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "Sn6Bnd_fccw",
+   "cat": "taichi",
+   "sub": "energia",
+   "titulo": "Taichi para la menstruación y la menopausia",
+   "desc": "Movimientos fluidos y automasaje para la retención de líquidos, los sofocos y la calma.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [
+    "m2"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "yoZeDnnEVEI",
+   "cat": "taichi",
+   "sub": "energia",
+   "titulo": "Taichi para tu cerebro",
+   "desc": "Movimientos que coordinan ambos lados del cuerpo y masaje craneal para la memoria y la concentración.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [
+    "m4"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "8OOyRB9q4Jk",
+   "cat": "taichi",
+   "sub": "energia",
+   "titulo": "Calentamiento articular · 15 min",
+   "desc": "Despierta articulaciones y circulación antes de cualquier rutina.",
+   "tags": [
+    "de pie",
+    "sin saltos",
+    "15 min"
+   ],
+   "mods": [
+    "m5"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "Fdwvz7BwXaY",
+   "cat": "taichi",
+   "sub": "energia",
+   "titulo": "Desbloquea tu energía",
+   "desc": "Ejercicios de qigong para cuerpo, rostro y emociones.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "JKpRczuBYsM",
+   "cat": "taichi",
+   "sub": "energia",
+   "titulo": "Adiós al cansancio con qigong",
+   "desc": "Suelo y de pie: articulaciones, fuerza y automasaje para recargarte.",
+   "tags": [],
+   "mods": [
+    "m4"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "d7BchHtuC6s",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Antiedad para la menopausia",
+   "desc": "Movimientos fluidos, estiramientos y percusiones suaves para la energía y el estrés.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [
+    "m9"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "Rumr5HYvv78",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Rutina de rejuvenecimiento",
+   "desc": "Flexibilidad, circulación y relajación profunda con taichi y qigong.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "TPrRX0I-xFk",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Caminata meditativa de taichi",
+   "desc": "Pasos lentos con la respiración, expresión facial y sacudidas para soltar tensión.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "j7JhMUM1yok",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi en silla",
+   "desc": "Para hacer sentada: columna, pecho, cuello y hombros con calma.",
+   "tags": [
+    "silla"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "xpVP0tB15WQ",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi para soltar emociones",
+   "desc": "Movimiento y respiración profunda para la postura y la mente.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "smsFv37RZxo",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Tu rutina diaria de vitalidad (1)",
+   "desc": "Sentadillas suaves, estiramientos y percusiones para la agilidad.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "xFoNmwQ7axA",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Tu rutina diaria de vitalidad (2)",
+   "desc": "Estiramientos, torsiones y respiración profunda para la postura.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "p-D3V_n2L6k",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi de pie (1)",
+   "desc": "Práctica diaria de bajo impacto, sin saltos.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "VkgPfmg9t6c",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi de pie (2)",
+   "desc": "Movimientos estáticos y apacibles para cada día.",
+   "tags": [
+    "de pie",
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "7jT364O3c2M",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi, qigong y chikung (1)",
+   "desc": "Movimiento consciente constante para revitalizarte.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "XpeDB3qPUqY",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi, qigong y chikung (2)",
+   "desc": "Posturas, torsiones y masaje facial para relajar el sistema nervioso.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "Y9zlDW54ctc",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi, qigong y yoga",
+   "desc": "Estiramientos, giros y sacudidas suaves para la vitalidad.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "I5iNkbu7P2Q",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Movimiento y emociones",
+   "desc": "Estiramientos, sacudidas y posturas para transformar el estrés en calma.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "prcSBIAA36k",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Cuerpo, rostro y espíritu",
+   "desc": "Sacudidas, masaje facial y giros suaves para cada día.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "iS7bsacAltc",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Sotai: calistenia japonesa",
+   "desc": "Movimientos suaves para la postura y la circulación, con acupresión.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "4nkfLBhJ47k",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi y visualización",
+   "desc": "Giros, estiramientos y masajes con una meditación final.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "AoBAC2_W58M",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi para la vitalidad",
+   "desc": "Sacudidas, estiramientos y respiración con relajación final.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "Fpa_cXjHcY4",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi para mayores de 60",
+   "desc": "Movimientos fluidos y palmadas suaves, sin impacto en las articulaciones.",
+   "tags": [
+    "sin saltos"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "GX3IO_1CWCs",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Mejora tu equilibrio",
+   "desc": "Estabilidad, coordinación y postura con taichi y qigong.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [
+    "m5"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "WczxqZHNLeY",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi flow y drenaje facial (1)",
+   "desc": "Posturas, giros y acupresión facial.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "GQjHNHq_SpY",
+   "cat": "taichi",
+   "sub": "antiedad",
+   "titulo": "Taichi flow y drenaje facial (2)",
+   "desc": "Segunda práctica de la serie para cuerpo y rostro.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "0-U2Tr1uBhA",
+   "cat": "calma",
+   "sub": "",
+   "titulo": "Meditación de regeneración · 15 min",
+   "desc": "Relajación y visualización guiada para soltar tensiones.",
+   "tags": [
+    "15 min"
+   ],
+   "mods": [
+    "m9"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "HFSTDOq-27Q",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Core diario · 16 min",
+   "desc": "Con pelota: abdomen, espalda y suelo pélvico para prevenir diástasis e incontinencia.",
+   "tags": [
+    "pelota",
+    "16 min"
+   ],
+   "mods": [
+    "m5"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "Ok3fxX2iPzM",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Suelo pélvico y libido",
+   "desc": "Puentes y sentadillas coordinando respiración y contracción para evitar pérdidas.",
+   "tags": [
+    "suelo"
+   ],
+   "mods": [
+    "m7"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "HXD3_sLQZ-8",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Kegel y pilates para el suelo pélvico",
+   "desc": "Activación consciente del suelo pélvico para prevenir la incontinencia.",
+   "tags": [
+    "suelo"
+   ],
+   "mods": [
+    "m5",
+    "m7"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "FCt-fJCg0U4",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Hipopresivos para principiantes",
+   "desc": "Respiración y apneas que trabajan la faja abdominal y el suelo pélvico.",
+   "tags": [
+    "suelo",
+    "principiantes"
+   ],
+   "mods": [
+    "m7"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "RY6Ny9XzMZc",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Abdominales de pie",
+   "desc": "Zona media sin equipo y sin tumbarte.",
+   "tags": [
+    "de pie",
+    "sin material"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "O16RWtVA12Q",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Pilates de pie · 20 min",
+   "desc": "Musculatura profunda, postura y respiración para cualquier nivel.",
+   "tags": [
+    "de pie",
+    "20 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "MByljahdfUY",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Pilates en el suelo",
+   "desc": "Cuerpo completo para principiantes con suelo pélvico activo.",
+   "tags": [
+    "suelo",
+    "principiantes"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "CV6GYe2PrX0",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Pilates con banda elástica · 30 min",
+   "desc": "Fuerza, movilidad y flexibilidad con bandas abiertas y cerradas.",
+   "tags": [
+    "bandas",
+    "30 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "SLxAwYxq9AE",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Piernas y abdomen con pelota · 25 min",
+   "desc": "Aductores, planchas y control con una pelota blanda.",
+   "tags": [
+    "pelota",
+    "25 min"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "m2z9JKDt13A",
+   "cat": "pilates",
+   "sub": "",
+   "titulo": "Yoga y pilates fusión",
+   "desc": "Flexibilidad, equilibrio y core al ritmo de la música.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Sientete Joven"
+  },
+  {
+   "id": "uUKD1Dd_tpY",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Flow linfático de pie",
+   "desc": "Movimientos suaves, respiración y masaje ligero en cuello, pecho y piernas.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "wkoMKYFY1x0",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Piernas ligeras y circulación",
+   "desc": "Posturas en la pared, elevaciones y masaje para la pesadez de piernas.",
+   "tags": [],
+   "mods": [],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "T55i30HG8O4",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Brazos ligeros y drenaje",
+   "desc": "Ejercicios sin pesas y masaje suave para brazos.",
+   "tags": [],
+   "mods": [],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "dnKbbWmukiI",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Piernas, muslos y pantorrillas",
+   "desc": "Tonificación, masaje y acupresión para la circulación de las piernas.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "x5oiXcM3zRQ",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Varices: piernas ligeras con taichi",
+   "desc": "Bajo impacto y estiramientos para aliviar pesadez e hinchazón.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "sjRF4xVhLYc",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Varices: alivia el dolor y la pesadez",
+   "desc": "Ejercicios de suelo y de pie para la circulación de las piernas.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "NuVYceO1DuE",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Circulación y corazón con taichi",
+   "desc": "Movimientos suaves y respiración para el sistema cardiovascular.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "4TARlWmVuFE",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Huesos fuertes: osteoporosis y osteopenia",
+   "desc": "Bajo impacto, estiramientos y equilibrio para caderas, columna y muñecas.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [
+    "m5",
+    "m8"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "mHJ0i9kkVuQ",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Ciática y dolor lumbar",
+   "desc": "Estiramientos diarios en el suelo para la columna y el piramidal.",
+   "tags": [
+    "suelo"
+   ],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "hyTw-ave5bE",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Manos, muñecas y dedos sin dolor",
+   "desc": "Movimientos y masaje para la rigidez de artritis y artrosis.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "Wlix-pyHkFI",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Manos ágiles",
+   "desc": "Ejercicios y masajes para desinflamar y dar flexibilidad a manos y dedos.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "DQUqpajSy2M",
+   "cat": "movil",
+   "sub": "",
+   "titulo": "Gimnasia para los ojos",
+   "desc": "Ejercicios oculares de relajación. No sustituyen la revisión con tu oftalmóloga.",
+   "tags": [],
+   "mods": [],
+   "opinion": true,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "bmHXqw_ZUbY",
+   "cat": "calma",
+   "sub": "",
+   "titulo": "Meditación para dormir · 15 min",
+   "desc": "Respiración y visualización de un atardecer para soltar el día y dormir mejor.",
+   "tags": [
+    "15 min"
+   ],
+   "mods": [
+    "m3"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "n4eGr9AtKrk",
+   "cat": "calma",
+   "sub": "",
+   "titulo": "Baja el estrés rápido",
+   "desc": "Estiramientos, balanceos y automasaje para la ansiedad y el nerviosismo.",
+   "tags": [
+    "de pie"
+   ],
+   "mods": [
+    "m2",
+    "m3",
+    "m4"
+   ],
+   "opinion": false,
+   "tipo": "video",
+   "canal": "Rebelde-Mente: Bienestar Inteligente"
+  },
+  {
+   "id": "obAzkbEQs7Y",
+   "cat": "podcast",
+   "sub": "",
+   "titulo": "Menopausia y hormonas: todo lo que necesitas saber",
+   "desc": "Dos médicas explican la perimenopausia, por qué no hay que aguantar y el papel de la terapia hormonal, el ejercicio y los hábitos.",
+   "tags": [],
+   "mods": [
+    "m1",
+    "m8"
+   ],
+   "opinion": false,
+   "tipo": "podcast",
+   "canal": "Marco Antonio Regil"
+  },
+  {
+   "id": "L3YjGC4hDH0",
+   "cat": "podcast",
+   "sub": "",
+   "titulo": "Rompiendo tabúes de la menopausia",
+   "desc": "Conversación desde la medicina funcional. Algunas afirmaciones sobre hormonas bioidénticas van más allá de la evidencia: decide con tu médica.",
+   "tags": [],
+   "mods": [
+    "m8"
+   ],
+   "opinion": true,
+   "tipo": "podcast",
+   "canal": "Marco Antonio Regil"
+  },
+  {
+   "id": "fA_0uiWOJLo",
+   "cat": "audio",
+   "sub": "",
+   "titulo": "No estás loca, es perimenopausia",
+   "desc": "Audiolibro: niebla mental, ciclos y emociones explicados con ciencia y vivencias, con herramientas prácticas.",
+   "tags": [],
+   "mods": [
+    "m1",
+    "m4"
+   ],
+   "opinion": false,
+   "tipo": "audiolibro",
+   "canal": "Audiolibros Completos"
+  },
+  {
+   "id": "h1jv2hkN8UE",
+   "cat": "audio",
+   "sub": "",
+   "titulo": "La menopausia no es el final",
+   "desc": "Audiolibro: sofocos, insomnio, deseo, trabajo y tu derecho a decidir informada sobre tus tratamientos.",
+   "tags": [],
+   "mods": [
+    "m9"
+   ],
+   "opinion": false,
+   "tipo": "audiolibro",
+   "canal": "Audiolibros Completos"
+  },
+  {
+   "id": "EH0cuspETMk",
+   "cat": "audio",
+   "sub": "",
+   "titulo": "Menopausia a tu manera",
+   "desc": "Audiolibro: entender tus hormonas y armar tu plan de nutrición, movimiento y calma.",
+   "tags": [],
+   "mods": [
+    "m0"
+   ],
+   "opinion": false,
+   "tipo": "audiolibro",
+   "canal": "United Audiobooks Español"
+  },
+  {
+   "id": "1aNaWCnNWNk",
+   "cat": "musica",
+   "sub": "",
+   "titulo": "Música para dormir",
+   "desc": "Calma instrumental para tu ritual de noche.",
+   "tags": [],
+   "mods": [
+    "m3"
+   ],
+   "opinion": false,
+   "tipo": "musica",
+   "canal": "xlamusica"
+  },
+  {
+   "id": "uAMdi0hcgDA",
+   "cat": "musica",
+   "sub": "",
+   "titulo": "Música para tu bienestar",
+   "desc": "Instrumental suave para relajarte o acompañar tus estiramientos.",
+   "tags": [],
+   "mods": [
+    "m0"
+   ],
+   "opinion": false,
+   "tipo": "musica",
+   "canal": "Infinita Tu Alma"
+  },
+  {
+   "id": "k616LXUiJwQ",
+   "cat": "musica",
+   "sub": "",
+   "titulo": "Música relajante",
+   "desc": "Sonidos suaves para respirar y bajar el ritmo.",
+   "tags": [],
+   "mods": [],
+   "opinion": false,
+   "tipo": "musica",
+   "canal": "MUSICOTERAPIA RELAJANTE By SueKings “By SueKings”"
+  }
+ ],
+ "lecciones": {
+  "m0-1": "EH0cuspETMk",
+  "m1-1": "fA_0uiWOJLo",
+  "m1-2": "obAzkbEQs7Y",
+  "m2-1": "CFvvCLvF6lo",
+  "m2-2": "Sn6Bnd_fccw",
+  "m2-3": "n4eGr9AtKrk",
+  "m3-1": "1aNaWCnNWNk",
+  "m3-2": "bmHXqw_ZUbY",
+  "m3-3": "n4eGr9AtKrk",
+  "m4-1": "yoZeDnnEVEI",
+  "m4-2": "M4rEBFeRXKs",
+  "m4-3": "JKpRczuBYsM",
+  "m4-4": "0-U2Tr1uBhA",
+  "m5-1": "mKK6WKhvISs",
+  "m5-2": "SEL-py6M9pw",
+  "m5-3": "HXD3_sLQZ-8",
+  "m6-1": "K8sQVTn6Fo8",
+  "m6-2": "rarqk03X1p8",
+  "m6-3": "aiEKmMxrb-w",
+  "m7-1": "Ok3fxX2iPzM",
+  "m7-2": "ziZpUf45NaM",
+  "m7-3": "FCt-fJCg0U4",
+  "m8-1": "obAzkbEQs7Y",
+  "m8-2": "4TARlWmVuFE",
+  "m8-3": "h1jv2hkN8UE",
+  "m9-1": "f1pM4X2rNSY",
+  "m9-2": "RsvUjciL-tk",
+  "m9-3": "eh_dr7au4K0"
+ }
+}

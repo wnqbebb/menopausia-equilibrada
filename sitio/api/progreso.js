@@ -1,5 +1,5 @@
 // Plataforma PLENA: guarda el progreso del curso para verlo en cualquier dispositivo.
-// No contiene datos de salud: solo identificadores de lecciones, respuestas del quiz, páginas leídas y días con actividad.
+// No contiene datos de salud: solo identificadores de lecciones, respuestas del quiz, páginas leídas, videos vistos y días con actividad.
 import { db } from "../lib/store.js";
 import { json } from "../lib/catalog.js";
 import { verifyAccess } from "../lib/acceso.js";
@@ -20,6 +20,7 @@ export function limpiar(b) {
     tasks: mapOf(b.tasks, ID, 400, num),                                 // tarea hecha → fecha
     quiz: mapOf(b.quiz, ID, 400, (v) => (v === 1 || v === 0 ? v : null)), // 1 acierto, 0 fallo
     mitos: mapOf(b.mitos, ID, 400, num),                                 // mito descubierto → fecha
+    vid: mapOf(b.vid, /^[A-Za-z0-9_-]{11}$/, 300, num),                  // video completado → fecha
     read: mapOf(b.read, /^[a-z0-9]{1,20}$/, 40, (v) => (typeof v === "string" && /^[01]{1,200}$/.test(v) ? v : null)), // páginas vistas por libro
     days: mapOf(b.days, /^\d{4}-\d{2}-\d{2}$/, 400, (v) => { const n = num(v); return n === null ? null : Math.max(0, Math.min(255, n | 0)); }),
     last: typeof b.last === "string" && /^[a-z0-9/-]{1,60}$/.test(b.last) ? b.last : "",

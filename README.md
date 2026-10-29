@@ -13,7 +13,7 @@ Todo lo necesario para vender, entregar y dar soporte a dos productos digitales 
   - carrito y venta por separado;
   - mejora a «Todo junto»;
   - página de descargas.
-- **PLENA · Academia de Menopausia y Psicomenopausia** (`/plena/`): academia de 10 módulos con ruta personal, libros que se hojean como un libro de verdad, la app integrada como «Mi diario», gamificación (XP, niveles, insignias, rachas y misiones) y certificado. Incluida en el pack.
+- **PLENA · Academia de Menopausia y Psicomenopausia** (`/plena/`): academia de 10 módulos con ruta personal, videoteca de 132 clases, libros que se hojean como un libro de verdad, la app integrada como «Mi diario», gamificación (XP, niveles, insignias, rachas y misiones) y certificado. Incluida en el pack.
 - **Panel de pedidos**: búsqueda, filtros, CSV, cortesías y revocación de accesos.
 - **Pagos**: Whop (automático), Stripe, enlaces de Hotmart o Mercado Pago, o cobro manual.
 
