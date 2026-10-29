@@ -475,6 +475,7 @@ function cloudConsent(id) {
 function viewHoy() {
   var k = ui.day, d = getDay(k) || normDay({}), isToday = k === today(), dt = parse(k);
   var h = '';
+  if (lsGet('me.pack') === '1' && !demo) h += '<a class="card plena-cta" href="/plena/"><span class="kick">Incluida en tu pack</span><b>PLENA · tu academia de menopausia y psicomenopausia</b><span class="note">Módulos con video, tu ruta personal y todos tus libros en un solo lugar.</span><span class="go">Entrar →</span></a>';
   if (!onboarded && !demo) h += viewWelcome();
   else if (onboarded && !demo && cloud === '') h += '<div class="card pink"><h2>Tu privacidad, primero</h2><p>Ahora tus registros se guardan solo en este dispositivo. Si usas la app en varios dispositivos, puedes activar una <b>copia cifrada</b> en la nube: se cifra aquí con tu código personal y nadie más puede leerla.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="ghost" data-act="cloudNo">Solo en este dispositivo</button></div><p class="note"><a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></p></div>';
   h += head('Registro diario', isToday ? '¿Cómo estás <span class="script" style="font-size:1.25em">hoy</span>?' : 'Registro del ' + fmtLong(k), 'Un minuto al día. 0 nada · 1 leve · 2 media · 3 fuerte. Se guarda solo y se sincroniza con tus otros dispositivos.');
@@ -863,7 +864,7 @@ function tryUnlock(a, fromForm) {
     .then(function (r) { return r.json(); })
     .then(function (d) {
       unlocking = false; if (btn) btn.disabled = false;
-      if (d && d.ok) { access = a; lsSet(KEY_ACC, a); var was = unlocked; unlocked = true; hideLock(); render(); if (!was) { toast('¡Bienvenida' + (d.name ? ', ' + d.name : '') + '! Tu app está lista.'); if (typeof confetti === 'function') confetti(); sync(); } }
+      if (d && d.ok) { access = a; lsSet(KEY_ACC, a); lsSet('me.pack', d.pack ? '1' : '0'); var was = unlocked; unlocked = true; hideLock(); render(); if (!was) { toast('¡Bienvenida' + (d.name ? ', ' + d.name : '') + '! Tu app está lista.'); if (typeof confetti === 'function') confetti(); sync(); } }
       else { if (!unlocked || !fromForm) { showLock(); lockErr((d && d.error) || 'Ese código no es válido.'); } }
     })
     .catch(function () { unlocking = false; if (btn) btn.disabled = false; lockErr('Sin conexión. Inténtalo de nuevo cuando tengas internet.'); });
@@ -872,7 +873,7 @@ function revalidate() {
   if (!unlocked || !access) return;
   fetch('/api/acceso', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ code: access }) })
     .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (d) { if (d && d.ok === false) { unlocked = false; access = ''; lsDel(KEY_ACC); showLock('Tu acceso ya no está activo. Escribe un código válido.'); } })
+    .then(function (d) { if (d && d.ok) { var pk = d.pack ? '1' : '0'; if (lsGet('me.pack') !== pk) { lsSet('me.pack', pk); if (typeof render === 'function') render(); } } if (d && d.ok === false) { unlocked = false; access = ''; lsDel(KEY_ACC); showLock('Tu acceso ya no está activo. Escribe un código válido.'); } })
     .catch(function () { });
 }
 var lastView = null, lastSub = null;

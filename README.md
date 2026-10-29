@@ -13,6 +13,7 @@ Todo lo necesario para vender, entregar y dar soporte a dos productos digitales 
   - carrito y venta por separado;
   - mejora a «Todo junto»;
   - página de descargas.
+- **PLENA · Academia de Menopausia y Psicomenopausia** (`/plena/`): curso de 10 módulos con video, ruta personal, biblioteca y certificado, incluido en el pack.
 - **Panel de pedidos**: búsqueda, filtros, CSV, cortesías y revocación de accesos.
 - **Pagos**: Whop (automático), Stripe, enlaces de Hotmart o Mercado Pago, o cobro manual.
 
@@ -42,6 +43,7 @@ Sitio en vivo de referencia: https://menopausia-equilibrada.vercel.app/oferta/
 7. [Escala: 1.000+ compras y límites](docs/07-ESCALA-Y-LIMITES.md)
 8. [Embudo y píxeles](docs/08-EMBUDO-Y-PIXEL.md)
 9. [Diseños, imágenes y PDF](docs/09-DISENOS-E-IMAGENES.md)
+10. [PLENA: la plataforma del curso](docs/10-PLENA.md): editar módulos, añadir videos de YouTube.
 
 ## Arranque rápido
 

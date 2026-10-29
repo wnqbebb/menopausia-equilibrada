@@ -7,6 +7,7 @@
 //   orders.create(rec) → id      orders.get(id)      orders.save(rec)      orders.remove(id)
 //   orders.page(offset, size) → { recs, total }      orders.all() → recs (más recientes primero)
 //   sync.get(id) → obj | null    sync.put(id, obj)    sync.del(id)
+//   prog.get(pedido) / prog.put(pedido, obj)   → progreso del curso PLENA (lecciones completadas; no son datos de salud)
 import { newId, envGet as env } from "./catalog.js";
 
 const ORD = "ped:", IDX = "ped:idx", SYN = "sync:";
@@ -62,6 +63,10 @@ function redisBackend(url, token) {
       async put(id, obj) { await cmd("SET", SYN + id, JSON.stringify(obj)); },
       async del(id) { await cmd("DEL", SYN + id); },
     },
+    prog: {
+      async get(id) { return parse(await cmd("GET", "prog:" + id)); },
+      async put(id, obj) { await cmd("SET", "prog:" + id, JSON.stringify(obj)); },
+    },
   };
 }
 
@@ -113,6 +118,7 @@ function blobBackend() {
       async all() { return readMany(await allIds()); },
     },
     sync: { get: (id) => readJSON(S(id)), put: (id, obj) => writeJSON(S(id), obj), async del(id) { const { del } = await load(); await del(S(id)).catch(() => {}); } },
+    prog: { get: (id) => readJSON(`progreso/${id}.json`), put: (id, obj) => writeJSON(`progreso/${id}.json`, obj) },
   };
 }
 
@@ -132,6 +138,7 @@ function memoryBackend() {
       async all() { return sorted().map((id) => clone(g.o.get(id))); },
     },
     sync: { async get(id) { return clone(g.s.get(id)); }, async put(id, obj) { g.s.set(id, clone(obj)); }, async del(id) { g.s.delete(id); } },
+    prog: { async get(id) { return clone((g.p ||= new Map()).get(id)); }, async put(id, obj) { (g.p ||= new Map()).set(id, clone(obj)); } },
   };
 }
 

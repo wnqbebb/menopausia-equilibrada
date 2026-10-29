@@ -13,7 +13,7 @@ async function handler(req) {
   const store = db().orders;
   const rec = await store.get(m[1]);
   if (!rec || rec.status !== "pagado" || !hasApp(itemsOf(rec)) || rec.revoked) return json({ ok: false, error: "Ese código no está activo." });
-  return json({ ok: true, name: (rec.name || "").split(" ")[0] });
+  return json({ ok: true, name: (rec.name || "").split(" ")[0], pack: itemsOf(rec).includes("todo") });
 }
 
 export { handler as POST, handler as GET };
