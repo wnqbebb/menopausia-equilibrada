@@ -459,8 +459,8 @@ nav.bottom{display:none}
   .diario{grid-template-columns:minmax(0,1fr);padding:8px 0 14px;gap:10px}
   .dside{position:static;order:-1;grid-template-columns:1fr}
   .dside .hide-m,.dside .panel.hide-m,.dside .panel h3,.dside .dk-n{display:none}
-  .dside .panel{padding:10px 12px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:center}
-  .dside .panel .mi{margin-top:0!important;padding:6px 8px}
+  .dside .panel{padding:10px 12px}
+  .dside .panel .mi{margin-top:6px!important;padding:6px 8px}
   .dside .panel .mi .ck{width:34px;height:34px}
   .appframe{height:calc(100dvh - var(--top) - var(--bot) - 150px);min-height:460px;border-radius:24px;border-width:4px}
 }
