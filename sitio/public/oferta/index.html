@@ -8,8 +8,19 @@
 <meta name="theme-color" content="#E0337A">
 <meta property="og:title" content="Menopausia sin tabú · Todo junto por USD 19">
 <meta property="og:description" content="2 guías, 6 bonos, 3 plantillas, 4 kits y app privada. Pago único.">
-<meta property="og:image" content="/oferta/img/og.jpg">
+<meta property="og:image" content="https://menopausia-equilibrada.vercel.app/oferta/img/og-share.jpg">
+<meta property="og:image:secure_url" content="https://menopausia-equilibrada.vercel.app/oferta/img/og-share.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pack Menopausia sin tabú: guías, bonos, plantillas, kits y app">
+<meta property="og:url" content="https://menopausia-equilibrada.vercel.app/oferta/">
+<meta property="og:site_name" content="Menopausia sin tabú">
+<meta property="og:locale" content="es_LA">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://menopausia-equilibrada.vercel.app/oferta/img/og-share.jpg">
+<link rel="canonical" href="https://menopausia-equilibrada.vercel.app/oferta/">
 <link rel="icon" type="image/png" href="/icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -439,6 +450,8 @@ dialog.lb p{color:#fff;text-align:center;margin-top:10px;font-weight:600}
      La página ya envía los eventos solos si existen: ViewContent, AddToCart, InitiateCheckout (aquí) y Purchase (en gracias.html).
      Ver docs/08-EMBUDO-Y-PIXEL.md -->
 <script>window.meTrack=function(ev,data){try{data=data||{};if(window.fbq)fbq('track',ev,data);if(window.ttq&&ttq.track)ttq.track(ev==='Purchase'?'CompletePayment':ev,data);if(window.gtag)gtag('event',{ViewContent:'view_item',AddToCart:'add_to_cart',InitiateCheckout:'begin_checkout',Purchase:'purchase'}[ev]||ev,{value:data.value,currency:data.currency,transaction_id:data.id});window.dispatchEvent(new CustomEvent('me:'+ev,{detail:data}))}catch(e){}};</script>
+<script>/* Reintento de imágenes: si una imagen falla por conexión lenta, se vuelve a pedir 2 veces y nunca se muestra el icono roto. */
+document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!=='IMG'||!i.getAttribute('src'))return;var n=+(i.dataset.retry||0);if(n<2){i.dataset.retry=n+1;var u=i.src.replace(/([?&])r=\d+/,'').replace(/[?&]$/,'');setTimeout(function(){i.src=u+(u.indexOf('?')<0?'?':'&')+'r='+(n+1)},800*(n+1))}else{i.style.visibility='hidden'}},true);</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">

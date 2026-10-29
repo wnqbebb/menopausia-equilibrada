@@ -63,6 +63,8 @@ header{padding:18px 0;border-bottom:1px solid var(--line);background:#fff}
      La página ya envía los eventos solos si existen: ViewContent, AddToCart, InitiateCheckout (en la oferta) y Purchase (aquí).
      Ver docs/08-EMBUDO-Y-PIXEL.md -->
 <script>window.meTrack=function(ev,data){try{data=data||{};if(window.fbq)fbq('track',ev,data);if(window.ttq&&ttq.track)ttq.track(ev==='Purchase'?'CompletePayment':ev,data);if(window.gtag)gtag('event',{ViewContent:'view_item',AddToCart:'add_to_cart',InitiateCheckout:'begin_checkout',Purchase:'purchase'}[ev]||ev,{value:data.value,currency:data.currency,transaction_id:data.id});window.dispatchEvent(new CustomEvent('me:'+ev,{detail:data}))}catch(e){}};</script>
+<script>/* Reintento de imágenes: si una imagen falla por conexión lenta, se vuelve a pedir 2 veces y nunca se muestra el icono roto. */
+document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!=='IMG'||!i.getAttribute('src'))return;var n=+(i.dataset.retry||0);if(n<2){i.dataset.retry=n+1;var u=i.src.replace(/([?&])r=\d+/,'').replace(/[?&]$/,'');setTimeout(function(){i.src=u+(u.indexOf('?')<0?'?':'&')+'r='+(n+1)},800*(n+1))}else{i.style.visibility='hidden'}},true);</script>
 </head>
 <body>
 <header><div class="wrap"><a class="logo" href="/oferta/">Menopausia <i>sin tabú</i></a></div></header>

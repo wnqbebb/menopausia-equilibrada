@@ -1,5 +1,5 @@
 // Service worker sencillo: la app abre sin conexión. Nunca guarda en caché /api/.
-const CACHE = 'me-v3-6';
+const CACHE = 'me-v3-7';
 const ASSETS = ['/', '/index.html', '/app.js', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png'];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));

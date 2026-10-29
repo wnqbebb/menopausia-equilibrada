@@ -264,6 +264,8 @@ body.locked{overflow:hidden}
 .lock input:focus{border-color:var(--fucsia);outline:none;box-shadow:0 0 0 4px rgba(224,51,122,.15)}
 .lock label.f{display:block;font-weight:700;font-size:15px}
 </style>
+<script>/* Reintento de imágenes: si una imagen falla por conexión lenta, se vuelve a pedir 2 veces y nunca se muestra el icono roto. */
+document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!=='IMG'||!i.getAttribute('src'))return;var n=+(i.dataset.retry||0);if(n<2){i.dataset.retry=n+1;var u=i.src.replace(/([?&])r=\d+/,'').replace(/[?&]$/,'');setTimeout(function(){i.src=u+(u.indexOf('?')<0?'?':'&')+'r='+(n+1)},800*(n+1))}else{i.style.visibility='hidden'}},true);</script>
 </head>
 <body>
 <header class="top">
