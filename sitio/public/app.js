@@ -1,6 +1,7 @@
 /* Menopausia Equilibrada — app de seguimiento.
-   Guarda todo en este dispositivo (localStorage) y lo sincroniza con una copia
-   privada en la nube (base de datos del sitio en Vercel) identificada por el hash de un código personal. */
+   Guarda todo en este dispositivo (localStorage). Solo si la usuaria lo autoriza, sincroniza una copia
+   CIFRADA en el dispositivo (AES-256-GCM, clave derivada de su código personal con PBKDF2) en la base de
+   datos del sitio, identificada por el hash del código. El servidor nunca ve el código ni los datos legibles. */
 (function () {
 'use strict';
 
@@ -10,6 +11,7 @@
 var KEY = 'me.data.v2';
 var KEY_CODE = 'me.code';
 var KEY_SYNC = 'me.lastSync';
+var KEY_CLOUD = 'me.cloud'; // '1' = autorizó la copia cifrada en la nube · '0' = solo este dispositivo · '' = sin decidir
 var OLD_KEY = 'miPausa.v1';
 var APP_URL = location.origin;
 
@@ -227,6 +229,33 @@ function validCode(s) { return /^[a-z]+-[a-z]+-[a-z]+-[a-z]+-\d{5}-\d{5}$/.test(
 var code = normCode(lsGet(KEY_CODE) || '');
 if (!validCode(code)) { code = newCode(); lsSet(KEY_CODE, code); }
 var lastSync = +(lsGet(KEY_SYNC) || 0);
+var cloud = lsGet(KEY_CLOUD) || '';
+
+/* ---------- Cifrado de la copia en la nube (AES-GCM 256, clave = PBKDF2 del código personal) ---------- */
+var ENC_SALT = 'menopausia-equilibrada:enc:v1', encCache = null;
+function encKey() {
+  if (encCache && encCache.code === code) return encCache.p;
+  var c = code;
+  var p = crypto.subtle.importKey('raw', new TextEncoder().encode(c), 'PBKDF2', false, ['deriveKey']).then(function (k) {
+    return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: new TextEncoder().encode(ENC_SALT), iterations: 150000, hash: 'SHA-256' }, k, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+  });
+  encCache = { code: c, p: p };
+  return p;
+}
+function b64e(u8) { var s = ''; for (var i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s); }
+function b64d(t) { var b = atob(t), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+function seal(str) {
+  var iv = crypto.getRandomValues(new Uint8Array(12));
+  return encKey().then(function (k) { return crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, k, new TextEncoder().encode(str)); })
+    .then(function (ct) { return JSON.stringify({ v: 1, enc: 'aes-gcm', iv: b64e(iv), ct: b64e(new Uint8Array(ct)) }); });
+}
+function unseal(obj) {
+  if (!obj) return Promise.resolve({ data: null, legacy: false });
+  if (obj.enc !== 'aes-gcm') return Promise.resolve({ data: obj, legacy: true }); // copia antigua sin cifrar: se re-sube cifrada
+  return encKey().then(function (k) { return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64d(obj.iv) }, k, b64d(obj.ct)); })
+    .then(function (buf) { return { data: JSON.parse(new TextDecoder().decode(buf)), legacy: false }; });
+}
+function setCloud(v) { cloud = v; lsSet(KEY_CLOUD, v); }
 var syncState = 'idle'; // idle | busy | ok | off
 var syncing = false, syncAgain = false, syncTimer = null, lastRemoteStr = null;
 
@@ -241,10 +270,11 @@ function setSync(s, txt) {
   syncState = s;
   var p = $('#syncPill'); if (!p) return;
   p.className = 'syncpill ' + s;
-  $('#syncTxt').textContent = txt || (s === 'ok' ? 'Sincronizado' : s === 'busy' ? 'Sincronizando…' : s === 'off' ? 'Sin conexión' : 'Mi cuenta');
+  $('#syncTxt').textContent = txt || (s === 'ok' ? 'Sincronizado' : s === 'busy' ? 'Sincronizando…' : s === 'off' ? 'Sin conexión' : s === 'local' ? 'En este dispositivo' : 'Mi cuenta');
   var st = $('#syncStatus'); if (st) st.textContent = syncLine();
 }
 function syncLine() {
+  if (cloud !== '1') return 'Desactivada: tus datos solo están guardados en este dispositivo.';
   if (syncState === 'busy') return 'Sincronizando…';
   if (syncState === 'off') return 'Sin conexión ahora mismo. Todo está guardado en este dispositivo y se sincronizará solo cuando vuelva la conexión.';
   return 'Última sincronización: ' + relTime(lastSync) + '.';
@@ -254,6 +284,7 @@ function sync(opts) {
   if (typeof unlocked !== 'undefined' && !unlocked) return Promise.resolve();
   opts = opts || {};
   if (demo) return Promise.resolve();
+  if (cloud !== '1') { setSync('local'); return Promise.resolve(); }
   if (!window.crypto || !crypto.subtle) { setSync('off', 'Sin sincronizar'); return Promise.resolve(); }
   if (syncing) { syncAgain = true; return Promise.resolve(); }
   syncing = true; setSync('busy');
@@ -265,15 +296,19 @@ function sync(opts) {
     if (!r.ok) throw new Error('GET ' + r.status);
     return r.json();
   }).then(function (j) {
-    var remote = j && j.data ? normalize(j.data) : null;
+    return unseal(j && j.data);
+  }).then(function (o) {
+    var remote = o.data ? normalize(o.data) : null;
     var before = JSON.stringify(real);
     var merged = remote ? merge(real, remote) : real;
     var mergedStr = JSON.stringify(merged);
     var remoteStr = remote ? JSON.stringify(remote) : null;
     if (mergedStr !== before) { real = merged; if (!demo) data = real; saveLocal(); softRender(); }
-    if (remoteStr === mergedStr) return null;
+    if (remoteStr === mergedStr && !o.legacy) return null;
     if (!remote && !hasContent(merged)) return null;
-    return fetch('/api/sync?id=' + id, { method: 'PUT', headers: { 'content-type': 'application/json', 'x-me-acc': access || '' }, body: mergedStr }).then(function (r) {
+    return seal(mergedStr).then(function (body) {
+      return fetch('/api/sync?id=' + id, { method: 'PUT', headers: { 'content-type': 'application/json', 'x-me-acc': access || '' }, body: body });
+    }).then(function (r) {
       if (!r.ok) throw new Error('PUT ' + r.status);
     });
   }).then(function () {
@@ -288,11 +323,18 @@ function sync(opts) {
   });
 }
 function changed() { saveLocal(); scheduleSync(); }
+function cloudDelete() {
+  if (!confirm('¿Borrar tu copia cifrada de la nube? Tus datos de este dispositivo no se tocan.')) return;
+  hashOf(code).then(function (id) { return fetch('/api/sync?id=' + id, { method: 'DELETE', headers: { 'x-me-acc': access || '' } }); })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); setCloud('0'); setSync('local'); render(); toast('Tu copia en la nube se borró. La sincronización quedó desactivada.'); })
+    .catch(function () { toast('No se pudo borrar ahora. Revisa tu conexión e inténtalo de nuevo.'); });
+}
 function linkCode(raw) {
   var c = normCode(raw);
   if (!validCode(c)) { toast('Ese código no parece correcto. Revisa que tenga 4 palabras y 2 números.'); return false; }
   if (c === code) { toast('Este dispositivo ya usa ese código.'); return true; }
   code = c; lsSet(KEY_CODE, code); lastSync = 0; lsSet(KEY_SYNC, '0');
+  setCloud('1'); // vincular dispositivos = pedir expresamente la sincronización cifrada
   sync({ toast: 'Dispositivo vinculado. Tus datos se unieron con los de tu cuenta.' }).then(function () { render(); });
   return true;
 }
@@ -422,13 +464,19 @@ function viewWelcome() {
     '<ol class="steps"><li><b class="n">1</b><div><b>Registra tu día</b><div class="note">Un minuto: síntomas, sofocos, sueño, energía, ánimo y agua.</div></div></li>' +
     '<li><b class="n">2</b><div><b>Sigue tu Plan de 30 días</b><div class="note">Seis hábitos sencillos para recuperar energía. Marca los que cumplas.</div></div></li>' +
     '<li><b class="n">3</b><div><b>Guarda tu enlace personal</b><div class="note">En «Mi cuenta» está tu enlace: ábrelo en tu otro dispositivo y verás lo mismo.</div></div></li></ol>' +
-    '<div class="row"><button type="button" class="dark" data-act="welcomeOk">Empezar</button><a class="btn ghost" href="#cuenta">Ver mi enlace personal</a></div></div>';
+    cloudConsent('cloudOk') +
+    '<div class="row"><button type="button" class="dark" data-act="welcomeOk">Empezar</button><a class="btn ghost" href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></div></div>';
+}
+function cloudConsent(id) {
+  return '<label class="consent" for="' + id + '"><input type="checkbox" id="' + id + '"' + (cloud === '1' ? ' checked' : '') + '><span><b>Quiero usar la app en varios dispositivos.</b> Autorizo guardar una <b>copia cifrada</b> de mis registros (datos de salud) en la nube. Se cifra en este dispositivo con mi código personal: nadie más puede leerla. Puedo desactivarla o borrarla cuando quiera en «Mi cuenta». <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</span></label>' +
+    '<p class="note" style="margin:6px 0 0">Si no la marcas, tus datos se quedan solo en este dispositivo.</p>';
 }
 
 function viewHoy() {
   var k = ui.day, d = getDay(k) || normDay({}), isToday = k === today(), dt = parse(k);
   var h = '';
   if (!onboarded && !demo) h += viewWelcome();
+  else if (onboarded && !demo && cloud === '') h += '<div class="card pink"><h2>Tu privacidad, primero</h2><p>Ahora tus registros se guardan solo en este dispositivo. Si usas la app en varios dispositivos, puedes activar una <b>copia cifrada</b> en la nube: se cifra aquí con tu código personal y nadie más puede leerla.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="ghost" data-act="cloudNo">Solo en este dispositivo</button></div><p class="note"><a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></p></div>';
   h += head('Registro diario', isToday ? '¿Cómo estás <span class="script" style="font-size:1.25em">hoy</span>?' : 'Registro del ' + fmtLong(k), 'Un minuto al día. 0 nada · 1 leve · 2 media · 3 fuerte. Se guarda solo y se sincroniza con tus otros dispositivos.');
   h += '<div class="card"><div class="daybar"><button type="button" class="ghost" data-act="prevDay" aria-label="Día anterior">‹</button><div class="d"><strong>' + (isToday ? 'Hoy' : cap(DIAS[dt.getDay()])) + '</strong><label class="sr" for="dayPick">Elegir fecha</label><input type="date" id="dayPick" value="' + k + '" max="' + today() + '" style="max-width:200px;margin:6px auto 0;display:block"></div><button type="button" class="ghost" data-act="nextDay" aria-label="Día siguiente"' + (isToday ? ' disabled' : '') + '>›</button></div><p class="status" id="saveStatus">' + (data.days[k] ? 'Hay un registro guardado para este día.' : 'Aún no hay registro para este día.') + '</p></div>';
   // sofocos + agua
@@ -734,7 +782,8 @@ function viewAlarma() {
 function viewCuenta() {
   var n = Object.keys(real.days).length;
   var h = head('Mi cuenta', 'Tu progreso, <span class="script" style="font-size:1.2em">en todos lados</span>', 'Sin contraseñas ni correos: tu enlace personal es tu llave. Ábrelo en tu celular y en tu computador y verás lo mismo en los dos.');
-  h += '<div class="card"><div class="row between"><h2>Sincronización</h2><span class="kick" id="syncBadge">' + (syncState === 'off' ? 'Sin conexión' : 'Activa') + '</span></div><p class="status" id="syncStatus">' + syncLine() + '</p><div class="row"><button type="button" class="primary" data-act="syncNow">Sincronizar ahora</button></div></div>';
+  if (cloud === '1') h += '<div class="card"><div class="row between"><h2>Copia cifrada en la nube</h2><span class="kick" id="syncBadge">' + (syncState === 'off' ? 'Sin conexión' : 'Activa') + '</span></div><p class="status" id="syncStatus">' + syncLine() + '</p><p class="note">Tus registros se cifran en este dispositivo con tu código personal (AES-256) antes de salir. Al servidor solo llega texto cifrado.</p><div class="row"><button type="button" class="primary" data-act="syncNow">Sincronizar ahora</button><button type="button" class="ghost" data-act="cloudNo">Desactivar</button><button type="button" class="danger small" data-act="cloudDel">Borrar mi copia en la nube</button></div></div>';
+  else h += '<div class="card"><div class="row between"><h2>Copia cifrada en la nube</h2><span class="kick" id="syncBadge">Desactivada</span></div><p class="status" id="syncStatus">' + syncLine() + '</p><p class="note">Actívala si quieres ver lo mismo en tu celular y en tu computador. Se cifra en este dispositivo con tu código personal: nadie más puede leerla. <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="danger small" data-act="cloudDel">Borrar mi copia en la nube</button></div></div>';
   h += '<div class="card pink"><h2>Tu enlace personal</h2><p>Guárdalo en un lugar seguro (por ejemplo, envíatelo por mensaje). Quien tenga este enlace puede ver tus registros, así que no lo publiques.</p>' +
     '<div class="code" id="myLink">' + esc(personalLink()) + '</div><div class="row"><button type="button" class="dark" data-act="copyLink">Copiar enlace</button><button type="button" data-act="copyCode">Copiar solo el código</button></div>' +
     '<div class="row" style="align-items:flex-start;gap:16px"><div class="qr" id="qr" aria-label="Código QR de tu enlace personal" role="img"></div><p class="note" style="flex:1;min-width:180px">Escanea este código con la cámara de tu celular para abrir la app con tus datos. Tu código: <b>' + esc(code) + '</b></p></div></div>';
@@ -754,7 +803,7 @@ function viewCuenta() {
   if (!ui.confirmDel) h += '<div class="row"><button type="button" class="danger" data-act="delAsk">Borrar todos mis datos</button></div>';
   else h += '<div class="hint alert"><strong>¿Seguro? Se borrarán ' + n + ' días y todas tus plantillas y tu plan.</strong><div class="row"><button type="button" class="danger" data-act="delYes">Sí, borrar todo</button><button type="button" class="ghost" data-act="delNo">Cancelar</button></div></div>';
   h += '</div>';
-  h += '<div class="card"><h2>Aviso</h2><p class="note">Menopausia Equilibrada informa; no sustituye a tu profesional de salud ni hace diagnósticos. Las pistas del ciclo siguen el consenso STRAW+10 (Harlow et al., <i>Menopause</i>, 2012) y son orientativas. Tus datos se guardan en este dispositivo y en una copia en la nube asociada al hash de tu código; el código no se envía al servidor.</p></div>';
+  h += '<div class="card"><h2>Aviso</h2><p class="note">Menopausia Equilibrada informa; no sustituye a tu profesional de salud ni hace diagnósticos. Las pistas del ciclo siguen el consenso STRAW+10 (Harlow et al., <i>Menopause</i>, 2012) y son orientativas. Tus datos se guardan en este dispositivo. Si activas la sincronización, se guarda además una copia cifrada en la nube, identificada por una huella de tu código; ni el código ni tus datos legibles llegan al servidor. Responsable: DisierTECH · <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a> · <a href="mailto:cristinaaguilarrojas1@gmail.com">cristinaaguilarrojas1@gmail.com</a></p></div>';
   return h;
 }
 function drawQR() {
@@ -970,7 +1019,10 @@ document.addEventListener('click', function (e) {
   }
   var a = b.dataset.act; if (!a) return;
   switch (a) {
-    case 'welcomeOk': onboarded = true; lsSet('me.onboarded', '1'); render(); break;
+    case 'welcomeOk': var ck = $('#cloudOk'); setCloud(ck && ck.checked ? '1' : '0'); onboarded = true; lsSet('me.onboarded', '1'); render(); if (cloud === '1') sync(); break;
+    case 'cloudYes': setCloud('1'); render(); sync({ toast: 'Copia cifrada activada.' }).then(function () { if (curView === 'cuenta') render(); }); break;
+    case 'cloudNo': setCloud('0'); setSync('local'); render(); toast('Listo: tus datos se quedan solo en este dispositivo.'); break;
+    case 'cloudDel': cloudDelete(); break;
     case 'prevDay': ui.day = addDays(ui.day, -1); rerenderKeepFocus(); break;
     case 'nextDay': if (ui.day < today()) { ui.day = addDays(ui.day, 1); rerenderKeepFocus(); } break;
     case 'flPlus': var d1 = touchDay(ui.day); d1.flashes = Math.min(99, (d1.flashes || 0) + 1); $('#flOut').textContent = d1.flashes; popEl('flOut'); saved(); break;

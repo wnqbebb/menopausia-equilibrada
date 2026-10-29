@@ -28,6 +28,8 @@ async def main():
         pa.on('console', lambda m: errs.append('A console:' + m.text) if m.type == 'error' else None)
         await pa.goto(BASE + '/#hoy'); await pa.wait_for_timeout(1500)
         ok('welcome visible first time', await pa.is_visible('#welcome'))
+        ok('consent checkbox shown unchecked', await pa.is_visible('#cloudOk') and not await pa.is_checked('#cloudOk'))
+        await pa.check('#cloudOk', force=True)
         await pa.click('[data-act=welcomeOk]')
         await pa.click('[data-act=flPlus]'); await pa.click('[data-act=flPlus]'); await pa.click('[data-act=flPlus]')
         await pa.click('[data-act=waPlus]'); await pa.click('[data-act=waPlus]')
@@ -53,6 +55,10 @@ async def main():
         ok('personal link shown', '#cuenta?c=' in link, link)
         ok('QR rendered', await pa.locator('#qr canvas, #qr img').count() > 0)
         st = await pa.inner_text('#syncStatus'); ok('A synced', 'Última sincronización' in st, st)
+        enc = await pa.evaluate('''async () => { const c = localStorage.getItem('me.code'); const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('menopausia-equilibrada:v1:' + c));
+          const id = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+          const r = await fetch('/api/sync?id=' + id, { headers: { 'x-me-acc': localStorage.getItem('me.acc') || '' } }); const t = await r.text(); return [t.includes('"enc":"aes-gcm"'), t.includes('Nota de prueba'), t.length]; }''')
+        ok('server copy is encrypted (no readable notes)', enc[0] and not enc[1], str(enc))
         await pa.screenshot(path=OUT + '/A_cuenta.png', full_page=True)
         # ---------- Device B ----------
         B = await new_ctx(b, mobile=False); pb = await B.new_page()

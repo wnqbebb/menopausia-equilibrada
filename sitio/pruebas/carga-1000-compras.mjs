@@ -20,7 +20,7 @@ let t0=Date.now(); const N=+process.argv[2]||1000;
 const of=await rj(await oferta(J("/api/oferta","POST",{})));
 const ids=[]; const combos=[["todo"],["k1"],["pausa","guia"],["app"],["k1","k2","k3"]];
 const conc=40; let i=0, errs=0;
-await Promise.all(Array.from({length:conc},async()=>{while(i<N){const n=i++;const r=await rj(await checkout(J("/api/checkout","POST",{name:"Cliente "+n,email:`c${n}@ej.com`,items:combos[n%5],offer:n%2?of.d.token:""})));if(r.s!==200){errs++;if(errs<3)console.log(r)}else ids[n]=r.d;}}));
+await Promise.all(Array.from({length:conc},async()=>{while(i<N){const n=i++;const r=await rj(await checkout(J("/api/checkout","POST",{name:"Cliente "+n,email:`c${n}@ej.com`,items:combos[n%5],offer:n%2?of.d.token:"",acepta:true})));if(r.s!==200){errs++;if(errs<3)console.log(r)}else ids[n]=r.d;}}));
 console.log(`checkouts ${N} en ${Date.now()-t0}ms, errores ${errs}`);
 console.log("precios ejemplo", ids.slice(0,5).map(x=>x.items.join("+")+"="+x.cents));
 const H={"x-admin-key":KEY};
@@ -43,11 +43,14 @@ const acc=(await rj(await entrega(J(`/api/entrega?pedido=${p0.id}&t=${tk}`)))).d
 r=await rj(await acceso(J("/api/acceso","POST",{code:acc}))); console.log("acceso", r.d.ok);
 r=await rj(await acceso(J("/api/acceso","POST",{code:ids[3].id+"-0000000000"}))); console.log("acceso falso", r.d.ok);
 const sid=crypto.createHash("sha256").update("x").digest("hex");
-r=await rj(await sync(J(`/api/sync?id=${sid}`,"PUT",{a:1}))); console.log("sync sin acceso", r.s);
-r=await rj(await sync(J(`/api/sync?id=${sid}`,"PUT",{a:1},{"x-me-acc":acc}))); console.log("sync con acceso", r.s);
+r=await rj(await sync(J(`/api/sync?id=${sid}`,"PUT",{v:1,enc:"aes-gcm",iv:"x",ct:"y"}))); console.log("sync sin acceso", r.s);
+r=await rj(await sync(J(`/api/sync?id=${sid}`,"PUT",{a:1},{"x-me-acc":acc}))); console.log("sync sin cifrar (debe 400)", r.s);
+r=await rj(await sync(J(`/api/sync?id=${sid}`,"PUT",{v:1,enc:"aes-gcm",iv:"aXY=",ct:"Y3Q="},{"x-me-acc":acc}))); console.log("sync cifrado", r.s);
 r=await rj(await sync(J(`/api/sync?id=${sid}`,"GET",null,{"x-me-acc":acc}))); console.log("sync leer", JSON.stringify(r.d));
+r=await rj(await sync(J(`/api/sync?id=${sid}`,"DELETE",null,{"x-me-acc":acc}))); console.log("sync borrar", r.s);
+r=await rj(await sync(J(`/api/sync?id=${sid}`,"GET",null,{"x-me-acc":acc}))); console.log("sync tras borrar", JSON.stringify(r.d));
 // upgrade
 const k1=ids[2]; const tk1=crypto.createHmac("sha256",KEY).update(k1.id).digest("hex").slice(0,32);
-r=await rj(await checkout(J("/api/checkout","POST",{name:"a",email:"a@b.co",items:["todo"],upgradeFrom:k1.id}))); console.log("mejora sin token", r.s);
-r=await rj(await checkout(J("/api/checkout","POST",{name:"a",email:"a@b.co",items:["todo"],upgradeFrom:k1.id,upgradeT:tk1}))); console.log("mejora con token", r.s, r.d.cents);
+r=await rj(await checkout(J("/api/checkout","POST",{name:"a",email:"a@b.co",items:["todo"],upgradeFrom:k1.id,acepta:true}))); console.log("mejora sin token", r.s);
+r=await rj(await checkout(J("/api/checkout","POST",{name:"a",email:"a@b.co",items:["todo"],upgradeFrom:k1.id,upgradeT:tk1,acepta:true}))); console.log("mejora con token", r.s, r.d.cents);
 console.log("OK: prueba terminada"); process.exit(0);

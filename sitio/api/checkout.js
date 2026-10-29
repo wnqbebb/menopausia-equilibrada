@@ -29,6 +29,7 @@ async function handler(req) {
   if (!name) return json({ error: "Escribe tu nombre." }, 400);
   if (!EMAIL.test(email)) return json({ error: "Revisa tu correo: así te llega tu compra." }, 400);
   if (!items.length) return json({ error: "Tu carrito está vacío." }, 400);
+  if (b.acepta !== true) return json({ error: "Para continuar, acepta la política de privacidad." }, 400);
 
   const store = db().orders;
   // Mejora a «Todo junto» desde una compra anterior pagada: pagas solo la diferencia
@@ -42,7 +43,7 @@ async function handler(req) {
   const offer = await checkOffer(env("ADMIN_KEY"), b.offer);
   const q = quote(items, { upgradeFromCents, offerActive: !!(offer.ok && offer.active) });
   const m = mode();
-  const rec = { v: 2, id: "", createdAt: new Date().toISOString(), name, email, phone, items: q.items, cents: q.cents, currency: CURRENCY, mode: m, status: "pendiente", upgradeFrom, offer: !!(offer.ok && offer.active), origin: ORIGIN };
+  const rec = { v: 2, id: "", createdAt: new Date().toISOString(), name, email, phone, items: q.items, cents: q.cents, currency: CURRENCY, mode: m, status: "pendiente", upgradeFrom, offer: !!(offer.ok && offer.active), origin: ORIGIN, consent: { at: new Date().toISOString(), policy: "privacidad-2026-10-29" } };
 
   let id;
   try { id = await store.create(rec); } catch (err) { console.error("checkout id", err); return json({ error: "No se pudo registrar tu pedido. Inténtalo de nuevo." }, 500); }

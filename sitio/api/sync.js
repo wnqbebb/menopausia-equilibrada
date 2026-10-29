@@ -1,5 +1,6 @@
 // Menopausia Equilibrada — sincronización entre dispositivos.
-// Guarda el documento JSON completo de cada usuaria en la base de datos (lib/store.js),
+// Guarda la copia CIFRADA (AES-GCM, cifrada en el dispositivo con una clave derivada del código personal)
+// de cada usuaria en la base de datos (lib/store.js),
 // con la clave = SHA-256 (calculado en el navegador) de su código privado.
 // El código nunca llega al servidor; solo su hash.
 // Solo sincronizan las compradoras: la petición debe llevar su código de acceso a la app (cabecera x-me-acc),
@@ -66,6 +67,10 @@ async function handler(req) {
     if (!body || typeof body !== "object" || Array.isArray(body)) {
       return json({ error: "Formato no válido." }, 400);
     }
+    // Solo se aceptan copias cifradas en el dispositivo (AES-GCM): el servidor nunca guarda datos de salud legibles.
+    if (body.enc !== "aes-gcm" || typeof body.iv !== "string" || typeof body.ct !== "string" || Object.keys(body).some((k) => !["v", "enc", "iv", "ct"].includes(k))) {
+      return json({ error: "La copia debe ir cifrada. Actualiza la app." }, 400);
+    }
     try {
       await store.put(id, body);
       return json({ ok: true, savedAt: Date.now() });
@@ -75,7 +80,13 @@ async function handler(req) {
     }
   }
 
-  return json({ error: "Método no permitido." }, 405, { allow: "GET, PUT" });
+  if (req.method === "DELETE") {
+    // Derecho de supresión: borra la copia en la nube de esta usuaria.
+    try { await store.del(id); return json({ ok: true, deleted: true }); }
+    catch (err) { console.error("sync DELETE failed", err); return json({ error: "No se pudo borrar." }, 500); }
+  }
+
+  return json({ error: "Método no permitido." }, 405, { allow: "GET, PUT, DELETE" });
 }
 
-export { handler as GET, handler as PUT, handler as POST };
+export { handler as GET, handler as PUT, handler as POST, handler as DELETE };

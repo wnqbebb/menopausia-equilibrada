@@ -87,6 +87,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     </div>
     <p class="note" style="text-align:center;margin:26px 0 60px">Este material es educativo y no sustituye a tu profesional de salud.</p>
   </section>
+<p style="text-align:center;font-size:13.5px;color:#6B4E5C;margin:34px 0 0">© 2026 DisierTECH · <a href="/privacidad.html" style="color:#9B1B4F">Política de privacidad</a> · Soporte: <a href="mailto:cristinaaguilarrojas1@gmail.com" style="color:#9B1B4F">cristinaaguilarrojas1@gmail.com</a></p>
 </main>
 <script>
 (function(){
@@ -109,7 +110,7 @@ function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.j
 }).catch(function(){$('#loading').hidden=true;$('#pending').hidden=false})}
 load();
 $('#upBtn').addEventListener('click',function(){var btn=this;btn.disabled=true;$('#upErr').hidden=true;
-  fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:who.name||'Cliente',email:who.email||'',items:['todo'],upgradeFrom:who.id,upgradeT:who.t||''})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){
+  fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:who.name||'Cliente',email:who.email||'',items:['todo'],upgradeFrom:who.id,upgradeT:who.t||'',acepta:true})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){
     if(!x.ok)throw new Error(x.d.error||'No se pudo continuar.');
     if(x.d.url){location.href=x.d.url;return}
     $('#upsell').innerHTML='<h2>¡Listo!</h2><p>Reservamos tu pack completo. Te escribiremos a <b>'+(who.email||'tu correo').replace(/</g,'&lt;')+'</b> con el enlace de pago.</p>';

@@ -327,6 +327,9 @@ footer a{color:var(--rosa)}
 .sum .tt span:last-child{font-family:var(--fd);font-size:26px;color:var(--fucsia)}
 .fld{display:grid;gap:6px;font-weight:600;font-size:14.5px}
 .fld input{font:inherit;font-weight:500;font-size:16px;min-height:52px;border-radius:14px;border:2px solid var(--line);padding:0 14px;background:#fff;color:var(--ink)}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--muted);cursor:pointer}
+.chk input{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--fucsia)}
+.chk a{color:var(--berry);font-weight:700}
 .fld input:focus{border-color:var(--fucsia);outline:none;box-shadow:0 0 0 4px rgba(224,51,122,.15)}
 .err{background:#FDECEA;color:var(--alert);border-radius:12px;padding:10px 12px;font-size:14.5px;font-weight:600}
 .secure{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
@@ -757,7 +760,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     <span class="logo" style="color:#fff"><b>Menopausia</b><i>sin tabú</i></span>
     <p><b>Aviso:</b> este material es educativo e informativo. No sustituye la consulta, el diagnóstico ni el tratamiento de un profesional de salud. Si tienes sangrado después de 12 meses sin regla o pensamientos de hacerte daño, busca atención pronto.</p>
     <p>Las imágenes de personas, objetos y comida se generaron con inteligencia artificial. Los precios están en dólares estadounidenses; tu banco puede convertirlos a tu moneda.</p>
-    <p>© 2026 DisierTECH</p>
+    <p>© 2026 DisierTECH · <a href="/privacidad.html">Política de privacidad</a> · Contacto: <a href="mailto:cristinaaguilarrojas1@gmail.com">cristinaaguilarrojas1@gmail.com</a></p>
   </div>
 </footer>
 
@@ -780,6 +783,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
       <label class="fld" for="cName">Tu nombre<input id="cName" name="name" autocomplete="name" required maxlength="80"></label>
       <label class="fld" for="cEmail">Tu correo (aquí te llega tu compra)<input id="cEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254"></label>
       <label class="fld" for="cPhone">WhatsApp (opcional)<input id="cPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30"></label>
+      <label class="chk" for="cOk"><input id="cOk" name="acepta" type="checkbox" required><span>Acepto la <a href="/privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y el tratamiento de mis datos para recibir mi compra.</span></label>
       <div class="err" id="coErr" role="alert" hidden></div>
       <p class="secure"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" style="flex:0 0 18px;margin-top:2px"><rect x="4" y="10" width="16" height="11" rx="2" fill="#9B1B4F"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="#9B1B4F" stroke-width="2.2"/></svg><span id="coSecure">Tus datos solo se usan para entregarte tu compra.</span></p>
     </form>
@@ -920,8 +924,9 @@ $('#coForm').addEventListener('submit',function(e){
   var name=$('#cName').value.trim(),email=$('#cEmail').value.trim(),phone=$('#cPhone').value.trim();
   if(!name){err.textContent='Escribe tu nombre.';err.hidden=false;$('#cName').focus();return}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){err.textContent='Revisa tu correo: así te llega tu compra.';err.hidden=false;$('#cEmail').focus();return}
+  if(!$('#cOk').checked){err.textContent='Para continuar, acepta la política de privacidad.';err.hidden=false;$('#cOk').focus();return}
   var btn=$('#coPay');btn.disabled=true;btn.style.opacity=.7;$('#pg3').classList.add('on');meTrack('InitiateCheckout',{value:quote().total,currency:'USD'});
-  fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:name,email:email,phone:phone,items:cart,offer:isLaunch()?tok:''})})
+  fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:name,email:email,phone:phone,items:cart,offer:isLaunch()?tok:'',acepta:true})})
   .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})})
   .then(function(x){
     if(!x.ok){throw new Error(x.d.error||'No se pudo continuar.')}

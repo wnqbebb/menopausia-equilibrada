@@ -45,7 +45,17 @@ Los dos se generan solos tras el pago (Whop o Stripe) y también en el panel.
 
 La elige sola `sitio/lib/store.js`:
 
-- **Upstash Redis** (recomendada): cada pedido es la clave `ped:<id>`, el índice ordenado es `ped:idx` y los datos de la app están en `sync:<hash>`.
+- **Upstash Redis** (recomendada): cada pedido es la clave `ped:<id>`, el índice ordenado es `ped:idx` y las copias de la app están en `sync:<hash>`, **cifradas** (nadie puede leerlas sin el código de la usuaria).
 - **Vercel Blob privado**: archivos `pedidos/<id>.json` y `sync/<hash>.json`.
 
+Cada pedido guarda también cuándo la clienta aceptó la política de privacidad (`consent`), como prueba de autorización (Ley 1581).
+
 Exporta el CSV desde el panel con frecuencia como copia de seguridad.
+
+## Privacidad (Ley 1581 de Colombia)
+
+- Política pública: `/privacidad.html`. Contacto: cristinaaguilarrojas1@gmail.com.
+- El checkout exige aceptar la política (casilla obligatoria; el servidor también lo verifica).
+- Los datos de salud de la app solo salen del dispositivo si la usuaria lo autoriza, y siempre **cifrados**.
+- Solicitudes de borrado: los datos de la app los borra la usuaria desde «Mi cuenta». Los datos de compra se borran con **Borrar** en el panel (si no hay obligación contable de conservarlos).
+- Plazos legales de respuesta: consultas en 10 días hábiles y reclamos en 15 días hábiles.
