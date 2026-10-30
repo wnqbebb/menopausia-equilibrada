@@ -103,15 +103,19 @@ En la página de ventas, al elegir una oferta se abre el panel «Tu pedido» con
 - **Última oferta:** si compró solo los libros, en esa misma pantalla le aparece «Suma PLENA por solo USD 7» con su propio pago (plan «Mejora a PLENA», `plan_fbPqZmH1WSsQS`, solo por enlace).
 - Si paga con un método que sale a otra página (PSE, Nequi…), vuelve a `/oferta/gracias.html?whop=1` y ahí recibe el mismo botón.
 
-### La entrega dentro de Whop
-Cada compra también da acceso a su panel de Whop (Whop le manda su propio correo desde whop.com, que casi nunca cae en spam):
+### Dentro de Whop (solo un acceso simple)
+Whop se usa como **procesador de pagos**. Dentro de cada producto hay un solo acceso:
 
-| Producto de Whop | Qué ve dentro de Whop |
+| Producto de Whop | Lo que ve al pagar |
 |---|---|
-| Biblioteca PAUSA · 13 libros | Curso **«📚 Tu Biblioteca PAUSA»**: botón para abrir su biblioteca 3D + orden recomendado de lectura |
-| Libros + PLENA | El curso de la biblioteca + el curso **«💗 Entra a PLENA»** con los pasos para crear su cuenta |
+| Biblioteca PAUSA · 13 libros | **📚 Biblioteca PAUSA** → botón «Abrir mis 13 libros» (su biblioteca 3D) |
+| Libros + PLENA | **💗 App PLENA** → botón «Entrar a PLENA» y el aviso de buscar el correo «Crea tu cuenta de PLENA» (o en Spam) |
 
-**Falta 1 cosa tuya (1 minuto):** en Whop → Academia PLENA → «💗 Entra a PLENA» → lección «Crea tu cuenta y entra a PLENA», cambia el texto `PEGAR_AQUI_EL_ENLACE_DE_BIENVENIDA` por tu enlace de bienvenida de PLENA (el de `/bienvenida?k=…`). Por seguridad no lo puedo escribir yo.
+### ¿A dónde va el dinero?
+Cada pago entra al **saldo del negocio «Academia PLENA · Menopausia sin tabú» en Whop** (Whop → Balance). Ya puede recibir pagos con tarjeta y banco. Para **retirarlo** a tu cuenta falta, en Whop:
+1. **Verificar tu identidad** (Balance → Verify now).
+2. **Activar 2FA** para el equipo (Team → Require 2FA).
+3. **Agregar tu método de retiro** (cuenta bancaria) en Balance → Payout methods. Los retiros son manuales: tú decides cuándo.
 
 ### Imágenes
 Ya están puestos el logo, la portada del negocio y las galerías de los dos productos.
