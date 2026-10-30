@@ -11,12 +11,12 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png?v=2">
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-<link rel="manifest" href="/plena/manifest.webmanifest">
+<link rel="manifest" href="/manifest.webmanifest">
 <meta name="apple-mobile-web-app-title" content="Plena">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Poppins:wght@400;500;600;700;800&family=Shrikhand&family=Silkscreen&display=swap">
 <link rel="stylesheet" href="/plena/vendor/plyr.css">
-<link rel="stylesheet" href="/plena/plena.css?v=7">
+<link rel="stylesheet" href="/plena/plena.css?v=8">
 <script>/* Reintento de imágenes: si una imagen falla por conexión lenta, se vuelve a pedir 2 veces. */
 document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!=='IMG'||!i.getAttribute('src'))return;var n=+(i.dataset.retry||0);if(n<2){i.dataset.retry=n+1;var u=i.src.replace(/([?&])r=\d+/,'').replace(/[?&]$/,'');setTimeout(function(){i.src=u+(u.indexOf('?')<0?'?':'&')+'r='+(n+1)},800*(n+1))}else{i.style.visibility='hidden'}},true);</script>
 </head>
@@ -44,6 +44,8 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 <div id="toast" role="status" aria-live="polite" hidden></div>
 <script src="/plena/vendor/page-flip.js" defer></script>
 <script src="/plena/vendor/plyr.js" defer></script>
-<script src="/plena/plena.js?v=7" defer></script>
+<script src="/plena/vendor/supabase-2.118.0.js" defer></script>
+<script src="/plena/cuenta.js?v=1" defer></script>
+<script src="/plena/plena.js?v=8" defer></script>
 </body>
 </html>

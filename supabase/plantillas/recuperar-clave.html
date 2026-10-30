@@ -1,0 +1,19 @@
+<!-- Plantilla de Supabase: Authentication → Emails → Templates → «Reset Password».
+     Asunto: Crea tu nueva contraseña de PLENA
+     Si usas otro dominio, cambia https://menopausia-equilibrada.vercel.app por el tuyo. -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFF0F3"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:#ffffff;border-radius:22px;border:1px solid #FFD1DC">
+<tr><td align="center" style="padding:30px 24px 6px"><img src="https://menopausia-equilibrada.vercel.app/icons/plena-correo.png" width="200" height="80" alt="Plena" style="display:block;width:200px;height:80px;border:0;font-family:Georgia,serif;font-size:40px;color:#FF1A5D">
+<p style="margin:6px 0 0;font-family:Georgia,'Times New Roman',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#6B4E5C">Academia de menopausia y psicomenopausia</p></td></tr>
+<tr><td style="padding:16px 28px 28px;font-family:Georgia,'Times New Roman',serif;font-size:17px;line-height:1.6;color:#2B1B24">
+<h1 style="margin:8px 0 12px;font-family:'Playfair Display',Georgia,serif;font-size:28px;line-height:1.2;color:#2B1B24">Crea tu nueva contraseña</h1>
+<p style="margin:0 0 12px">Recibimos una solicitud para cambiar la contraseña de tu cuenta de PLENA (<b>{{ .Email }}</b>). Toca el botón para elegir una nueva:</p>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:22px auto"><tr><td align="center" bgcolor="#FF1A5D" style="border-radius:999px">
+<a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:15px 34px;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:bold;color:#ffffff;text-decoration:none;border-radius:999px;background:#FF1A5D">Crear mi nueva contraseña</a>
+</td></tr></table>
+<p style="margin:0 0 10px;font-size:15px;color:#6B4E5C">El enlace caduca pronto y sirve una sola vez. Si no pediste este cambio, ignora este correo: tu contraseña sigue igual.</p>
+<p style="margin:0;font-size:15px;color:#6B4E5C">Al cambiarla se cierra la sesión en tus otros dispositivos. Tu diario sigue protegido: si este dispositivo ya lo tenía abierto, no pierdes nada.</p>
+</td></tr>
+<tr><td style="padding:18px 28px 26px;border-top:1px solid #FFE4EA;font-family:Arial,Helvetica,sans-serif;font-size:12.5px;line-height:1.55;color:#6B4E5C">
+Nunca te pediremos tu contraseña por correo ni por mensaje. ¿Dudas? <a href="mailto:cristinaaguilarrojas1@gmail.com" style="color:#FF1A5D">cristinaaguilarrojas1@gmail.com</a> · <a href="https://menopausia-equilibrada.vercel.app/privacidad.html" style="color:#FF1A5D">Política de privacidad</a><br>© 2026 DisierTECH</td></tr>
+</table></td></tr></table>

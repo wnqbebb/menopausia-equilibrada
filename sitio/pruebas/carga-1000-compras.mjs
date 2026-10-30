@@ -34,21 +34,15 @@ console.log("webhooks pagados", ok, (Date.now()-t0)+"ms");
 t0=Date.now(); r=await rj(await pedidos(J("/api/pedidos?estado=pagado","GET",null,H))); console.log("filtro pagados", r.d.total, (Date.now()-t0)+"ms");
 t0=Date.now(); r=await pedidos(J("/api/pedidos?csv=1","GET",null,H)); const csv=await r.text(); console.log("csv filas", csv.split("\n").length-1, (Date.now()-t0)+"ms");
 r=await rj(await pedidos(J("/api/pedidos?q=c10@ej.com","GET",null,H))); console.log("busqueda", r.d.total);
-// entrega + acceso + sync for paid todo order (n=0)
+// entrega + acceso + sync para un pedido «todo» pagado (n=0). La app y PLENA ahora usan cuentas (Supabase):
+// sin sesión, /api/acceso y /api/sync responden 401 (o 503 si Supabase no está configurado).
 const p0=ids[0]; const tk=crypto.createHmac("sha256",KEY).update(p0.id).digest("hex").slice(0,32);
-r=await rj(await entrega(J(`/api/entrega?pedido=${p0.id}&t=${tk}`))); console.log("entrega", r.d.paid, r.d.files.length, !!r.d.access, !!r.d.t);
+r=await rj(await entrega(J(`/api/entrega?pedido=${p0.id}&t=${tk}`))); console.log("entrega", r.d.paid, r.d.files.length, "plena:", r.d.plena, "cuenta:", r.d.cuenta, !!r.d.t);
 r=await rj(await entrega(J(`/api/entrega?pedido=${ids[2].id}&t=${crypto.createHmac("sha256",KEY).update(ids[2].id).digest("hex").slice(0,32)}`))); console.log("entrega k1 pagado", r.d.paid, r.d.files.map(f=>f.url));
 r=await rj(await entrega(J(`/api/entrega?pedido=${ids[1].id}&t=bad`))); console.log("entrega token malo", r.s);
-const acc=(await rj(await entrega(J(`/api/entrega?pedido=${p0.id}&t=${tk}`)))).d.access;
-r=await rj(await acceso(J("/api/acceso","POST",{code:acc}))); console.log("acceso", r.d.ok);
-r=await rj(await acceso(J("/api/acceso","POST",{code:ids[3].id+"-0000000000"}))); console.log("acceso falso", r.d.ok);
-const sid=crypto.createHash("sha256").update("x").digest("hex");
-r=await rj(await sync(J(`/api/sync?id=${sid}`,"PUT",{v:1,enc:"aes-gcm",iv:"x",ct:"y"}))); console.log("sync sin acceso", r.s);
-r=await rj(await sync(J(`/api/sync?id=${sid}`,"PUT",{a:1},{"x-me-acc":acc}))); console.log("sync sin cifrar (debe 400)", r.s);
-r=await rj(await sync(J(`/api/sync?id=${sid}`,"PUT",{v:1,enc:"aes-gcm",iv:"aXY=",ct:"Y3Q="},{"x-me-acc":acc}))); console.log("sync cifrado", r.s);
-r=await rj(await sync(J(`/api/sync?id=${sid}`,"GET",null,{"x-me-acc":acc}))); console.log("sync leer", JSON.stringify(r.d));
-r=await rj(await sync(J(`/api/sync?id=${sid}`,"DELETE",null,{"x-me-acc":acc}))); console.log("sync borrar", r.s);
-r=await rj(await sync(J(`/api/sync?id=${sid}`,"GET",null,{"x-me-acc":acc}))); console.log("sync tras borrar", JSON.stringify(r.d));
+r=await rj(await acceso(J("/api/acceso","POST",{}))); console.log("acceso sin sesión (debe 401/503)", r.s);
+r=await rj(await sync(J(`/api/sync`,"PUT",{v:1,enc:"aes-gcm",iv:"x",ct:"y"}))); console.log("sync sin sesión (debe 401/503)", r.s);
+r=await rj(await sync(J(`/api/sync`,"GET",null,{authorization:"Bearer falso.falso.falsofalsofalsofalso"}))); console.log("sync con sesión falsa (debe 401/503)", r.s);
 // upgrade
 const k1=ids[2]; const tk1=crypto.createHmac("sha256",KEY).update(k1.id).digest("hex").slice(0,32);
 r=await rj(await checkout(J("/api/checkout","POST",{name:"a",email:"a@b.co",items:["todo"],upgradeFrom:k1.id,acepta:true}))); console.log("mejora sin token", r.s);

@@ -1,6 +1,6 @@
 # 10 · PLENA · Academia de Menopausia y Psicomenopausia
 
-La academia vive en **`/plena/`** (también `/academia`). Está **incluida en el pack completo**: se entra con el mismo código de acceso de la app. Quien solo compró la app ve una invitación a completar su pack.
+La academia vive en **`/plena/`** (también `/academia`, y `/` lleva aquí). Está **incluida en el pack completo**: se entra con una **cuenta personal (correo + contraseña)** que la compradora crea en su página de gracias tras pagar. Quien no tiene el pack completo ve una invitación a completarlo. Cuentas, Supabase y correos: [11-CUENTAS-Y-SUPABASE.md](11-CUENTAS-Y-SUPABASE.md).
 
 Todo pasa dentro de la misma página: los libros se leen ahí mismo, los videos se reproducen ahí mismo y la app está integrada. Cada lección combina texto, las páginas exactas de los libros del pack y un video para practicar.
 
@@ -21,7 +21,8 @@ Todo pasa dentro de la misma página: los libros se leen ahí mismo, los videos 
 | **Biblioteca** | Los 13 libros con su portada. Se abren a pantalla completa como un libro de verdad: se pasan las hojas con sonido de hoja, la miniatura aparece al instante mientras carga la página nítida, las siguientes se precargan y quedan guardadas en el dispositivo, miniaturas, lupa, sonido de página, «sigue leyendo» y descarga del PDF. |
 | **Mi diario** | La app Menopausia Equilibrada completa, integrada. «Cómo se usa» abre su guía. Lo que se registra suma XP y cumple la misión del día. |
 | **Logros** | 15 niveles y 50 insignias coleccionables, cada una con su protagonista Soul 2.0, en cuatro dificultades con su color: **fácil** (rosa), **media** (lavanda), **difícil** (oro) y **legendaria** (iridiscente). |
-| **Perfil, guía y certificado** | Edita sus respuestas, repite el recorrido, abre la guía rápida, sonidos y sesión. Al completar el curso se desbloquea el certificado. |
+| **Iniciar sesión** | Correo y contraseña (ver/ocultar), «Recordarme» activado por defecto y «¿Olvidaste tu contraseña?» (el enlace del correo abre `/plena/#nueva-clave`). |
+| **Perfil, guía y certificado** | Foto de perfil (galería o cámara; recorte cuadrado 512×512 WebP), sus respuestas, repetir el recorrido, guía rápida, sonidos, cambiar la contraseña, «Descargar mis datos», «Cerrar sesión» y «Borrar mi cuenta». Al completar el curso se desbloquea el certificado (con su foto, si tiene). |
 
 ### Gamificación
 
@@ -42,7 +43,7 @@ Todo pasa dentro de la misma página: los libros se leen ahí mismo, los videos 
 - **Insignias (50):** por ejemplo, rachas de 3, 7, 21 y 60 días; 1, 10, 30 y 75 videos; 80, 150 y todas las páginas; 7, 30 y 90 días de diario; 1, 7 y 21 días perfectos; las 31 tareas o las 31 preguntas acertadas a la primera.
 - **Misiones del día:** una lección, un video, 5 páginas y el registro en Mi diario.
 
-El progreso (lecciones, tareas, respuestas, páginas leídas, videos vistos y días con actividad) se guarda en el dispositivo y en la base de datos con su acceso, así se ve igual en el celular y en el computador. **No incluye datos de salud.**
+El progreso (lecciones, tareas, respuestas, páginas leídas, videos vistos, días con actividad y el recorrido) se guarda en el dispositivo y en su cuenta (tabla `progreso` de Supabase), así se ve igual en el celular y en el computador. La bienvenida (etapa y objetivos, que son datos de salud) va **cifrada** con la clave del diario: en otro dispositivo se recupera sin repetirla.
 
 ## La app (Mi diario)
 
@@ -89,13 +90,14 @@ Revisa después que las `lecturas` de `curso.json` sigan apuntando a las página
 
 ## Seguridad
 
-El contenido del curso no es público: lo entrega `/api/curso` solo a quien tiene un acceso válido de un pedido pagado con el pack completo.
+El contenido del curso no es público: lo entrega `/api/curso` solo a una sesión válida de Supabase (`Authorization: Bearer`) con `pack` y sin `revocado`. Las tablas tienen RLS (cada usuaria solo ve lo suyo) y la foto está en un bucket privado. Cabeceras de seguridad y CSP en `sitio/vercel.json`.
 
 ## Probar en tu computador
 
 ```bash
 cd sitio && npm install
-node pruebas/servidor-local.mjs      # abre la URL que imprime (incluye un código de prueba)
+node pruebas/servidor-local.mjs      # imprime el enlace para crear la cuenta de un pedido de prueba (Supabase de prueba en memoria)
+node pruebas/e2e-cuentas.mjs         # prueba automática completa (necesita Playwright)
 ```
 
 ### Primera entrada (orden)
@@ -105,5 +107,6 @@ node pruebas/servidor-local.mjs      # abre la URL que imprime (incluye un códi
 
 ### Marca e iconos
 - Icono de la app (pantalla de inicio y pestaña del navegador): la palabra **Plena** en Shrikhand, con su sombra blanca y rosa y la bolita como punto final (`public/icons/`). Para regenerarlo: `herramientas/icono/icono.html` (abrir con `?fs=140` y capturar a 512×512).
-- PLENA se puede instalar como app desde `/plena/` (`public/plena/manifest.webmanifest`).
+- PLENA se puede instalar como app desde `/plena/`: el manifiesto principal (`public/manifest.webmanifest`) es el de PLENA (nombre «Plena», inicio en `/plena/`).
+- Logotipo de los correos: `public/icons/plena-correo.png` (se regenera con `herramientas/icono/correo_shot.js`).
 - El diario muestra «Plena · tu diario» en su cabecera.

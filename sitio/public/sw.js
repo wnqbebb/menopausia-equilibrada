@@ -1,7 +1,8 @@
 // Service worker sencillo: la app abre sin conexión. Nunca guarda en caché /api/.
-const CACHE = 'me-v4-4';
+const CACHE = 'me-v5-0';
 const IMGS = 'me-img-v1'; // páginas de libros e imágenes: no cambian, se sirven desde el caché
-const ASSETS = ['/', '/index.html', '/app.js', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png'];
+// «/» lleva a /plena/: el diario se guarda como /?embed=1 (dentro de PLENA).
+const ASSETS = ['/plena/', '/?embed=1', '/app.js', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png'];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
@@ -10,7 +11,7 @@ self.addEventListener('activate', (e) => {
 });
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
-  if (e.request.method !== 'GET' || url.pathname.startsWith('/api/') || url.pathname.startsWith('/oferta') || url.pathname.startsWith('/entrega-')) return;
+  if (e.request.method !== 'GET' || url.pathname.startsWith('/api/') || url.pathname.startsWith('/__') || url.pathname.startsWith('/oferta') || url.pathname.startsWith('/entrega-')) return;
   if (url.origin === location.origin && /^\/(plena\/libros|plena\/img|oferta\/img|img)\//.test(url.pathname)) {
     e.respondWith(caches.open(IMGS).then((c) => c.match(e.request).then((r) => r || fetch(e.request).then((res) => { if (res && res.ok) c.put(e.request, res.clone()); return res; }))));
     return;
@@ -19,9 +20,9 @@ self.addEventListener('fetch', (e) => {
     // Red primero (para tener siempre la última versión), caché si no hay conexión.
     e.respondWith(
       fetch(e.request).then((res) => {
-        if (res && res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(e.request, copy)); }
+        if (res && res.ok && !res.redirected) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(e.request, copy)); }
         return res;
-      }).catch(() => caches.match(e.request).then((r) => r || caches.match('/index.html')))
+      }).catch(() => caches.match(e.request).then((r) => r || caches.match(url.pathname.startsWith('/plena') ? '/plena/' : '/?embed=1')))
     );
   } else if (/(^|\.)(fonts\.googleapis\.com|fonts\.gstatic\.com|cdnjs\.cloudflare\.com)$/.test(url.hostname)) {
     // Fuentes y librería QR: caché primero. (Los PDF del CDN no se guardan aquí.)

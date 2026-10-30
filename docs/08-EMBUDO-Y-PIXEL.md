@@ -11,10 +11,10 @@ Anuncio / redes / correo
                                       ▼
                  Checkout (Whop / Stripe / enlace / pedido)
                                       ▼
-/oferta/gracias.html  →  descargas + código de la app
+/oferta/gracias.html  →  descargas + «Crea tu cuenta de PLENA»
    └─ Si no compró todo: «Completa tu pack» pagando la diferencia (upsell)
                                       ▼
-App (/#acceso?k=…) → uso diario y fidelización
+PLENA (/plena/, con su cuenta) → curso, Mi diario y fidelización
 ```
 
 Atajos que llevan a la oferta: `/comprar` y `/pack`.

@@ -17,10 +17,12 @@
 | `k2` | Kit Intimidad sin dolor | 8 USD | `PAUSA_Upsell2_Intimidad_sin_dolor.pdf` |
 | `k3` | Kit Menopausia en el trabajo | 7 USD | `PAUSA_Upsell3_Menopausia_en_el_trabajo.pdf` |
 | `k4` | Kit Fuerte después de los 45 | 9 USD | `PAUSA_Upsell4_Fuerte_despues_de_los_45.pdf` |
-| `app` | App Menopausia Equilibrada (de por vida) | 29 USD | código de acceso |
+| `app` | App Menopausia Equilibrada (de por vida) | 29 USD | cuenta (ver nota) |
 | `todo` | **Todo junto** (valor 124 USD) | **19 USD** durante la oferta de 15 min · **37 USD** después | todo lo anterior |
 
 Los PDF están en `sitio/public/entrega-f92e9c4d594a8499f33676e3c3fd18c8/`.
+
+> **Nota sobre `app` suelta:** desde las cuentas de PLENA, el diario vive solo dentro de PLENA, y PLENA es solo para el pack completo. Quien compre únicamente `app` puede crear su cuenta, pero verá la pantalla para completar su pack. Si vas a seguir vendiéndola suelta, decide si la quitas de la tienda o si le das acceso a Mi diario.
 
 ## Reglas de precio (las aplica el servidor; el navegador solo las muestra)
 

@@ -3,11 +3,14 @@
   "version": "3.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "prueba-carga": "ME_STORE=memory ADMIN_KEY=prueba-local-123 node pruebas/carga-1000-compras.mjs 1000"
   },
   "dependencies": {
-    "@vercel/blob": "^2.8.2"
+    "@vercel/blob": "^2.8.2",
+    "nodemailer": "10.1.1"
   }
 }

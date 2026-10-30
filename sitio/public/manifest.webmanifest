@@ -1,12 +1,13 @@
 {
-  "name": "Plena · tu diario",
+  "id": "/",
+  "name": "Plena",
   "short_name": "Plena",
-  "description": "Registra tus síntomas, sigue tu plan de 30 días y lleva tus datos a la consulta. Se sincroniza entre tu celular y tu computador.",
+  "description": "Tu academia privada de menopausia y psicomenopausia: curso, videos, libros para hojear, tu diario y tus logros.",
   "lang": "es",
-  "start_url": "/#hoy",
+  "start_url": "/plena/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#FFF5F8",
+  "background_color": "#FFF7F8",
   "theme_color": "#FF1A5D",
   "icons": [
     {

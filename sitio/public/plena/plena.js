@@ -1,12 +1,12 @@
 /* PLENA · Academia de Menopausia y Psicomenopausia · v4
-   Plataforma privada (incluida en el pack completo). Usa el mismo código de acceso que la app.
+   Plataforma privada (incluida en el pack completo). Se entra con la cuenta personal (correo + contraseña, Supabase Auth: cuenta.js).
    - Contenido: /api/curso (contenido/curso.json, libros.json y videos.json).
-   - Progreso y logros: este dispositivo + /api/progreso (sin datos de salud).
+   - Progreso y logros: este dispositivo + /api/progreso (la etapa y los objetivos van cifrados con la clave del diario).
    - Cursos al estilo aula: cada módulo tiene introducción, lecciones, videos, lecturas y cierre.
    - Cursos de práctica en video (dentro de Cursos): cada categoría tiene su lista de videos; el reproductor es propio (Plyr).
    - Mi ruta: el mapa personal con el progreso de cada módulo.
    - Biblioteca: los libros se leen aquí mismo, a pantalla completa, pasando las hojas.
-   - Mi diario: la app Menopausia Equilibrada completa, integrada (mismo origen: comparte acceso y datos). */
+   - Mi diario: la app Menopausia Equilibrada completa, integrada (mismo origen: usa esta sesión y la clave de datos). */
 (function () {
 'use strict';
 
@@ -28,8 +28,9 @@ function addD(k, n) { var p = k.split('-'), d = new Date(+p[0], +p[1] - 1, +p[2]
 function reduced() { return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches; }
 function plural(n, a, b) { return n + ' ' + (n === 1 ? a : b); }
 function toast(m) { var t = $('#toast'); t.textContent = m; t.hidden = false; t.style.animation = 'none'; void t.offsetWidth; t.style.animation = ''; clearTimeout(toast.t); toast.t = setTimeout(function () { t.hidden = true; }, 3200); }
-var KEY_ACC = 'me.acc', KEY_PERFIL = 'plena.perfil', KEY_PROG = 'plena.prog', KEY_SEEN = 'plena.vistas', KEY_POS = 'plena.pos', KEY_HOY = 'plena.hoy', KEY_SON = 'plena.sonido', KEY_VPOS = 'plena.vpos', KEY_TIPS = 'plena.tips', KEY_TOUR = 'plena.tour';
+var KEY_PERFIL = 'plena.perfil', KEY_PROG = 'plena.prog', KEY_SEEN = 'plena.vistas', KEY_POS = 'plena.pos', KEY_HOY = 'plena.hoy', KEY_SON = 'plena.sonido', KEY_VPOS = 'plena.vpos', KEY_TIPS = 'plena.tips', KEY_TOUR = 'plena.tour';
 function findAcc(t) { var m = String(t || '').toLowerCase().match(/[0-9a-f]{14}-[0-9a-f]{10}/); return m ? m[0] : ''; }
+var PC = window.PlenaCuenta;
 var UID = 0;
 
 /* =========================================================
@@ -126,7 +127,7 @@ function lightTema(m) { var t = Object.assign({}, m.tema); t.acc = mAcc(m); retu
 /* =========================================================
    Estado
    ========================================================= */
-var access = (ls(KEY_ACC) || '').toLowerCase();
+var SES = null, CUENTA = null, CLAVE_OK = true; // sesión, perfil de la cuenta (nombre, correo, foto) y si la clave del diario está lista
 var C = null, ARCH = {}, NOMBRE = '', VIDS = [], VBY = {}, VCAT = {}, VLEC = {};
 var perfil = lsJSON(KEY_PERFIL, null);
 var prog = normProg(lsJSON(KEY_PROG, {}));
@@ -139,8 +140,11 @@ function normProg(p) {
   return p;
 }
 function api(path, opts) {
-  opts = opts || {}; opts.headers = Object.assign({ 'x-me-acc': access }, opts.headers || {});
-  return fetch(path, opts).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, status: r.status, d: d }; }); });
+  return PC.api(path, opts).then(function (x) {
+    // La sesión terminó (contraseña cambiada en otro dispositivo, cuenta revocada…): volver a iniciar sesión.
+    if (SES && (x.status === 401 || (x.status === 403 && x.d && x.d.motivo === 'revocado'))) { SES = null; var m = x.d && x.d.error; PC.salir().then(function () { authScreen(vLogin(m)); }); }
+    return x;
+  });
 }
 function mod(id) { return C.modulos.filter(function (x) { return x.id === id; })[0]; }
 function libro(item) { return C.biblioteca.filter(function (b) { return b.item === item; })[0]; }
@@ -155,9 +159,15 @@ function modMins(m) { return m.lecciones.reduce(function (a, l) { return a + l.m
 function pruneDays() { var ks = Object.keys(prog.days).sort(); while (ks.length > 120) delete prog.days[ks.shift()]; }
 function saveProg(push) {
   pruneDays(); ls(KEY_PROG, JSON.stringify(prog));
-  if (push && access) { clearTimeout(saveProg.t); saveProg.t = setTimeout(pushProg, 700); }
+  if (push && SES) { clearTimeout(saveProg.t); saveProg.t = setTimeout(pushProg, 700); }
 }
-function pushProg() { api('/api/progreso', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify(prog) }).catch(function () {}); }
+function pushProg() { prog.tour = ls(KEY_TOUR) === 'hecho' ? 1 : 0; api('/api/progreso', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify(prog) }).catch(function () {}); }
+/* La bienvenida (nombre, etapa y objetivos) viaja cifrada con la clave del diario: el servidor no la puede leer. */
+function savePerfil() {
+  ls(KEY_PERFIL, JSON.stringify(perfil));
+  var at = Date.now();
+  return PC.sellar(perfil).then(function (o) { if (o) { prog.pf = o; prog.pfAt = at; saveProg(true); } }).catch(function () {});
+}
 function orBits(a, b) { var n = Math.max(a.length, b.length), o = ''; for (var i = 0; i < n; i++) o += (a[i] === '1' || b[i] === '1') ? '1' : '0'; return o; }
 function mergeProg(r) {
   var changed = false, up = false;
@@ -172,14 +182,19 @@ function mergeProg(r) {
   var D = r.days || {}; Object.keys(D).forEach(function (d) { var m = (prog.days[d] || 0) | D[d]; if (m !== (prog.days[d] || 0)) changed = true; if (m !== D[d]) up = true; prog.days[d] = m; });
   Object.keys(prog.days).forEach(function (d) { if (!(d in D)) up = true; });
   if (!prog.last && r.last) { prog.last = r.last; changed = true; }
+  if (r.tour === 1 && ls(KEY_TOUR) !== 'hecho') { ls(KEY_TOUR, 'hecho'); changed = true; } else if (ls(KEY_TOUR) === 'hecho' && r.tour !== 1) up = true;
+  if (r.pf && (r.pfAt || 0) > (prog.pfAt || 0)) { prog.pf = r.pf; prog.pfAt = r.pfAt; changed = true; }
+  else if (prog.pf && (prog.pfAt || 0) > (r.pfAt || 0)) up = true;
   return { changed: changed, up: up };
 }
-function syncProg() {
+function syncProg(first) {
   return api('/api/progreso').then(function (x) {
     if (!x.ok || !x.d.progreso) return;
-    var res = mergeProg(x.d.progreso);
+    var hadPf = prog.pfAt || 0, res = mergeProg(x.d.progreso);
     if (res.changed || res.up) saveProg(res.up);
-    if (res.changed) { markSeenSilently(); render(true); }
+    // Bienvenida hecha en otro dispositivo: se recupera y no se repite.
+    var pfP = (prog.pf && (prog.pfAt || 0) !== hadPf) || (prog.pf && !perfil) ? PC.abrir(prog.pf).then(function (o) { if (o && o.etapa) { perfil = o; ls(KEY_PERFIL, JSON.stringify(perfil)); res.changed = true; } }).catch(function () {}) : null;
+    return Promise.resolve(pfP).then(function () { if (res.changed && !first) { markSeenSilently(); render(true); } });
   }).catch(function () {});
 }
 
@@ -724,6 +739,7 @@ function vBiblioteca() {
    ========================================================= */
 var APPV = { hoy: 'Hoy', progreso: 'Progreso', plan30: 'Plan 30 días', plantillas: 'Plantillas', consulta: 'Mi consulta', ciclo: 'Ciclo', alarma: 'Señales de alarma', cuenta: 'Mi cuenta' };
 function vDiario(sub) {
+  if (!CLAVE_OK) return vClaveDiario();
   sub = APPV[sub] ? sub : 'hoy';
   var mis = misiones()[3];
   return '<section class="dfull"><div class="dpill"><span class="syncdot"><i></i> Conectado con PLENA</span><span id="dkD"><b>' + APP.days + '</b> días registrados</span><span class="dm' + (mis.ok ? ' ok' : '') + '" id="dkM">' + (mis.ok ? '✓ Misión de hoy cumplida' : 'Registrar hoy: +' + XP.diario + ' XP') + '</span><button class="lnk" data-act="appGuia">' + ic('ayuda', 15) + ' Cómo se usa</button></div>' +
@@ -757,12 +773,20 @@ function vLogros() {
    ========================================================= */
 var ETAPAS = [['peri', 'Aún tengo reglas, pero han cambiado', 'perimenopausia', 'luna'], ['post', 'Llevo 12 meses o más sin regla', 'posmenopausia', 'sol'], ['inducida', 'Llegó por una cirugía o un tratamiento', 'menopausia inducida', 'consulta'], ['nose', 'No lo tengo claro', 'lo descubrimos juntas', 'lupa']];
 var OBJIC = { sofocos: 'llama', sueno: 'noche', mente: 'mente', cuerpo: 'pesa', comida: 'hoja', intimidad: 'corazones', consulta: 'consulta', trabajo: 'corona', etapa: 'luna' };
+function pwField(id, label, ac) { return '<label class="fld" for="' + id + '">' + label + '<span class="pw"><input id="' + id + '" type="password" autocomplete="' + ac + '" maxlength="72" required><button type="button" class="pwv" data-act="verPw" data-for="' + id + '" aria-label="Mostrar la contraseña">Ver</button></span></label>'; }
 function vPerfil() {
-  var S = stats(), t = totalPct(), p = perfil || {}, tk = TIER[S.tier].k;
-  return '<section class="sec"><div class="wrap narrow"><div class="lg panel prof"><span class="ava big">' + esc((nombre() || 'P').charAt(0).toUpperCase()) + '</span><div><span class="kick">Tu perfil</span><h1>Hola' + (nombre() ? ', <em>' + esc(nombre()) + '</em>' : '') + '</h1><p class="muted">Nivel ' + S.lv + ' · ' + esc(S.lvName) + ' <span class="tier ' + tk + '">' + TIER[S.tier].n + '</span> · ' + S.xp + ' XP · ' + t.p + '% del curso</p></div>' + (t.p === 100 ? '<a class="btn btn-p btn-s" href="#certificado">Mi certificado</a>' : '') + '</div>' +
+  var S = stats(), t = totalPct(), p = perfil || {}, tk = TIER[S.tier].k, f = CUENTA && CUENTA.foto;
+  return '<section class="sec"><div class="wrap narrow"><div class="lg panel prof">' + avaHTML('ava big') + '<div><span class="kick">Tu perfil</span><h1>Hola' + (nombre() ? ', <em>' + esc(nombre()) + '</em>' : '') + '</h1><p class="muted">Nivel ' + S.lv + ' · ' + esc(S.lvName) + ' <span class="tier ' + tk + '">' + TIER[S.tier].n + '</span> · ' + S.xp + ' XP · ' + t.p + '% del curso</p></div>' + (t.p === 100 ? '<a class="btn btn-p btn-s" href="#certificado">Mi certificado</a>' : '') + '</div>' +
+    '<div class="lg panel" id="fotoP"><b class="ser">Tu foto</b><p class="muted">Aparece en la cabecera, en tu perfil y en tu certificado. Elige una de tu galería o tómala con la cámara: la recortamos cuadrada y la comprimimos aquí antes de subirla. Solo tú la ves.</p>' +
+    '<div class="fotorow"><span class="fprev" id="fPrev">' + (f ? '<img src="' + esc(f) + '" alt="Tu foto">' : esc((nombre() || 'P').charAt(0).toUpperCase())) + '</span><div class="row"><label class="btn btn-p btn-s" for="fIn">' + ic('dl', 16) + ' Subir mi foto<input id="fIn" type="file" accept="image/jpeg,image/png,image/webp,image/*" hidden></label>' + (f ? '<button class="btn btn-g btn-s" data-act="fotoQuitar">Quitar foto</button>' : '') + '</div></div>' +
+    '<div id="fNueva" hidden><p class="muted sm">Así se verá. ¿La guardamos?</p><div class="row"><button class="btn btn-p btn-s" data-act="fotoGuardar">Guardar foto</button><button class="btn btn-g btn-s" data-act="fotoCancelar">Cancelar</button></div></div><p class="err" id="fErr" hidden></p></div>' +
     '<div class="lg panel">' + perfilForm(p, false) + '</div>' +
     '<div class="lg panel"><b class="ser">Ayuda</b><p class="muted">¿Te perdiste? Vuelve a ver el recorrido guiado o abre la guía rápida con la explicación de cada sección.</p><div class="row"><button class="btn btn-g btn-s" data-act="tour">' + ic('bandera', 16) + ' Repetir el recorrido</button><button class="btn btn-g btn-s" data-act="guia">' + ic('ayuda', 16) + ' Guía rápida</button></div></div>' +
-    '<div class="lg panel"><b class="ser">Sonido y privacidad</b><p class="muted">Tus objetivos y tu etapa se guardan solo en este dispositivo. Tu progreso del curso (lecciones, respuestas, páginas leídas, videos vistos y días con actividad) se guarda con tu acceso para verlo en otros dispositivos: no incluye datos de salud. <a href="/privacidad.html">Política de privacidad</a>.</p><div class="row"><button class="btn btn-g btn-s" data-act="sonido">' + ic(sonidoOn() ? 'son' : 'mudo', 16) + (sonidoOn() ? ' Sonidos activados' : ' Sonidos apagados') + '</button><button class="btn btn-g btn-s" data-act="salir">Cerrar sesión en este dispositivo</button></div></div></div></section>';
+    '<div class="lg panel" id="cuentaP"><b class="ser">Tu cuenta</b><p class="muted">Tu usuario: <b>' + esc((CUENTA && CUENTA.email) || '') + '</b>. Entras con él y tu contraseña en el celular, en el computador y en la app instalada.</p>' +
+    '<details class="acc"><summary>Cambiar mi contraseña</summary><form id="cpF" novalidate>' + pwField('cpA', 'Contraseña actual', 'current-password') + pwField('cpN', 'Nueva contraseña <small>(mínimo 8 caracteres)</small>', 'new-password') + '<div class="meter" id="cpM"><i></i><i></i><i></i><i></i><span>Mínimo 8 caracteres</span></div>' + pwField('cpR', 'Repite la nueva contraseña', 'new-password') + '<p class="err" id="cpErr" hidden></p><button class="btn btn-p" type="submit">Guardar la nueva contraseña</button></form></details>' +
+    '<div class="row" style="margin-top:12px"><button class="btn btn-g btn-s" data-act="misDatos">' + ic('dl', 16) + ' Descargar mis datos</button><button class="btn btn-g btn-s" data-act="salir">Cerrar sesión</button></div>' +
+    '<details class="acc danger"><summary>Borrar mi cuenta</summary><p class="muted">Se borran para siempre tu cuenta, tu perfil, tu progreso, tus insignias, tu foto y la copia cifrada de tu diario. No se puede deshacer. Si quieres guardar algo, primero descarga tus datos.</p><form id="dlF" novalidate>' + pwField('dlP', 'Escribe tu contraseña para confirmar', 'current-password') + '<p class="err" id="dlErr" hidden></p><button class="btn btn-danger" type="submit">Borrar mi cuenta para siempre</button></form></details></div>' +
+    '<div class="lg panel"><b class="ser">Sonido y privacidad</b><p class="muted">Tu progreso del curso (lecciones, respuestas, páginas leídas, videos vistos y días con actividad) se guarda en tu cuenta para verlo en todos tus dispositivos. Tu etapa, tus objetivos y tu diario se cifran en este dispositivo con una clave que solo se abre con tu contraseña: nadie más puede leerlos, tampoco nosotras. <a href="/privacidad.html">Política de privacidad</a>.</p><div class="row"><button class="btn btn-g btn-s" data-act="sonido">' + ic(sonidoOn() ? 'son' : 'mudo', 16) + (sonidoOn() ? ' Sonidos activados' : ' Sonidos apagados') + '</button></div></div></div></section>';
 }
 function perfilForm(p, step) {
   var obj = p.objetivos || [];
@@ -781,18 +805,32 @@ function vOnboarding() {
     [['cursos', 'Cursos', '10 módulos y 10 cursos de práctica en video, con introducción y cierre.'], ['bandera', 'Mi ruta', 'Tu mapa con bolitas y caminitos que muestra tu progreso.'], ['libro', 'Biblioteca', 'Tus 13 libros para leer pasando las hojas.'], ['tel', 'Mi diario', 'Tu app: registra tu día y descarga tu informe.'], ['trofeo', 'Logros', 'XP, 15 niveles y ' + badges().length + ' insignias en 4 dificultades.']].map(function (x) { return '<div class="obi"><span class="obic">' + ic(x[0], 20) + '</span><b>' + x[1] + '</b><small>' + x[2] + '</small></div>'; }).join('') +
     '</div><p class="muted sm">Primero te hacemos 3 preguntas para ordenar tu ruta. Luego un recorrido de un minuto te muestra dónde está cada cosa.</p><button class="btn btn-p" data-act="obNext" style="width:100%">Empezar</button></div><img class="obcut" src="' + img('cut13a') + '" alt="" aria-hidden="true"></div></div>';
   var tt = ['', 'Hagamos esto <em>tuyo</em>', 'Tu <em>etapa</em>', 'Lo que más te <em>pesa</em>'][obStep];
-  var dsc = ['', 'Tus respuestas se quedan en este dispositivo.', 'Así adaptamos los textos a tu momento. Si no lo sabes, no pasa nada: el módulo 1 te ayuda.', 'Pondremos primero los módulos que más te ayudan. Puedes cambiarlo cuando quieras en tu perfil.'][obStep];
+  var dsc = ['', 'Tus respuestas se guardan cifradas en tu cuenta: solo tú puedes leerlas.', 'Así adaptamos los textos a tu momento. Si no lo sabes, no pasa nada: el módulo 1 te ayuda.', 'Pondremos primero los módulos que más te ayudan. Puedes cambiarlo cuando quieras en tu perfil.'][obStep];
   return '<div class="ov"><div class="obwrap"><div class="box lg obox">' + obDots() + '<span class="kick">Bienvenida · paso ' + (obStep + 1) + ' de 4</span><h1>' + tt + '</h1><p>' + dsc + '</p>' + perfilForm(Object.assign({}, perfil || {}, obDraft), obStep) + '</div><img class="obcut" src="' + img(['cut13a', 'cut08a', 'cut17a', 'cut27a'][obStep]) + '" alt="" aria-hidden="true"></div></div>';
 }
 function vMagic() { return '<div class="ov"><div class="box lg magic">' + glassHeart(130, 'love', '', '', '', 'big flt') + '<h1>Creando tu ruta' + (nombre() ? ', <em>' + esc(nombre()) + '</em>' : '') + '…</h1><p id="mgT">Ordenando los módulos según lo que más te pesa</p></div></div>'; }
-function vLock(msg) {
-  return '<div class="ov"><div class="obwrap"><div class="box lg obox"><span class="kick">Acceso privado</span><h1>Tu academia <span class="plena sm">Plena</span></h1><p>Curso de menopausia y psicomenopausia, videoteca, libros para hojear, tu diario y tus logros en un solo lugar. Está incluida en el <b>pack completo</b>.</p><form id="lk"><label class="fld" for="lkIn">Tu código de acceso o tu enlace de la app<input id="lkIn" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="ej. 1a17ee86ed0fa0-5824857924"></label><p class="err" id="lkErr"' + (msg ? '' : ' hidden') + '>' + esc(msg || '') + '</p><button class="btn btn-p" style="width:100%;margin-top:12px">Entrar</button></form><p class="muted sm">Tu código está en tu página de descargas. ¿Aún no tienes el pack? <a href="/oferta/">Conócelo aquí</a>.</p></div><img class="obcut" src="' + img('cut02a') + '" alt="" aria-hidden="true"></div></div>';
+/* ---------- iniciar sesión, recuperar y crear una nueva contraseña ---------- */
+var AUTHV = 'login', AUTHMSG = '';
+function authBox(inner, cut) { return '<div class="ov"><div class="obwrap"><div class="box lg obox auth">' + inner + '</div><img class="obcut" src="' + img(cut || 'cut02a') + '" alt="" aria-hidden="true"></div></div>'; }
+function vLogin(msg) {
+  if (AUTHV === 'olvido') return authBox('<span class="kick">Recuperar contraseña</span><h1>¿Olvidaste tu <em>contraseña</em>?</h1><p>Escribe el correo con el que creaste tu cuenta y te enviaremos un enlace para crear una nueva.</p><form id="rcF" novalidate><label class="fld" for="rcE">Tu correo<input id="rcE" type="email" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required></label><p class="err" id="rcErr" hidden></p><p class="okmsg" id="rcOk" hidden></p><button class="btn btn-p" style="width:100%;margin-top:12px">Enviarme el enlace</button></form><p class="muted sm"><button class="lnk" data-act="authV" data-v="login">← Volver a iniciar sesión</button></p>', 'cut08a');
+  return authBox('<span class="kick">Acceso privado</span><h1>Tu academia <span class="plena sm">Plena</span></h1><p>Curso de menopausia y psicomenopausia, videoteca, libros para hojear, tu diario y tus logros en un solo lugar. Está incluida en el <b>pack completo</b>.</p>' +
+    '<form id="lgF" novalidate><label class="fld" for="lgE">Tu correo<input id="lgE" type="email" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required></label>' + pwField('lgP', 'Tu contraseña', 'current-password') +
+    '<div class="lgrow"><label class="chk" for="lgR"><input type="checkbox" id="lgR"' + (PC.recordar() ? ' checked' : '') + '> Recordarme en este dispositivo</label><button type="button" class="lnk" data-act="authV" data-v="olvido">¿Olvidaste tu contraseña?</button></div>' +
+    '<p class="err" id="lgErr"' + (msg ? '' : ' hidden') + ' role="alert">' + esc(msg || '') + '</p><button class="btn btn-p" id="lgB" style="width:100%;margin-top:12px">Entrar</button></form>' +
+    '<p class="muted sm">¿Compraste y aún no tienes cuenta? Créala con el enlace de tu correo de compra (tu página de descargas). ¿Aún no tienes el pack? <a href="/oferta/">Conócelo aquí</a>.</p>');
 }
-function vMejora() { return '<div class="ov"><div class="box lg obox" style="text-align:center">' + glassHeart(90, 'happy', '', '', 'margin:0 auto', 'flt') + '<span class="kick">Tu acceso está activo</span><h1>PLENA está en el <em>pack completo</em></h1><p>Tu compra incluye la app, pero no la academia. Completa tu pack pagando solo la diferencia desde tu página de descargas.</p><a class="btn btn-p" href="/oferta/">Ver el pack completo</a><p style="margin-top:14px"><a href="/#hoy">Volver a mi app</a></p></div></div>'; }
+function vNuevaClave() {
+  return authBox('<span class="kick">Nueva contraseña</span><h1>Crea tu nueva <em>contraseña</em></h1><p>Elige una contraseña que no uses en otros sitios. Al guardarla, se cerrará la sesión en tus otros dispositivos.</p><form id="ncF" novalidate>' + pwField('ncP', 'Nueva contraseña <small>(mínimo 8 caracteres)</small>', 'new-password') + '<div class="meter" id="ncM"><i></i><i></i><i></i><i></i><span>Mínimo 8 caracteres</span></div>' + pwField('ncR', 'Repite la contraseña', 'new-password') + '<p class="err" id="ncErr" hidden role="alert"></p><button class="btn btn-p" style="width:100%;margin-top:12px">Guardar y entrar</button></form>', 'cut17a');
+}
+function vClaveDiario() {
+  return '<section class="sec"><div class="wrap narrow"><div class="lg panel" style="text-align:center">' + glassHeart(80, 'happy', '', '', 'margin:0 auto', 'flt') + '<span class="kick">Tu diario está protegido</span><h1>Confirma tu <em>contraseña</em></h1><p class="muted">Tu diario se cifra con una clave que solo se abre con tu contraseña. En este dispositivo hace falta escribirla una vez (por ejemplo, si la cambiaste en otro dispositivo).</p><form id="cdF" novalidate style="max-width:420px;margin:0 auto;text-align:left">' + pwField('cdP', 'Tu contraseña', 'current-password') + '<p class="err" id="cdErr" hidden role="alert"></p><button class="btn btn-p" style="width:100%;margin-top:12px">Abrir mi diario</button></form></div></div></section>';
+}
+function vMejora() { return '<div class="ov"><div class="box lg obox" style="text-align:center">' + glassHeart(90, 'happy', '', '', 'margin:0 auto', 'flt') + '<span class="kick">Tu acceso está activo</span><h1>PLENA está en el <em>pack completo</em></h1><p>Tu compra incluye la app, pero no la academia. Completa tu pack pagando solo la diferencia desde tu página de descargas.</p><a class="btn btn-p" href="/oferta/">Ver el pack completo</a><p style="margin-top:14px"><button class="lnk" data-act="salir">Cerrar sesión</button></p></div></div>'; }
 function vCert() {
   var t = totalPct(), nm = nombre() || 'Graduada', f = new Date().toLocaleDateString('es', { day: 'numeric', month: 'long', year: 'numeric' });
   if (t.p < 100) return '<section class="sec"><div class="wrap narrow"><div class="lg panel" style="text-align:center">' + glassHeart(80, 'happy', '', '', 'margin:0 auto', 'flt') + '<span class="kick">Tu graduación</span><h1>Te faltan ' + plural(t.n - t.d, 'lección', 'lecciones') + '</h1><p>Completa el curso para desbloquear tu certificado de graduación PLENA y la insignia legendaria «Graduada PLENA».</p>' + pbar(t.p) + '<a class="btn btn-p" href="' + nextHref() + '" style="margin-top:14px">Seguir mi curso</a></div></div></section>';
-  return '<section class="sec"><div class="wrap" style="max-width:880px"><div class="cert"><span class="px">PLENA · Academia de Menopausia y Psicomenopausia</span><h2>Certificado de graduación</h2><p>Se otorga con orgullo a</p><div class="name">' + esc(nm) + '</div><p style="max-width:560px;margin:0 auto">por completar el curso PLENA: ' + C.modulos.length + ' módulos y ' + t.n + ' lecciones para entender su cuerpo, cuidar su mente y vivir esta etapa con información, fuerza y libertad.</p><p class="cierre">' + esc(C.cierre) + '</p><p class="muted sm">' + esc(f) + ' · DisierTECH</p>' + glassHeart(56, 'love', '', '', 'position:absolute;left:30px;top:30px') + sparkle('#FFD95A', 40, 'position:absolute;right:34px;top:34px') + '<img src="' + img('cut22a') + '" alt="" style="position:absolute;right:14px;bottom:-6px;height:170px"></div><p class="noprint" style="text-align:center;margin-top:18px"><button class="btn btn-p" data-act="print">Descargar / imprimir certificado</button></p></div></section>';
+  return '<section class="sec"><div class="wrap" style="max-width:880px"><div class="cert"><span class="px">PLENA · Academia de Menopausia y Psicomenopausia</span><h2>Certificado de graduación</h2><p>Se otorga con orgullo a</p>' + (CUENTA && CUENTA.foto ? '<img class="cfoto" src="' + esc(CUENTA.foto) + '" alt="">' : '') + '<div class="name">' + esc(nm) + '</div><p style="max-width:560px;margin:0 auto">por completar el curso PLENA: ' + C.modulos.length + ' módulos y ' + t.n + ' lecciones para entender su cuerpo, cuidar su mente y vivir esta etapa con información, fuerza y libertad.</p><p class="cierre">' + esc(C.cierre) + '</p><p class="muted sm">' + esc(f) + ' · DisierTECH</p>' + glassHeart(56, 'love', '', '', 'position:absolute;left:30px;top:30px') + sparkle('#FFD95A', 40, 'position:absolute;right:34px;top:34px') + '<img src="' + img('cut22a') + '" alt="" style="position:absolute;right:14px;bottom:-6px;height:170px"></div><p class="noprint" style="text-align:center;margin-top:18px"><button class="btn btn-p" data-act="print">Descargar / imprimir certificado</button></p></div></section>';
 }
 
 /* =========================================================
@@ -1018,7 +1056,7 @@ function placeTour() {
 }
 function endTour(done) {
   var ov = $('.tour'); if (ov) ov.remove(); TOURI = -1;
-  if (ls(KEY_TOUR) !== 'hecho') { var b = snapshot(); ls(KEY_TOUR, 'hecho'); afterAward(b, null); }
+  if (ls(KEY_TOUR) !== 'hecho') { var b = snapshot(); ls(KEY_TOUR, 'hecho'); afterAward(b, null); saveProg(true); }
   if (done) { tone('done'); toast('¡Listo! Si te pierdes, el botón ? te lo vuelve a mostrar.'); }
 }
 function closeModal() { var m = $('.modal'); if (m) m.remove(); }
@@ -1038,10 +1076,15 @@ function openGuide() {
    Render y rutas
    ========================================================= */
 function parse() { var h = location.hash.replace(/^#/, ''); var p = h.split('/'); return { v: p[0] || 'inicio', a: p[1] || '', b: p[2] || '' }; }
+function avaHTML(cls, href) {
+  var ini = esc((nombre() || 'P').charAt(0).toUpperCase()), f = CUENTA && CUENTA.foto;
+  var inner = f ? '<img src="' + esc(f) + '" alt="" referrerpolicy="no-referrer">' : ini;
+  return href ? '<a class="' + cls + (f ? ' ph' : '') + '" href="' + href + '" aria-label="Mi perfil">' + inner + '</a>' : '<span class="' + cls + (f ? ' ph' : '') + '">' + inner + '</span>';
+}
 function paintMe() {
   var me = $('#me'); if (!me) return; if (!C || !perfil) { me.innerHTML = ''; return; }
   var S = stats(), tk = TIER[S.tier].k;
-  me.innerHTML = '<button class="hbtn" id="helpBtn" data-act="guia" aria-label="Ayuda y guía rápida">' + ic('ayuda', 20) + '</button><a class="xpchip lg ' + tk + '" href="#logros" aria-label="Mis logros: nivel ' + S.lv + ', ' + S.xp + ' XP"><span class="lv">' + S.lv + '</span><span class="tx">' + S.xp + ' XP</span><span class="fl">' + ic('llama', 15) + S.streak.cur + '</span></a><a class="ava" href="#perfil" aria-label="Mi perfil">' + esc((nombre() || 'P').charAt(0).toUpperCase()) + '</a>';
+  me.innerHTML = '<button class="hbtn" id="helpBtn" data-act="guia" aria-label="Ayuda y guía rápida">' + ic('ayuda', 20) + '</button><a class="xpchip lg ' + tk + '" href="#logros" aria-label="Mis logros: nivel ' + S.lv + ', ' + S.xp + ' XP"><span class="lv">' + S.lv + '</span><span class="tx">' + S.xp + ' XP</span><span class="fl">' + ic('llama', 15) + S.streak.cur + '</span></a>' + avaHTML('ava', '#perfil');
 }
 var lastRoute = '';
 function render(keepScroll) {
@@ -1096,8 +1139,8 @@ function bindForms() {
       if (step === 2) { if (!et) { tone('tap'); return fail('Elige tu etapa (si no lo sabes, marca «No lo tengo claro»).'); } tone('step'); obDraft.etapa = et; obStep = 3; render(); return; }
       if (!ob.length) { tone('tap'); return fail('Elige al menos una cosa.'); } if (ob.length > 3) return fail('Elige como máximo 3.');
       tone('magic');
-      var before = { xp: 0, lv: 1, b: [] };
-      perfil = { nombre: obDraft.nombre || '', etapa: obDraft.etapa, objetivos: ob, at: Date.now() }; ls(KEY_PERFIL, JSON.stringify(perfil));
+      var before = snapshot();
+      perfil = { nombre: obDraft.nombre || '', etapa: obDraft.etapa, objetivos: ob, at: Date.now() }; savePerfil();
       if (perfil.nombre && !ls('me.name')) ls('me.name', perfil.nombre);
       markDay(8); saveProg(true);
       $('#main').innerHTML = vMagic(); var msgs = ['Ordenando los módulos según lo que más te pesa', 'Eligiendo tus primeras lecturas y videos', 'Preparando tus misiones de hoy', '¡Lista! Ahora te enseño dónde está todo'], k = 0;
@@ -1107,13 +1150,121 @@ function bindForms() {
       return;
     }
     if (!et) return fail('Elige tu etapa.'); if (!ob.length) return fail('Elige al menos una cosa.'); if (ob.length > 3) return fail('Elige como máximo 3.');
-    perfil = { nombre: nmI.value.trim().slice(0, 40), etapa: et, objetivos: ob, at: perfil ? perfil.at : Date.now() }; ls(KEY_PERFIL, JSON.stringify(perfil));
+    perfil = { nombre: nmI.value.trim().slice(0, 40), etapa: et, objetivos: ob, at: perfil ? perfil.at : Date.now() }; savePerfil();
     toast('Listo: tu ruta se actualizó.'); location.hash = '#cursos';
   });
   $$('input[name=obj]').forEach(function (i) { i.addEventListener('change', function () { if ($$('input[name=obj]:checked').length > 3) { i.checked = false; toast('Elige como máximo 3.'); } else tone('tap'); }); });
   $$('input[name=etapa]').forEach(function (i) { i.addEventListener('change', function () { tone('tap'); }); });
-  var lk = $('#lk');
-  if (lk) lk.addEventListener('submit', function (e) { e.preventDefault(); var a = findAcc($('#lkIn').value); if (!a) { var er = $('#lkErr'); er.textContent = 'Revisa el código: son 14 letras y números, un guion y 10 más.'; er.hidden = false; return; } access = a; ls(KEY_ACC, a); boot(); });
+  bindCuenta();
+}
+/* ---------- cuenta: iniciar sesión, recuperar, nueva contraseña, cambiarla, borrar la cuenta, foto ---------- */
+function formErr(id, m) { var e = $(id); if (!e) return; e.textContent = m || ''; e.hidden = !m; }
+function busy(form, on, txt) { var b = form.querySelector('button[type=submit],button:not([type])'); if (!b) return; if (on) { b.dataset.t = b.textContent; b.textContent = txt || 'Un momento…'; } else if (b.dataset.t) b.textContent = b.dataset.t; b.disabled = !!on; }
+function meter(inp, box) {
+  if (!inp || !box) return;
+  inp.addEventListener('input', function () { var f = PC.fuerza(inp.value); box.className = 'meter n' + f.n; $$('i', box).forEach(function (x, j) { x.className = inp.value && j < Math.max(1, f.n) ? 'on' : ''; }); $('span', box).textContent = inp.value.length < 8 ? 'Mínimo 8 caracteres' : f.t; });
+}
+function nuevaOk(p, r, errId) {
+  if (p.length < 8) { formErr(errId, 'La contraseña debe tener al menos 8 caracteres.'); return false; }
+  if (PC.fuerza(p).n < 1) { formErr(errId, 'Esa contraseña es muy fácil de adivinar. Usa letras y números.'); return false; }
+  if (p !== r) { formErr(errId, 'Las dos contraseñas no coinciden.'); return false; }
+  return true;
+}
+function bindCuenta() {
+  var lg = $('#lgF');
+  if (lg) lg.addEventListener('submit', function (e) {
+    e.preventDefault(); formErr('#lgErr');
+    var em = $('#lgE').value.trim(), pw = $('#lgP').value;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return formErr('#lgErr', 'Escribe tu correo completo.');
+    if (!pw) return formErr('#lgErr', 'Escribe tu contraseña.');
+    busy(lg, true, 'Entrando…');
+    PC.login(em, pw, $('#lgR').checked).then(function (r) { if (!r.ok) { busy(lg, false); formErr('#lgErr', r.error); tone('tap'); return; } location.hash = '#inicio'; boot(); });
+  });
+  var rc = $('#rcF');
+  if (rc) rc.addEventListener('submit', function (e) {
+    e.preventDefault(); formErr('#rcErr'); var em = $('#rcE').value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) return formErr('#rcErr', 'Escribe tu correo completo.');
+    busy(rc, true, 'Enviando…');
+    PC.recuperar(em).then(function (r) { busy(rc, false); if (!r.ok) return formErr('#rcErr', r.error); var ok = $('#rcOk'); ok.textContent = 'Listo. Si ese correo tiene una cuenta, te llegará en unos minutos un enlace para crear tu nueva contraseña. Revisa también la carpeta de spam o promociones.'; ok.hidden = false; });
+  });
+  var nc = $('#ncF'); meter($('#ncP'), $('#ncM'));
+  if (nc) nc.addEventListener('submit', function (e) {
+    e.preventDefault(); formErr('#ncErr'); var p = $('#ncP').value;
+    if (!nuevaOk(p, $('#ncR').value, '#ncErr')) return;
+    busy(nc, true, 'Guardando…');
+    PC.nuevaClave(p).then(function (r) {
+      if (!r.ok) { busy(nc, false); return formErr('#ncErr', r.error); }
+      location.hash = '#inicio'; boot(r.reemplazo ? 'Tu nueva contraseña está lista. Como tu diario se protege con tu contraseña, la copia guardada en la nube se reemplazó con los registros de este dispositivo. Los registros que solo estaban en otros dispositivos se volverán a guardar cuando entres en ellos con tu nueva contraseña.' : 'Tu nueva contraseña está lista. Cerramos la sesión en tus otros dispositivos.');
+    });
+  });
+  var cp = $('#cpF'); meter($('#cpN'), $('#cpM'));
+  if (cp) cp.addEventListener('submit', function (e) {
+    e.preventDefault(); formErr('#cpErr'); var a = $('#cpA').value, p = $('#cpN').value;
+    if (!a) return formErr('#cpErr', 'Escribe tu contraseña actual.');
+    if (!nuevaOk(p, $('#cpR').value, '#cpErr')) return;
+    busy(cp, true, 'Guardando…');
+    PC.cambiarClave(a, p).then(function (r) { busy(cp, false); if (!r.ok) return formErr('#cpErr', r.error); cp.reset(); cp.closest('details').open = false; toast('Contraseña cambiada. Cerramos la sesión en tus otros dispositivos.'); });
+  });
+  var dl = $('#dlF');
+  if (dl) dl.addEventListener('submit', function (e) {
+    e.preventDefault(); formErr('#dlErr'); var pw = $('#dlP').value;
+    if (!pw) return formErr('#dlErr', 'Escribe tu contraseña.');
+    if (!confirm('¿Borrar tu cuenta y todos tus datos para siempre? No se puede deshacer.')) return;
+    busy(dl, true, 'Borrando…');
+    api('/api/cuenta', { method: 'DELETE', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ password: pw }) }).then(function (x) {
+      if (!x.ok) { busy(dl, false); return formErr('#dlErr', (x.d && x.d.error) || 'No se pudo borrar tu cuenta.'); }
+      borrarLocal(); PC.salir().then(function () { $('#main').innerHTML = authBox('<span class="kick">Cuenta borrada</span><h1>Hasta pronto</h1><p>Tu cuenta y todos tus datos se borraron. Gracias por haber sido parte de PLENA.</p><a class="btn btn-p" href="/oferta/">Ir al inicio</a>'); document.body.classList.add('no-nav'); paintMe(); });
+    });
+  });
+  var cd = $('#cdF');
+  if (cd) cd.addEventListener('submit', function (e) {
+    e.preventDefault(); formErr('#cdErr'); busy(cd, true, 'Abriendo…');
+    PC.abrirDiario($('#cdP').value).then(function (r) { if (!r.ok) { busy(cd, false); return formErr('#cdErr', r.error); } CLAVE_OK = true; render(); });
+  });
+  var fi = $('#fIn');
+  if (fi) fi.addEventListener('change', function () { var f = fi.files && fi.files[0]; fi.value = ''; if (f) prepFoto(f); });
+}
+/* Foto: recorte cuadrado al centro y compresión a 512×512 WebP en el navegador, antes de subirla. */
+var FOTO = null;
+function prepFoto(file) {
+  formErr('#fErr');
+  if (!/^image\//.test(file.type)) return formErr('#fErr', 'Elige una foto (JPG, PNG o WebP).');
+  if (file.size > 20 * 1024 * 1024) return formErr('#fErr', 'Esa foto es demasiado grande. Elige otra.');
+  var url = URL.createObjectURL(file), im = new Image();
+  im.onload = function () {
+    var s = Math.min(im.naturalWidth, im.naturalHeight), c = document.createElement('canvas'); c.width = c.height = 512;
+    var g = c.getContext('2d'); g.imageSmoothingQuality = 'high';
+    g.drawImage(im, (im.naturalWidth - s) / 2, (im.naturalHeight - s) / 2, s, s, 0, 0, 512, 512);
+    URL.revokeObjectURL(url);
+    var done = function (b) {
+      if (!b) return formErr('#fErr', 'No pudimos preparar esa foto. Prueba con otra.');
+      if (b.size > 2 * 1024 * 1024) return formErr('#fErr', 'La foto sigue pesando más de 2 MB. Prueba con otra.');
+      FOTO = b; $('#fPrev').innerHTML = '<img src="' + URL.createObjectURL(b) + '" alt="Vista previa de tu foto">'; $('#fNueva').hidden = false;
+    };
+    c.toBlob(function (b) { if (b && b.type === 'image/webp') done(b); else c.toBlob(done, 'image/jpeg', .86); }, 'image/webp', .86);
+  };
+  im.onerror = function () { URL.revokeObjectURL(url); formErr('#fErr', 'No pudimos abrir esa foto. Prueba con otra (JPG, PNG o WebP).'); };
+  im.src = url;
+}
+function borrarLocal() { ['plena.perfil', 'plena.prog', 'plena.vistas', 'plena.pos', 'plena.hoy', 'plena.vpos', 'plena.tips', 'plena.tour', 'plena.nuevas', 'plena.uid', 'me.data.v2', 'me.lastSync', 'me.cloud', 'me.onboarded', 'me.name', 'me.pack'].forEach(function (k) { ls(k, null); }); }
+/* «Descargar mis datos»: un archivo con tu cuenta, tu bienvenida, tu progreso y tu diario (descifrado aquí, en tu dispositivo). */
+function misDatos(btn) {
+  btn.disabled = true;
+  var out = { generado: new Date().toISOString(), aviso: 'Copia de tus datos de PLENA. Guárdala en un lugar seguro: incluye datos de salud.' };
+  Promise.all([api('/api/cuenta'), api('/api/progreso'), api('/api/sync')]).then(function (r) {
+    var c = r[0].d || {};
+    out.cuenta = { nombre: c.nombre, correo: c.email, creada: c.creado, pack_completo: c.pack, foto: c.foto ? 'sí (descárgala desde tu perfil)' : 'no' };
+    out.bienvenida = perfil || null;
+    var pr = Object.assign({}, (r[1].d && r[1].d.progreso) || prog); delete pr.pf; out.progreso = pr;
+    var loc = lsJSON('me.data.v2', null), rem = r[2].d && r[2].d.data;
+    if (loc && loc.days && Object.keys(loc.days).length) { out.diario = loc; return; }
+    if (rem) return PC.abrir(rem).then(function (d) { out.diario = d; }, function () { out.diario = 'No se pudo descifrar la copia de la nube en este dispositivo.'; });
+    out.diario = null;
+  }).then(function () {
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' }));
+    a.download = 'mis-datos-plena-' + dk() + '.json'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    toast('Tus datos se descargaron.');
+  }).catch(function () { toast('No se pudieron descargar ahora. Revisa tu conexión.'); }).then(function () { btn.disabled = false; });
 }
 
 /* ---------- clics ---------- */
@@ -1180,7 +1331,19 @@ document.addEventListener('click', function (e) {
   if (a === 'appGuia') { var fr = $('#appf'); try { fr.contentWindow.location.hash = 'guia'; } catch (x) { fr.src = '/?embed=1#guia'; } return; }
   if (a === 'sonido') { ls(KEY_SON, sonidoOn() ? '0' : '1'); render(true); return; }
   if (a === 'print') { window.print(); return; }
-  if (a === 'salir') { if (!confirm('¿Cerrar sesión en este dispositivo? Tu progreso se mantiene guardado con tu acceso.')) return; ls(KEY_ACC, null); ls(KEY_PERFIL, null); ls(KEY_PROG, null); location.reload(); return; }
+  if (a === 'salir') { if (!confirm('¿Cerrar sesión en este dispositivo? Tu progreso queda guardado en tu cuenta.')) return; PC.salir().then(function () { ls(KEY_PERFIL, null); ls(KEY_PROG, null); location.hash = ''; location.reload(); }); return; }
+  if (a === 'authV') { AUTHV = b.dataset.v; tone('tap'); $('#main').innerHTML = vLogin(); bindForms(); var f1 = $('#main input'); if (f1) f1.focus(); return; }
+  if (a === 'verPw') { var pi = document.getElementById(b.dataset.for), sh = pi.type === 'password'; pi.type = sh ? 'text' : 'password'; b.textContent = sh ? 'Ocultar' : 'Ver'; b.setAttribute('aria-label', sh ? 'Ocultar la contraseña' : 'Mostrar la contraseña'); return; }
+  if (a === 'fotoCancelar') { FOTO = null; render(true); return; }
+  if (a === 'fotoGuardar') {
+    if (!FOTO) return; b.disabled = true; b.textContent = 'Subiendo…';
+    api('/api/cuenta?foto=1', { method: 'PUT', headers: { 'content-type': FOTO.type }, body: FOTO }).then(function (x) {
+      if (!x.ok) { b.disabled = false; b.textContent = 'Guardar foto'; return formErr('#fErr', (x.d && x.d.error) || 'No se pudo subir la foto.'); }
+      FOTO = null; CUENTA.foto = x.d.foto; toast('¡Foto guardada!'); render(true);
+    }); return;
+  }
+  if (a === 'fotoQuitar') { if (!confirm('¿Quitar tu foto?')) return; api('/api/cuenta?foto=1', { method: 'DELETE' }).then(function (x) { if (x.ok) { CUENTA.foto = ''; toast('Foto quitada.'); render(true); } else toast('No se pudo quitar ahora.'); }); return; }
+  if (a === 'misDatos') { misDatos(b); return; }
 });
 document.addEventListener('click', function (e) { if (e.target.classList && e.target.classList.contains('modal')) closeModal(); });
 window.addEventListener('hashchange', function () { if (RD) closeReader(true); if (TOURI >= 0) { var o = $('.tour'); if (o) o.remove(); TOURI = -1; } render(); });
@@ -1191,34 +1354,72 @@ function onAppChange() {
   var d = $('#dkD'); if (d) { d.innerHTML = '<b>' + APP.days + '</b> días registrados'; var m = $('#dkM'); if (m && APP.today && !m.classList.contains('ok')) { m.classList.add('ok'); m.textContent = '✓ Misión de hoy cumplida'; toast('¡Día registrado! Misión cumplida.'); confetti(50); } }
 }
 window.addEventListener('storage', function (e) { if (e.key === 'me.data.v2') onAppChange(); });
-window.addEventListener('message', function (e) { if (e.origin !== location.origin || !e.data) return; if (e.data.type === 'me:data') onAppChange(); });
+window.addEventListener('message', function (e) {
+  if (e.origin !== location.origin || !e.data) return;
+  if (e.data.type === 'me:data') onAppChange();
+  if (e.data.type === 'me:clave') { CLAVE_OK = false; if (parse().v === 'diario') render(); } // la clave del diario cambió en otro dispositivo
+  if (e.data.type === 'me:sesion') boot();                                                    // la sesión terminó
+});
 
 /* =========================================================
    Arranque
    ========================================================= */
-function boot() {
+function authScreen(html) { var main = $('#main'); C = null; document.body.classList.add('no-nav'); document.body.classList.remove('is-diario'); main.innerHTML = html; setNav(''); paintMe(); bindForms(); }
+function boot(aviso) {
   var main = $('#main');
+  // Enlace antiguo con código de acceso: ahora sirve una sola vez para crear la cuenta de su pedido.
   var k = findAcc(location.hash + ' ' + location.search);
-  if (k) { access = k; ls(KEY_ACC, k); history.replaceState(null, '', location.pathname + '#inicio'); }
-  if (!access) { document.body.classList.add('no-nav'); main.innerHTML = vLock(); bindForms(); return; }
-  api('/api/curso').then(function (x) {
-    if (!x.ok) {
-      if (x.d && x.d.motivo === 'mejora') { main.innerHTML = vMejora(); return; }
-      if (x.status === 401 || x.status === 403) { main.innerHTML = vLock(x.d && x.d.error); bindForms(); return; }
-      throw new Error('curso');
+  if (k) { location.replace('/oferta/gracias.html?k=' + encodeURIComponent(k) + '#cuenta'); return; }
+  if (!PC) { main.innerHTML = '<div class="ov"><div class="box lg obox" style="text-align:center"><h1>Actualiza la página</h1><button class="btn btn-p" onclick="location.reload()">Reintentar</button></div></div>'; return; }
+  PC.config().then(function () {
+    if (PC.recuperando()) { history.replaceState(null, '', location.pathname + '#nueva-clave'); authScreen(vNuevaClave()); return null; }
+    return PC.sesion();
+  }).then(function (ses) {
+    if (ses === null && !PC.recuperando()) {
+      if (/^#nueva-clave/.test(location.hash)) AUTHMSG = 'El enlace para crear tu nueva contraseña caducó o ya se usó. Pide uno nuevo con «¿Olvidaste tu contraseña?».';
+      if (/error_code=otp_expired|error=access_denied/.test(location.hash)) { AUTHMSG = 'El enlace del correo caducó o ya se usó. Pide uno nuevo con «¿Olvidaste tu contraseña?».'; history.replaceState(null, '', location.pathname); }
+      AUTHV = 'login'; authScreen(vLogin(AUTHMSG)); AUTHMSG = ''; return;
     }
-    C = x.d.curso; NOMBRE = x.d.nombre || '';
-    (x.d.archivos || []).forEach(function (f) { ARCH[f.item] = { url: f.url, n: f.paginas || 0, dir: f.dir || '', w: 1000, h: 1413 }; });
-    C.videos = x.d.videos || { categorias: [], videos: [], lecciones: {}, subcategorias: {} };
-    VIDS = C.videos.videos || []; VBY = {}; VIDS.forEach(function (v) { VBY[v.id] = v; }); VCAT = {}; (C.videos.categorias || []).forEach(function (c) { VCAT[c.id] = c; }); VLEC = C.videos.lecciones || {};
-    if (perfil && !perfil.nombre && NOMBRE) perfil.nombre = NOMBRE;
-    APP = readApp(); if (APP.today) markDay(4);
-    if (seen === null) markSeenSilently();
-    var nuevas = earned().filter(function (id) { return seen.indexOf(id) < 0; });
-    if (nuevas.length) { ls('plena.nuevas', JSON.stringify(nuevas)); seen = seen.concat(nuevas); ls(KEY_SEEN, JSON.stringify(seen)); }
-    render(); syncProg();
-    if (perfil && !ls(KEY_TOUR)) startTourWhenFree(1200);
-  }).catch(function (err) { if (window.console) console.error(err); main.innerHTML = '<div class="ov"><div class="box lg obox" style="text-align:center"><h1>Sin conexión</h1><p>No pudimos cargar tu academia. Revisa tu internet e inténtalo de nuevo.</p><button class="btn btn-p" onclick="location.reload()">Reintentar</button></div></div>'; });
+    if (!ses) return;
+    SES = null;
+    try { var uid0 = localStorage.getItem('plena.uid'); if (uid0 !== ses.user.id) PC.prepararDispositivo(ses.user.id); } catch (e) { }
+    return Promise.all([api('/api/curso'), api('/api/cuenta')]).then(function (r) {
+      var x = r[0];
+      if (!x.ok) {
+        if (x.d && x.d.motivo === 'mejora') { CUENTA = r[1].d; document.body.classList.add('no-nav'); main.innerHTML = vMejora(); return; }
+        if (x.status === 401 || x.status === 403) { return PC.salir().then(function () { authScreen(vLogin(x.d && x.d.error)); }); }
+        throw new Error('curso');
+      }
+      SES = ses;
+      CUENTA = r[1].ok ? r[1].d : { nombre: '', email: ses.user.email, foto: '' };
+      C = x.d.curso; NOMBRE = x.d.nombre || '';
+      (x.d.archivos || []).forEach(function (f) { ARCH[f.item] = { url: f.url, n: f.paginas || 0, dir: f.dir || '', w: 1000, h: 1413 }; });
+      C.videos = x.d.videos || { categorias: [], videos: [], lecciones: {}, subcategorias: {} };
+      VIDS = C.videos.videos || []; VBY = {}; VIDS.forEach(function (v) { VBY[v.id] = v; }); VCAT = {}; (C.videos.categorias || []).forEach(function (c) { VCAT[c.id] = c; }); VLEC = C.videos.lecciones || {};
+      perfil = lsJSON(KEY_PERFIL, null); prog = normProg(lsJSON(KEY_PROG, {})); seen = lsJSON(KEY_SEEN, null);
+      // Clave del diario: ¿está en este dispositivo y es la vigente?
+      return PC.claveVigente(CUENTA.clave && CUENTA.clave.kid).then(function (okK) { CLAVE_OK = okK; return syncProg(true); }).then(function () {
+        if (perfil && !perfil.nombre && NOMBRE) perfil.nombre = NOMBRE;
+        APP = readApp(); if (APP.today) markDay(4);
+        if (seen === null) markSeenSilently();
+        var nuevas = earned().filter(function (id) { return seen.indexOf(id) < 0; });
+        if (nuevas.length) { ls('plena.nuevas', JSON.stringify(nuevas)); seen = seen.concat(nuevas); ls(KEY_SEEN, JSON.stringify(seen)); }
+        if (/^#nueva-clave/.test(location.hash)) location.hash = '#inicio';
+        render();
+        if (aviso) setTimeout(function () { openModalMsg('Contraseña actualizada', aviso); }, 400);
+        if (perfil && ls(KEY_TOUR) !== 'hecho') startTourWhenFree(1200);
+      });
+    });
+  }).catch(function (err) {
+    if (window.console) console.error(err);
+    var cfg = err && err.config;
+    main.innerHTML = '<div class="ov"><div class="box lg obox" style="text-align:center"><h1>' + (cfg ? 'Estamos preparando tu acceso' : 'Sin conexión') + '</h1><p>' + (cfg ? 'Las cuentas de PLENA se están configurando. Vuelve a intentarlo en unos minutos.' : 'No pudimos cargar tu academia. Revisa tu internet e inténtalo de nuevo.') + '</p><button class="btn btn-p" onclick="location.reload()">Reintentar</button></div></div>';
+  });
+}
+function openModalMsg(t, m) {
+  var d = document.createElement('div'); d.className = 'modal';
+  d.innerHTML = '<div class="box lg"><button class="x" data-act="cerrarModal" aria-label="Cerrar">' + ic('x', 20) + '</button><span class="kick">Aviso</span><h2>' + esc(t) + '</h2><p>' + esc(m) + '</p><button class="btn btn-p" data-act="cerrarModal">Entendido</button></div>';
+  document.body.appendChild(d);
 }
 boot();
 if ('serviceWorker' in navigator && location.protocol === 'https:') window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () { }); });

@@ -1,7 +1,8 @@
 /* Menopausia Equilibrada — app de seguimiento.
-   Guarda todo en este dispositivo (localStorage). Solo si la usuaria lo autoriza, sincroniza una copia
-   CIFRADA en el dispositivo (AES-256-GCM, clave derivada de su código personal con PBKDF2) en la base de
-   datos del sitio, identificada por el hash del código. El servidor nunca ve el código ni los datos legibles. */
+   Vive dentro de PLENA («Mi diario», /?embed=1) y usa la sesión de la cuenta de PLENA (window.parent.PlenaCuenta).
+   Guarda todo en este dispositivo (localStorage). Solo si la usuaria lo autoriza, sincroniza una copia CIFRADA en el
+   dispositivo (AES-256-GCM con su clave de datos, que solo se abre con su contraseña) en su cuenta (/api/sync).
+   El servidor nunca ve los datos legibles. */
 (function () {
 'use strict';
 
@@ -9,7 +10,6 @@
    Configuración
    ========================================================= */
 var KEY = 'me.data.v2';
-var KEY_CODE = 'me.code';
 var KEY_SYNC = 'me.lastSync';
 var KEY_CLOUD = 'me.cloud'; // '1' = autorizó la copia cifrada en la nube · '0' = solo este dispositivo · '' = sin decidir
 var OLD_KEY = 'miPausa.v1';
@@ -72,7 +72,6 @@ var TPL = [
   { id: 'registro30', t: 'Registro de 30 días', d: 'Sofocos, sueño, energía y ánimo, día por día.', kind: 'grid', cols: ['Sofocos (n.º)', 'Sueño (horas)', 'Energía (0–3)', 'Ánimo (0–4)', 'Nota'], rows: null, nrows: 30, prefill: true }
 ];
 var TPL_BY = {}; TPL.forEach(function (t) { TPL_BY[t.id] = t; });
-var WORDS = ('rosa luna sol mar miel flor nube cielo rio lago pino hoja trigo uva pera kiwi coco mango menta canela vainilla cacao cafe leche pan queso arroz maiz oliva limon fresa cereza mora lima nuez almendra perla coral seda lino lana brisa lluvia nieve rayo aurora alba tarde noche estrella cometa planeta jardin bosque valle monte isla playa arena ola puerto faro barco vela remo ancla mapa libro carta pluma tinta lapiz papel violeta lila jazmin dalia tulipan orquidea girasol amapola lirio azucena gardenia camelia magnolia hiedra helecho cactus palma cedro roble sauce olmo abeto tilo mirlo gorrion paloma colibri garza cisne pato buho zorro lince ciervo oso koala panda delfin ballena tortuga caracol mariposa abeja grillo dragon fenix sirena hada duende gigante canela salvia romero tomillo albahaca laurel').split(' ').filter(function (w, i, a) { return a.indexOf(w) === i; });
 
 /* =========================================================
    Utilidades
@@ -216,60 +215,39 @@ function saveLocal() { if (!demo) lsSet(KEY, JSON.stringify(real)); var w = $('#
 /* =========================================================
    Código personal y sincronización
    ========================================================= */
-function rnd(n) { // entero uniforme en [0, n)
-  var a = new Uint32Array(1), lim = Math.floor(4294967296 / n) * n;
-  do { crypto.getRandomValues(a); } while (a[0] >= lim);
-  return a[0] % n;
-}
-function newCode() {
-  var w = []; for (var i = 0; i < 4; i++) w.push(WORDS[rnd(WORDS.length)]);
-  var d1 = String(rnd(100000)).padStart(5, '0'), d2 = String(rnd(100000)).padStart(5, '0');
-  return w.join('-') + '-' + d1 + '-' + d2;
-}
-function normCode(s) {
-  return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-}
-function validCode(s) { return /^[a-z]+-[a-z]+-[a-z]+-[a-z]+-\d{5}-\d{5}$/.test(s); }
-var code = normCode(lsGet(KEY_CODE) || '');
-if (!validCode(code)) { code = newCode(); lsSet(KEY_CODE, code); }
 var lastSync = +(lsGet(KEY_SYNC) || 0);
 var cloud = lsGet(KEY_CLOUD) || '';
 
-/* ---------- Cifrado de la copia en la nube (AES-GCM 256, clave = PBKDF2 del código personal) ---------- */
-var ENC_SALT = 'menopausia-equilibrada:enc:v1', encCache = null;
-function encKey() {
-  if (encCache && encCache.code === code) return encCache.p;
-  var c = code;
-  var p = crypto.subtle.importKey('raw', new TextEncoder().encode(c), 'PBKDF2', false, ['deriveKey']).then(function (k) {
-    return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: new TextEncoder().encode(ENC_SALT), iterations: 150000, hash: 'SHA-256' }, k, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
-  });
-  encCache = { code: c, p: p };
-  return p;
-}
+/* ---------- Cuenta de PLENA (sesión y clave de datos del diario; la app solo funciona dentro de PLENA) ---------- */
+function PCU() { try { return window.parent !== window && window.parent.location.origin === location.origin ? window.parent.PlenaCuenta || null : null; } catch (e) { return null; } }
+function claveErr() { var e = new Error('clave'); e.clave = true; return e; }
 function b64e(u8) { var s = ''; for (var i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s); }
 function b64d(t) { var b = atob(t), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+function clave() { var P = PCU(); return (P ? P.claveDatos() : Promise.resolve(null)).then(function (d) { if (!d) throw claveErr(); return d; }); }
 function seal(str) {
-  var iv = crypto.getRandomValues(new Uint8Array(12));
-  return encKey().then(function (k) { return crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, k, new TextEncoder().encode(str)); })
-    .then(function (ct) { return JSON.stringify({ v: 1, enc: 'aes-gcm', iv: b64e(iv), ct: b64e(new Uint8Array(ct)) }); });
+  var iv = crypto.getRandomValues(new Uint8Array(12)), kid;
+  return clave().then(function (d) { kid = d.kid; return crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, d.key, new TextEncoder().encode(str)); })
+    .then(function (ct) { return JSON.stringify({ v: 2, enc: 'aes-gcm', kid: kid, iv: b64e(iv), ct: b64e(new Uint8Array(ct)) }); });
 }
 function unseal(obj) {
   if (!obj) return Promise.resolve({ data: null, legacy: false });
-  if (obj.enc !== 'aes-gcm') return Promise.resolve({ data: obj, legacy: true }); // copia antigua sin cifrar: se re-sube cifrada
-  return encKey().then(function (k) { return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64d(obj.iv) }, k, b64d(obj.ct)); })
-    .then(function (buf) { return { data: JSON.parse(new TextDecoder().decode(buf)), legacy: false }; });
+  return clave().then(function (d) {
+    if (obj.kid && obj.kid !== d.kid) throw claveErr(); // se cifró con otra clave (contraseña recuperada en otro dispositivo)
+    return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64d(obj.iv) }, d.key, b64d(obj.ct)).catch(function () { throw claveErr(); });
+  }).then(function (buf) { return { data: JSON.parse(new TextDecoder().decode(buf)), legacy: false }; });
+}
+function apiSync(opts) {
+  var P = PCU(); opts = opts || {};
+  return (P ? P.token() : Promise.resolve('')).then(function (t) {
+    if (!t) { tellParent({ type: 'me:sesion' }); throw new Error('sin sesión'); }
+    opts.headers = Object.assign({ authorization: 'Bearer ' + t }, opts.headers || {}); opts.cache = 'no-store';
+    return fetch('/api/sync', opts);
+  }).then(function (r) { if (r.status === 401) tellParent({ type: 'me:sesion' }); return r; });
 }
 function setCloud(v) { cloud = v; lsSet(KEY_CLOUD, v); }
 var syncState = 'idle'; // idle | busy | ok | off
 var syncing = false, syncAgain = false, syncTimer = null, lastRemoteStr = null;
 
-function personalLink() { return APP_URL + '/#cuenta?c=' + code + (access ? '&a=' + access : ''); }
-function hashOf(c) {
-  var enc = new TextEncoder().encode('menopausia-equilibrada:v1:' + c);
-  return crypto.subtle.digest('SHA-256', enc).then(function (buf) {
-    return Array.prototype.map.call(new Uint8Array(buf), function (b) { return b.toString(16).padStart(2, '0'); }).join('');
-  });
-}
 function setSync(s, txt) {
   syncState = s;
   var p = $('#syncPill'); if (!p) return;
@@ -292,11 +270,7 @@ function sync(opts) {
   if (!window.crypto || !crypto.subtle) { setSync('off', 'Sin sincronizar'); return Promise.resolve(); }
   if (syncing) { syncAgain = true; return Promise.resolve(); }
   syncing = true; setSync('busy');
-  var id;
-  return hashOf(code).then(function (h) {
-    id = h;
-    return fetch('/api/sync?id=' + id, { cache: 'no-store', headers: { 'x-me-acc': access || '' } });
-  }).then(function (r) {
+  return apiSync().then(function (r) {
     if (!r.ok) throw new Error('GET ' + r.status);
     return r.json();
   }).then(function (j) {
@@ -311,7 +285,7 @@ function sync(opts) {
     if (remoteStr === mergedStr && !o.legacy) return null;
     if (!remote && !hasContent(merged)) return null;
     return seal(mergedStr).then(function (body) {
-      return fetch('/api/sync?id=' + id, { method: 'PUT', headers: { 'content-type': 'application/json', 'x-me-acc': access || '' }, body: body });
+      return apiSync({ method: 'PUT', headers: { 'content-type': 'application/json' }, body: body });
     }).then(function (r) {
       if (!r.ok) throw new Error('PUT ' + r.status);
     });
@@ -319,6 +293,7 @@ function sync(opts) {
     lastSync = now(); lsSet(KEY_SYNC, String(lastSync)); setSync('ok');
     if (opts.toast) toast(opts.toast);
   }).catch(function (e) {
+    if (e && e.clave) { tellParent({ type: 'me:clave' }); setSync('off', 'Confirma tu contraseña'); return; }
     setSync('off');
     if (opts.toast) toast('No hay conexión. Lo intentaremos de nuevo; tus datos están a salvo aquí.');
   }).then(function () {
@@ -329,18 +304,9 @@ function sync(opts) {
 function changed() { saveLocal(); scheduleSync(); tellParent({ type: 'me:data' }); }
 function cloudDelete() {
   if (!confirm('¿Borrar tu copia cifrada de la nube? Tus datos de este dispositivo no se tocan.')) return;
-  hashOf(code).then(function (id) { return fetch('/api/sync?id=' + id, { method: 'DELETE', headers: { 'x-me-acc': access || '' } }); })
+  apiSync({ method: 'DELETE' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); setCloud('0'); setSync('local'); render(); toast('Tu copia en la nube se borró. La sincronización quedó desactivada.'); })
     .catch(function () { toast('No se pudo borrar ahora. Revisa tu conexión e inténtalo de nuevo.'); });
-}
-function linkCode(raw) {
-  var c = normCode(raw);
-  if (!validCode(c)) { toast('Ese código no parece correcto. Revisa que tenga 4 palabras y 2 números.'); return false; }
-  if (c === code) { toast('Este dispositivo ya usa ese código.'); return true; }
-  code = c; lsSet(KEY_CODE, code); lastSync = 0; lsSet(KEY_SYNC, '0');
-  setCloud('1'); // vincular dispositivos = pedir expresamente la sincronización cifrada
-  sync({ toast: 'Dispositivo vinculado. Tus datos se unieron con los de tu cuenta.' }).then(function () { render(); });
-  return true;
 }
 // Sincronización eficiente: al volver a la app solo si pasó más de 1 min, y en segundo plano cada 5 min.
 // (Con miles de usuarias, consultar cada pocos segundos agotaría el plan del hosting.)
@@ -469,7 +435,7 @@ var GUIA = [
   { k: 'Paso 2 · Progreso', t: 'Así se ve tu progreso', d: 'En <b>Progreso</b> aparecen tus gráficas de sofocos, sueño, ánimo y energía, tus síntomas principales y el historial día a día. Con unas semanas de registro verás patrones claros. Puedes probarlo ahora con datos de ejemplo (no se mezclan con los tuyos).', img: 'app-progreso', demo: true },
   { k: 'Paso 3 · Tu informe', t: 'Descarga tu informe en PDF', d: 'Cuando tengas algunos días registrados: <b>Progreso → «Descargar mi informe en PDF»</b>. En <b>Mi cuenta → «Tu informe en PDF»</b> eliges 30 días, 90 días o todo tu historial. Y en <b>Mi consulta</b> tienes un resumen de una página con tus preguntas para tu médica.', img: 'app-consulta' },
   { k: 'Paso 4 · Plan y plantillas', t: 'Tu plan de 30 días y tus plantillas', d: '<b>Plan 30 días</b>: seis hábitos sencillos para recuperar energía; marca los que cumples cada día. <b>Plantillas</b>: menú semanal, lista de compras, hoja de consulta y más, para rellenar aquí. <b>Ciclo</b>: anota tus reglas. <b>Señales de alarma</b>: cuándo no esperar.', img: 'app-plan30' },
-  { k: 'Paso 5 · Privacidad', t: 'Tus datos, en tus manos', d: 'Todo se guarda en este dispositivo. Si quieres verlo igual en tu celular y en tu computador, activa la <b>copia cifrada</b>: se cifra aquí con tu código personal y nadie más puede leerla. Tu enlace personal está en <b>Mi cuenta</b>.', img: '' }
+  { k: 'Paso 5 · Privacidad', t: 'Tus datos, en tus manos', d: 'Todo se guarda en este dispositivo. Si quieres verlo igual en tu celular y en tu computador, activa la <b>copia cifrada</b>: se cifra aquí con una clave que solo se abre con tu contraseña y nadie más puede leerla. Entras con tu cuenta de PLENA en todos tus dispositivos.', img: '' }
 ];
 function viewGuia(first) {
   var i = Math.max(0, Math.min(GUIA.length - 1, ui.gstep || 0)), g = GUIA[i], last = i === GUIA.length - 1;
@@ -488,12 +454,12 @@ function viewWelcome() {
     '<p style="font-weight:600;font-size:17px;line-height:1.5">Esta app es tu diario, tu plan y tu memoria para la consulta. Funciona en el celular y en el computador, y guarda tu progreso sola.</p>' +
     '<ol class="steps"><li><b class="n">1</b><div><b>Registra tu día</b><div class="note">Un minuto: síntomas, sofocos, sueño, energía, ánimo y agua.</div></div></li>' +
     '<li><b class="n">2</b><div><b>Sigue tu Plan de 30 días</b><div class="note">Seis hábitos sencillos para recuperar energía. Marca los que cumplas.</div></div></li>' +
-    '<li><b class="n">3</b><div><b>Guarda tu enlace personal</b><div class="note">En «Mi cuenta» está tu enlace: ábrelo en tu otro dispositivo y verás lo mismo.</div></div></li></ol>' +
+    '<li><b class="n">3</b><div><b>Úsala en todos tus dispositivos</b><div class="note">Entra a PLENA con tu correo y tu contraseña en tu celular y en tu computador: con la copia cifrada verás lo mismo.</div></div></li></ol>' +
     cloudConsent('cloudOk') +
     '<div class="row"><button type="button" class="dark" data-act="welcomeOk">Empezar</button><a class="btn ghost" href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></div></div>';
 }
 function cloudConsent(id) {
-  return '<label class="consent" for="' + id + '"><input type="checkbox" id="' + id + '"' + (cloud === '1' ? ' checked' : '') + '><span><b>Quiero usar la app en varios dispositivos.</b> Autorizo guardar una <b>copia cifrada</b> de mis registros (datos de salud) en la nube. Se cifra en este dispositivo con mi código personal: nadie más puede leerla. Puedo desactivarla o borrarla cuando quiera en «Mi cuenta». <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</span></label>' +
+  return '<label class="consent" for="' + id + '"><input type="checkbox" id="' + id + '"' + (cloud === '1' ? ' checked' : '') + '><span><b>Quiero usar la app en varios dispositivos.</b> Autorizo guardar una <b>copia cifrada</b> de mis registros (datos de salud) en la nube. Se cifra en este dispositivo con una clave que solo se abre con mi contraseña: nadie más puede leerla. Puedo desactivarla o borrarla cuando quiera en «Mi cuenta». <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</span></label>' +
     '<p class="note" style="margin:6px 0 0">Si no la marcas, tus datos se quedan solo en este dispositivo.</p>';
 }
 
@@ -502,7 +468,7 @@ function viewHoy() {
   var h = '';
   if (lsGet('me.pack') === '1' && !demo && !EMBED) h += '<a class="card plena-cta" href="/plena/"><span class="kick">Incluida en tu pack</span><b>PLENA · tu academia de menopausia y psicomenopausia</b><span class="note">Tu ruta personal, tus libros para hojear, tus logros y este diario, en un solo lugar.</span><span class="go">Entrar →</span></a>';
   if (!onboarded && !demo) h += viewGuia(true);
-  else if (onboarded && !demo && cloud === '') h += '<div class="card pink"><h2>Tu privacidad, primero</h2><p>Ahora tus registros se guardan solo en este dispositivo. Si usas la app en varios dispositivos, puedes activar una <b>copia cifrada</b> en la nube: se cifra aquí con tu código personal y nadie más puede leerla.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="ghost" data-act="cloudNo">Solo en este dispositivo</button></div><p class="note"><a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></p></div>';
+  else if (onboarded && !demo && cloud === '') h += '<div class="card pink"><h2>Tu privacidad, primero</h2><p>Ahora tus registros se guardan solo en este dispositivo. Si usas la app en varios dispositivos, puedes activar una <b>copia cifrada</b> en la nube: se cifra aquí con una clave que solo se abre con tu contraseña y nadie más puede leerla.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="ghost" data-act="cloudNo">Solo en este dispositivo</button></div><p class="note"><a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></p></div>';
   h += head('Registro diario', isToday ? '¿Cómo estás <span class="script" style="font-size:1.25em">hoy</span>?' : 'Registro del ' + fmtLong(k), 'Un minuto al día. 0 nada · 1 leve · 2 media · 3 fuerte. Se guarda solo y se sincroniza con tus otros dispositivos.');
   h += '<div class="card"><div class="daybar"><button type="button" class="ghost" data-act="prevDay" aria-label="Día anterior">‹</button><div class="d"><strong>' + (isToday ? 'Hoy' : cap(DIAS[dt.getDay()])) + '</strong><label class="sr" for="dayPick">Elegir fecha</label><input type="date" id="dayPick" value="' + k + '" max="' + today() + '" style="max-width:200px;margin:6px auto 0;display:block"></div><button type="button" class="ghost" data-act="nextDay" aria-label="Día siguiente"' + (isToday ? ' disabled' : '') + '>›</button></div><p class="status" id="saveStatus">' + (data.days[k] ? 'Hay un registro guardado para este día.' : 'Aún no hay registro para este día.') + '</p></div>';
   // sofocos + agua
@@ -807,14 +773,10 @@ function viewAlarma() {
 /* ---------- cuenta ---------- */
 function viewCuenta() {
   var n = Object.keys(real.days).length;
-  var h = head('Mi cuenta', 'Tu progreso, <span class="script" style="font-size:1.2em">en todos lados</span>', 'Sin contraseñas ni correos: tu enlace personal es tu llave. Ábrelo en tu celular y en tu computador y verás lo mismo en los dos.');
-  if (cloud === '1') h += '<div class="card"><div class="row between"><h2>Copia cifrada en la nube</h2><span class="kick" id="syncBadge">' + (syncState === 'off' ? 'Sin conexión' : 'Activa') + '</span></div><p class="status" id="syncStatus">' + syncLine() + '</p><p class="note">Tus registros se cifran en este dispositivo con tu código personal (AES-256) antes de salir. Al servidor solo llega texto cifrado.</p><div class="row"><button type="button" class="primary" data-act="syncNow">Sincronizar ahora</button><button type="button" class="ghost" data-act="cloudNo">Desactivar</button><button type="button" class="danger small" data-act="cloudDel">Borrar mi copia en la nube</button></div></div>';
-  else h += '<div class="card"><div class="row between"><h2>Copia cifrada en la nube</h2><span class="kick" id="syncBadge">Desactivada</span></div><p class="status" id="syncStatus">' + syncLine() + '</p><p class="note">Actívala si quieres ver lo mismo en tu celular y en tu computador. Se cifra en este dispositivo con tu código personal: nadie más puede leerla. <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="danger small" data-act="cloudDel">Borrar mi copia en la nube</button></div></div>';
+  var h = head('Mi cuenta', 'Tu progreso, <span class="script" style="font-size:1.2em">en todos lados</span>', 'Entras con tu cuenta de PLENA (tu correo y tu contraseña) en tu celular y en tu computador. Con la copia cifrada verás lo mismo en los dos.');
+  if (cloud === '1') h += '<div class="card"><div class="row between"><h2>Copia cifrada en la nube</h2><span class="kick" id="syncBadge">' + (syncState === 'off' ? 'Sin conexión' : 'Activa') + '</span></div><p class="status" id="syncStatus">' + syncLine() + '</p><p class="note">Tus registros se cifran en este dispositivo (AES-256) con una clave que solo se abre con tu contraseña, antes de salir. Al servidor solo llega texto cifrado.</p><div class="row"><button type="button" class="primary" data-act="syncNow">Sincronizar ahora</button><button type="button" class="ghost" data-act="cloudNo">Desactivar</button><button type="button" class="danger small" data-act="cloudDel">Borrar mi copia en la nube</button></div></div>';
+  else h += '<div class="card"><div class="row between"><h2>Copia cifrada en la nube</h2><span class="kick" id="syncBadge">Desactivada</span></div><p class="status" id="syncStatus">' + syncLine() + '</p><p class="note">Actívala si quieres ver lo mismo en tu celular y en tu computador. Se cifra en este dispositivo con una clave que solo se abre con tu contraseña: nadie más puede leerla. <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</p><div class="row"><button type="button" class="primary" data-act="cloudYes">Activar copia cifrada</button><button type="button" class="danger small" data-act="cloudDel">Borrar mi copia en la nube</button></div></div>';
   h += '<div class="card"><div class="row between"><div><h2>¿Cómo se usa la app?</h2><p class="note">Repasa la guía: registrar tu día, ver tu progreso, descargar tu informe y tu privacidad.</p></div><a class="btn primary" href="#guia">Ver la guía</a></div></div>';
-  h += '<div class="card pink"><h2>Tu enlace personal</h2><p>Guárdalo en un lugar seguro (por ejemplo, envíatelo por mensaje). Quien tenga este enlace puede ver tus registros, así que no lo publiques.</p>' +
-    '<div class="code" id="myLink">' + esc(personalLink()) + '</div><div class="row"><button type="button" class="dark" data-act="copyLink">Copiar enlace</button><button type="button" data-act="copyCode">Copiar solo el código</button></div>' +
-    '<div class="row" style="align-items:flex-start;gap:16px"><div class="qr" id="qr" aria-label="Código QR de tu enlace personal" role="img"></div><p class="note" style="flex:1;min-width:180px">Escanea este código con la cámara de tu celular para abrir la app con tus datos. Tu código: <b>' + esc(code) + '</b></p></div></div>';
-  h += '<div class="card"><h2>¿Ya usas la app en otro dispositivo?</h2><p class="note">Pega aquí el enlace o el código de tu otro dispositivo. Los datos de los dos se juntan, sin perder nada.</p><form id="linkForm" class="row" style="align-items:flex-end"><label class="f" for="linkIn" style="flex:1;min-width:220px">Pegar mi enlace o código<input type="text" id="linkIn" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="rosa-luna-miel-sol-12345-67890"></label><button type="submit" class="primary">Vincular</button></form></div>';
   h += '<div class="card"><h2>Instalar en tu pantalla de inicio</h2><ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px"><li><b>iPhone (Safari):</b> toca Compartir y luego «Añadir a pantalla de inicio».</li><li><b>Android (Chrome):</b> toca el menú ⋮ y luego «Instalar app» o «Añadir a pantalla de inicio».</li><li><b>Computador (Chrome o Edge):</b> usa el icono de instalar en la barra de direcciones.</li></ul></div>';
   h += '<div class="stats"><div class="stat"><div class="v">' + n + '</div><div class="l">días registrados</div></div><div class="stat"><div class="v">' + Object.keys(real.tpl).length + '</div><div class="l">plantillas con contenido</div></div><div class="stat"><div class="v">' + (planDayNum() || '—') + '</div><div class="l">día del plan de 30 días</div></div></div>';
   h += '<div class="card pink"><h2>Tu informe en PDF</h2><p>Un PDF bonito y ordenado con todo tu progreso: resumen, gráficas, plan de 30 días, ciclo, historial día a día, tus preguntas y tus plantillas. Ideal para guardarlo o llevarlo a tu consulta.</p>' +
@@ -830,16 +792,9 @@ function viewCuenta() {
   if (!ui.confirmDel) h += '<div class="row"><button type="button" class="danger" data-act="delAsk">Borrar todos mis datos</button></div>';
   else h += '<div class="hint alert"><strong>¿Seguro? Se borrarán ' + n + ' días y todas tus plantillas y tu plan.</strong><div class="row"><button type="button" class="danger" data-act="delYes">Sí, borrar todo</button><button type="button" class="ghost" data-act="delNo">Cancelar</button></div></div>';
   h += '</div>';
-  h += '<div class="card"><h2>Aviso</h2><p class="note">Menopausia Equilibrada informa; no sustituye a tu profesional de salud ni hace diagnósticos. Las pistas del ciclo siguen el consenso STRAW+10 (Harlow et al., <i>Menopause</i>, 2012) y son orientativas. Tus datos se guardan en este dispositivo. Si activas la sincronización, se guarda además una copia cifrada en la nube, identificada por una huella de tu código; ni el código ni tus datos legibles llegan al servidor. Responsable: DisierTECH · <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a> · <a href="mailto:cristinaaguilarrojas1@gmail.com">cristinaaguilarrojas1@gmail.com</a></p></div>';
+  h += '<div class="card"><h2>Aviso</h2><p class="note">Menopausia Equilibrada informa; no sustituye a tu profesional de salud ni hace diagnósticos. Las pistas del ciclo siguen el consenso STRAW+10 (Harlow et al., <i>Menopause</i>, 2012) y son orientativas. Tus datos se guardan en este dispositivo. Si activas la sincronización, se guarda además una copia cifrada en la nube, guardada en tu cuenta; tus datos legibles nunca llegan al servidor. Responsable: DisierTECH · <a href="/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a> · <a href="mailto:cristinaaguilarrojas1@gmail.com">cristinaaguilarrojas1@gmail.com</a></p></div>';
   return h;
 }
-function drawQR() {
-  var el = $('#qr'); if (!el) return;
-  el.innerHTML = '';
-  if (typeof window.QRCode !== 'function') { el.innerHTML = '<span class="note" style="text-align:center">El código QR aparece cuando hay conexión.</span>'; return; }
-  try { new window.QRCode(el, { text: personalLink(), width: 180, height: 180, colorDark: '#2B1B24', colorLight: '#ffffff', correctLevel: window.QRCode.CorrectLevel.M }); } catch (e) { }
-}
-
 /* =========================================================
    Enrutador
    ========================================================= */
@@ -856,68 +811,14 @@ function parseHash() {
 }
 
 /* =========================================================
-   Acceso (la app es parte del Pack Menopausia sin tabú)
+   Acceso: la app vive dentro de PLENA y usa su sesión (sin pantalla de bloqueo propia)
    ========================================================= */
-var KEY_ACC = 'me.acc';
-var access = (lsGet(KEY_ACC) || '').toLowerCase();
-function accFmt(a) { return /^[0-9a-f]{14}-[0-9a-f]{10}$/.test(a); }
-function findAcc(txt) { var m = String(txt || '').toLowerCase().match(/[0-9a-f]{14}-[0-9a-f]{10}/); return m ? m[0] : ''; }
-var unlocked = accFmt(access);
-var unlocking = false;
-function showLock(msg) {
-  var l = $('#lock');
-  if (!l) {
-    l = document.createElement('div'); l.id = 'lock'; l.className = 'lock'; l.setAttribute('role', 'dialog'); l.setAttribute('aria-modal', 'true'); l.setAttribute('aria-labelledby', 'lockT');
-    l.innerHTML = '<div class="lock-c"><img class="lock-img" src="/img/cut02a.webp" alt="" width="180" height="227">' +
-      '<span class="kick">Acceso privado</span><h1 id="lockT">Tu app <span class="script">te espera</span></h1>' +
-      '<p class="lede">Esta app es parte del <b>Pack Menopausia sin tabú</b>. Escribe tu código de acceso: está en tu página de descargas.</p>' +
-      '<form id="lockForm" class="lock-f"><label class="f" for="lockIn">Código de acceso o enlace personal<input id="lockIn" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="ej. 90aa78f42e844d-1a2b3c4d5e"></label>' +
-      '<p class="lock-err" id="lockErr" role="alert" hidden></p><button type="submit" class="primary" id="lockBtn">Entrar</button></form>' +
-      '<p class="note">¿Ya la usas en otro dispositivo? Pega aquí tu enlace personal (está en «Mi cuenta»).</p>' +
-      '<a class="btn ghost" href="/oferta/">¿Aún no tienes el pack? Conócelo aquí</a></div>';
-    document.body.appendChild(l);
-    $('#lockForm').addEventListener('submit', function (e) { e.preventDefault(); var a = findAcc($('#lockIn').value); if (!a) { lockErr('Revisa el código: son 14 letras y números, un guion y 10 más.'); return; } tryUnlock(a, true); });
-  }
-  l.hidden = false; document.body.classList.add('locked');
-  if (msg) lockErr(msg);
-  setTimeout(function () { var i = $('#lockIn'); if (i) i.focus(); }, 60);
-}
-function lockErr(m) { var e = $('#lockErr'); if (e) { e.textContent = m; e.hidden = !m; } }
-function hideLock() { var l = $('#lock'); if (l) l.hidden = true; document.body.classList.remove('locked'); }
-function tryUnlock(a, fromForm) {
-  if (unlocking) return; unlocking = true; var btn = $('#lockBtn'); if (btn) btn.disabled = true;
-  return fetch('/api/acceso', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ code: a }) })
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      unlocking = false; if (btn) btn.disabled = false;
-      if (d && d.ok) { access = a; lsSet(KEY_ACC, a); lsSet('me.pack', d.pack ? '1' : '0'); var was = unlocked; unlocked = true; hideLock(); render(); if (!was) { toast('¡Bienvenida' + (d.name ? ', ' + d.name : '') + '! Tu app está lista.'); if (typeof confetti === 'function') confetti(); sync(); } }
-      else { if (!unlocked || !fromForm) { showLock(); lockErr((d && d.error) || 'Ese código no es válido.'); } }
-    })
-    .catch(function () { unlocking = false; if (btn) btn.disabled = false; lockErr('Sin conexión. Inténtalo de nuevo cuando tengas internet.'); });
-}
-function revalidate() {
-  if (!unlocked || !access) return;
-  fetch('/api/acceso', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ code: access }) })
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (d) { if (d && d.ok) { var pk = d.pack ? '1' : '0'; if (lsGet('me.pack') !== pk) { lsSet('me.pack', pk); if (typeof render === 'function') render(); } } if (d && d.ok === false) { unlocked = false; access = ''; lsDel(KEY_ACC); showLock('Tu acceso ya no está activo. Escribe un código válido.'); } })
-    .catch(function () { });
-}
+var unlocked = !!PCU();
 var lastView = null, lastSub = null;
 function render() {
   var r = parseHash();
-  var ka = findAcc(r.params.k || r.params.a || '');
-  if (ka && ka !== access) {
-    history.replaceState(null, '', '#' + r.v + (r.params.c ? '?c=' + encodeURIComponent(r.params.c) : ''));
-    tryUnlock(ka);
-    if (!unlocked) { showLock(); return; }
-  }
-  if (!unlocked) { showLock(); return; }
+  if (!unlocked) { tellParent({ type: 'me:sesion' }); return; }
   ui.tplSub = r.v === 'plantillas' ? r.sub : null;
-  if (r.v === 'cuenta' && r.params.c) {
-    var c = r.params.c;
-    history.replaceState(null, '', '#cuenta');
-    if (normCode(c) !== code) { linkCode(c); }
-  }
   $$('nav.tabs a').forEach(function (a) { if (a.dataset.v === r.v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   curView = r.v;
   tellParent({ type: 'me:nav', v: r.v });
@@ -927,7 +828,6 @@ function render() {
   $('#demoBanner').hidden = !demo;
   $('#storeWarn').hidden = storageOK;
   document.title = { guia: 'Guía', hoy: 'Hoy', progreso: 'Mi progreso', plan30: 'Plan de 30 días', plantillas: 'Plantillas', consulta: 'Mi consulta', ciclo: 'Ciclo', alarma: 'Señales de alarma', cuenta: 'Mi cuenta' }[r.v] + ' · Menopausia Equilibrada';
-  if (r.v === 'cuenta') drawQR();
   if (lastView !== r.v || lastSub !== ui.tplSub) {
     window.scrollTo(0, 0); lastView = r.v; lastSub = ui.tplSub;
     var act = document.querySelector('nav.tabs a[aria-current="page"]'); if (act && act.scrollIntoView) { try { act.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) { } }
@@ -1003,7 +903,6 @@ document.addEventListener('input', function (e) {
 document.addEventListener('submit', function (e) {
   var f = e.target;
   if (f.id === 'ownQ') { e.preventDefault(); var inp = $('#ownQIn'); var v = (inp.value || '').trim(); if (!v) return; var own = data.meta.questions.v.own; if (own.length >= 30) { toast('Máximo 30 preguntas propias.'); return; } own.push(v.slice(0, 200)); data.meta.questions.u = now(); changed(); render(); var nn = $('#ownQIn'); if (nn) nn.focus(); return; }
-  if (f.id === 'linkForm') { e.preventDefault(); var val = ($('#linkIn').value || '').trim(); var m = val.match(/[?&]c=([^&#\s]+)/); if (linkCode(m ? decodeURIComponent(m[1]) : val)) $('#linkIn').value = ''; return; }
   if (f.dataset.additem != null) {
     e.preventDefault(); var inpt = f.querySelector('input'); var txt = (inpt.value || '').trim(); if (!txt) return;
     var tp = tplData(f.dataset.id); tp.items.push({ c: +f.dataset.additem, t: txt.slice(0, 120), d: false }); tp.u = now(); changed();
@@ -1076,8 +975,6 @@ document.addEventListener('click', function (e) {
     case 'dlSumHtml': download('resumen-consulta.html', summaryHTMLDoc(), 'text/html'); break;
     case 'dlSumTxt': download('resumen-consulta.txt', summaryText(), 'text/plain'); break;
     case 'syncNow': sync({ toast: 'Sincronizado.' }).then(function () { var st = $('#syncStatus'); if (st) st.textContent = syncLine(); }); break;
-    case 'copyLink': copyText(personalLink(), 'Enlace copiado. Ábrelo en tu otro dispositivo.'); break;
-    case 'copyCode': copyText(code, 'Código copiado.'); break;
     case 'export': download('copia-tecnica-menopausia-equilibrada-' + today() + '.json', JSON.stringify(real, null, 1), 'application/json'); break;
     case 'impMerge': real = merge(real, ui.importPending); if (demo) exitDemo(); data = real; ui.importPending = null; changed(); render(); toast('Copia combinada con tus datos.'); break;
     case 'impReplace': var w = now(); var imp = ui.importPending; real = blank(); real.wipe = w - 1; real = merge(real, stamp(imp, w)); if (demo) exitDemo(); data = real; ui.importPending = null; real.wipe = w - 1; changed(); render(); toast('Datos reemplazados por la copia.'); break;
@@ -1504,9 +1401,8 @@ if (!lsGet(KEY) && lsGet(OLD_KEY)) saveLocal(); // migra Mi Pausa
 saveLocal();
 render();
 setSync(lastSync ? 'ok' : 'idle', lastSync ? 'Sincronizado' : 'Mi cuenta');
-if (unlocked) { sync(); revalidate(); }
+if (unlocked) sync();
 if ('serviceWorker' in navigator && location.protocol === 'https:') {
   window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () { }); });
 }
-window.addEventListener('load', function () { if (parseHash().v === 'cuenta') drawQR(); });
 })();

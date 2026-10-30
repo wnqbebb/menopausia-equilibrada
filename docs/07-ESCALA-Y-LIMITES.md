@@ -18,7 +18,7 @@ Medidas para que aguante:
 
 - Los números de pedido empiezan por la hora. En Redis hay un índice ordenado, así que el panel lista los más recientes sin leer toda la base.
 - Los pedidos se crean con escritura condicional (`SET NX` o sin sobrescribir), así que dos compras simultáneas nunca se pisan.
-- La app sincroniza de forma moderada (ver guía 06) y solo con un código de acceso válido.
+- La app sincroniza de forma moderada (ver guía 06) y solo con una sesión de PLENA válida.
 - Los precios se calculan siempre en el servidor y los enlaces van firmados.
 - Los PDF (unos 50 MB por pack) salen del propio Vercel, desde el CDN y con caché.
 

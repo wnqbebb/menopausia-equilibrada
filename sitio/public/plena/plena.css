@@ -694,3 +694,30 @@ body.no-nav nav.bottom,body.no-nav .tabs{display:none!important}body.no-nav{padd
 .prize b{font-family:'Playfair Display',serif;font-size:13.5px;line-height:1.15;margin-top:6px}
 .prize small{font-size:11px;color:var(--muted);font-weight:700}
 @media (max-width:760px){.prize{display:none!important}}
+
+/* ---------- Cuenta: iniciar sesión, contraseñas, foto de perfil (mismo cristal claro) ---------- */
+.auth form{margin-top:4px}
+.pw{position:relative;display:block}
+.fld .pw input{padding-right:92px}
+.pwv{position:absolute;right:6px;top:calc(50% + 4px);transform:translateY(-50%);border:0;background:transparent;color:var(--lotus);font:inherit;font-size:14px;font-weight:800;padding:8px 12px;min-height:42px;border-radius:10px;cursor:pointer}
+.pwv:hover{background:#FFF2F5}
+.lgrow{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin:12px 0 2px}
+.chk{display:flex;gap:10px;align-items:center;font-weight:600;font-size:14.5px;cursor:pointer}
+.chk input{width:22px;height:22px;flex:0 0 22px;accent-color:var(--hot);margin:0}
+.meter{display:flex;gap:6px;align-items:center;font-size:12.5px;font-weight:700;color:var(--muted);margin:2px 0 4px}
+.meter i{flex:1;height:6px;border-radius:9px;background:#FFE3EA}.meter i.on{background:var(--grad)}.meter.n0 i.on,.meter.n1 i.on{background:#E8833A}
+.meter span{flex:0 0 auto;min-width:9em;text-align:right}
+.okmsg{background:#E8F6EE;color:var(--ok);border-radius:12px;padding:12px 14px;font-weight:600;font-size:14.5px;margin:10px 0 0}
+details.acc{margin-top:12px;border:1px solid rgba(219,127,142,.3);border-radius:12px;background:rgba(255,255,255,.6);padding:0 14px}
+details.acc summary{cursor:pointer;font-weight:700;padding:12px 0;min-height:44px;display:flex;align-items:center}
+details.acc[open]{padding-bottom:14px}
+details.acc.danger summary{color:#B3261E}
+.btn-danger{background:#B3261E;color:#fff;width:100%;margin-top:10px}
+.fotorow{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.fprev{width:96px;height:96px;flex:0 0 96px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#FFC1CC,#DB7F8E);color:#fff;font-family:'Playfair Display',serif;font-weight:900;font-size:40px;box-shadow:0 0 0 4px #fff,0 10px 24px -10px rgba(155,27,79,.5)}
+.fprev img,.ava img{width:100%;height:100%;object-fit:cover;display:block}
+.ava.ph{overflow:hidden;padding:0;background:#fff}
+#fNueva{margin-top:12px}
+.cert .cfoto{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;margin:10px auto 0;border:4px solid #fff;box-shadow:0 0 0 2px var(--hot)}
+@media (max-width:420px){.obox{padding:24px 18px}.meter span{min-width:0}}
+@media print{.cert .cfoto{-webkit-print-color-adjust:exact;print-color-adjust:exact}}

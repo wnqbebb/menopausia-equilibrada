@@ -11,7 +11,7 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Great+Vibes&family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Great+Vibes&family=Poppins:wght@400;500;600;700;800&family=Shrikhand&display=swap">
 <style>
 :root{--bg:#FFF5F8;--blush:#FCE4EC;--rosa:#F7A8C7;--fucsia:#E0337A;--berry:#9B1B4F;--ink:#2B1B24;--negro:#1E1419;--muted:#6B4E5C;--line:#F2C6D6;--sun:#FFD95A;--ok:#1F7A52}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -60,6 +60,19 @@ header{padding:18px 0;border-bottom:1px solid var(--line);background:#fff}
 .pill-o{display:inline-block;background:var(--sun);color:var(--ink);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
 .upw{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-top:14px;background:var(--blush);border-radius:18px;padding:14px 16px}
 .upv s{display:block;color:var(--muted);font-size:14px}.upv b{font-family:'Playfair Display',serif;font-size:36px;color:var(--fucsia);line-height:1}
+/* Crear la cuenta de PLENA */
+.acct{background:#fff;border:2px solid #FFD1DC;border-radius:24px;box-shadow:0 14px 34px rgba(155,27,79,.12);padding:22px;margin:18px 0}
+.acct h2{font-size:clamp(24px,5vw,30px);margin-bottom:6px}.acct .plena{font-family:'Shrikhand','Playfair Display',serif;color:#FF1A5D;font-weight:400}
+.acct form{display:grid;gap:12px;margin-top:14px;max-width:520px}
+.fld{display:grid;gap:6px;font-weight:700;font-size:15px}
+.fld input{font:inherit;font-weight:500;font-size:16px;min-height:50px;border:2px solid var(--line);border-radius:14px;padding:10px 14px;background:#FFFBFC;color:var(--ink);width:100%;min-width:0}
+.fld input:focus{outline:none;border-color:var(--fucsia);box-shadow:0 0 0 4px rgba(224,51,122,.15)}
+.fld input[readonly]{background:var(--blush);color:var(--muted)}
+.pw{position:relative;display:block}.pw input{padding-right:84px}
+.pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--berry);font:inherit;font-size:14px;font-weight:800;padding:8px 10px;cursor:pointer;border-radius:10px;min-height:40px}
+.meter{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:700;color:var(--muted)}.meter i{flex:1;height:6px;border-radius:9px;background:var(--blush)}.meter i.on{background:var(--fucsia)}.meter.n0 i.on,.meter.n1 i.on{background:#E8833A}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:500;line-height:1.45}.chk input{width:22px;height:22px;flex:0 0 22px;margin-top:2px;accent-color:var(--fucsia)}
+.ok-box{background:#E9F6EF;color:var(--ok);border-radius:12px;padding:12px;font-weight:600}
 </style>
 <!-- EMBUDO / MEDICIÓN: pega aquí el código base de tu Píxel de Meta, TikTok o Google (gtag).
      La página ya envía los eventos solos si existen: ViewContent, AddToCart, InitiateCheckout (en la oferta) y Purchase (aquí).
@@ -78,9 +91,22 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   <section id="ok" hidden>
     <div class="hero"><div class="big">¡Gracias<span id="nm"></span>!</div><h1>Ya es tuyo. Empieza por aquí.</h1><p>Descarga tus archivos y guárdalos en tu celular o computador. <b>Guarda también esta página</b> (agrégala a favoritos): es tu acceso a las descargas.</p></div>
     <div class="card"><h2>Tus descargas</h2><div class="dl" id="files"></div><p class="note" style="margin-top:12px">Para llenar los PDF en el celular, ábrelos con una app de PDF (por ejemplo, Adobe Acrobat Reader, gratis).</p></div>
-    <div class="card"><h2>Tus primeros 10 minutos</h2><div class="steps"><div><b>Abre PAUSA</b><span>Lee «Empieza aquí» y elige tu síntoma número 1.</span></div><div><b>Abre la app</b><span>Si tu compra la incluye: registra tu día de hoy y guarda tu enlace personal.</span></div><div><b>Empieza el plan</b><span>Día 1 del Plan de 30 días: solo 6 hábitos sencillos.</span></div></div></div>
-    <div class="app" id="appBox" hidden><div><h2>Tu app Menopausia Equilibrada</h2><p>Tu código de acceso personal (guárdalo):</p><p class="acc" id="accCode"></p><p>Funciona en el navegador, sin contraseñas. Ábrela con este botón en tu celular y en tu computador.</p></div><a class="btn btn-p" id="appLink" href="/" target="_blank" rel="noopener">Abrir mi app</a></div>
-    <div class="app" id="plenaBox" hidden style="background:#1E1419;color:#fff"><div><h2 style="color:#fff">Tu academia <span class="scr" style="font-size:38px;color:#F7A8C7">PLENA</span></h2><p style="color:#F2C9D7">Curso de menopausia y psicomenopausia, tu ruta personal, tus libros para hojear, tu diario y tus logros, todo en un solo lugar. Entra con el mismo código.</p></div><a class="btn btn-p" id="plenaLink" href="/plena/" target="_blank" rel="noopener">Entrar a PLENA</a></div>
+    <div class="card"><h2>Tus primeros 10 minutos</h2><div class="steps"><div><b>Abre PAUSA</b><span>Lee «Empieza aquí» y elige tu síntoma número 1.</span></div><div><b>Entra a PLENA</b><span>Si tu compra la incluye: crea tu cuenta aquí abajo y registra tu día en Mi diario.</span></div><div><b>Empieza el plan</b><span>Día 1 del Plan de 30 días: solo 6 hábitos sencillos.</span></div></div></div>
+    <section class="acct" id="cuenta" hidden>
+      <div id="acNew"><span class="pill-o">Último paso</span><h2 style="margin-top:10px">Crea tu cuenta de <span class="plena">Plena</span></h2>
+      <p class="note" style="font-size:15.5px">Con tu correo y una contraseña entras a tu academia, tu diario y tus logros desde el celular y el computador. Tu contraseña no se envía por correo ni la vemos nosotras.</p>
+      <form id="acF" novalidate>
+        <label class="fld" for="acN">Tu nombre<input id="acN" autocomplete="name" maxlength="80" required></label>
+        <label class="fld" for="acE">Tu correo (será tu usuario)<input id="acE" type="email" autocomplete="username" readonly></label>
+        <label class="fld" for="acP">Crea una contraseña<span class="pw"><input id="acP" type="password" autocomplete="new-password" minlength="8" maxlength="72" required aria-describedby="acM"><button type="button" data-ver="acP" aria-label="Mostrar la contraseña">Ver</button></span></label>
+        <div class="meter" id="acM" aria-live="polite"><i></i><i></i><i></i><i></i><span>Mínimo 8 caracteres</span></div>
+        <label class="fld" for="acP2">Repite la contraseña<span class="pw"><input id="acP2" type="password" autocomplete="new-password" maxlength="72" required><button type="button" data-ver="acP2" aria-label="Mostrar la contraseña">Ver</button></span></label>
+        <label class="chk" for="acA"><input type="checkbox" id="acA" required><span>Acepto la <a href="/privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y autorizo el tratamiento de mis datos para usar PLENA.</span></label>
+        <div class="err" id="acErr" role="alert" hidden></div>
+        <button class="btn btn-p" id="acB" type="submit">Crear mi cuenta y entrar</button>
+      </form></div>
+      <div id="acHas" hidden><h2>Tu cuenta de <span class="plena">Plena</span> ya está creada</h2><p class="note" style="font-size:15.5px" id="acHasMsg">Entra con tu correo y tu contraseña. Si no la recuerdas, toca «¿Olvidaste tu contraseña?» en la pantalla de inicio de sesión.</p><a class="btn btn-p" href="/plena/">Entrar a PLENA</a></div>
+    </section>
     <div class="card" id="upsell" hidden>
       <span class="pill-o">Solo para ti, ahora</span>
       <h2 style="margin-top:10px">Completa tu pack <span class="scr" style="font-size:34px">por la diferencia</span></h2>
@@ -92,23 +118,25 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   </section>
 <p style="text-align:center;font-size:13.5px;color:#6B4E5C;margin:34px 0 0">© 2026 DisierTECH · <a href="/privacidad.html" style="color:#9B1B4F">Política de privacidad</a> · Soporte: <a href="mailto:cristinaaguilarrojas1@gmail.com" style="color:#9B1B4F">cristinaaguilarrojas1@gmail.com</a></p>
 </main>
+<script src="/plena/vendor/supabase-2.118.0.js"></script>
+<script src="/plena/cuenta.js?v=1"></script>
 <script>
 (function(){
 var q=new URLSearchParams(location.search);var who={};
 function $(s){return document.querySelector(s)}
 function usd(c){return 'USD '+(c/100).toFixed(c%100?2:0)}
-var url='/api/entrega?'+(q.get('session_id')?'session_id='+encodeURIComponent(q.get('session_id')):'pedido='+encodeURIComponent(q.get('pedido')||'')+'&t='+encodeURIComponent(q.get('t')||''));
+var url='/api/entrega?'+(q.get('session_id')?'session_id='+encodeURIComponent(q.get('session_id')):q.get('k')?'k='+encodeURIComponent(q.get('k')):'pedido='+encodeURIComponent(q.get('pedido')||'')+'&t='+encodeURIComponent(q.get('t')||''));
 // Al volver de la pasarela, la confirmación puede tardar unos segundos: se reintenta sola durante ~2 minutos.
 var tries=0;
 function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
   if(!d.paid&&d.pending&&!d.review&&tries<24&&(q.get('session_id')||q.get('t'))){tries++;$('#loading').hidden=false;setTimeout(load,tries<6?2500:5000);return}
   $('#loading').hidden=true;
-  if(!d.paid){$('#pending').hidden=false;if(!q.get('session_id')&&!q.get('pedido'))$('#pendingMsg').textContent='Este enlace no tiene un pedido. Usa el enlace que te enviamos por correo.';else if(d.review)$('#pendingMsg').textContent='Recibimos tu pago y lo estamos revisando. En cuanto se confirme te llegará el enlace de descarga a tu correo.';return}
+  if(!d.paid){$('#pending').hidden=false;if(!q.get('session_id')&&!q.get('pedido')&&!q.get('k'))$('#pendingMsg').textContent='Este enlace no tiene un pedido. Usa el enlace que te enviamos por correo.';else if(d.review)$('#pendingMsg').textContent='Recibimos tu pago y lo estamos revisando. En cuanto se confirme te llegará el enlace de descarga a tu correo.';return}
   who=d;$('#ok').hidden=false;if(d.name)$('#nm').textContent=', '+d.name.split(' ')[0];
   $('#files').innerHTML=d.files.length?d.files.map(function(f){return '<a href="'+f.url+'" download target="_blank" rel="noopener"><span>'+f.title.replace(/</g,'&lt;')+'</span><span>Descargar</span></a>'}).join(''):'<p class="note">Tu compra es la app: ábrela abajo.</p>';
-  if(d.access){$('#appBox').hidden=false;$('#accCode').textContent=d.access;$('#appLink').href='/#acceso?k='+encodeURIComponent(d.access)}
-  if(d.access&&(d.items||[]).indexOf('todo')>=0){$('#plenaBox').hidden=false;$('#plenaLink').href='/plena/#acceso?k='+encodeURIComponent(d.access)}
-  if((d.items||[]).indexOf('todo')<0){var diff=Math.max(500,(d.bundleCents||1900)-(d.cents||0));$('#upsell').hidden=false;$('#upValue').textContent='Valor '+usd(d.valueCents||10400);$('#upPrice').textContent=usd(diff);$('#upBtn').textContent='Completar mi pack · '+usd(diff)}
+  if(d.viaCodigo&&d.cuenta){$('#ok').querySelectorAll('.card,.hero').forEach(function(x){x.hidden=true});cuenta(d);return}
+  if(d.plena||d.cuenta)cuenta(d);
+  if(!d.viaCodigo&&(d.items||[]).indexOf('todo')<0){var diff=Math.max(500,(d.bundleCents||1900)-(d.cents||0));$('#upsell').hidden=false;$('#upValue').textContent='Valor '+usd(d.valueCents||10400);$('#upPrice').textContent=usd(diff);$('#upBtn').textContent='Completar mi pack · '+usd(diff)}
   try{var pk='mePurch:'+d.id;if(!localStorage.getItem(pk)){localStorage.setItem(pk,'1');meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}}catch(e){meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}
   confetti();
 }).catch(function(){$('#loading').hidden=true;$('#pending').hidden=false})}
@@ -119,6 +147,31 @@ $('#upBtn').addEventListener('click',function(){var btn=this;btn.disabled=true;$
     if(x.d.url){location.href=x.d.url;return}
     $('#upsell').innerHTML='<h2>¡Listo!</h2><p>Reservamos tu pack completo. Te escribiremos a <b>'+(who.email||'tu correo').replace(/</g,'&lt;')+'</b> con el enlace de pago.</p>';
   }).catch(function(ex){$('#upErr').textContent=ex.message;$('#upErr').hidden=false;btn.disabled=false})});
+/* Crear la cuenta de PLENA (correo de la compra + contraseña). La clave del diario se crea y se envuelve aquí, en el navegador. */
+function cuenta(d){
+  $('#cuenta').hidden=false;
+  if(d.cuenta){$('#acNew').hidden=true;$('#acHas').hidden=false;if(d.viaCodigo)$('#acHasMsg').textContent='Tu código de acceso ya no se usa: ahora entras con tu correo ('+(d.email||'el de tu compra')+') y tu contraseña.';return}
+  $('#acN').value=d.name||'';$('#acE').value=d.email||'';
+  if(location.hash==='#cuenta')setTimeout(function(){$('#cuenta').scrollIntoView({block:'start'})},300);
+}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-ver]');if(!b)return;var i=document.getElementById(b.dataset.ver);var v=i.type==='password';i.type=v?'text':'password';b.textContent=v?'Ocultar':'Ver';b.setAttribute('aria-label',v?'Ocultar la contraseña':'Mostrar la contraseña')});
+$('#acP').addEventListener('input',function(){var m=$('#acM'),f=window.PlenaCuenta?PlenaCuenta.fuerza(this.value):{n:0,t:''};m.className='meter n'+f.n;m.querySelectorAll('i').forEach(function(x,j){x.className=j<Math.max(1,f.n)&&this.value?'on':''}.bind(this));m.querySelector('span').textContent=this.value.length<8?'Mínimo 8 caracteres':f.t});
+$('#acF').addEventListener('submit',function(e){e.preventDefault();var er=$('#acErr'),btn=$('#acB');function fail(m){er.textContent=m;er.hidden=false;btn.disabled=false;btn.textContent='Crear mi cuenta y entrar'}
+  er.hidden=true;var nm=$('#acN').value.trim(),p=$('#acP').value,p2=$('#acP2').value;
+  if(!nm)return fail('Escribe tu nombre.');if(p.length<8)return fail('La contraseña debe tener al menos 8 caracteres.');if(p!==p2)return fail('Las dos contraseñas no coinciden.');
+  if(window.PlenaCuenta&&PlenaCuenta.fuerza(p).n<1)return fail('Esa contraseña es muy fácil de adivinar. Usa letras y números.');
+  if(!$('#acA').checked)return fail('Para crear tu cuenta, acepta la política de privacidad.');
+  if(!window.PlenaCuenta||!window.crypto||!crypto.subtle)return fail('Tu navegador es muy antiguo para crear la cuenta. Ábrela en Chrome o Safari actualizados.');
+  btn.disabled=true;btn.textContent='Creando tu cuenta…';
+  PlenaCuenta.prepararClave(p).then(function(c){
+    var body={nombre:nm,password:p,acepta:true,clave:c.envuelta};if(q.get('k'))body.k=q.get('k');else{body.pedido=q.get('pedido')||who.id;body.t=q.get('t')||who.t}
+    return fetch('/api/cuenta',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(x){return{ok:r.ok,d:x}})});
+  }).then(function(x){
+    if(!x.ok){if(x.d.existe){cuenta({cuenta:true,email:x.d.email});$('#acHasMsg').textContent=x.d.error}else fail(x.d.error||'No se pudo crear tu cuenta.');return}
+    btn.textContent='Entrando…';
+    return PlenaCuenta.login(x.d.email,p,true).then(function(l){if(!l.ok){cuenta({cuenta:true});$('#acHasMsg').textContent='Tu cuenta está creada. Entra con tu correo y tu contraseña.';return}location.href='/plena/'});
+  }).catch(function(){fail('Sin conexión. Revisa tu internet e inténtalo de nuevo.')});
+});
 function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var c=document.createElement('div');c.className='confetti';var cols=['#E0337A','#F7A8C7','#FFD95A','#CFE3F7','#9B1B4F'];for(var i=0;i<50;i++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.background=cols[i%5];s.style.borderRadius=i%3?'50%':'3px';s.style.animationDelay=Math.random()*.7+'s';s.style.width=s.style.height=(10+Math.random()*12)+'px';c.appendChild(s)}document.body.appendChild(c);setTimeout(function(){c.remove()},3600)}
 })();
 </script>

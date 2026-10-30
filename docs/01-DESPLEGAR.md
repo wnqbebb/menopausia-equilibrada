@@ -5,8 +5,10 @@ Todo vive en **un solo proyecto de Vercel**:
 ```
 Compradora ──► Vercel
                 ├─ public/   páginas, app, imágenes (CDN de Vercel)
-                ├─ api/      funciones: checkout, entrega, acceso, oferta, panel, sincronización, webhook de Whop
-                └─ Storage   base de datos (Upstash Redis o Vercel Blob)
+                ├─ api/      funciones: checkout, entrega, cuentas, curso, progreso, diario, oferta, panel, webhook de Whop
+                └─ Storage   base de datos de pedidos (Upstash Redis o Vercel Blob)
+Cuentas de PLENA ──► Supabase (gratis): correo + contraseña, perfiles, progreso, diario cifrado y fotos
+Correos ──► Gmail (contraseña de aplicación): bienvenida y enlace para crear la cuenta
 PDF ──► también desde Vercel (public/entrega-…/), con la misma dirección del sitio
 ```
 
@@ -40,6 +42,8 @@ Si están las dos, el sistema usa Redis. El código está en `sitio/lib/store.js
 | `ADMIN_KEY` | Tu clave larga. Genera una con `node -e "console.log(require('crypto').randomBytes(24).toString('base64url'))"`. |
 | `PUBLIC_URL` | `https://TU-PROYECTO.vercel.app` (o tu dominio propio) |
 | `WHOP_*` / `STRIPE_SECRET_KEY` / `PAY_LINK_*` | Según la pasarela (guías 02 y 03) |
+| `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` | Cuentas de PLENA. Paso a paso en [11-CUENTAS-Y-SUPABASE.md](11-CUENTAS-Y-SUPABASE.md). |
+| `GMAIL_USER`, `GMAIL_APP_PASSWORD` | Correos de bienvenida (guía 11). |
 
 Después: **Deployments → ⋯ → Redeploy**. Las variables solo se aplican en el siguiente despliegue.
 
@@ -49,7 +53,8 @@ Después: **Deployments → ⋯ → Redeploy**. Las variables solo se aplican en
 2. `https://TU-PROYECTO.vercel.app/api/checkout`: devuelve un JSON con `mode`.
 3. `https://TU-PROYECTO.vercel.app/oferta/admin.html`: entra con tu `ADMIN_KEY`.
 4. Haz un pedido de prueba, márcalo «pagado» en el panel, abre su enlace de entrega y descarga un PDF.
-5. En el panel, crea una **cortesía** para ti y abre el enlace de la app.
+5. Abre `https://TU-PROYECTO.vercel.app/api/config`: debe decir `"ok":true` (Supabase configurado).
+6. En el panel, usa **Regalar acceso completo** con tu correo: te llega el enlace, creas tu cuenta y entras a PLENA (guía 11).
 
 ## 5. Dominio propio
 
@@ -67,7 +72,8 @@ Con el repositorio conectado, cada `git push` a `main` vuelve a desplegar el sit
 cd sitio
 npm install
 npm run prueba-carga          # 1.000 compras simuladas contra las funciones reales (base de datos en memoria)
-npx vercel dev                # sitio completo en http://localhost:3000 (pide iniciar sesión en Vercel)
+node pruebas/servidor-local.mjs   # sitio completo en http://localhost:3000 con un Supabase de prueba en memoria
+node pruebas/e2e-cuentas.mjs      # prueba automática de las cuentas (necesita Playwright; ver guía 11)
 ```
 
 ## Direcciones del sitio
@@ -77,5 +83,6 @@ npx vercel dev                # sitio completo en http://localhost:3000 (pide in
 | Página de ventas | `/oferta/` (también `/comprar` y `/pack`) |
 | Descargas | `/oferta/gracias.html?pedido=ID&t=FIRMA` (las genera el sistema) |
 | Panel | `/oferta/admin.html` |
-| App | `/` (pide código de acceso) |
+| PLENA (con Mi diario) | `/plena/` (correo y contraseña). `/` lleva a `/plena/`. |
+| Configuración pública de Supabase | `/api/config` |
 | Webhook de Whop | `/api/whop-webhook` |

@@ -2,8 +2,10 @@
 // GET  /api/pedidos?page=0&size=100&estado=pagado&q=texto   → página de pedidos (más recientes primero)
 // GET  /api/pedidos?csv=1                                   → todos los pedidos en CSV (para Excel / Google Sheets)
 // POST /api/pedidos {action, id}                            → pagado | pendiente | borrar | revocar | reactivar | cortesia
+//                                                              | enlaceCuenta (reenviar el enlace para crear la cuenta) | bienvenida
 import { db } from "../lib/store.js";
-import { json, hmac, accessCode, hasApp, itemsOf, CURRENCY, envGet as env } from "../lib/catalog.js";
+import { json, hmac, hasApp, itemsOf, CURRENCY, envGet as env } from "../lib/catalog.js";
+import { reflejarEnCuenta, correoBienvenida, correoCrearCuenta, enlaceCuenta } from "../lib/cuentas.js";
 
 const PAGE_MAX = 200;
 
@@ -18,18 +20,23 @@ async function handler(req) {
   const extra = async (r) => {
     r.items = itemsOf(r);
     r.entrega = `${ORIGIN}/oferta/gracias.html?pedido=${r.id}&t=${await hmac(key, r.id)}`;
-    if (hasApp(r.items)) r.acceso = `${ORIGIN}/#acceso?k=${await accessCode(key, r.id)}`;
+    r.plena = hasApp(r.items);
+    r.cuenta = r.userId ? "creada" : r.cuentaBorrada ? "borrada" : "sin cuenta";
+    if (r.plena) r.crearCuenta = await enlaceCuenta(r, ORIGIN);
+    const ult = (r.correos || []).slice(-1)[0];
+    r.correo = ult ? { tipo: ult.tipo, ok: ult.ok, at: ult.at, error: ult.error || "" } : null;
+    delete r.userId; delete r.correos;
     return r;
   };
 
   if (req.method === "GET") {
     if (url.searchParams.get("csv")) {
       const recs = await store.all();
-      const head = ["fecha", "id", "estado", "nombre", "correo", "telefono", "productos", "total_usd", "modo", "pago_id", "entrega", "acceso_app"];
+      const head = ["fecha", "id", "estado", "nombre", "correo", "telefono", "productos", "total_usd", "modo", "pago_id", "entrega", "cuenta", "revocado"];
       const rows = [head.join(",")];
       for (const r of recs) {
         await extra(r);
-        rows.push([r.createdAt, r.id, r.status, r.name, r.email, r.phone, r.items.join(" + "), (r.cents / 100).toFixed(2), r.mode, r.paymentId || r.sessionId || "", r.entrega, r.acceso || ""].map(csvCell).join(","));
+        rows.push([r.createdAt, r.id, r.status, r.name, r.email, r.phone, r.items.join(" + "), (r.cents / 100).toFixed(2), r.mode, r.paymentId || r.sessionId || "", r.entrega, r.plena ? r.cuenta : "", r.revoked ? "sí" : ""].map(csvCell).join(","));
       }
       return new Response("\ufeff" + rows.join("\n"), { headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="pedidos-${new Date().toISOString().slice(0, 10)}.csv"`, "cache-control": "no-store" } });
     }
@@ -52,9 +59,14 @@ async function handler(req) {
   if (req.method === "POST") {
     let b; try { b = await req.json(); } catch { return json({ error: "Datos no válidos." }, 400); }
     if (b.action === "cortesia") {
-      const rec = { v: 2, id: "", createdAt: new Date().toISOString(), name: String(b.name || "Cortesía").slice(0, 80), email: String(b.email || "").slice(0, 254), phone: "", items: ["todo"], cents: 0, currency: CURRENCY, mode: "cortesia", status: "pagado", paidAt: new Date().toISOString() };
+      // Regalar acceso: crea un pedido pagado de 0 USD con todo incluido y envía el enlace para crear la cuenta.
+      const email = String(b.email || "").trim().toLowerCase().slice(0, 254);
+      if (!/^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/.test(email)) return json({ error: "Escribe el correo de la clienta: ahí le llega el enlace para crear su cuenta." }, 400);
+      const rec = { v: 2, id: "", createdAt: new Date().toISOString(), name: String(b.name || "Cortesía").slice(0, 80), email, phone: "", items: ["todo"], cents: 0, currency: CURRENCY, mode: "cortesia", status: "pagado", paidAt: new Date().toISOString(), origin: ORIGIN };
       await store.create(rec);
-      return json({ ok: true, ...(await extra(rec)) });
+      const mail = await correoCrearCuenta(rec, ORIGIN);
+      await store.save(rec);
+      return json({ ok: true, correo: mail.ok, ...(await extra(rec)) });
     }
     const id = String(b.id || "").replace(/[^a-z0-9]/gi, "");
     const rec = await store.get(id);
@@ -63,10 +75,23 @@ async function handler(req) {
     if (b.action === "pagado" || b.action === "pendiente") {
       rec.status = b.action; if (b.action === "pagado") rec.paidAt = new Date().toISOString();
       await store.save(rec);
+      if (b.action === "pagado") await reflejarEnCuenta(rec).catch((e) => console.error("panel cuenta", e.message));
       return json({ ok: true, ...(await extra(rec)) });
     }
     if (b.action === "revocar" || b.action === "reactivar") {
-      rec.revoked = b.action === "revocar"; await store.save(rec); return json({ ok: true });
+      // Revocar bloquea también la cuenta de PLENA (perfil «revocado» + inicio de sesión bloqueado en Supabase).
+      rec.revoked = b.action === "revocar"; await store.save(rec);
+      try { await reflejarEnCuenta(rec); } catch (e) { console.error("panel revocar", e.message); return json({ ok: true, aviso: "El pedido quedó " + (rec.revoked ? "revocado" : "activo") + ", pero no se pudo actualizar la cuenta en Supabase. Inténtalo de nuevo." }); }
+      return json({ ok: true });
+    }
+    if (b.action === "enlaceCuenta" || b.action === "bienvenida") {
+      if (rec.status !== "pagado") return json({ error: "El pedido aún no está pagado." }, 400);
+      if (!rec.email) return json({ error: "Este pedido no tiene correo." }, 400);
+      if (b.action === "bienvenida" && !rec.userId) return json({ error: "Esta clienta aún no creó su cuenta: envíale el enlace para crearla." }, 400);
+      if (b.action === "enlaceCuenta" && rec.userId) return json({ error: "Esta clienta ya tiene cuenta: reenvíale la bienvenida." }, 400);
+      const mail = b.action === "bienvenida" ? await correoBienvenida(rec, ORIGIN) : await correoCrearCuenta(rec, ORIGIN);
+      await store.save(rec);
+      return mail.ok ? json({ ok: true }) : json({ error: "No se pudo enviar el correo: " + (mail.error || "error desconocido") }, 502);
     }
     return json({ error: "Acción no válida." }, 400);
   }

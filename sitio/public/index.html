@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<script>/* El diario vive solo dentro de PLENA («Mi diario»). Abierto suelto (/ o /#acceso…), lleva a /plena/ conservando el enlace. */
+(function(){try{var emb=/[?&]embed=1/.test(location.search)&&window.self!==window.top&&window.parent.location.origin===location.origin;if(!emb)location.replace('/plena/'+location.hash)}catch(e){location.replace('/plena/'+location.hash)}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Plena · tu diario y tu plan</title>
 <meta name="description" content="Registra tus síntomas de menopausia, sigue tu plan de 30 días, usa plantillas editables y lleva un resumen a tu consulta. Se sincroniza entre tu celular y tu computador. Gratis.">
@@ -344,7 +346,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   <footer class="disc">Menopausia Equilibrada informa y acompaña; no sustituye a tu profesional de salud ni hace diagnósticos. Tus datos se guardan en este dispositivo y, solo si lo autorizas, en una copia cifrada en la nube que nadie más puede leer. <a href="/privacidad.html">Política de privacidad</a> · <a href="mailto:cristinaaguilarrojas1@gmail.com">Contacto</a></footer>
 </div>
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+
 <script src="/app.js" defer></script>
 </body>
 </html>

@@ -43,7 +43,7 @@ async function handler(req) {
   const offer = await checkOffer(env("ADMIN_KEY"), b.offer);
   const q = quote(items, { upgradeFromCents, offerActive: !!(offer.ok && offer.active) });
   const m = mode();
-  const rec = { v: 2, id: "", createdAt: new Date().toISOString(), name, email, phone, items: q.items, cents: q.cents, currency: CURRENCY, mode: m, status: "pendiente", upgradeFrom, offer: !!(offer.ok && offer.active), origin: ORIGIN, consent: { at: new Date().toISOString(), policy: "privacidad-2026-10-29" } };
+  const rec = { v: 2, id: "", createdAt: new Date().toISOString(), name, email, phone, items: q.items, cents: q.cents, currency: CURRENCY, mode: m, status: "pendiente", upgradeFrom, offer: !!(offer.ok && offer.active), origin: ORIGIN, consent: { at: new Date().toISOString(), policy: "privacidad-2026-10-30" } };
 
   let id;
   try { id = await store.create(rec); } catch (err) { console.error("checkout id", err); return json({ error: "No se pudo registrar tu pedido. Inténtalo de nuevo." }, 500); }

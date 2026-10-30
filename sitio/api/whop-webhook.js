@@ -4,6 +4,7 @@
 // Firma: estándar «Standard Webhooks» (cabeceras webhook-id, webhook-timestamp, webhook-signature).
 import { db } from "../lib/store.js";
 import { json, envGet as env } from "../lib/catalog.js";
+import { reflejarEnCuenta } from "../lib/cuentas.js";
 
 const enc = new TextEncoder();
 const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
@@ -76,6 +77,8 @@ async function handler(req) {
     rec.paidAt = new Date().toISOString();
   }
   await store.save(rec);
+  // Si es una mejora a «Todo junto» de alguien que ya tiene cuenta, se le activa PLENA al momento.
+  if (rec.status === "pagado") await reflejarEnCuenta(rec).catch((e) => console.error("webhook cuenta", e.message));
   return json({ ok: true, status: rec.status });
 }
 
