@@ -127,12 +127,13 @@ Ya están puestos el logo, la portada del negocio y las galerías de los dos pro
 | Producto «Libros + PLENA» (plan 19 USD `plan_DsdwKF5WepIjn`; mejora 7 USD `plan_fbPqZmH1WSsQS`) | `prod_ldIPX7rlybDda` |
 | Producto «Biblioteca PAUSA · 13 libros» (plan 12 USD `plan_lXm2MW9MtlVRs`) | `prod_7Dd9oVgYJtlYU` |
 
-### Lo único que falta para que el botón de acceso salga solo después de pagar
-El **webhook** de Whop (sin él, la clienta igual recibe su acceso por Whop, pero el sitio no se entera del pago):
+### Conectar Whop con el sitio (un solo paso)
+1. Entra a **https://whop.com/dashboard/developer** (arriba elige el negocio «Academia PLENA · Menopausia sin tabú»).
+2. En **Account API Keys** toca **Create**, ponle de nombre «Sitio PLENA» y dale el rol **Admin**. Copia la clave (empieza por `whop_`).
+3. En Vercel → proyecto → **Settings → Environment Variables** crea `WHOP_API_KEY` con esa clave (tipo **Sensitive**, Production y Preview) y vuelve a desplegar (Deployments → ⋯ → Redeploy).
+4. Abre la página de ventas una vez (o toca **«Conectar Whop»** en tu panel `/oferta/admin.html`): **el sitio crea solo el webhook en Whop** y guarda su secreto. No hay que copiar nada más.
 
-1. Whop → negocio «Academia PLENA» → **Developer** → **Webhooks** → **Create webhook**: URL `https://menopausia-equilibrada.vercel.app/api/whop-webhook`, eventos `payment.succeeded` y `membership.activated`. Copia el secreto `ws_…` en Vercel como `WHOP_WEBHOOK_SECRET` (*Sensitive*).
-2. Recomendado: **API key** (Developer → API keys) con permisos `payment:basic:read`, `member:basic:read`, `member:email:read`, `member:phone:read`, en Vercel como `WHOP_API_KEY` (*Sensitive*). Sirve para leer el correo de la compradora si el aviso no lo trae.
-3. Redespliega en Vercel.
+Desde ese momento cada pago (también con cupón del 100 %) crea el pedido en tu panel, envía el correo y muestra el botón de acceso al terminar de pagar.
 
 Termina también la verificación del negocio en Whop (Settings → Payouts) para poder retirar el dinero.
 

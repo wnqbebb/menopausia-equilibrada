@@ -5,6 +5,7 @@
 import { db } from "../lib/store.js";
 import { json, CURRENCY, envGet as env } from "../lib/catalog.js";
 import { reflejarEnCuenta, avisarPagado, origen } from "../lib/cuentas.js";
+import { secretoWebhook } from "../lib/whop.js";
 
 const enc = new TextEncoder();
 const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
@@ -53,7 +54,7 @@ const toCents = (money) => {
 
 async function handler(req) {
   if (req.method !== "POST") return json({ error: "Método no permitido." }, 405);
-  const secret = env("WHOP_WEBHOOK_SECRET");
+  const secret = await secretoWebhook();
   const body = await req.text();
   if (!secret || !(await verify(secret, req.headers, body))) return json({ error: "Firma no válida." }, 401);
   let ev; try { ev = JSON.parse(body); } catch { return json({ error: "JSON no válido." }, 400); }
@@ -103,7 +104,7 @@ async function completarDesdeWhop(p) {
   const key = env("WHOP_API_KEY");
   if (!key || !p.id) return p;
   const get = async (path) => { try { const r = await fetch("https://api.whop.com/api/v1/" + path, { headers: { authorization: `Bearer ${key}` } }); return r.ok ? await r.json() : null; } catch { return null; } };
-  const pago = await get("payments/" + encodeURIComponent(p.id));
+  const pago = await get((p._membresia ? "memberships/" : "payments/") + encodeURIComponent(p.id));
   let out = pago ? { ...p, ...pago } : p;
   const memberId = txt(out.member?.id) || txt(out.member_id) || txt(out.membership?.member?.id);
   if (!correoDe(out) && memberId) { const m = await get("members/" + encodeURIComponent(memberId)); if (m) out = { ...out, member: { ...(out.member || {}), ...m } }; }
@@ -129,7 +130,7 @@ async function ventaDirecta(p, req) {
     if (prev && prev.id && !p._membresia) await marcas.tomar(limpio("pago-" + pagoId), { id: prev.id });
     return json({ ok: true, already: true });
   }
-  if (!correoDe(p) && !p._membresia) p = await completarDesdeWhop(p);
+  if (!correoDe(p)) p = { ...(await completarDesdeWhop(p)), _membresia: p._membresia };
   const email = correoDe(p), now = new Date().toISOString();
   const paidCents = p._membresia ? 0 : toCents(p.usd_total) ?? toCents(p.total) ?? toCents(p.subtotal) ?? 0;
   const ORIGIN = origen(null, req.url);

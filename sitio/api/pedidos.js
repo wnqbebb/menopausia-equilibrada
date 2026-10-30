@@ -6,6 +6,7 @@
 //                                                              | manual (venta por WhatsApp o pago local) | correo (poner el correo de un pedido)
 import { db } from "../lib/store.js";
 import { json, hmac, hasApp, itemsOf, CURRENCY, envGet as env } from "../lib/catalog.js";
+import { conectarWhop } from "../lib/whop.js";
 import { reflejarEnCuenta, correoBienvenida, correoCrearCuenta, enlaceCuenta, avisarPagado } from "../lib/cuentas.js";
 
 const PAGE_MAX = 200;
@@ -60,6 +61,7 @@ async function handler(req) {
 
   if (req.method === "POST") {
     let b; try { b = await req.json(); } catch { return json({ error: "Datos no válidos." }, 400); }
+    if (b.action === "conectarWhop") return json(await conectarWhop(ORIGIN, { forzar: true }));
     if (b.action === "manual") {
       // Venta por WhatsApp o pago local (transferencia, Nequi, efectivo…): pedido pagado con su valor real + enlace para crear la cuenta.
       const email = String(b.email || "").trim().toLowerCase().slice(0, 254);
