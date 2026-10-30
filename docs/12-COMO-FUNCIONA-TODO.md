@@ -95,19 +95,40 @@ Mientras exista la variable `PRUEBA_GRATIS` en Vercel, el enlace `https://menopa
 
 ## 7. Whop (tu pasarela de pago)
 
-Ya está creado en Whop:
+### El pago dentro de la página
+En la página de ventas, al elegir una oferta se abre el panel «Tu pedido» con **el pago de Whop dentro de la misma página** (en español y en la moneda de cada país). No sale de la web.
 
+- **Oferta irresistible al pagar:** si eligió solo los libros, arriba del pago aparece «Sí, súmame PLENA por solo USD 7 más». Al tocarlo, el pago cambia solo a Libros + PLENA (19 USD).
+- **Al terminar de pagar:** confeti, «¡Tu pago está listo!», el aviso de revisar Spam o Promociones y, en cuanto Whop avisa al sitio, el botón **«Abrir mi biblioteca»** o **«Crear mi cuenta de PLENA»**.
+- **Última oferta:** si compró solo los libros, en esa misma pantalla le aparece «Suma PLENA por solo USD 7» con su propio pago (plan «Mejora a PLENA», `plan_fbPqZmH1WSsQS`, solo por enlace).
+- Si paga con un método que sale a otra página (PSE, Nequi…), vuelve a `/oferta/gracias.html?whop=1` y ahí recibe el mismo botón.
+
+### La entrega dentro de Whop
+Cada compra también da acceso a su panel de Whop (Whop le manda su propio correo desde whop.com, que casi nunca cae en spam):
+
+| Producto de Whop | Qué ve dentro de Whop |
+|---|---|
+| Biblioteca PAUSA · 13 libros | Curso **«📚 Tu Biblioteca PAUSA»**: botón para abrir su biblioteca 3D + orden recomendado de lectura |
+| Libros + PLENA | El curso de la biblioteca + el curso **«💗 Entra a PLENA»** con los pasos para crear su cuenta |
+
+**Falta 1 cosa tuya (1 minuto):** en Whop → Academia PLENA → «💗 Entra a PLENA» → lección «Crea tu cuenta y entra a PLENA», cambia el texto `PEGAR_AQUI_EL_ENLACE_DE_BIENVENIDA` por tu enlace de bienvenida de PLENA (el de `/bienvenida?k=…`). Por seguridad no lo puedo escribir yo.
+
+### Imágenes
+Ya están puestos el logo, la portada del negocio y las galerías de los dos productos.
+
+### Ids
 | Qué | Id |
 |---|---|
 | Negocio «Academia PLENA · Menopausia sin tabú» | `biz_qWn8dWaHUeNR9L` |
-| Producto «Libros + PLENA» (plan 19 USD `plan_DsdwKF5WepIjn`) | `prod_ldIPX7rlybDda` |
+| Producto «Libros + PLENA» (plan 19 USD `plan_DsdwKF5WepIjn`; mejora 7 USD `plan_fbPqZmH1WSsQS`) | `prod_ldIPX7rlybDda` |
 | Producto «Biblioteca PAUSA · 13 libros» (plan 12 USD `plan_lXm2MW9MtlVRs`) | `prod_7Dd9oVgYJtlYU` |
 
-Y en Vercel ya están `WHOP_COMPANY_ID`, `WHOP_PRODUCT_ID` y `WHOP_PRODUCTO_LIBROS`. **Faltan 2 claves que solo tú puedes crear** en Whop (por seguridad no se pueden crear desde aquí):
+### Lo único que falta para que el botón de acceso salga solo después de pagar
+El **webhook** de Whop (sin él, la clienta igual recibe su acceso por Whop, pero el sitio no se entera del pago):
 
-1. **Clave de API.** Whop → negocio «Academia PLENA» → **Developer** → **API keys** → **Create**. Dale los permisos `payment:basic:read`, `member:basic:read`, `member:email:read`, `member:phone:read`, `plan:create`, `checkout_configuration:create`, `access_pass:basic:read` y `webhook_receive:payments`. Cópiala en Vercel como `WHOP_API_KEY` (tipo *Sensitive*).
-2. **Webhook.** Whop → **Developer** → **Webhooks** → **Create webhook**: URL `https://menopausia-equilibrada.vercel.app/api/whop-webhook`, eventos `payment.succeeded` y `membership.activated` (versión API v1; el segundo cubre las compras de 0 USD con cupón). Copia el secreto `ws_…` en Vercel como `WHOP_WEBHOOK_SECRET` (*Sensitive*).
-3. Vuelve a desplegar (Vercel → Deployments → Redeploy). Desde ese momento la web cobra sola con Whop (tarjeta, Nequi, PSE, PayPal, Apple Pay…) y los enlaces de WhatsApp entregan solos.
+1. Whop → negocio «Academia PLENA» → **Developer** → **Webhooks** → **Create webhook**: URL `https://menopausia-equilibrada.vercel.app/api/whop-webhook`, eventos `payment.succeeded` y `membership.activated`. Copia el secreto `ws_…` en Vercel como `WHOP_WEBHOOK_SECRET` (*Sensitive*).
+2. Recomendado: **API key** (Developer → API keys) con permisos `payment:basic:read`, `member:basic:read`, `member:email:read`, `member:phone:read`, en Vercel como `WHOP_API_KEY` (*Sensitive*). Sirve para leer el correo de la compradora si el aviso no lo trae.
+3. Redespliega en Vercel.
 
 Termina también la verificación del negocio en Whop (Settings → Payouts) para poder retirar el dinero.
 

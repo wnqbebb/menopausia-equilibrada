@@ -46,7 +46,7 @@ var tapes = Array.from({ length: L }, function (_, v) {
   sp.className = 'l3-face l3-sp'; cv.className = 'l3-face l3-cv';
   sp.style.setProperty('--book-bg', book.color); sp.style.setProperty('--book-ink', book.ink);
   sp.setAttribute('aria-label', 'Seleccionar ' + book.title); cv.setAttribute('aria-label', 'Leer un adelanto de ' + book.title);
-  cv.style.backgroundImage = 'url("/oferta/img/' + book.cover + '.webp")';
+  cv.style.backgroundImage = 'url("/oferta/img/' + book.cover + '-s.webp")'; // versión liviana (380 px)
   [['l3-num', String((v % N) + 1).padStart(2, '0')], ['l3-name', book.title], ['l3-mark', 'PAUSA']].forEach(function (p) {
     var e = document.createElement('span'); e.className = p[0]; e.textContent = p[1]; sp.appendChild(e);
   });

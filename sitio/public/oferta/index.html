@@ -28,7 +28,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Great+Vibes&family=Newsreader:opsz,wght@6..72,400&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap">
-<link rel="preload" as="image" href="/oferta/img/c-guia.webp">
+<link rel="preload" as="image" href="/oferta/img/c-guia-s.webp">
+<link rel="preconnect" href="https://cdn.whop.com" crossorigin>
 <link rel="stylesheet" href="/oferta/biblioteca3d.css?v=2">
 <style>
 
@@ -531,6 +532,23 @@ dialog.lb p{color:#fff;text-align:center;margin-top:10px;font-weight:600}
 .ofc .btn{white-space:nowrap}
 @media (max-width:420px){.ofc .btn{font-size:15px;padding:16px 14px}.l3-cta .btn{font-size:15.5px}}
 @media (max-width:560px){.top nav .btn-p{display:inline-flex;padding:10px 14px;font-size:13.5px;min-height:42px}}
+.whopco{min-height:420px;border-radius:16px;background:#fff;border:1px solid #FBE3EC;overflow:hidden}
+.wload{display:flex;gap:10px;align-items:center;justify-content:center;min-height:420px;color:var(--muted);font-weight:600;font-size:14.5px}
+.wload span{width:22px;height:22px;border-radius:50%;border:3px solid var(--blush);border-top-color:var(--fucsia);animation:wsp 1s linear infinite}
+@keyframes wsp{to{transform:rotate(360deg)}}
+.bump{display:flex;gap:12px;align-items:flex-start;border:2px dashed var(--fucsia);border-radius:18px;padding:14px;background:#FFF5F8;cursor:pointer;text-align:left;width:100%;font:inherit;color:var(--ink)}
+.bump .bx{flex:0 0 26px;height:26px;border-radius:8px;border:2px solid var(--fucsia);background:#fff;display:grid;place-items:center;color:#fff;font-weight:900}
+.bump.on .bx{background:var(--fucsia)}
+.bump b{display:block;font-size:15.5px}.bump small{display:block;color:var(--muted);font-size:13.5px;line-height:1.45;margin-top:2px}
+.bump em{font-style:normal;background:var(--sun);border-radius:999px;padding:2px 8px;font-weight:800;font-size:12px;margin-left:4px}
+.okbox{text-align:center;display:grid;gap:12px;padding:6px 2px}
+.okbox .big{font-family:var(--fs);font-size:60px;line-height:1;color:var(--fucsia)}
+.okbox h3{font-size:24px}
+.okbox .spam{background:#FFF1C9;color:#5C3D00;border-radius:14px;padding:12px 14px;font-size:14.5px;text-align:left}
+.okbox .btn{width:100%}
+.upbox{border:2px solid var(--fucsia);border-radius:20px;padding:16px;display:grid;gap:10px;text-align:left;margin-top:6px;background:#fff}
+.upbox .pill{justify-self:start}
+.upbox p{font-size:14.5px;color:var(--muted)}
 .co .empty .btn{width:100%;margin-top:10px;min-height:50px;font-size:15.5px}
 </style>
 <!-- EMBUDO / MEDICIÓN: pega aquí el código base de tu Píxel de Meta, TikTok o Google (gtag).
@@ -593,8 +611,8 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 
 <!-- 2 · VIDEO DE LA BIBLIOTECA -->
 <section class="vid" aria-label="Video: presentación de la biblioteca PAUSA">
-  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381705/PAUSA_Presentacion_30s_16x9.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381705/PAUSA_Presentacion_30s_16x9.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
-  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381715/PAUSA_Presentacion_30s_9x16.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381715/PAUSA_Presentacion_30s_9x16.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
+  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381705/PAUSA_Presentacion_30s_16x9.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381705/PAUSA_Presentacion_30s_16x9.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
+  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381715/PAUSA_Presentacion_30s_9x16.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381715/PAUSA_Presentacion_30s_9x16.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
   <button type="button" class="vsnd"><svg aria-hidden="true"><use href="#snd1"/></svg><span>Ver con sonido</span></button>
 </section>
 
@@ -662,8 +680,8 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   <p>Los 13 libros cobran vida: clases en video, lecciones cortas que te dicen qué hacer, Mi diario para ver tu progreso y logros que te acompañan cada día. En tu celular y en tu computador, con tu propia cuenta.</p>
 </section>
 <section class="vid" aria-label="Video: presentación de PLENA">
-  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381749/PLENA_lanzamiento_16x9.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381749/PLENA_lanzamiento_16x9.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
-  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381747/PLENA_lanzamiento_9x16.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381747/PLENA_lanzamiento_9x16.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
+  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381749/PLENA_lanzamiento_16x9.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381749/PLENA_lanzamiento_16x9.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
+  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381747/PLENA_lanzamiento_9x16.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381747/PLENA_lanzamiento_9x16.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
   <button type="button" class="vsnd"><svg aria-hidden="true"><use href="#snd1"/></svg><span>Ver con sonido</span></button>
 </section>
 <section class="sec plena-sec">
@@ -885,6 +903,15 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
       <div class="tt"><span>Total</span><span id="sTotal">USD 19</span></div>
     </div>
     <p id="pruebaAviso" hidden style="margin:0 0 10px;background:#FFF1C9;color:#5C3D00;border-radius:12px;padding:10px 12px;font-weight:700;font-size:14px">Modo prueba: esta compra no se cobra (0 USD). Solo funciona con tu enlace privado.</p>
+    <div id="whopBox" hidden><div id="whopCo" class="whopco"><div class="wload"><span></span>Cargando el pago seguro…</div></div><p class="secure" style="margin-top:10px">🔒 Pago seguro con Whop en la moneda de tu país: tarjeta, PSE, Nequi, PayPal, Apple Pay y más. Escribe bien tu correo: ahí te llega tu acceso.</p></div>
+    <div id="coOk" hidden class="okbox">
+      <div class="big">¡Gracias!</div>
+      <h3>Tu pago está listo 🎉</h3>
+      <p id="okMsg">Estamos preparando tu acceso…</p>
+      <div class="spam"><b>📩 Te enviamos tu acceso a tu correo.</b> Si no lo ves en 2 minutos, revisa <b>Spam</b> o <b>Promociones</b> y márcalo como «No es spam».</div>
+      <a class="btn btn-p" id="okGo" hidden href="#">Entrar ahora</a>
+      <div id="upBox" hidden class="upbox"><span class="pill sun">Solo ahora · antes de irte</span><h3>Suma PLENA por solo USD 7</h3><p>Ya tienes tus 13 libros. Con PLENA los vives paso a paso: 10 módulos, 132 videos, Mi diario, logros y certificado.</p><button type="button" class="btn btn-d" id="upGo">Sí, quiero PLENA · USD 7</button><div id="upCo" class="whopco" hidden></div></div>
+    </div>
     <form id="coForm" novalidate style="display:grid;gap:12px">
       <label class="fld" for="cName">Tu nombre<input id="cName" name="name" autocomplete="name" required maxlength="80"></label>
       <label class="fld" for="cEmail">Tu correo (aquí te llega tu compra)<input id="cEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="cEmailN"><small id="cEmailN" style="font-weight:500;color:var(--muted);font-size:13px;line-height:1.4">Escríbelo bien: a este correo te llega el acceso para crear tu cuenta de PLENA, y será tu usuario.</small></label>
@@ -906,7 +933,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 <dialog class="lb" id="lb" aria-label="Vista ampliada"><button type="button" id="lbX" aria-label="Cerrar">✕</button><img id="lbImg" alt=""><p id="lbCap"></p></dialog>
 <div class="toast" id="toast" role="status" hidden></div>
 
-<script src="/oferta/biblioteca3d.js?v=2" defer></script>
+<script src="/oferta/biblioteca3d.js?v=3" defer></script>
 <script>
 (function(){
 'use strict';
@@ -979,7 +1006,7 @@ function render(){
   else if(q.k==='libros'){lines='<div class="line big"><div class="mini"><img src="/oferta/img/c-pausa.webp" alt=""><img src="/oferta/img/c-guia.webp" alt=""><img src="/oferta/img/c-recetario.webp" alt=""></div><div><b>Biblioteca PAUSA · 13 libros</b><small>PAUSA, Guía Integral, 6 bonos, 3 plantillas y 4 kits en PDF</small><small><s>Valor USD '+B.libValue+'</s></small></div><strong>'+usd(l)+'</strong><button type="button" class="rm" data-rm aria-label="Quitar">✕</button></div>'}
   else{lines='<div class="empty"><p>Elige tu oferta:</p><button type="button" class="btn btn-p" data-buy="todo">Libros + PLENA · '+usd(b)+'</button><button type="button" class="btn btn-g" data-buy="libros">Solo los 13 libros · '+usd(l)+'</button></div>'}
   $('#cartLines').innerHTML=lines;
-  $('#nudge').innerHTML=q.k==='libros'?'<div class="nudge"><b>Por solo '+usd(Math.max(0,b-l))+' más</b> te llevas también PLENA: 10 módulos, 132 videos, Mi diario, logros y certificado.<button type="button" class="btn btn-p" data-buy="todo" style="width:100%;margin-top:10px;min-height:48px;font-size:15px">Cambiar a libros + PLENA · '+usd(b)+'</button></div>':'';
+  $('#nudge').innerHTML=q.k==='libros'?'<button type="button" class="bump" data-buy="todo"><span class="bx"></span><span><b>Sí, súmame PLENA por solo '+usd(Math.max(0,b-l))+' más <em>Valor USD 29</em></b><small>Tu academia: 10 módulos, 132 videos, Mi diario, logros y certificado. Los 13 libros cobran vida, paso a paso.</small></span></button>':(q.k==='todo'&&cartFrom==='libros'?'<button type="button" class="bump on" data-buy="libros"><span class="bx">✓</span><span><b>PLENA agregada · ¡excelente decisión!</b><small>Toca aquí si prefieres solo los libros (USD '+l+').</small></span></button>':'');
   $('#sSub').hidden=$('#sSave').hidden=!q.k;
   $('#sSubV').innerHTML='<s>'+usd(q.value)+'</s>';$('#sSaveV').textContent='−'+usd(q.value-q.total);
   $('#sTotal').textContent=usd(q.total);$('#coPayV').textContent=usd(q.total);
@@ -987,11 +1014,12 @@ function render(){
   $('#cEmailN').textContent=q.k==='libros'?'Escríbelo bien: a este correo te llegan tus 13 libros.':'Escríbelo bien: a este correo te llega el acceso para crear tu cuenta de PLENA, y será tu usuario.';
   try{sessionStorage.setItem('ofCart',JSON.stringify(cart))}catch(e){}
 }
-function choose(k){var was=cart[0];cart=[k];render();if(was!==k)meTrack('AddToCart',{value:k==='todo'?bundle():lib(),currency:'USD',content_ids:[k]})}
+var cartFrom='';
+function choose(k){var was=cart[0];if(was==='libros'&&k==='todo')cartFrom='libros';if(!was)cartFrom=k;cart=[k];render();if(was!==k&&co.classList.contains('open'))montar();if(was!==k)meTrack('AddToCart',{value:k==='todo'?bundle():lib(),currency:'USD',content_ids:[k]})}
 
 // checkout
 var co=$('#co'),ov=$('#ov'),lastFocus=null;
-function openCo(){if(!co.classList.contains('open'))lastFocus=document.activeElement;co.classList.add('open');ov.classList.add('open');co.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(function(){$('#coX').focus()},50);onScroll()}
+function openCo(){if(!co.classList.contains('open')){lastFocus=document.activeElement;setTimeout(montar,30)}co.classList.add('open');ov.classList.add('open');co.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(function(){$('#coX').focus()},50);onScroll()}
 function closeCo(){co.classList.remove('open');ov.classList.remove('open');co.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus();onScroll()}
 document.addEventListener('click',function(e){
   var b=e.target.closest('[data-buy],[data-buy-all]');if(b){e.preventDefault();var k=b.dataset.buy||'todo';if(co.classList.contains('open')&&k==='todo'&&cart[0]==='libros')burst(b);choose(k);openCo();return}
@@ -1035,6 +1063,37 @@ $('#coForm').addEventListener('submit',function(e){
   .catch(function(ex){err.textContent=ex.message||'No se pudo continuar. Revisa tu conexión.';err.hidden=false;btn.disabled=false;btn.style.opacity=1});
 });
 
+// ---------- Pago incrustado de Whop (sin salir de la página) ----------
+var PLAN={libros:'plan_lXm2MW9MtlVRs',todo:'plan_DsdwKF5WepIjn',mejora:'plan_fbPqZmH1WSsQS'};
+var wjs=null,montado='';
+function cargarWhop(){if(wjs)return wjs;wjs=new Promise(function(ok,ko){var sc=document.createElement('script');sc.src='https://cdn.whop.com/elements/amber/elements.js';sc.async=true;sc.setAttribute('data-whop-elements','');sc.onload=function(){ok()};sc.onerror=ko;document.head.appendChild(sc);setTimeout(function(){if(!window.WhopElements)ko(new Error('tiempo'))},12000)});return wjs}
+function idPago(c){c=c||{};var r=c.result||c;return r.paymentId||r.payment_id||c.paymentId||(c.payment&&c.payment.id)||r.membershipId||''}
+function crearPago(plan,sel,alTerminar){
+  var box=$(sel);box.innerHTML='<div class="wload"><span></span>Cargando el pago seguro…</div>';
+  return cargarWhop().then(function(){
+    var el=window.WhopElements(),h=el.checkout.create({plan:plan,locale:'es',metadata:{origen:'web-oferta'},returnUrl:location.origin+'/oferta/gracias.html?whop=1&o='+(plan===PLAN.libros?'libros':'todo'),onComplete:alTerminar});
+    box.innerHTML='';h.create('checkout').mount(sel);
+  }).catch(function(){box.innerHTML='<div class="wload" style="flex-direction:column;padding:20px;text-align:center">No se pudo cargar el pago aquí.<a class="btn btn-p" style="margin-top:12px" href="https://whop.com/checkout/'+plan+'">Pagar en Whop</a></div>'});
+}
+function montar(){
+  if(PRUEBA||!cart.length){$('#whopBox').hidden=true;return}
+  var k=cart[0];$('#coForm').hidden=true;$('#coFoot').hidden=true;$('#whopBox').hidden=false;
+  if(montado===k&&$('#whopCo').children.length)return;montado=k;
+  crearPago(PLAN[k],'#whopCo',function(c){exito(k,c)});
+}
+function exito(k,c){
+  var pago=idPago(c);meTrack('Purchase',{value:k==='todo'?bundle():lib(),currency:'USD',id:pago||('web-'+Date.now())});
+  $('#whopBox').hidden=true;$('#cartLines').hidden=true;$('#nudge').hidden=true;$('.sum',co).hidden=true;$('.prog',co).hidden=true;$('#coOk').hidden=false;confetti();
+  try{sessionStorage.removeItem('ofCart')}catch(e){}
+  if(k==='libros')$('#upBox').hidden=false;
+  var n=0;(function ver(){if(!pago){fin();return}fetch('/api/directo?pago='+encodeURIComponent(pago),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+    if(d.paid&&d.link){$('#okMsg').textContent=d.plena?'Crea tu cuenta de PLENA ahora mismo (tu usuario es tu correo):':'Tu Biblioteca PAUSA ya está lista:';var g=$('#okGo');g.href=d.link;g.textContent=d.plena?'Crear mi cuenta de PLENA':'Abrir mi biblioteca';g.hidden=false;return}
+    if(++n<20)setTimeout(ver,3000);else fin();
+  }).catch(function(){if(++n<20)setTimeout(ver,3000);else fin()})})();
+  function fin(){$('#okMsg').textContent='En unos minutos te llega el acceso a tu correo. También lo encuentras en tu cuenta de Whop (whop.com) con ese mismo correo.'}
+}
+$('#upGo').addEventListener('click',function(){this.hidden=true;$('#upCo').hidden=false;crearPago(PLAN.mejora,'#upCo',function(c){$('#upBox').innerHTML='<h3>¡PLENA es tuya! 💗</h3><p>Te enviamos a tu correo el enlace para crear tu cuenta de PLENA (revisa Spam si no lo ves).</p>';meTrack('Purchase',{value:7,currency:'USD',id:idPago(c)||('up-'+Date.now())})})});
+
 // Enlace privado de prueba (/oferta/?prueba=CLAVE): la compra se registra a 0 USD sin pasarela.
 var PRUEBA=(new URLSearchParams(location.search).get('prueba')||'').slice(0,80);if(PRUEBA){var pa=document.getElementById('pruebaAviso');if(pa)pa.hidden=false}
 // visor
@@ -1057,7 +1116,7 @@ setInterval(tick,1000);
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 var vMq=window.matchMedia?matchMedia('(max-width:767px),(orientation:portrait) and (max-width:1024px)'):{matches:false};
 function vidOf(sec){return $(vMq.matches?'.v916':'.v169',sec)}
-function vLoad(v){if(!v.getAttribute('src')&&v.dataset.src){v.src=v.dataset.src;v.preload='auto';v.muted=true;v.defaultMuted=true}}
+function vLoad(v){if(!v.poster&&v.dataset.poster)v.poster=v.dataset.poster;if(!v.getAttribute('src')&&v.dataset.src){v.src=v.dataset.src;v.preload='auto';v.muted=true;v.defaultMuted=true}}
 function vSync(sec){var v=vidOf(sec),o=$(vMq.matches?'.v169':'.v916',sec);if(!o.paused)o.pause();o.muted=true;
   v.muted=!sec.classList.contains('snd');
   if(sec.dataset.near==='1'){vLoad(v);if(sec.dataset.vis==='1'){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()}}
@@ -1074,9 +1133,10 @@ vids.forEach(function(sec){
 if('IntersectionObserver' in window){
   var near=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.dataset.near='1';vSync(en.target);near.unobserve(en.target)}})},{rootMargin:'1200px 0px'});
   var vis=new IntersectionObserver(function(es){es.forEach(function(en){en.target.dataset.vis=en.isIntersecting?'1':'0';vSync(en.target)})},{threshold:.15});
-  vids.forEach(function(s){near.observe(s);vis.observe(s)});
+  vids.forEach(function(s,i){if(i)near.observe(s);vis.observe(s)});
   // el video de la biblioteca empieza a cargar en cuanto abre la página, para que ya esté sonando al llegar
-  if(vids[0]){vids[0].dataset.near='1';vLoad(vidOf(vids[0]))}
+  // miniatura del primer video ya; el video empieza a bajar apenas termina de cargar la página (no frena la portada)
+  if(vids[0]){var v0=vidOf(vids[0]);if(v0.dataset.poster)v0.poster=v0.dataset.poster;var go=function(){vids[0].dataset.near='1';vSync(vids[0])};if(document.readyState==='complete')setTimeout(go,300);else addEventListener('load',function(){setTimeout(go,300)})}
 }else vids.forEach(function(s){s.dataset.near=s.dataset.vis='1';vSync(s)});
 if(vMq.addEventListener)vMq.addEventListener('change',function(){vids.forEach(vSync)});
 document.addEventListener('visibilitychange',function(){if(document.hidden)$$('.vid video').forEach(function(v){v.pause()});else vids.forEach(vSync)});

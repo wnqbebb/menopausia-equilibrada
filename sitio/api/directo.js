@@ -1,5 +1,6 @@
 // Enlaces de acceso directo para ventas por WhatsApp (la clienta ya te pagó por banco, Nequi o efectivo).
 //  GET  /api/directo?tipo=libros&k=CLAVE  → su Biblioteca PAUSA (lista de PDF para la estantería 3D de gracias.html).
+//  GET  /api/directo?pago=pay_…          → tras el pago incrustado de Whop: el enlace de su acceso (cuando el webhook ya lo creó).
 //  POST /api/directo {tipo:"plena", k, name, email, phone, acepta} → crea su pedido pagado de PLENA,
 //       le envía «Crea tu cuenta de PLENA» y devuelve el enlace para crearla ya mismo.
 // Las claves viven solo en Vercel: ACCESO_LIBROS y ACCESO_PLENA. Si un enlace se filtra, cambia la clave y redespliega:
@@ -20,6 +21,16 @@ function claveOk(tipo, k) {
 async function handler(req) {
   const url = new URL(req.url);
   const ORIGIN = origen(null, req.url);
+  if (req.method === "GET" && url.searchParams.get("pago")) {
+    // Después del pago incrustado de Whop: con el id del pago (pay_…) se entrega su acceso en cuanto Whop avisa.
+    const pago = String(url.searchParams.get("pago")).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 60);
+    const m = /^(pay|mem)_/.test(pago) ? await db().marcas.get("pago-" + pago) : null;
+    const rec = m && m.id ? await db().orders.get(m.id) : null;
+    if (!rec || rec.status !== "pagado") return json({ paid: false, pending: true });
+    const plena = (rec.items || []).includes("todo");
+    const enlace = await enlaceCuenta(rec, ORIGIN);
+    return json({ paid: true, plena, libros: !plena, email: rec.email || "", link: plena ? enlace : enlace.replace(/#cuenta$/, "") });
+  }
   if (req.method === "GET") {
     if (url.searchParams.get("tipo") !== "libros" || !claveOk("libros", url.searchParams.get("k") || "")) return json({ paid: false, error: "Este enlace no es válido o ya cambió. Pide uno nuevo por WhatsApp." }, 403);
     return json({ paid: true, directo: true, libros: true, plena: false, cuenta: false, name: "", items: ["libros"], files: filesFor(["libros"], env("FILES_BASE")), cents: LIBROS_LAUNCH, bundleCents: BUNDLE_LAUNCH });

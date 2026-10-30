@@ -122,7 +122,13 @@ async function ventaDirecta(p, req) {
   // Un mismo pago de Whop solo crea un pedido, aunque Whop reenvíe el aviso o mande pago y membresía por la misma compra.
   const memId = p._membresia ? pagoId : txt(p.membership?.id) || txt(p.membership_id);
   const clave = memId ? "whop-m-" + memId : "whop-" + pagoId;
-  if (!(await marcas.tomar(clave.replace(/[^A-Za-z0-9_-]/g, ""), { at: Date.now() }))) return json({ ok: true, already: true });
+  const limpio = (x) => String(x).replace(/[^A-Za-z0-9_-]/g, "");
+  if (!(await marcas.tomar(limpio(clave), { at: Date.now() }))) {
+    // Misma compra (membresía + pago): se enlaza también el id del pago, para que el pago incrustado encuentre el acceso.
+    const prev = memId ? await marcas.get(limpio("mem-" + memId)) : null;
+    if (prev && prev.id && !p._membresia) await marcas.tomar(limpio("pago-" + pagoId), { id: prev.id });
+    return json({ ok: true, already: true });
+  }
   if (!correoDe(p) && !p._membresia) p = await completarDesdeWhop(p);
   const email = correoDe(p), now = new Date().toISOString();
   const paidCents = p._membresia ? 0 : toCents(p.usd_total) ?? toCents(p.total) ?? toCents(p.subtotal) ?? 0;
@@ -134,6 +140,9 @@ async function ventaDirecta(p, req) {
     note: email ? "" : "Whop no envió el correo de la compradora. Búscalo en Whop (Pagos), ponlo con «Poner correo» y marca el pedido como pagado.",
   };
   await db().orders.create(rec);
+  // El pago incrustado de la web pregunta por su acceso con el id del pago (o de la membresía).
+  if (!p._membresia) await marcas.tomar(limpio("pago-" + pagoId), { id: rec.id });
+  if (memId) await marcas.tomar(limpio("mem-" + memId), { id: rec.id });
   if (email) await avisarPagado(rec, ORIGIN);
   return json({ ok: true, status: rec.status, pedido: rec.id, directa: true });
 }

@@ -165,7 +165,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 </main>
 <script src="/plena/vendor/supabase-2.118.0.js"></script>
 <script src="/plena/cuenta.js?v=1"></script>
-<script src="/oferta/biblioteca3d.js?v=2" defer></script>
+<script src="/oferta/biblioteca3d.js?v=3" defer></script>
 <script>
 (function(){
 var q=new URLSearchParams(location.search);var who={};
@@ -176,7 +176,14 @@ var url=q.get('directo')==='libros'?'/api/directo?tipo=libros&k='+encodeURICompo
 // Al volver de la pasarela, la confirmación puede tardar unos segundos: se reintenta sola durante ~2 minutos.
 var tries=0;
 // Compra directa en Whop (vuelve sin número de pedido): el acceso llega por correo.
-if(q.get('whop')&&!q.get('pedido')&&!q.get('session_id')&&!q.get('k')){document.getElementById('loading').hidden=true;document.getElementById('whopOk').hidden=false;load=function(){}}
+if(q.get('whop')&&!q.get('pedido')&&!q.get('session_id')&&!q.get('k')){document.getElementById('loading').hidden=true;document.getElementById('whopOk').hidden=false;load=function(){};
+  // Vuelve del pago de Whop (PSE, Nequi…) con ?payment=pay_…&status=…: se busca su acceso para darle el botón directo.
+  (function(){var pg=q.get('payment')||'',st=q.get('status')||'',box=document.getElementById('whopOk');
+    if(st&&st!=='succeeded'){box.querySelector('h1').textContent='El pago no se completó';box.querySelector('p').textContent='Puedes intentarlo de nuevo desde la página de la oferta. Si el banco te cobró, escríbenos por WhatsApp.';return}
+    if(!/^pay_/.test(pg))return;var n=0;(function ver(){fetch('/api/directo?pago='+encodeURIComponent(pg),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
+      if(d.paid&&d.link){var a=document.createElement('a');a.className='btn btn-p';a.style.marginTop='18px';a.href=d.link;a.textContent=d.plena?'Crear mi cuenta de PLENA':'Abrir mi biblioteca';box.appendChild(a);return}
+      if(++n<20)setTimeout(ver,3000)}).catch(function(){if(++n<20)setTimeout(ver,3000)})})()})();
+}
 function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
   if(!d.paid&&d.pending&&!d.review&&tries<24&&(q.get('session_id')||q.get('t'))){tries++;$('#loading').hidden=false;setTimeout(load,tries<6?2500:5000);return}
   $('#loading').hidden=true;
