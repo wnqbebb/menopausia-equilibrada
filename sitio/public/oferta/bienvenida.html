@@ -26,9 +26,10 @@ header{background:#fff;border-bottom:1px solid var(--line);padding:14px 16px;tex
 .paso{display:inline-block;background:var(--negro);color:#fff;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:10px}
 /* video a todo lo ancho: 9:16 celular, 16:9 computador */
 .vid{position:relative;background:#14090F;overflow:hidden}
-.vid video{display:block;width:100%;height:auto;object-fit:cover;background:#14090F}
-.vid .v169{aspect-ratio:16/9;max-height:100svh}
-.vid .v916{display:none;aspect-ratio:9/16;max-height:100svh}
+.vid{display:flex;justify-content:center}
+.vid video{display:block;height:auto;object-fit:contain;background:#14090F;-webkit-touch-callout:none;user-select:none}
+.vid .v169{aspect-ratio:16/9;width:min(100%,calc(100svh * 16 / 9))}
+.vid .v916{display:none;aspect-ratio:9/16;width:min(100%,calc(100svh * 9 / 16))}
 @media (max-width:767px),(orientation:portrait) and (max-width:1024px){.vid .v169{display:none}.vid .v916{display:block}}
 .vsnd{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;display:inline-flex;align-items:center;gap:12px;white-space:nowrap;padding:18px 30px;border-radius:999px;border:3px solid #fff;background:rgba(224,51,122,.92);color:#fff;font:800 clamp(17px,2vw,21px) 'Poppins',sans-serif;cursor:pointer;box-shadow:0 16px 40px rgba(0,0,0,.35);animation:vp 2.2s ease-in-out infinite}
 .vsnd svg{width:28px;height:28px}
@@ -66,8 +67,8 @@ small{font-weight:500;color:var(--muted);font-size:13px}
 </section>
 
 <section class="vid" aria-label="Video de bienvenida a PLENA">
-  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381749/PLENA_lanzamiento_16x9.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381749/PLENA_lanzamiento_16x9.jpg" muted autoplay loop playsinline preload="none"></video>
-  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381747/PLENA_lanzamiento_9x16.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381747/PLENA_lanzamiento_9x16.jpg" muted autoplay loop playsinline preload="none"></video>
+  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381749/PLENA_lanzamiento_16x9.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381749/PLENA_lanzamiento_16x9.jpg" muted autoplay loop playsinline preload="none" controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback></video>
+  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381747/PLENA_lanzamiento_9x16.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381747/PLENA_lanzamiento_9x16.jpg" muted autoplay loop playsinline preload="none" controlslist="nodownload noplaybackrate noremoteplayback" disablepictureinpicture disableremoteplayback></video>
   <button type="button" class="vsnd"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Ver con sonido</span></button>
 </section>
 
@@ -115,6 +116,7 @@ var sec=$('.vid'),mq=matchMedia('(max-width:767px),(orientation:portrait) and (m
 function vid(){return $(mq.matches?'.v916':'.v169')}
 function cargar(){var v=vid();if(!v.getAttribute('src')){v.src=v.dataset.src;v.muted=true}var p=v.play();if(p&&p.catch)p.catch(function(){})}
 cargar();
+sec.addEventListener('contextmenu',function(e){e.preventDefault()});
 if(mq.addEventListener)mq.addEventListener('change',function(){document.querySelectorAll('.vid video').forEach(function(x){x.pause();x.muted=true});sec.classList.remove('snd');cargar()});
 $('.vsnd').addEventListener('click',function(){var v=vid();cargar();sec.classList.add('snd');v.muted=false;try{v.currentTime=0}catch(e){}var p=v.play();if(p&&p.catch)p.catch(function(){})});
 document.querySelectorAll('.vid video').forEach(function(v){v.addEventListener('click',function(){if(sec.classList.contains('snd')){sec.classList.remove('snd');v.muted=true}})});

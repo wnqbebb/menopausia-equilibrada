@@ -70,7 +70,7 @@ async function handler(req) {
           product_id: (q.items.includes("libros") && env("WHOP_PRODUCTO_LIBROS")) || env("WHOP_PRODUCT_ID"),
           currency: CURRENCY,
           plan_type: "one_time",
-          adaptive_pricing_enabled: true, // la clienta ve y paga en la moneda de su país
+          adaptive_pricing_enabled: false, // siempre en dólares (USD)
           initial_price: q.cents / 100,
           title: q.lines.length === 1 ? q.lines[0].name.slice(0, 80) : `Pedido ${id} (${q.lines.length} productos)`,
           visibility: "hidden",

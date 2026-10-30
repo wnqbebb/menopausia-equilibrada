@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Comprar · Menopausia sin tabú</title>
-<meta name="description" content="Pago directo: escribe tu correo, paga en la moneda de tu país y recibe tu acceso al instante.">
+<meta name="description" content="Pago directo: escribe tu correo, paga en dólares y recibe tu acceso al instante.">
 <meta name="theme-color" content="#E0337A">
 <meta property="og:title" content="Biblioteca PAUSA y academia PLENA">
 <meta property="og:description" content="Pago único. Acceso inmediato a tu correo.">
@@ -62,7 +62,7 @@ small{font-weight:500;color:var(--muted);font-size:13px}
       <div class="err" id="er" role="alert" hidden></div>
       <button class="btn" id="b" type="submit">Pagar USD <span id="bP">19</span></button>
     </form>
-    <p class="safe">🔒 Pago seguro con Whop: tarjeta, PSE, Nequi, PayPal, Apple Pay y más, <b>en la moneda de tu país</b>. ¿Tienes un código de descuento? Lo pones en la pantalla de pago.</p>
+    <p class="safe">🔒 Pago seguro con Whop: tarjeta, PSE, Nequi, PayPal, Apple Pay y más, <b>en dólares (USD)</b>. ¿Tienes un código de descuento? Lo pones en la pantalla de pago.</p>
   </section>
 </main>
 <script>
@@ -82,7 +82,7 @@ $('#pK').textContent=D.k;$('#pT').textContent=D.t;$('#pImg').src='/oferta/img/'+
 $('#pL').innerHTML=D.l.map(function(x){return '<li>'+x+'</li>'}).join('');
 if(PR)$('#pr').hidden=false;
 var mode='pedido';
-fetch('/api/oferta',{method:'POST',headers:{'content-type':'application/json'},body:'{}'}).then(function(r){return r.json()}).then(function(d){var c=o==='libros'?d.librosRegularCents:d.regularCents;if(c){$('#pP').textContent=$('#bP').textContent=c/100}}).catch(function(){});
+fetch('/api/oferta',{method:'POST',headers:{'content-type':'application/json'},body:'{}'}).then(function(r){return r.json()}).then(function(d){if(d.planes){if(d.planes.libros)WHOP.libros='https://whop.com/checkout/'+d.planes.libros;if(d.planes.todo)WHOP.todo='https://whop.com/checkout/'+d.planes.todo}var c=o==='libros'?d.librosRegularCents:d.regularCents;if(c){$('#pP').textContent=$('#bP').textContent=c/100}}).catch(function(){});
 fetch('/api/checkout').then(function(r){return r.json()}).then(function(d){mode=d.mode||'pedido'}).catch(function(){});
 $('#f').addEventListener('submit',function(e){
   e.preventDefault();var er=$('#er');er.hidden=true;
