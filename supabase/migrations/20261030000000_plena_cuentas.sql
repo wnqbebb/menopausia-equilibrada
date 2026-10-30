@@ -48,13 +48,17 @@ revoke all on public.profiles from anon, authenticated;
 grant select on public.profiles to authenticated;
 grant update (nombre, avatar_url, clave) on public.profiles to authenticated;
 
--- ¿La cuenta que hace la petición existe y no está revocada?
-create or replace function public.cuenta_activa() returns boolean
+-- ¿La cuenta que hace la petición existe y no está revocada? (en un esquema privado: no se expone en la API)
+create schema if not exists privado;
+revoke all on schema privado from public, anon;
+grant usage on schema privado to authenticated;
+create or replace function privado.cuenta_activa() returns boolean
 language sql stable security definer set search_path = '' as $$
   select exists (select 1 from public.profiles p where p.id = (select auth.uid()) and not p.revocado);
 $$;
-revoke all on function public.cuenta_activa() from public, anon;
-grant execute on function public.cuenta_activa() to authenticated;
+revoke all on function privado.cuenta_activa() from public, anon;
+grant execute on function privado.cuenta_activa() to authenticated;
+drop function if exists public.cuenta_activa();
 
 -- ---------------------------------------------------------------
 -- 2. Progreso del curso (no son datos de salud; la etapa y los objetivos van cifrados dentro)
@@ -72,8 +76,8 @@ alter table public.progreso enable row level security;
 drop policy if exists "progreso: solo la dueña" on public.progreso;
 create policy "progreso: solo la dueña" on public.progreso
   for all to authenticated
-  using ((select auth.uid()) = user_id and public.cuenta_activa())
-  with check ((select auth.uid()) = user_id and public.cuenta_activa());
+  using ((select auth.uid()) = user_id and privado.cuenta_activa())
+  with check ((select auth.uid()) = user_id and privado.cuenta_activa());
 revoke all on public.progreso from anon, authenticated;
 grant select, insert, update, delete on public.progreso to authenticated;
 
@@ -93,8 +97,8 @@ alter table public.diario enable row level security;
 drop policy if exists "diario: solo la dueña" on public.diario;
 create policy "diario: solo la dueña" on public.diario
   for all to authenticated
-  using ((select auth.uid()) = user_id and public.cuenta_activa())
-  with check ((select auth.uid()) = user_id and public.cuenta_activa());
+  using ((select auth.uid()) = user_id and privado.cuenta_activa())
+  with check ((select auth.uid()) = user_id and privado.cuenta_activa());
 revoke all on public.diario from anon, authenticated;
 grant select, insert, update, delete on public.diario to authenticated;
 
@@ -115,13 +119,13 @@ create policy "avatars: ver la propia" on storage.objects
 drop policy if exists "avatars: subir la propia" on storage.objects;
 create policy "avatars: subir la propia" on storage.objects
   for insert to authenticated
-  with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = (select auth.uid())::text and public.cuenta_activa());
+  with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = (select auth.uid())::text and privado.cuenta_activa());
 
 drop policy if exists "avatars: cambiar la propia" on storage.objects;
 create policy "avatars: cambiar la propia" on storage.objects
   for update to authenticated
   using (bucket_id = 'avatars' and (storage.foldername(name))[1] = (select auth.uid())::text)
-  with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = (select auth.uid())::text and public.cuenta_activa());
+  with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = (select auth.uid())::text and privado.cuenta_activa());
 
 drop policy if exists "avatars: borrar la propia" on storage.objects;
 create policy "avatars: borrar la propia" on storage.objects
