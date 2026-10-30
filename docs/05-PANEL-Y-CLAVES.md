@@ -12,7 +12,10 @@ Entra con tu `ADMIN_KEY`. Puedes:
 - Ver si la clienta ya creó su **cuenta de PLENA** (creada / sin cuenta / borrada) y si su último correo se envió o falló.
 - **Reenviar enlace para crear cuenta**, **copiar enlace de cuenta** y **reenviar bienvenida** (guía 11).
 - **Revocar** o reactivar el acceso, por ejemplo tras un contracargo. Revocar bloquea también su cuenta de PLENA.
-- **Regalar acceso completo (cortesía)**: crea un pedido pagado de 0 USD con todo incluido y envía al correo el enlace para crear la cuenta.
+- **Venta manual (WhatsApp o pago local)**: para transferencias, Nequi, efectivo u otros. Escribe nombre, correo, WhatsApp, valor en USD y método. Crea un pedido pagado con su valor real (sale en la lista y en el CSV, columna `metodo`) y le envía sola «Crea tu cuenta de PLENA»; el enlace queda copiado para mandarlo también por WhatsApp.
+- **Poner / corregir correo** de un pedido que aún no tiene cuenta (por ejemplo, una venta de Whop que llegó sin correo). Al guardarlo, si el pedido está pagado, se envía el enlace solo.
+- **Regalar acceso completo (cortesía)**: crea un pedido pagado de **0 USD** con todo incluido y envía al correo el enlace para crear la cuenta. Úsalo solo para regalos; para ventas, usa «Venta manual».
+- Las compras hechas **directamente en Whop** aparecen solas con el modo «Whop directo» (ver [02-WHOP.md](02-WHOP.md)).
 - **Borrar** pedidos de prueba.
 
 Estados:

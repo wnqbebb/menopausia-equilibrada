@@ -1348,6 +1348,11 @@ document.addEventListener('click', function (e) {
 document.addEventListener('click', function (e) { if (e.target.classList && e.target.classList.contains('modal')) closeModal(); });
 window.addEventListener('hashchange', function () { if (RD) closeReader(true); if (TOURI >= 0) { var o = $('.tour'); if (o) o.remove(); TOURI = -1; } render(); });
 window.addEventListener('scroll', function () { if (TOURI >= 0) placeTour(); }, { passive: true });
+/* Celular: al abrirse el teclado, el campo que se está escribiendo queda a la vista. */
+document.addEventListener('focusin', function (e) {
+  var t = e.target; if (!t || !/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || innerWidth > 900) return;
+  setTimeout(function () { var r = t.getBoundingClientRect(); if (r.top < 70 || r.bottom > innerHeight - 10) t.scrollIntoView({ block: 'center', behavior: 'auto' }); }, 250);
+});
 /* La app integrada escribe en este mismo dispositivo: PLENA se entera al momento. */
 function onAppChange() {
   refreshApp(true);

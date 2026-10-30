@@ -3,11 +3,13 @@
 // GET  /api/pedidos?csv=1                                   → todos los pedidos en CSV (para Excel / Google Sheets)
 // POST /api/pedidos {action, id}                            → pagado | pendiente | borrar | revocar | reactivar | cortesia
 //                                                              | enlaceCuenta (reenviar el enlace para crear la cuenta) | bienvenida
+//                                                              | manual (venta por WhatsApp o pago local) | correo (poner el correo de un pedido)
 import { db } from "../lib/store.js";
 import { json, hmac, hasApp, itemsOf, CURRENCY, envGet as env } from "../lib/catalog.js";
 import { reflejarEnCuenta, correoBienvenida, correoCrearCuenta, enlaceCuenta } from "../lib/cuentas.js";
 
 const PAGE_MAX = 200;
+const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 
 const csvCell = (v) => { const s = String(v ?? ""); return /[",\n;]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
 
@@ -32,11 +34,11 @@ async function handler(req) {
   if (req.method === "GET") {
     if (url.searchParams.get("csv")) {
       const recs = await store.all();
-      const head = ["fecha", "id", "estado", "nombre", "correo", "telefono", "productos", "total_usd", "modo", "pago_id", "entrega", "cuenta", "revocado"];
+      const head = ["fecha", "id", "estado", "nombre", "correo", "telefono", "productos", "total_usd", "modo", "metodo", "pago_id", "entrega", "cuenta", "revocado"];
       const rows = [head.join(",")];
       for (const r of recs) {
         await extra(r);
-        rows.push([r.createdAt, r.id, r.status, r.name, r.email, r.phone, r.items.join(" + "), (r.cents / 100).toFixed(2), r.mode, r.paymentId || r.sessionId || "", r.entrega, r.plena ? r.cuenta : "", r.revoked ? "sí" : ""].map(csvCell).join(","));
+        rows.push([r.createdAt, r.id, r.status, r.name, r.email, r.phone, r.items.join(" + "), (r.cents / 100).toFixed(2), r.mode, r.metodo || "", r.paymentId || r.sessionId || "", r.entrega, r.plena ? r.cuenta : "", r.revoked ? "sí" : ""].map(csvCell).join(","));
       }
       return new Response("\ufeff" + rows.join("\n"), { headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="pedidos-${new Date().toISOString().slice(0, 10)}.csv"`, "cache-control": "no-store" } });
     }
@@ -58,15 +60,29 @@ async function handler(req) {
 
   if (req.method === "POST") {
     let b; try { b = await req.json(); } catch { return json({ error: "Datos no válidos." }, 400); }
+    if (b.action === "manual") {
+      // Venta por WhatsApp o pago local (transferencia, Nequi, efectivo…): pedido pagado con su valor real + enlace para crear la cuenta.
+      const email = String(b.email || "").trim().toLowerCase().slice(0, 254);
+      if (!EMAIL.test(email)) return json({ error: "Escribe bien el correo de la clienta: ahí le llega el enlace para crear su cuenta." }, 400);
+      const usd = Number(String(b.usd ?? "").replace(",", "."));
+      if (!Number.isFinite(usd) || usd < 0 || usd > 10000) return json({ error: "Escribe el valor en USD (por ejemplo 19 o 19.50)." }, 400);
+      const metodo = ["transferencia", "nequi", "efectivo", "whatsapp", "otro"].includes(b.metodo) ? b.metodo : "otro";
+      const now = new Date().toISOString();
+      const rec = { v: 2, id: "", createdAt: now, name: String(b.name || "").trim().slice(0, 80) || email.split("@")[0], email, phone: String(b.phone || "").trim().slice(0, 30), items: ["todo"], cents: Math.round(usd * 100), currency: CURRENCY, mode: "manual", metodo, status: "pagado", paidAt: now, origin: ORIGIN, consent: { at: now, policy: "privacidad-2026-10-30", via: "manual" } };
+      await store.create(rec);
+      const mail = await correoCrearCuenta(rec, ORIGIN);
+      await store.save(rec);
+      return json({ ok: true, ...(await extra(rec)), enviado: mail.ok });
+    }
     if (b.action === "cortesia") {
       // Regalar acceso: crea un pedido pagado de 0 USD con todo incluido y envía el enlace para crear la cuenta.
       const email = String(b.email || "").trim().toLowerCase().slice(0, 254);
-      if (!/^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/.test(email)) return json({ error: "Escribe el correo de la clienta: ahí le llega el enlace para crear su cuenta." }, 400);
+      if (!EMAIL.test(email)) return json({ error: "Escribe el correo de la clienta: ahí le llega el enlace para crear su cuenta." }, 400);
       const rec = { v: 2, id: "", createdAt: new Date().toISOString(), name: String(b.name || "Cortesía").slice(0, 80), email, phone: "", items: ["todo"], cents: 0, currency: CURRENCY, mode: "cortesia", status: "pagado", paidAt: new Date().toISOString(), origin: ORIGIN };
       await store.create(rec);
       const mail = await correoCrearCuenta(rec, ORIGIN);
       await store.save(rec);
-      return json({ ok: true, correo: mail.ok, ...(await extra(rec)) });
+      return json({ ok: true, ...(await extra(rec)), enviado: mail.ok });
     }
     const id = String(b.id || "").replace(/[^a-z0-9]/gi, "");
     const rec = await store.get(id);
@@ -83,6 +99,18 @@ async function handler(req) {
       rec.revoked = b.action === "revocar"; await store.save(rec);
       try { await reflejarEnCuenta(rec); } catch (e) { console.error("panel revocar", e.message); return json({ ok: true, aviso: "El pedido quedó " + (rec.revoked ? "revocado" : "activo") + ", pero no se pudo actualizar la cuenta en Supabase. Inténtalo de nuevo." }); }
       return json({ ok: true });
+    }
+    if (b.action === "correo") {
+      // Poner o corregir el correo de un pedido (por ejemplo, una venta de Whop que llegó sin correo). Si ya tiene cuenta, no se cambia.
+      if (rec.userId) return json({ error: "Este pedido ya tiene cuenta: el correo es su usuario y no se cambia aquí." }, 400);
+      const email = String(b.email || "").trim().toLowerCase().slice(0, 254);
+      if (!EMAIL.test(email)) return json({ error: "Ese correo no es válido." }, 400);
+      rec.email = email; if (rec.note && /no envió el correo/.test(rec.note)) rec.note = "";
+      if (rec.status === "revisar" && rec.mode === "whop-directo") { rec.status = "pagado"; rec.paidAt = new Date().toISOString(); }
+      await store.save(rec);
+      let mail = null;
+      if (rec.status === "pagado") { mail = await correoCrearCuenta(rec, ORIGIN); await store.save(rec); }
+      return json({ ok: true, correo: mail ? mail.ok : null });
     }
     if (b.action === "enlaceCuenta" || b.action === "bienvenida") {
       if (rec.status !== "pagado") return json({ error: "El pedido aún no está pagado." }, 400);

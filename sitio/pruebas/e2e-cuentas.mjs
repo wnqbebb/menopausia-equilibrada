@@ -241,7 +241,7 @@ try {
 
   // ---------- 12. Regalar acceso desde el panel ----------
   const reg = await admin({ action: "cortesia", name: "Regalo", email: "regalo@example.com" });
-  ok("panel: regalar acceso crea el pedido y envía el enlace", reg.ok && reg.correo && (await correos()).correos.some((c) => c.to === "regalo@example.com" && /Crea tu cuenta/.test(c.subject)));
+  ok("panel: regalar acceso crea el pedido y envía el enlace", reg.ok && reg.enviado && (await correos()).correos.some((c) => c.to === "regalo@example.com" && /Crea tu cuenta/.test(c.subject)));
 
   // ---------- 13. Borrar la cuenta ----------
   // Al revocar se cerró su sesión; tras reactivar vuelve a entrar.
@@ -283,7 +283,7 @@ try {
     await L.p.goto(BASE + "/plena/"); await L.p.waitForSelector("#lgF"); await sinDesborde(L.p, `login ${W}×${H}`); await shot(L.p, `r-login-${W}x${H}`);
     // Teclado del celular: el campo enfocado sigue visible al reducirse la pantalla.
     if (W < 900) {
-      await L.p.setViewportSize({ width: W, height: Math.round(H * 0.55) }); await L.p.focus("#lgP");
+      await L.p.setViewportSize({ width: W, height: Math.round(H * 0.55) }); await L.p.focus("#lgP"); await L.p.waitForTimeout(400);
       const vis = await L.p.evaluate(() => { const r = document.querySelector("#lgP").getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; });
       ok(`login con teclado ${W}px: el campo se ve`, vis);
     }

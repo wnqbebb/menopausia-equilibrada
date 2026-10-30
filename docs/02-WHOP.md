@@ -6,7 +6,7 @@ Hay dos formas de usar Whop. Se pueden combinar.
 |---|---|---|
 | Dónde compra la clienta | En nuestra página `/oferta/` (oferta de 15 min, carrito, precios por separado) | En tu tienda de Whop |
 | Quién cobra | Whop (tarjeta, Apple Pay, Google Pay…) | Whop |
-| Entrega | Automática: Whop avisa a `/api/whop-webhook` y la clienta vuelve a la página de descargas | Whop entrega los PDF con su app «Files» |
+| Entrega | Automática: Whop avisa a `/api/whop-webhook` y la clienta vuelve a la página de descargas | Automática: Whop avisa a `/api/whop-webhook` y a la clienta le llega «Crea tu cuenta de PLENA» |
 | Precio dinámico por carrito | Sí | No (un precio fijo por producto) |
 | Código | Ya está hecho; solo poner 4 variables | Ninguno |
 
@@ -22,10 +22,11 @@ Hay dos formas de usar Whop. Se pueden combinar.
    - **Company ID** (`biz_…`): en la URL del dashboard o en **Settings**.
    - **Product ID** (`prod_…`): abre el producto; aparece en la URL o en sus detalles.
 4. **API key:** Dashboard → **Developer** → **API keys** → crear. Dale como mínimo estos permisos:
-   `checkout_configuration:create`, `checkout_configuration:basic:read`, `plan:create`, `access_pass:create`, `access_pass:update`, `payment:basic:read`.
+   `checkout_configuration:create`, `checkout_configuration:basic:read`, `plan:create`, `access_pass:create`, `access_pass:update`, `payment:basic:read`, **`member:email:read`** (para leer el correo de quien compra directamente en Whop).
 5. **Webhook:** Dashboard → **Developer** → **Webhooks** → **Create webhook**:
    - URL: `https://TU-DOMINIO/api/whop-webhook`
    - Evento: `payment.succeeded`
+   - Si te pide permisos, marca también **`member:email:read`**: así el aviso trae el correo de la compradora (`data.user.email`). Sin él, Whop lo manda vacío.
    - Copia el **secreto** (`ws_…`). Solo se muestra una vez.
 
 ### 2. Pon las variables en Vercel
@@ -59,18 +60,34 @@ En Vercel: **Settings → Environment Variables**, añade las 4 y vuelve a despl
 
 ---
 
-## Opción B: tienda 100% en Whop (sin código)
+## Opción B: ventas directas en Whop (tienda de Whop o enlace de pago por WhatsApp) — automáticas
 
-1. Crea en Whop un producto por oferta. Por ejemplo:
-   - **Pack completo:** 19 USD de lanzamiento / 37 USD regular.
-   - **PAUSA:** 14 USD.
-   - **Guía Integral:** 12 USD.
-   - **Kits:** 7–9 USD.
-2. Añade la app **Files** (o «Downloads») a cada producto y sube los PDF de `sitio/public/entrega-…/` (lista en [04-PRODUCTOS-Y-PRECIOS.md](04-PRODUCTOS-Y-PRECIOS.md)).
-3. Para dar acceso a la app, en el panel `/oferta/admin.html` usa **«Regalar acceso completo (cortesía)»** con el nombre y el correo de la compradora. Copia el enlace y envíalo, o pégalo en el mensaje de bienvenida del producto en Whop.
-4. Usa las imágenes de `productos/imagenes/` y `sitio/public/oferta/img/` como portadas.
+Cuando alguien paga **directamente en Whop** (no desde `/oferta/`), Whop avisa igual a `/api/whop-webhook`. Ese pago no trae número de pedido, así que el sistema:
 
-> También puedes mezclar las dos: vender en Whop con la Opción B y usar nuestra página como embudo que manda tráfico a la Opción A.
+1. Comprueba la firma del aviso y que el pago sea del producto de PLENA (`WHOP_PRODUCT_ID`, o los ids de `WHOP_PRODUCTOS_DIRECTOS`, separados por comas).
+2. Crea solo un pedido **pagado** con el pack completo, el nombre, el correo y el WhatsApp que trae Whop y el importe cobrado (modo **«Whop directo»** en el panel).
+3. Le envía el correo **«Crea tu cuenta de PLENA»**. Ella crea su cuenta, le llega la bienvenida y entra.
+4. Si Whop reenvía el mismo pago, no se duplica (se recuerda el id `pay_…`).
+5. Si el aviso llega **sin correo** (falta el permiso `member:email:read`), lo pide a la API de Whop. Si aun así no hay correo, el pedido queda en **«revisar»** con una nota: búscalo en Whop → **Payments**, pulsa **Poner correo** en el panel y se envía el enlace solo.
+
+### Enlace de pago para enviar por WhatsApp
+
+1. En Whop: **Dashboard → Checkout links → + Create checkout link**.
+2. Elige el producto de PLENA (el mismo de `WHOP_PRODUCT_ID`), **One-time**, el precio (por ejemplo 19 USD) y deja sin marcar **Show on store page** si no quieres que salga en tu tienda pública.
+3. **Create checkout link** y copia el enlace.
+4. Mándalo por WhatsApp. Cuando la clienta paga con tarjeta, todo lo demás pasa solo: a su correo le llega «Crea tu cuenta de PLENA».
+
+> Si el enlace es de **otro** producto de Whop, añade su id `prod_…` en la variable `WHOP_PRODUCTOS_DIRECTOS` de Vercel y vuelve a desplegar.
+
+### Pago local (transferencia, Nequi, efectivo)
+
+Whop no se entera de estos pagos. En el panel `/oferta/admin.html` usa **Venta manual**: nombre, correo, WhatsApp, valor en USD y método. Se registra con su valor real (sale en el CSV) y le llega sola «Crea tu cuenta de PLENA». El enlace también queda copiado para mandarlo por WhatsApp.
+
+### Probar
+
+```bash
+cd sitio && npm run prueba-whop     # avisos firmados de Whop sin pedido, duplicados, sin correo, otro producto y venta manual
+```
 
 ## Documentación oficial
 

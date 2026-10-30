@@ -7,7 +7,8 @@
     "node": ">=20"
   },
   "scripts": {
-    "prueba-carga": "ME_STORE=memory ADMIN_KEY=prueba-local-123 node pruebas/carga-1000-compras.mjs 1000"
+    "prueba-carga": "ME_STORE=memory ADMIN_KEY=prueba-local-123 node pruebas/carga-1000-compras.mjs 1000",
+    "prueba-whop": "node pruebas/whop-directo.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",

@@ -8,6 +8,8 @@
 //   orders.page(offset, size) → { recs, total }      orders.all() → recs (más recientes primero)
 //   sync.get(id) → obj | null    sync.put(id, obj)    sync.del(id)
 //   prog.get(pedido) / prog.put(pedido, obj)   → progreso del curso PLENA (lecciones completadas; no son datos de salud)
+//   marcas.tomar(clave, valor) → true si la clave era nueva (escritura condicional; evita duplicados, p. ej. pagos de Whop)
+//   marcas.get(clave) → valor | null
 import { newId, envGet as env } from "./catalog.js";
 
 const ORD = "ped:", IDX = "ped:idx", SYN = "sync:";
@@ -67,6 +69,10 @@ function redisBackend(url, token) {
       async get(id) { return parse(await cmd("GET", "prog:" + id)); },
       async put(id, obj) { await cmd("SET", "prog:" + id, JSON.stringify(obj)); },
     },
+    marcas: {
+      async tomar(k, v) { return (await cmd("SET", "marca:" + k, JSON.stringify(v), "NX")) === "OK"; },
+      async get(k) { return parse(await cmd("GET", "marca:" + k)); },
+    },
   };
 }
 
@@ -119,6 +125,10 @@ function blobBackend() {
     },
     sync: { get: (id) => readJSON(S(id)), put: (id, obj) => writeJSON(S(id), obj), async del(id) { const { del } = await load(); await del(S(id)).catch(() => {}); } },
     prog: { get: (id) => readJSON(`progreso/${id}.json`), put: (id, obj) => writeJSON(`progreso/${id}.json`, obj) },
+    marcas: {
+      async tomar(k, v) { try { await writeJSON(`marcas/${k}.json`, v, false); return true; } catch (e) { if (/exist/i.test(String(e?.message))) return false; throw e; } },
+      get: (k) => readJSON(`marcas/${k}.json`),
+    },
   };
 }
 
@@ -139,6 +149,10 @@ function memoryBackend() {
     },
     sync: { async get(id) { return clone(g.s.get(id)); }, async put(id, obj) { g.s.set(id, clone(obj)); }, async del(id) { g.s.delete(id); } },
     prog: { async get(id) { return clone((g.p ||= new Map()).get(id)); }, async put(id, obj) { (g.p ||= new Map()).set(id, clone(obj)); } },
+    marcas: {
+      async tomar(k, v) { const m = (g.m ||= new Map()); if (m.has(k)) return false; m.set(k, clone(v)); return true; },
+      async get(k) { return clone((g.m ||= new Map()).get(k)); },
+    },
   };
 }
 

@@ -1,5 +1,5 @@
 // Service worker sencillo: la app abre sin conexión. Nunca guarda en caché /api/.
-const CACHE = 'me-v5-0';
+const CACHE = 'me-v5-1';
 const IMGS = 'me-img-v1'; // páginas de libros e imágenes: no cambian, se sirven desde el caché
 // «/» lleva a /plena/: el diario se guarda como /?embed=1 (dentro de PLENA).
 const ASSETS = ['/plena/', '/?embed=1', '/app.js', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png'];

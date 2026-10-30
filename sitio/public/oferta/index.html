@@ -783,7 +783,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     </div>
     <form id="coForm" novalidate style="display:grid;gap:12px">
       <label class="fld" for="cName">Tu nombre<input id="cName" name="name" autocomplete="name" required maxlength="80"></label>
-      <label class="fld" for="cEmail">Tu correo (aquí te llega tu compra)<input id="cEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254"></label>
+      <label class="fld" for="cEmail">Tu correo (aquí te llega tu compra)<input id="cEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="cEmailN"><small id="cEmailN" style="font-weight:500;color:var(--muted);font-size:13px;line-height:1.4">Escríbelo bien: a este correo te llega el acceso para crear tu cuenta de PLENA, y será tu usuario.</small></label>
       <label class="fld" for="cPhone">WhatsApp (opcional)<input id="cPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30"></label>
       <label class="chk" for="cOk"><input id="cOk" name="acepta" type="checkbox" required><span>Acepto la <a href="/privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y el tratamiento de mis datos para recibir mi compra.</span></label>
       <div class="err" id="coErr" role="alert" hidden></div>
