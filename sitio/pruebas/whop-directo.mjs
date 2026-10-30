@@ -13,8 +13,8 @@ let fallos = 0;
 const ok = (n, c, x = "") => { console.log((c ? "PASS " : "FAIL ") + n + (x ? " · " + x : "")); if (!c) fallos++; };
 const correos = () => globalThis.__meCorreos || [];
 
-async function aviso(data, { firma = true } = {}) {
-  const body = JSON.stringify({ id: "msg_" + crypto.randomUUID(), type: "payment.succeeded", api_version: "v1", data });
+async function aviso(data, { firma = true, tipo = "payment.succeeded" } = {}) {
+  const body = JSON.stringify({ id: "msg_" + crypto.randomUUID(), type: tipo, api_version: "v1", data });
   const id = "msg_" + Date.now(), ts = String(Math.floor(Date.now() / 1000));
   const sig = crypto.createHmac("sha256", process.env.WHOP_WEBHOOK_SECRET).update(`${id}.${ts}.${body}`).digest("base64");
   const r = await hook(new Request("https://ejemplo.test/api/whop-webhook", { method: "POST", headers: { "webhook-id": id, "webhook-timestamp": ts, "webhook-signature": "v1," + (firma ? sig : "falsa") }, body }));
@@ -61,6 +61,19 @@ r = await adm({ action: "manual", name: "X", email: "malo", usd: "19" });
 ok("venta manual sin correo válido: error claro", r.s === 400 && /correo/.test(r.d.error));
 r = await adm({ action: "manual", name: "X", email: "x@example.com", usd: "abc" });
 ok("venta manual sin valor: error claro", r.s === 400 && /valor/.test(r.d.error));
+
+// 6b. Cupón del 100 % en Whop: llega como membresía activada (0 USD) y como pago de 0; un solo pedido y un solo correo
+process.env.WHOP_PRODUCTO_LIBROS = "prod_LIBROS";
+const memb = { id: "mem_900", product: { id: "prod_LIBROS" }, user: { id: "user_9", name: "Gloria Gratis", email: "gloria@example.com" }, metadata: null };
+r = await aviso(memb, { tipo: "membership.activated" });
+ok("cupón 100 %: la membresía activada crea el pedido de libros", r.d.directa && r.d.status === "pagado", JSON.stringify(r.d));
+r = await aviso({ id: "pay_900", total: 0, usd_total: 0, membership: { id: "mem_900" }, product: { id: "prod_LIBROS" }, user: { email: "gloria@example.com" } });
+ok("cupón 100 %: el pago de 0 de la misma compra no duplica", r.d.already === true && correos().filter((c) => c.to === "gloria@example.com").length === 1);
+ok("cupón 100 %: le llega «Tu Biblioteca PAUSA está lista»", correos().some((c) => c.to === "gloria@example.com" && /Biblioteca PAUSA/.test(c.subject)));
+const recWeb = { v: 2, id: "", createdAt: new Date().toISOString(), name: "Web", email: "web@example.com", items: ["todo"], cents: 1900, status: "pendiente", mode: "whop" };
+await db().orders.create(recWeb);
+r = await aviso({ id: "pay_901", total: 0, usd_total: 0, metadata: { pedido: recWeb.id } });
+ok("pedido de la web pagado con cupón: queda pagado y avisa", r.d.status === "pagado" && correos().some((c) => c.to === "web@example.com"));
 
 // 7. CSV con el valor real y el método
 const csv = await (await panel.GET(new Request("https://ejemplo.test/api/pedidos?csv=1", { headers: { "x-admin-key": "clave-prueba" } }))).text();

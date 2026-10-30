@@ -50,6 +50,16 @@
       "source": "/academia",
       "destination": "/plena/",
       "permanent": true
+    },
+    {
+      "source": "/libros",
+      "destination": "/oferta/comprar.html?o=libros",
+      "permanent": false
+    },
+    {
+      "source": "/plena-completa",
+      "destination": "/oferta/comprar.html?o=todo",
+      "permanent": false
     }
   ],
   "functions": {

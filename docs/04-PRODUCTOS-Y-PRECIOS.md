@@ -2,12 +2,14 @@
 
 ## Las 2 ofertas de la página de ventas
 
+Precio fijo: **12 USD** los libros y **19 USD** con PLENA. Como el precio de bienvenida y el normal son iguales, la página no muestra contador ni «luego USD …». Si algún día quieres volver a la oferta de 15 minutos, sube `LIBROS_REGULAR` y `BUNDLE_REGULAR` y la página la muestra sola. La clienta paga en la moneda de su país (Whop convierte con «adaptive pricing»).
+
 La página `/oferta/` vende solo dos cosas (la tienda «por separado» ya no se muestra):
 
 | Oferta | ID | Qué incluye | Bienvenida (15 min) | Después |
 |---|---|---|---|---|
-| **Biblioteca PAUSA** | `libros` | Los 13 libros en PDF (PAUSA, Guía Integral, 6 bonos, 3 plantillas y 4 kits). Sin PLENA. Valor 95 USD. | **12 USD** | **24 USD** |
-| **Libros + PLENA** (recomendada) | `todo` | Los 13 libros + academia PLENA (10 módulos, 132 videos) + Mi diario + logros y certificado. Valor 124 USD. | **19 USD** | **37 USD** |
+| **Biblioteca PAUSA** | `libros` | Los 13 libros en PDF (PAUSA, Guía Integral, 6 bonos, 3 plantillas y 4 kits). Sin PLENA. Valor 95 USD. | **12 USD** | **12 USD** (precio fijo) |
+| **Libros + PLENA** (recomendada) | `todo` | Los 13 libros + academia PLENA (10 módulos, 132 videos) + Mi diario + logros y certificado. Valor 124 USD. | **19 USD** | **19 USD** (precio fijo) |
 
 - Quien compra `libros` recibe el correo «Tu Biblioteca PAUSA está lista» con el botón de descarga. Quien compra `todo` recibe «Crea tu cuenta de PLENA».
 - Quien compró `libros` puede sumar PLENA desde su página de descargas pagando la diferencia (19 − 12 = 7 USD; mínimo 5 USD).

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Comprar · Menopausia sin tabú</title>
+<meta name="description" content="Pago directo: escribe tu correo, paga en la moneda de tu país y recibe tu acceso al instante.">
+<meta name="theme-color" content="#E0337A">
+<meta property="og:title" content="Biblioteca PAUSA y academia PLENA">
+<meta property="og:description" content="Pago único. Acceso inmediato a tu correo.">
+<meta property="og:image" content="https://menopausia-equilibrada.vercel.app/oferta/img/og-share.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png?v=2">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800;900&family=Great+Vibes&family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#FFF5F8;--blush:#FCE4EC;--rosa:#F7A8C7;--fucsia:#E0337A;--berry:#9B1B4F;--ink:#2B1B24;--negro:#1E1419;--muted:#6B4E5C;--line:#F2C6D6}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:radial-gradient(120% 70% at 50% 0,#fff 0,var(--bg) 55%,#F9DCE7 100%);color:var(--ink);font-family:'Poppins',system-ui,Arial,sans-serif;font-size:16.5px;line-height:1.55;min-height:100vh}
+main{max-width:520px;margin:0 auto;padding:22px 16px 40px}
+.logo{display:block;text-align:center;font-family:'Playfair Display',serif;font-weight:900;font-size:22px;color:var(--ink);text-decoration:none}
+.logo i{font-family:'Great Vibes',cursive;font-style:normal;font-weight:400;color:var(--fucsia);font-size:28px}
+.card{background:#fff;border-radius:26px;border:1px solid #FBE3EC;box-shadow:0 20px 50px rgba(155,27,79,.16);padding:22px;margin-top:16px}
+.prod{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center}
+.prod img{width:96px;border-radius:4px 8px 8px 4px;box-shadow:0 10px 22px rgba(80,10,40,.28)}
+.prod .k{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--berry)}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:27px;line-height:1.1;margin:2px 0 6px}
+.price{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;line-height:1;color:var(--fucsia)}
+.price small{display:block;margin-top:4px;font-size:15px;color:var(--muted);font-family:'Poppins',sans-serif;font-weight:600}
+ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:7px}
+li{display:flex;gap:9px;font-size:15px}li::before{content:"✓";color:var(--fucsia);font-weight:900}
+form{display:grid;gap:12px;margin-top:16px}
+label{display:grid;gap:5px;font-weight:700;font-size:14.5px}
+input[type=text],input[type=email],input[type=tel]{font:inherit;font-weight:500;font-size:16px;min-height:52px;border:2px solid var(--line);border-radius:14px;padding:0 14px;background:#FFFBFC;color:var(--ink);width:100%}
+input:focus{outline:none;border-color:var(--fucsia);box-shadow:0 0 0 4px rgba(224,51,122,.15)}
+small{font-weight:500;color:var(--muted);font-size:13px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-weight:500;font-size:14px;color:var(--muted)}.chk input{width:22px;height:22px;flex:0 0 22px;margin:1px 0 0;accent-color:var(--fucsia)}
+.chk a{color:var(--berry);font-weight:700}
+.btn{appearance:none;border:0;cursor:pointer;width:100%;min-height:58px;border-radius:999px;background:var(--fucsia);color:#fff;font:800 18px 'Poppins',sans-serif;box-shadow:0 14px 28px rgba(224,51,122,.35)}
+.btn:disabled{opacity:.6}
+.err{background:#FDECEA;color:#B3261E;border-radius:12px;padding:10px 12px;font-weight:600;font-size:14.5px}
+.safe{font-size:13px;color:var(--muted);text-align:center;margin-top:12px}
+.prueba{background:#FFF1C9;color:#5C3D00;border-radius:12px;padding:10px 12px;font-weight:700;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+  <a class="logo" href="/oferta/">Menopausia <i>sin tabú</i></a>
+  <section class="card">
+    <div class="prod">
+      <img id="pImg" src="/oferta/img/c-pausa.webp" alt="" width="96" height="136">
+      <div><span class="k" id="pK">Pago directo</span><h1 id="pT">Libros + PLENA</h1><div class="price">USD <span id="pP">19</span> <small>· pago único</small></div></div>
+    </div>
+    <ul id="pL"></ul>
+    <form id="f" novalidate>
+      <label for="n">Tu nombre<input id="n" type="text" autocomplete="name" maxlength="80" required></label>
+      <label for="e">Tu correo<input id="e" type="email" autocomplete="email" inputmode="email" maxlength="254" required><small id="eN">Escríbelo bien: a este correo te llega tu acceso.</small></label>
+      <label for="t">WhatsApp (opcional)<input id="t" type="tel" autocomplete="tel" inputmode="tel" maxlength="30"></label>
+      <label class="chk" for="a"><input id="a" type="checkbox" required><span>Acepto la <a href="/privacidad.html" target="_blank" rel="noopener">política de privacidad</a> y el tratamiento de mis datos para recibir mi compra.</span></label>
+      <p class="prueba" id="pr" hidden>Modo prueba: esta compra no se cobra (0 USD).</p>
+      <div class="err" id="er" role="alert" hidden></div>
+      <button class="btn" id="b" type="submit">Pagar USD <span id="bP">19</span></button>
+    </form>
+    <p class="safe">🔒 Pago seguro con Whop: tarjeta, PSE, Nequi, PayPal, Apple Pay y más, <b>en la moneda de tu país</b>. ¿Tienes un código de descuento? Lo pones en la pantalla de pago.</p>
+  </section>
+</main>
+<script>
+(function(){
+'use strict';
+// Enlace directo para WhatsApp: /libros (Biblioteca PAUSA) o /plena-completa (libros + PLENA).
+// Al pagar vuelve sola a su página: la biblioteca 3D con descargas, o crear su cuenta de PLENA.
+var q=new URLSearchParams(location.search),o=q.get('o')==='libros'?'libros':'todo',PR=(q.get('prueba')||'').slice(0,80);
+// Si todavía no hay clave de Whop en el servidor, se usan estos enlaces fijos de Whop (el acceso llega igual por correo).
+var WHOP={todo:'https://whop.com/checkout/plan_DsdwKF5WepIjn',libros:'https://whop.com/checkout/plan_lXm2MW9MtlVRs'};
+var D={
+  todo:{k:'Oferta completa',t:'Libros + PLENA',img:'c-pausa',l:['Los 13 libros de la Biblioteca PAUSA','Academia PLENA: 10 módulos y 132 videos','Mi diario, tus logros y tu certificado','Tu cuenta personal: al pagar creas tu contraseña y entras'],n:'Escríbelo bien: será tu usuario de PLENA.'},
+  libros:{k:'Biblioteca PAUSA',t:'Los 13 libros',img:'c-guia',l:['PAUSA y la Guía Integral','6 bonos, 3 plantillas y 4 kits','Tu biblioteca 3D: léelos y descárgalos al instante'],n:'Escríbelo bien: ahí te llega el enlace de tu biblioteca.'}
+}[o];
+function $(s){return document.querySelector(s)}
+$('#pK').textContent=D.k;$('#pT').textContent=D.t;$('#pImg').src='/oferta/img/'+D.img+'.webp';$('#eN').textContent=D.n;
+$('#pL').innerHTML=D.l.map(function(x){return '<li>'+x+'</li>'}).join('');
+if(PR)$('#pr').hidden=false;
+var mode='pedido';
+fetch('/api/oferta',{method:'POST',headers:{'content-type':'application/json'},body:'{}'}).then(function(r){return r.json()}).then(function(d){var c=o==='libros'?d.librosRegularCents:d.regularCents;if(c){$('#pP').textContent=$('#bP').textContent=c/100}}).catch(function(){});
+fetch('/api/checkout').then(function(r){return r.json()}).then(function(d){mode=d.mode||'pedido'}).catch(function(){});
+$('#f').addEventListener('submit',function(e){
+  e.preventDefault();var er=$('#er');er.hidden=true;
+  var n=$('#n').value.trim(),em=$('#e').value.trim(),t=$('#t').value.trim();
+  function fail(m,el){er.textContent=m;er.hidden=false;if(el)el.focus()}
+  if(!n)return fail('Escribe tu nombre.',$('#n'));
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em))return fail('Revisa tu correo: ahí te llega tu acceso.',$('#e'));
+  if(!$('#a').checked)return fail('Para continuar, acepta la política de privacidad.',$('#a'));
+  // Sin clave de Whop en el servidor (y sin modo prueba): directo al pago fijo de Whop con su correo.
+  if(mode!=='whop'&&!PR){location.href=WHOP[o]+'?email='+encodeURIComponent(em);return}
+  var b=$('#b');b.disabled=true;
+  fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:n,email:em,phone:t,items:[o],acepta:true,prueba:PR||undefined})})
+  .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})})
+  .then(function(x){if(!x.ok)throw new Error(x.d.error||'No se pudo continuar.');if(x.d.url){location.href=x.d.url;return}throw new Error('No se pudo abrir el pago. Inténtalo de nuevo.')})
+  .catch(function(ex){fail(ex.message);b.disabled=false});
+});
+})();
+</script>
+</body>
+</html>

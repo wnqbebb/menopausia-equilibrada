@@ -7,6 +7,8 @@ Esta guía explica en palabras sencillas el recorrido completo: qué ve la clien
 | Dirección | Para qué |
 |---|---|
 | `https://menopausia-equilibrada.vercel.app/oferta/` | **Página de ventas** (la que pones en anuncios, bio y WhatsApp). |
+| **`/libros`** | **Enlace directo para WhatsApp: solo los libros (12 USD).** Escribe nombre y correo, paga y entra a su biblioteca 3D. |
+| **`/plena-completa`** | **Enlace directo para WhatsApp: libros + PLENA (19 USD).** Escribe nombre y correo, paga y crea su cuenta de PLENA ahí mismo. |
 | `/oferta/?oferta=libros` | Abre directo el pedido de la Biblioteca PAUSA. |
 | `/oferta/?oferta=todo` | Abre directo el pedido de Libros + PLENA. |
 | `/plena/` | PLENA, la academia. Las clientas entran con su correo y su contraseña. |
@@ -16,7 +18,7 @@ Esta guía explica en palabras sencillas el recorrido completo: qué ve la clien
 ## 2. Lo que ve la clienta en la página de ventas
 
 1. **La biblioteca en 3D.** Desliza los 13 libros; con el mouse aparece el cursor redondo y la portada se inclina. Al tocar la portada **no se abre el libro** (eso es para quien compra): la lleva a las 2 ofertas.
-2. **El video de la biblioteca** a todo lo ancho, justo debajo: en el celular el vertical (9:16) y en el computador el horizontal (16:9). Empieza a cargar en cuanto abre la página y se reproduce solo, sin sonido; tiene botón «Activar sonido» y pausa. Usa una versión liviana (2 MB en celular).
+2. **El video de la biblioteca** a todo lo ancho, justo debajo: en el celular el vertical (9:16) y en el computador el horizontal (16:9). Empieza a cargar en cuanto abre la página y se reproduce solo, sin sonido. En el centro tiene el botón grande **«Ver con sonido»**: al tocarlo el video vuelve a empezar desde el principio con sonido. Tocar el video lo vuelve a silenciar. Usa una versión liviana (2 MB en celular).
 3. Los dolores, las cifras, los 3 caminos y **los 13 libros con su valor**.
 4. **PLENA**: su video de lanzamiento a todo lo ancho y qué hay dentro.
 5. **Las 2 ofertas**, una al lado de la otra, con contador de 15 minutos y una tabla para comparar.
@@ -29,12 +31,10 @@ Los videos están en Cloudinary (cuenta `qff0gu4u`). Para cambiarlos, sube los n
 | | Biblioteca PAUSA | Libros + PLENA |
 |---|---|---|
 | Qué recibe | Los 13 libros en PDF | Los 13 libros + PLENA (10 módulos, 132 videos) + Mi diario + logros y certificado |
-| Precio de bienvenida (15 min) | 12 USD | 19 USD |
-| Precio normal | 24 USD | 37 USD |
+| Precio (fijo, en la moneda de su país) | 12 USD | 19 USD |
 | Correo que le llega | «Tu Biblioteca PAUSA está lista» → abre su biblioteca 3D | «Crea tu cuenta de PLENA» → crea su contraseña |
 | Página después de pagar | Su biblioteca 3D: toca un libro, lo lee completo y lo descarga | Solo el registro de su cuenta (los libros están dentro de PLENA) |
 
-- La oferta de 15 minutos la controla el servidor: no se puede trucar cambiando la hora del celular.
 - Quien compró solo los libros ve en su página de descargas el botón **«Sumar PLENA»** y paga solo la diferencia.
 - Precios: se cambian en `sitio/lib/catalog.js` (ver [04 · Productos y precios](04-PRODUCTOS-Y-PRECIOS.md)).
 
@@ -52,7 +52,16 @@ Los videos están en Cloudinary (cuenta `qff0gu4u`). Para cambiarlos, sube los n
 
 **Por WhatsApp (sin página web).** Tienes dos caminos, y en los dos el acceso le llega solo por correo:
 
-*A) Le mandas el enlace de pago de Whop (automático, recomendado).* Copia y pega en el chat:
+*A) Le mandas tu enlace directo (automático, recomendado).* Copia y pega en el chat:
+
+| Oferta | Enlace |
+|---|---|
+| Solo los libros (12 USD) | https://menopausia-equilibrada.vercel.app/libros |
+| Libros + PLENA (19 USD) | https://menopausia-equilibrada.vercel.app/plena-completa |
+
+Ella escribe su nombre y su correo, paga en Whop en su moneda y vuelve sola: con los libros entra a su biblioteca 3D (leer y descargar, también los 13 en un solo ZIP); con PLENA crea su contraseña y entra. Además le llega el correo. *Mientras falte la clave de API de Whop*, estos enlaces llevan al pago fijo de Whop y el acceso llega solo por correo.
+
+También sirven los enlaces de pago de Whop directamente:
 
 | Oferta | Enlace de pago |
 |---|---|
@@ -75,7 +84,11 @@ Si el correo no llega: pídele que mire **Spam** o **Promociones**. Desde el pan
 - **Venta manual** (WhatsApp), **Poner correo**, reenviar correos, dar **cortesías** y **revocar** o reactivar accesos.
 - Ver [05 · Panel y claves](05-PANEL-Y-CLAVES.md).
 
-## 6. Probar sin cobrar (enlace privado)
+## 6. Probar sin cobrar
+
+**Códigos de 100 % en Whop** (5 usos cada uno, hasta el 31-12-2026): `PLENAPRUEBA1`, `PLENAPRUEBA2`, `PLENAPRUEBA3`. Ponlos en la pantalla de pago de Whop. El sitio entrega igual (aunque pague 0) y lo anota en el pedido. Bórralos en Whop → Promo codes cuando termines.
+
+**Enlace privado**
 
 Mientras exista la variable `PRUEBA_GRATIS` en Vercel, el enlace `https://menopausia-equilibrada.vercel.app/oferta/?prueba=<VALOR_DE_PRUEBA_GRATIS>` registra la compra a 0 USD y envía los correos reales. Sirve para las dos ofertas: elige la que quieras probar.
 
@@ -94,7 +107,7 @@ Ya está creado en Whop:
 Y en Vercel ya están `WHOP_COMPANY_ID`, `WHOP_PRODUCT_ID` y `WHOP_PRODUCTO_LIBROS`. **Faltan 2 claves que solo tú puedes crear** en Whop (por seguridad no se pueden crear desde aquí):
 
 1. **Clave de API.** Whop → negocio «Academia PLENA» → **Developer** → **API keys** → **Create**. Dale los permisos `payment:basic:read`, `member:basic:read`, `member:email:read`, `member:phone:read`, `plan:create`, `checkout_configuration:create`, `access_pass:basic:read` y `webhook_receive:payments`. Cópiala en Vercel como `WHOP_API_KEY` (tipo *Sensitive*).
-2. **Webhook.** Whop → **Developer** → **Webhooks** → **Create webhook**: URL `https://menopausia-equilibrada.vercel.app/api/whop-webhook`, evento `payment.succeeded` (versión API v1). Copia el secreto `ws_…` en Vercel como `WHOP_WEBHOOK_SECRET` (*Sensitive*).
+2. **Webhook.** Whop → **Developer** → **Webhooks** → **Create webhook**: URL `https://menopausia-equilibrada.vercel.app/api/whop-webhook`, eventos `payment.succeeded` y `membership.activated` (versión API v1; el segundo cubre las compras de 0 USD con cupón). Copia el secreto `ws_…` en Vercel como `WHOP_WEBHOOK_SECRET` (*Sensitive*).
 3. Vuelve a desplegar (Vercel → Deployments → Redeploy). Desde ese momento la web cobra sola con Whop (tarjeta, Nequi, PSE, PayPal, Apple Pay…) y los enlaces de WhatsApp entregan solos.
 
 Termina también la verificación del negocio en Whop (Settings → Payouts) para poder retirar el dinero.

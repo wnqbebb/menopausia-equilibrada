@@ -97,7 +97,8 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     <button type="button" class="l3-arrow l3-prev" aria-label="Libro anterior"><svg viewBox="0 0 18 10" aria-hidden="true"><path d="M5 1L1 5L5 9M1 5H17"/></svg></button>
     <button type="button" class="l3-arrow l3-next" aria-label="Libro siguiente"><svg viewBox="0 0 18 10" aria-hidden="true"><path d="M13 1L17 5L13 9M1 5H17"/></svg></button>
   </div>
-  <div class="l3-cta"><button type="button" class="btn btn-p" id="leerYa">Leer este libro</button></div>
+  <div class="l3-cta"><button type="button" class="btn btn-p" id="leerYa">Leer este libro</button><a class="btn btn-d" id="zipAll" download href="#">↓ Descargar los 13 libros (1 clic)</a></div>
+  <p class="note" style="text-align:center;margin:10px 18px 0">Un solo archivo ZIP con los 13 PDF (50 MB). En el celular, mejor descarga cada libro desde la lista de abajo.</p>
 </section>
 <section class="l3-reader" id="l3Reader" role="dialog" aria-modal="true" aria-labelledby="l3ReaderTitle" aria-hidden="true" inert>
   <header class="l3-bar">
@@ -177,6 +178,7 @@ function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.j
   }else if(d.libros){
     // Biblioteca PAUSA: la estantería 3D es su página de entrega (leer y descargar cada libro).
     var pdf={};(d.files||[]).forEach(function(f){if(f.item)pdf[f.item]=f.url});window.L3_PDF=pdf;
+    if(d.files&&d.files[0])$('#zipAll').href=d.files[0].url.replace(/[^\/]+$/,'Biblioteca_PAUSA_13_libros.zip');
     $('#okHero').hidden=true;$('#dlCard').querySelector('h2').textContent='Todos tus PDF en una lista';
     var bib=$('#biblio');bib.hidden=false;bib.querySelector('.nm2').textContent=d.name?', '+d.name.split(' ')[0]:'';
     setTimeout(function(){if(window.L3_resize)window.L3_resize()},60);

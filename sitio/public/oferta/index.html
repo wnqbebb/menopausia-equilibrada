@@ -459,11 +459,12 @@ dialog.lb p{color:#fff;text-align:center;margin-top:10px;font-weight:600}
 .vid .v169{aspect-ratio:16/9;max-height:100vh;max-height:100svh}
 .vid .v916{display:none;aspect-ratio:9/16;max-height:100vh;max-height:100svh}
 @media (max-width:767px),(orientation:portrait) and (max-width:1024px){.vid .v169{display:none}.vid .v916{display:block}}
-.vsnd{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:18px;z-index:3;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 18px;border-radius:999px;border:2px solid rgba(255,255,255,.75);background:rgba(30,20,25,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font:700 14.5px var(--fb);cursor:pointer}
-.vsnd:hover{background:rgba(224,51,122,.85);border-color:#fff}
-.vsnd svg{width:20px;height:20px}
-.vplay{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:18px;z-index:3;width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,255,255,.75);background:rgba(30,20,25,.55);color:#fff;cursor:pointer;display:grid;place-items:center}
-.vplay svg{width:18px;height:18px}
+.vsnd{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;display:inline-flex;white-space:nowrap;align-items:center;gap:12px;padding:18px 30px;border-radius:999px;border:3px solid #fff;background:rgba(224,51,122,.92);color:#fff;font:800 clamp(17px,2vw,21px) var(--fb);cursor:pointer;box-shadow:0 16px 40px rgba(0,0,0,.35);animation:vpulse 2.2s ease-in-out infinite}
+.vsnd:hover{background:#c92a6b}
+.vsnd svg{width:28px;height:28px}
+.vid.snd .vsnd{display:none}
+.vid.snd video{cursor:pointer}
+@keyframes vpulse{0%,100%{box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 0 rgba(224,51,122,.55)}50%{box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 0 18px rgba(224,51,122,0)}}
 .vhead{background:var(--negro);color:#fff;text-align:center;padding:clamp(44px,6vw,72px) 18px clamp(26px,3vw,36px)}
 .vhead h2{color:#fff}
 .vhead .kick{color:var(--rosa);justify-content:center}
@@ -553,7 +554,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   </defs>
 </svg>
 
-<div class="ann" id="ann"><span data-launch>Oferta de bienvenida: <b>13 libros USD <span data-lib>12</span></b> · <b>con PLENA USD <span data-bundle>19</span></b> · expira en <span class="cd" data-cd>15:00</span></span><span data-after hidden>13 libros <b>USD <span data-lib>24</span></b> · con PLENA <b>USD <span data-bundle>37</span></b> · pago único</span></div>
+<div class="ann" id="ann"><span data-launch>Oferta de bienvenida: <b>13 libros USD <span data-lib>12</span></b> · <b>con PLENA USD <span data-bundle>19</span></b> · expira en <span class="cd" data-cd>15:00</span></span><span data-after hidden>13 libros <b>USD <span data-lib>12</span></b> · con PLENA <b>USD <span data-bundle>19</span></b> · pago único · pagas en la moneda de tu país</span></div>
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#inicio" aria-label="Menopausia sin tabú, inicio"><b>Menopausia</b><i>sin tabú</i></a>
@@ -594,8 +595,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 <section class="vid" aria-label="Video: presentación de la biblioteca PAUSA">
   <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381705/PAUSA_Presentacion_30s_16x9.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381705/PAUSA_Presentacion_30s_16x9.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
   <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381715/PAUSA_Presentacion_30s_9x16.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381715/PAUSA_Presentacion_30s_9x16.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
-  <button type="button" class="vplay" aria-label="Pausar video"><svg aria-hidden="true"><use href="#pau"/></svg></button>
-  <button type="button" class="vsnd" aria-pressed="false"><svg aria-hidden="true"><use href="#snd0"/></svg><span>Activar sonido</span></button>
+  <button type="button" class="vsnd"><svg aria-hidden="true"><use href="#snd1"/></svg><span>Ver con sonido</span></button>
 </section>
 
 <div class="marqw"><div class="marq" aria-hidden="true"><div><span>Sofocos</span><span>Insomnio</span><span>Ansiedad</span><span>Cansancio constante</span><span>Kilos que cambian de lugar</span><span>Cambios hormonales</span><span>Autoestima</span><span>Sofocos</span><span>Insomnio</span><span>Ansiedad</span><span>Cansancio constante</span><span>Kilos que cambian de lugar</span><span>Cambios hormonales</span><span>Autoestima</span></div></div></div>
@@ -664,8 +664,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 <section class="vid" aria-label="Video: presentación de PLENA">
   <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381749/PLENA_lanzamiento_16x9.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381749/PLENA_lanzamiento_16x9.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
   <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381747/PLENA_lanzamiento_9x16.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381747/PLENA_lanzamiento_9x16.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
-  <button type="button" class="vplay" aria-label="Pausar video"><svg aria-hidden="true"><use href="#pau"/></svg></button>
-  <button type="button" class="vsnd" aria-pressed="false"><svg aria-hidden="true"><use href="#snd0"/></svg><span>Activar sonido</span></button>
+  <button type="button" class="vsnd"><svg aria-hidden="true"><use href="#snd1"/></svg><span>Ver con sonido</span></button>
 </section>
 <section class="sec plena-sec">
   <div class="wrap">
@@ -821,7 +820,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
       <details class="rv"><summary>¿Qué diferencia hay entre las 2 ofertas?</summary><p>La Biblioteca PAUSA son los 13 libros en PDF para descargar. Libros + PLENA incluye esos mismos 13 libros y, además, la academia PLENA: 10 módulos con 31 lecciones, 132 videos, Mi diario (la app para registrar tu día y ver tu progreso), logros y certificado, con tu cuenta personal.</p></details>
       <details class="rv"><summary>¿Cómo recibo mi compra?</summary><p>Al confirmarse tu pago te llega un correo a la dirección que escribiste. Con la Biblioteca PAUSA, el correo trae el botón para descargar tus 13 libros. Con Libros + PLENA, además creas tu cuenta: tu usuario es tu correo y tú eliges la contraseña. Nadie más la conoce y nunca te la enviamos por correo.</p></details>
       <details class="rv"><summary>¿Puedo empezar con los libros y sumar PLENA después?</summary><p>Sí. En tu página de descarga verás el botón para sumar PLENA pagando solo la diferencia.</p></details>
-      <details class="rv"><summary>¿Por qué la oferta dura tan poco?</summary><p>Es una oferta de bienvenida solo para esta visita: durante 15 minutos los 13 libros cuestan USD <span data-lib-launch>12</span> y los libros con PLENA USD <span data-bundle-launch>19</span>. Si el tiempo termina o sales de la página, vuelven a USD <span data-lib-regular>24</span> y USD <span data-regular>37</span>.</p></details>
+      <details class="rv" data-launch><summary>¿Por qué la oferta dura tan poco?</summary><p>Es una oferta de bienvenida solo para esta visita: durante 15 minutos los 13 libros cuestan USD <span data-lib-launch>12</span> y los libros con PLENA USD <span data-bundle-launch>19</span>. Si el tiempo termina o sales de la página, vuelven a USD <span data-lib-regular>24</span> y USD <span data-regular>37</span>.</p></details>
       <details class="rv"><summary>¿Cómo entro a PLENA?</summary><p>En tu celular o en tu computador, con tu correo y la contraseña que creaste. Si la olvidas, toca «¿Olvidaste tu contraseña?» y te llega un enlace para crear una nueva.</p></details>
       <details class="rv"><summary>¿Mis datos son privados?</summary><p>Sí. Tu cuenta es personal y lo que escribes en Mi diario se guarda cifrado con tu contraseña: solo tú puedes leerlo. Puedes descargar tus datos o borrar tu cuenta cuando quieras. Lee la <a href="/privacidad.html">política de privacidad</a>.</p></details>
       <details class="rv"><summary>¿Puedo pedir devolución?</summary><p>Es un producto digital de entrega inmediata: al confirmarse tu pago recibes todos los archivos y tu acceso, por eso no hay devoluciones. Antes de comprar puedes ver cada portada en la biblioteca de arriba y el video de presentación.</p></details>
@@ -931,7 +930,7 @@ var APP_VALUE=29;
 var WIN=15*60*1000;
 var libVal=CAT.reduce(function(a,c){return a+c[4]},0);
 // 2 ofertas: «libros» (Biblioteca PAUSA) y «todo» (libros + PLENA). Precios por defecto; el servidor manda los reales.
-var B={launch:19,regular:37,libLaunch:12,libRegular:24,ends:0,libValue:libVal,value:libVal+APP_VALUE};
+var B={launch:19,regular:19,libLaunch:12,libRegular:12,ends:0,libValue:libVal,value:libVal+APP_VALUE};
 var skew=0,mode='pedido',expiredShown=false;
 // Oferta de bienvenida: válida solo en esta visita (pestaña) y durante 15 minutos; el servidor firma la hora de inicio.
 var tok='';try{tok=localStorage.getItem('ofTok')||''}catch(e){}
@@ -940,7 +939,7 @@ var gone=!!tok&&!inSess&&!/[?&]pago=cancelado/.test(location.search);
 B.ends=gone?0:Date.now()+WIN;
 if(!gone){try{sessionStorage.setItem('ofSess','1')}catch(e){}}
 function now(){return Date.now()+skew}
-function isLaunch(){return now()<=B.ends}
+function isLaunch(){return now()<=B.ends&&(B.launch!==B.regular||B.libLaunch!==B.libRegular)}
 function bundle(){return isLaunch()?B.launch:B.regular}
 function lib(){return isLaunch()?B.libLaunch:B.libRegular}
 var cart=[];try{var sv=JSON.parse(sessionStorage.getItem('ofCart')||'[]');if(Array.isArray(sv))cart=sv.filter(function(k){return k==='todo'||k==='libros'}).slice(0,1)}catch(e){}
@@ -1013,7 +1012,7 @@ fetch('/api/oferta',{method:'POST',headers:{'content-type':'application/json'},b
 fetch('/api/checkout').then(function(r){return r.json()}).then(function(d){mode=d.mode||'pedido';applyMode();render()}).catch(function(){applyMode()});
 function applyMode(){
   if(mode==='pedido'){$('#coPayL').textContent='Reservar mi pedido';$('#coSecure').textContent='Te enviaremos el enlace de pago a tu correo. Tus datos solo se usan para entregarte tu compra. Producto digital: no admite devoluciones.'}
-  else if(mode==='whop'){$('#coSecure').textContent='Pago seguro con tarjeta, Apple Pay o Google Pay a través de Whop. Al terminar, vuelves aquí y te llega todo a tu correo. Producto digital: no admite devoluciones.'}
+  else if(mode==='whop'){$('#coSecure').textContent='Pago seguro con Whop (tarjeta, PSE, Nequi, PayPal, Apple Pay…) en la moneda de tu país. Al terminar, vuelves aquí y te llega todo a tu correo. Producto digital: no admite devoluciones.'}
   else if(mode==='stripe'){$('#coSecure').textContent='Pago seguro con tarjeta a través de Stripe. Al terminar, vuelves aquí y te llega todo a tu correo. Producto digital: no admite devoluciones.'}
   else{$('#coSecure').textContent='Te llevamos a la pasarela de pago segura para terminar tu compra. Producto digital: no admite devoluciones.'}
 }
@@ -1060,17 +1059,18 @@ var vMq=window.matchMedia?matchMedia('(max-width:767px),(orientation:portrait) a
 function vidOf(sec){return $(vMq.matches?'.v916':'.v169',sec)}
 function vLoad(v){if(!v.getAttribute('src')&&v.dataset.src){v.src=v.dataset.src;v.preload='auto';v.muted=true;v.defaultMuted=true}}
 function vSync(sec){var v=vidOf(sec),o=$(vMq.matches?'.v169':'.v916',sec);if(!o.paused)o.pause();o.muted=true;
-  v.muted=!sec.classList.contains('snd');$('.vsnd use',sec).setAttribute('href',v.muted?'#snd0':'#snd1');$('.vsnd span',sec).textContent=v.muted?'Activar sonido':'Silenciar';$('.vsnd',sec).setAttribute('aria-pressed',String(!v.muted));
-  if(sec.dataset.near==='1'){vLoad(v);if(sec.dataset.vis==='1'&&!sec.classList.contains('stop')&&!reduce){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()}
-  $('.vplay use',sec).setAttribute('href',v.paused&&(sec.classList.contains('stop')||reduce)?'#ply':'#pau');$('.vplay',sec).setAttribute('aria-label',sec.classList.contains('stop')||reduce?'Reproducir video':'Pausar video')}
+  v.muted=!sec.classList.contains('snd');
+  if(sec.dataset.near==='1'){vLoad(v);if(sec.dataset.vis==='1'){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()}}
 var vids=$$('.vid');
 vids.forEach(function(sec){
-  if(reduce)sec.classList.add('stop');
-  $('.vsnd',sec).addEventListener('click',function(){var on=sec.classList.toggle('snd');if(on){sec.classList.remove('stop');vids.forEach(function(o){if(o!==sec&&o.classList.contains('snd')){o.classList.remove('snd');vSync(o)}})}sec.dataset.near='1';vSync(sec);if(on){var v=vidOf(sec);v.muted=false;var p=v.play();if(p&&p.catch)p.catch(function(){})}});
-  $('.vplay',sec).addEventListener('click',function(){sec.classList.toggle('stop');sec.dataset.near='1';if(!sec.classList.contains('stop')){var v=vidOf(sec);vLoad(v);var p=v.play();if(p&&p.catch)p.catch(function(){})}vSync(sec)});
-  $$('video',sec).forEach(function(v){v.addEventListener('play',function(){vSync2(sec)});v.addEventListener('pause',function(){vSync2(sec)})});
+  // Botón del centro: activa el sonido y empieza el video desde el principio.
+  $('.vsnd',sec).addEventListener('click',function(){
+    vids.forEach(function(o){if(o!==sec&&o.classList.contains('snd')){o.classList.remove('snd');vSync(o)}});
+    sec.classList.add('snd');sec.dataset.near='1';var v=vidOf(sec);vLoad(v);v.muted=false;try{v.currentTime=0}catch(e){}var p=v.play();if(p&&p.catch)p.catch(function(){});
+  });
+  // Tocar el video con sonido lo vuelve a silenciar (y reaparece el botón).
+  $$('video',sec).forEach(function(v){v.addEventListener('click',function(){if(sec.classList.contains('snd')){sec.classList.remove('snd');vSync(sec)}})});
 });
-function vSync2(sec){var v=vidOf(sec);$('.vplay use',sec).setAttribute('href',v.paused?'#ply':'#pau');$('.vplay',sec).setAttribute('aria-label',v.paused?'Reproducir video':'Pausar video')}
 if('IntersectionObserver' in window){
   var near=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.dataset.near='1';vSync(en.target);near.unobserve(en.target)}})},{rootMargin:'1200px 0px'});
   var vis=new IntersectionObserver(function(es){es.forEach(function(en){en.target.dataset.vis=en.isIntersecting?'1':'0';vSync(en.target)})},{threshold:.15});

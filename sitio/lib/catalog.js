@@ -10,9 +10,9 @@ export const OFFER_WINDOW_MS = 15 * 60 * 1000;
 //   «todo»   = PLENA completa: los 13 libros + la academia PLENA + Mi diario (app) + videos, logros y certificado.
 //   «libros» = Biblioteca PAUSA: solo los 13 libros en PDF (sin PLENA ni app).
 export const BUNDLE_LAUNCH = 1900;          // PLENA completa, oferta de bienvenida
-export const BUNDLE_REGULAR = 3700;         // PLENA completa, precio normal
+export const BUNDLE_REGULAR = 1900;         // PLENA completa, precio normal (igual al de bienvenida: precio fijo)
 export const LIBROS_LAUNCH = 1200;          // Biblioteca PAUSA, oferta de bienvenida
-export const LIBROS_REGULAR = 2400;         // Biblioteca PAUSA, precio normal
+export const LIBROS_REGULAR = 1200;         // Biblioteca PAUSA, precio normal (igual al de bienvenida: precio fijo)
 export const bundleCents = (offerActive) => (offerActive ? BUNDLE_LAUNCH : BUNDLE_REGULAR);
 export const librosCents = (offerActive) => (offerActive ? LIBROS_LAUNCH : LIBROS_REGULAR);
 export async function makeOffer(key, issuedAt) { return `${issuedAt}.${await hmac(key, "oferta:" + issuedAt, 20)}`; }

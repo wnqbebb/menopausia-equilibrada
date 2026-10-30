@@ -57,25 +57,24 @@ async function handler(req) {
   const body = await req.text();
   if (!secret || !(await verify(secret, req.headers, body))) return json({ error: "Firma no válida." }, 401);
   let ev; try { ev = JSON.parse(body); } catch { return json({ error: "JSON no válido." }, 400); }
-  if (ev.type !== "payment.succeeded") return json({ ok: true, ignored: ev.type });
+  // payment.succeeded = pago normal. Las compras de 0 USD (cupón del 100 %) pueden llegar solo como membresía activada.
+  const MEMB = ["membership.activated", "membership.went_valid"];
+  if (ev.type !== "payment.succeeded" && !MEMB.includes(ev.type)) return json({ ok: true, ignored: ev.type });
   const p = ev.data || {};
+  if (MEMB.includes(ev.type)) p._membresia = true;
   const pid = String(p.metadata?.pedido || "").replace(/[^a-z0-9]/gi, "");
   if (!pid) return ventaDirecta(p, req);
   const store = db().orders;
   const rec = await store.get(pid);
   if (!rec) return json({ ok: true, note: "Pedido no encontrado." });
   if (rec.status === "pagado") return json({ ok: true, already: true });
-  const paidCents = toCents(p.usd_total) ?? toCents(p.total) ?? toCents(p.subtotal);
-  rec.paymentId = p.id || "";
-  rec.paidCents = paidCents;
-  if (paidCents != null && paidCents + 1 < rec.cents) {
-    // Pagó menos de lo esperado (p. ej. cupón): se deja para revisión manual en el panel.
-    rec.status = "revisar";
-    rec.note = `Whop cobró ${(paidCents / 100).toFixed(2)} y el pedido era de ${(rec.cents / 100).toFixed(2)}.`;
-  } else {
-    rec.status = "pagado";
-    rec.paidAt = new Date().toISOString();
-  }
+  const paidCents = p._membresia ? null : toCents(p.usd_total) ?? toCents(p.total) ?? toCents(p.subtotal);
+  rec.paymentId = p._membresia ? rec.paymentId || "" : p.id || "";
+  if (paidCents != null) rec.paidCents = paidCents;
+  // Un cobro menor solo puede venir de un cupón que creaste tú en Whop (la clienta no puede inventarlo): se entrega igual.
+  if (paidCents != null && paidCents + 1 < rec.cents) rec.note = `Pagó ${(paidCents / 100).toFixed(2)} USD con un cupón de Whop (pedido de ${(rec.cents / 100).toFixed(2)}).`;
+  rec.status = "pagado";
+  rec.paidAt = new Date().toISOString();
   await store.save(rec);
   // Si es una mejora a «Todo junto» de alguien que ya tiene cuenta, se le activa PLENA al momento.
   if (rec.status === "pagado") {
@@ -120,11 +119,13 @@ async function ventaDirecta(p, req) {
   const pagoId = txt(p.id);
   if (!pagoId) return json({ ok: true, note: "Pago sin id." });
   const marcas = db().marcas;
-  // Un mismo pago de Whop solo crea un pedido, aunque Whop reenvíe el aviso.
-  if (!(await marcas.tomar("whop-" + pagoId.replace(/[^A-Za-z0-9_-]/g, ""), { at: Date.now() }))) return json({ ok: true, already: true });
-  if (!correoDe(p)) p = await completarDesdeWhop(p);
+  // Un mismo pago de Whop solo crea un pedido, aunque Whop reenvíe el aviso o mande pago y membresía por la misma compra.
+  const memId = p._membresia ? pagoId : txt(p.membership?.id) || txt(p.membership_id);
+  const clave = memId ? "whop-m-" + memId : "whop-" + pagoId;
+  if (!(await marcas.tomar(clave.replace(/[^A-Za-z0-9_-]/g, ""), { at: Date.now() }))) return json({ ok: true, already: true });
+  if (!correoDe(p) && !p._membresia) p = await completarDesdeWhop(p);
   const email = correoDe(p), now = new Date().toISOString();
-  const paidCents = toCents(p.usd_total) ?? toCents(p.total) ?? toCents(p.subtotal) ?? 0;
+  const paidCents = p._membresia ? 0 : toCents(p.usd_total) ?? toCents(p.total) ?? toCents(p.subtotal) ?? 0;
   const ORIGIN = origen(null, req.url);
   const rec = {
     v: 2, id: "", createdAt: now, name: nombreDe(p) || (email ? email.split("@")[0] : "Compra en Whop"), email, phone: telefonoDe(p),

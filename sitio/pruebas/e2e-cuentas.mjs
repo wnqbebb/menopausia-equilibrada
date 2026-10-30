@@ -231,7 +231,10 @@ try {
   await v.p.goto(BASE + "/#hoy"); ok("/#hoy redirige a /plena/", new URL(v.p.url()).pathname === "/plena/");
 
   // ---------- 11. Sin pack completo → pantalla de mejora ----------
-  const id3 = await pedido(["app"], "lucia@example.com", "Lucía");
+  // Pedido antiguo de «app» suelta (hoy ya no se vende: 29 USD > 19 USD, se cobra el pack completo).
+  const { db } = await import("../lib/store.js");
+  const appSuelta = { v: 2, id: "", createdAt: new Date().toISOString(), name: "Lucía", email: "lucia@example.com", items: ["app"], cents: 2900, status: "pagado", mode: "cortesia" };
+  await db().orders.create(appSuelta); const id3 = appSuelta.id;
   const w = await dispositivo("sinpack", { width: 768, height: 1024 }, true);
   await w.p.goto(`${BASE}/oferta/gracias.html?pedido=${id3}&t=${sig(id3)}`); await w.p.waitForSelector("#acF");
   await w.p.fill("#acP", "Lucia-clave-77"); await w.p.fill("#acP2", "Lucia-clave-77"); await w.p.check("#acA"); await w.p.click("#acB");
