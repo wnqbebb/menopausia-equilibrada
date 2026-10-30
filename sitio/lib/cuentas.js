@@ -42,6 +42,15 @@ export async function reflejarEnCuenta(rec) {
 export async function correoBienvenida(rec, origin) {
   return correo.enviarYRegistrar(rec, "bienvenida", correo.bienvenida({ origin, nombre: rec.cuentaNombre || rec.name, email: rec.email }));
 }
+// Al confirmarse el pago de una compra con PLENA, se le envía una vez el enlace para crear la cuenta
+// (por si cierra la página de gracias sin crearla).
+export async function avisarPagado(rec, origin) {
+  if (rec.status !== "pagado" || rec.userId || !rec.email || !hasApp(itemsOf(rec))) return null;
+  if ((rec.correos || []).some((c) => c.tipo === "crear-cuenta" && c.ok)) return null;
+  const r = await correoCrearCuenta(rec, origin);
+  await db().orders.save(rec);
+  return r;
+}
 export async function correoCrearCuenta(rec, origin) {
   return correo.enviarYRegistrar(rec, "crear-cuenta", correo.crearCuenta({ origin, nombre: rec.name, link: await enlaceCuenta(rec, origin) }));
 }

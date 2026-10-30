@@ -114,6 +114,15 @@ Si algo falla: Vercel → **Logs** (busca `cuenta`, `correo`) y Supabase → **L
 
 ---
 
+## Probar una compra sin pagar (enlace privado)
+
+1. En Vercel crea la variable `PRUEBA_GRATIS` con una clave larga (16+ caracteres) y vuelve a desplegar.
+2. Abre `https://TU-DOMINIO/oferta/?prueba=ESA-CLAVE`. Aparece «Modo prueba»: la compra cuesta 0 USD y no pasa por Whop.
+3. Compra con tu correo: llega «Crea tu cuenta de PLENA», creas tu cuenta en la página de gracias y llega la bienvenida.
+4. Al terminar, **borra `PRUEBA_GRATIS` de Vercel** y vuelve a desplegar. Sin esa variable (o sin la clave en el enlace) la web cobra normal. Los pedidos de prueba salen con el modo «prueba» en el panel: bórralos.
+
+> Desde esta versión, toda compra pagada que incluye PLENA recibe también por correo «Crea tu cuenta de PLENA» (una sola vez), por si cierra la página de gracias sin crear la cuenta.
+
 ## Panel de pedidos
 
 | Botón | Qué hace |

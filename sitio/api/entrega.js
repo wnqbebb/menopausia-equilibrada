@@ -3,7 +3,7 @@
 // También acepta el código antiguo de la app (?k=ID-FIRMA): sirve UNA sola vez, para crear la cuenta de su pedido.
 import { db } from "../lib/store.js";
 import { cleanItems, filesFor, hasApp, json, hmac, itemsOf, BUNDLE_LAUNCH, VALUE_CENTS, envGet as env } from "../lib/catalog.js";
-import { pedidoFirmado, reflejarEnCuenta } from "../lib/cuentas.js";
+import { pedidoFirmado, reflejarEnCuenta, avisarPagado, origen } from "../lib/cuentas.js";
 
 async function payload(rec, items) {
   const key = env("ADMIN_KEY");
@@ -40,7 +40,7 @@ async function handler(req) {
       let rec = id ? await store.get(id) : null;
       const items = cleanItems(String(s.metadata?.items || "").split(","));
       if (!rec) rec = { id: id || sid.slice(-14), name: s.customer_details?.name || "", email: s.customer_details?.email || "", items, cents: s.amount_total || 0 };
-      if (rec.status !== "pagado") { rec.status = "pagado"; rec.paidAt = new Date().toISOString(); if (id) { await store.save(rec); await reflejarEnCuenta(rec).catch((e) => console.error("entrega cuenta", e.message)); } }
+      if (rec.status !== "pagado") { rec.status = "pagado"; rec.paidAt = new Date().toISOString(); if (id) { await store.save(rec); await reflejarEnCuenta(rec).catch((e) => console.error("entrega cuenta", e.message)); await avisarPagado(rec, origen(rec, req.url)).catch(() => {}); } }
       return json(await payload(rec, items));
     }
     if (pid && t && env("ADMIN_KEY")) {

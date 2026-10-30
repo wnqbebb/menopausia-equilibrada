@@ -5,6 +5,7 @@
 //  3) link   → PAY_LINK_TODO / PAY_LINK_<ID> (Hotmart, Mercado Pago, etc.; se marca pagado a mano en el panel).
 //  4) pedido → sin pasarela: registra el pedido y la administradora envía el enlace de pago.
 import { db } from "../lib/store.js";
+import { avisarPagado } from "../lib/cuentas.js";
 import { cleanItems, quote, json, CURRENCY, BUNDLE_LAUNCH, BUNDLE_REGULAR, VALUE_CENTS, OFFER_WINDOW_MS, itemsOf, checkOffer, hmac, envGet as env } from "../lib/catalog.js";
 
 function mode() {
@@ -39,6 +40,16 @@ async function handler(req) {
     if (!env("ADMIN_KEY") || String(b.upgradeT || "") !== (await hmac(env("ADMIN_KEY"), upId))) return json({ error: "Este enlace de mejora no es válido." }, 403);
     const prev = await store.get(upId);
     if (prev && prev.status === "pagado" && !itemsOf(prev).includes("todo")) { upgradeFromCents = prev.cents || 0; upgradeFrom = prev.id; items = ["todo"]; }
+  }
+  // Modo prueba (solo con el enlace privado /oferta/?prueba=CLAVE, variable PRUEBA_GRATIS): pedido de 0 USD
+  // pagado al momento, sin pasarela, para recorrer el flujo real de cuenta y correos. Bórrala de Vercel al terminar.
+  const clavePrueba = env("PRUEBA_GRATIS");
+  if (clavePrueba && clavePrueba.length >= 16 && typeof b.prueba === "string" && b.prueba === clavePrueba) {
+    const now = new Date().toISOString();
+    const rec = { v: 2, id: "", createdAt: now, name, email, phone, items: ["todo"], cents: 0, currency: CURRENCY, mode: "prueba", status: "pagado", paidAt: now, origin: ORIGIN, consent: { at: now, policy: "privacidad-2026-10-30" } };
+    await store.create(rec);
+    await avisarPagado(rec, ORIGIN);
+    return json({ mode: "prueba", id: rec.id, url: `${ORIGIN}/oferta/gracias.html?pedido=${rec.id}&t=${await hmac(env("ADMIN_KEY"), rec.id)}` });
   }
   const offer = await checkOffer(env("ADMIN_KEY"), b.offer);
   const q = quote(items, { upgradeFromCents, offerActive: !!(offer.ok && offer.active) });

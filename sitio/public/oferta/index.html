@@ -781,6 +781,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
       <div id="sSave" class="sv2" hidden><span>Tu ahorro</span><span id="sSaveV"></span></div>
       <div class="tt"><span>Total</span><span id="sTotal">USD 19</span></div>
     </div>
+    <p id="pruebaAviso" hidden style="margin:0 0 10px;background:#FFF1C9;color:#5C3D00;border-radius:12px;padding:10px 12px;font-weight:700;font-size:14px">Modo prueba: esta compra no se cobra (0 USD). Solo funciona con tu enlace privado.</p>
     <form id="coForm" novalidate style="display:grid;gap:12px">
       <label class="fld" for="cName">Tu nombre<input id="cName" name="name" autocomplete="name" required maxlength="80"></label>
       <label class="fld" for="cEmail">Tu correo (aquí te llega tu compra)<input id="cEmail" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="cEmailN"><small id="cEmailN" style="font-weight:500;color:var(--muted);font-size:13px;line-height:1.4">Escríbelo bien: a este correo te llega el acceso para crear tu cuenta de PLENA, y será tu usuario.</small></label>
@@ -921,14 +922,14 @@ function applyMode(){
   else{$('#coSecure').textContent='Te llevamos a la pasarela de pago segura para terminar tu compra. Producto digital: no admite devoluciones.'}
 }
 $('#coForm').addEventListener('submit',function(e){
-  e.preventDefault();var err=$('#coErr');err.hidden=true;
+  e.preventDefault();var err=$('#coErr');err.hidden=true;if(PRUEBA&&!cart.length)cart=['todo'];
   if(!cart.length){err.textContent='Tu carrito está vacío.';err.hidden=false;return}
   var name=$('#cName').value.trim(),email=$('#cEmail').value.trim(),phone=$('#cPhone').value.trim();
   if(!name){err.textContent='Escribe tu nombre.';err.hidden=false;$('#cName').focus();return}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){err.textContent='Revisa tu correo: así te llega tu compra.';err.hidden=false;$('#cEmail').focus();return}
   if(!$('#cOk').checked){err.textContent='Para continuar, acepta la política de privacidad.';err.hidden=false;$('#cOk').focus();return}
   var btn=$('#coPay');btn.disabled=true;btn.style.opacity=.7;$('#pg3').classList.add('on');meTrack('InitiateCheckout',{value:quote().total,currency:'USD'});
-  fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:name,email:email,phone:phone,items:cart,offer:isLaunch()?tok:'',acepta:true})})
+  fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:name,email:email,phone:phone,items:cart,offer:isLaunch()?tok:'',acepta:true,prueba:PRUEBA||undefined})})
   .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})})
   .then(function(x){
     if(!x.ok){throw new Error(x.d.error||'No se pudo continuar.')}
@@ -939,6 +940,8 @@ $('#coForm').addEventListener('submit',function(e){
   .catch(function(ex){err.textContent=ex.message||'No se pudo continuar. Revisa tu conexión.';err.hidden=false;btn.disabled=false;btn.style.opacity=1});
 });
 
+// Enlace privado de prueba (/oferta/?prueba=CLAVE): la compra se registra a 0 USD sin pasarela.
+var PRUEBA=(new URLSearchParams(location.search).get('prueba')||'').slice(0,80);if(PRUEBA){var pa=document.getElementById('pruebaAviso');if(pa)pa.hidden=false}
 // visor
 var lb=$('#lb');
 function zoom(src,cap){$('#lbImg').src=src;$('#lbImg').alt=cap;$('#lbCap').textContent=cap;if(lb.showModal)lb.showModal();else window.open(src,'_blank')}
