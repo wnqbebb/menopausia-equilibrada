@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Menopausia Equilibrada · tu diario y tu plan</title>
+<title>Plena · tu diario y tu plan</title>
 <meta name="description" content="Registra tus síntomas de menopausia, sigue tu plan de 30 días, usa plantillas editables y lleva un resumen a tu consulta. Se sincroniza entre tu celular y tu computador. Gratis.">
 <meta name="theme-color" content="#E0337A">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
-<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Equilibrada">
+<meta name="apple-mobile-web-app-title" content="Plena">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Great+Vibes&family=Poppins:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Great+Vibes&family=Shrikhand&family=Poppins:wght@400;500;600;700;800&display=swap">
 <style>
 :root{
   --bg:#FFF5F8; --surface:#FFFFFF; --blush:#FCE4EC; --rosa:#F7A8C7; --chicle:#F48FB1;
@@ -215,6 +215,8 @@ body{background:var(--bg) radial-gradient(circle at 12% 0,#FCE4EC 0,rgba(252,228
 .stk{filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(0 10px 14px rgba(120,20,60,.20))}
 .sk{position:absolute;display:block;pointer-events:none;line-height:0}
 .sk svg{display:block}
+.logo .plw{font-family:'Shrikhand',serif;font-size:28px;line-height:1;color:#FF1A5D;letter-spacing:-.01em;text-shadow:1px 1px 0 #fff,3px 3px 0 #FFB3C6;display:inline-flex;align-items:flex-end;transform:rotate(-3deg);transform-origin:left bottom}
+.logo .pld{display:inline-block;width:7px;height:7px;margin:0 0 5px 2px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff 0%,#FFD1DC 18%,#FF6E96 55%,#FF1A5D 78%,#C2174F 100%);box-shadow:0 0 0 1.5px #fff}
 .logo .lh{display:inline-block;width:22px;height:22px;align-self:center;margin-left:2px}
 .hero{position:relative;background:var(--blush);border-radius:26px;padding:20px 18px 18px;overflow:hidden;isolation:isolate;display:block;min-height:0}
 .hero::before{content:'';position:absolute;right:-70px;top:-60px;width:250px;height:250px;border-radius:50%;background:var(--rosa);z-index:-1}
@@ -256,7 +258,7 @@ nav.tabs a[aria-current="page"]{box-shadow:0 6px 14px rgba(224,51,122,.28)}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(31,122,82,.35)}50%{box-shadow:0 0 0 5px rgba(31,122,82,0)}}
 @media (prefers-reduced-motion:reduce){#view.enter,.flt,.flt2,.beat,.counter output.pop,.habit.just,.syncpill.ok .dot{animation:none!important}.confetti{display:none}}
 
-@media (max-width:420px){.logo b{font-size:21px}.logo i{font-size:26px}.logo .lh{width:18px;height:18px}.logo .lh svg{width:18px;height:18px}.syncpill{padding:0 11px;min-width:36px}.syncpill #syncTxt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.hero .kick{font-size:11.5px}}
+@media (max-width:420px){.logo b{font-size:21px}.logo i{font-size:26px}.logo .plw{font-size:25px}.logo .lh{width:18px;height:18px}.logo .lh svg{width:18px;height:18px}.syncpill{padding:0 11px;min-width:36px}.syncpill #syncTxt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.hero .kick{font-size:11.5px}}
 
 
 /* acceso privado */
@@ -318,7 +320,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 <header class="top">
   <div class="wrap">
     <div class="mast">
-      <a class="logo" href="#hoy" aria-label="Menopausia Equilibrada, ir a Hoy"><b>Menopausia</b><i>equilibrada</i><span class="lh beat" aria-hidden="true"><svg viewBox="-3 -3 30 30" width="22" height="22"><path d="M12 21.6C5.4 16.4 1.5 12.6 1.5 8.4 1.5 5.4 3.9 3 6.9 3c2 0 3.9 1.1 5.1 2.8C13.2 4.1 15.1 3 17.1 3c3 0 5.4 2.4 5.4 5.4 0 4.2-3.9 8-10.5 13.2z" fill="#E0337A" stroke="#fff" stroke-width="2.2"/></svg></span></a>
+      <a class="logo" href="#hoy" aria-label="Plena, tu diario: ir a Hoy"><span class="plw">Plena<span class="pld" aria-hidden="true"></span></span><i>tu diario</i></a>
       <a class="syncpill" id="syncPill" href="#cuenta"><span class="dot" aria-hidden="true"></span><span id="syncTxt">Mi cuenta</span></a>
     </div>
     <nav class="tabs" aria-label="Secciones">

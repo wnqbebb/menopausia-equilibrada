@@ -27,19 +27,19 @@ Todo pasa dentro de la misma página: los libros se leen ahí mismo, los videos 
 
 | Acción | XP |
 |---|---|
-| Completar una lección | 100 |
+| Completar una lección (pide responder la pregunta rápida y al menos 1 minuto en la lección) | 100 |
 | Hacer la tarea | 40 |
 | Pregunta rápida (acierto a la primera / intento) | 30 / 10 |
 | Descubrir un mito | 20 |
-| Completar una lectura de lección | 25 |
-| Cada página nueva leída | 2 |
-| Cada video completado (60 % o 8 minutos vistos, o ✓) | 15 |
+| Completar una lectura de lección (cuenta cuando su lección está completada) | 25 |
+| Cada página nueva leída (cuenta tras ~5 s en pantalla: pasar hojas rápido no suma) | 2 |
+| Cada video completado (60 % u 8 minutos vistos; el botón ✓ pide al menos la mitad vista) | 15 |
 | Completar un módulo | 200 |
 | Cada día registrado en Mi diario | 10 |
 | Día perfecto (las 4 misiones) | 60 |
 
-- **Niveles (15):** Curiosa, Despierta, Valiente, Consciente (fácil) · Constante, Serena, Fuerte, Sabia (media) · Radiante, Imparable, Inspiradora, Luminosa (difícil) · Maestra, Leyenda, Plena (legendaria). El último pide 13.000 XP: prácticamente todo el curso, la videoteca y meses de diario.
-- **Insignias (50):** por ejemplo, rachas de 3, 7, 21 y 60 días; 1, 10, 30 y 75 videos; 50, 150 y todas las páginas; 7, 30 y 90 días de diario; 1, 7 y 21 días perfectos; las 31 tareas o las 31 preguntas acertadas a la primera.
+- **Niveles (15):** Curiosa, Despierta, Valiente, Consciente (fácil) · Constante, Serena, Fuerte, Sabia (media) · Radiante, Imparable, Inspiradora, Luminosa (difícil) · Maestra, Leyenda, Plena (legendaria). Umbrales: 0 · 350 · 800 · 1.350 · 2.000 · 2.750 · 3.600 · 4.550 · 5.600 · 6.750 · 8.000 · 9.300 · 10.700 · 12.100 · 13.500 XP. El nivel 2 pide unas dos lecciones completas; el último, prácticamente todo el curso, la videoteca y meses de diario.
+- **Insignias (50):** por ejemplo, rachas de 3, 7, 21 y 60 días; 1, 10, 30 y 75 videos; 80, 150 y todas las páginas; 7, 30 y 90 días de diario; 1, 7 y 21 días perfectos; las 31 tareas o las 31 preguntas acertadas a la primera.
 - **Misiones del día:** una lección, un video, 5 páginas y el registro en Mi diario.
 
 El progreso (lecciones, tareas, respuestas, páginas leídas, videos vistos y días con actividad) se guarda en el dispositivo y en la base de datos con su acceso, así se ve igual en el celular y en el computador. **No incluye datos de salud.**
@@ -97,3 +97,13 @@ El contenido del curso no es público: lo entrega `/api/curso` solo a quien tien
 cd sitio && npm install
 node pruebas/servidor-local.mjs      # abre la URL que imprime (incluye un código de prueba)
 ```
+
+### Primera entrada (orden)
+1. Bienvenida de 4 pasos (nombre, etapa, lo que más le pesa) → «Creando tu ruta».
+2. Primera insignia «Hola, PLENA» (+50 XP de bienvenida).
+3. Al cerrar la celebración, empieza el recorrido guiado de 9 pasos (nunca encima de una celebración). Al terminarlo o saltarlo, insignia «Exploradora».
+
+### Marca e iconos
+- Icono de la app (pantalla de inicio y pestaña del navegador): la palabra **Plena** en Shrikhand, con su sombra blanca y rosa y la bolita como punto final (`public/icons/`). Para regenerarlo: `herramientas/icono/icono.html` (abrir con `?fs=140` y capturar a 512×512).
+- PLENA se puede instalar como app desde `/plena/` (`public/plena/manifest.webmanifest`).
+- El diario muestra «Plena · tu diario» en su cabecera.

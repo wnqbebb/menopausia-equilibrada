@@ -1,5 +1,5 @@
 // Service worker sencillo: la app abre sin conexión. Nunca guarda en caché /api/.
-const CACHE = 'me-v4-2';
+const CACHE = 'me-v4-3';
 const IMGS = 'me-img-v1'; // páginas de libros e imágenes: no cambian, se sirven desde el caché
 const ASSETS = ['/', '/index.html', '/app.js', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png'];
 self.addEventListener('install', (e) => {

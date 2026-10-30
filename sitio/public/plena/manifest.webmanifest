@@ -1,0 +1,29 @@
+{
+  "name": "Plena · Academia de menopausia y psicomenopausia",
+  "short_name": "Plena",
+  "description": "Tu academia privada: curso, videos, libros para hojear, tu diario y tus logros.",
+  "lang": "es",
+  "start_url": "/plena/",
+  "scope": "/plena/",
+  "display": "standalone",
+  "background_color": "#FFF7F8",
+  "theme_color": "#FF1A5D",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

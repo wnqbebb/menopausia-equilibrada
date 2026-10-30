@@ -206,7 +206,7 @@ function refreshApp(celebrate) {
    ========================================================= */
 var XP = { leccion: 100, tarea: 40, quizOk: 30, quizNo: 10, mito: 20, lectura: 25, pagina: 2, modulo: 200, diario: 10, perfecto: 60, bienvenida: 50, video: 15 };
 var PERF = 1 | 2 | 4 | 32; // lección + 5 páginas + diario + video
-var NIV = [0, 200, 500, 900, 1400, 2000, 2700, 3500, 4400, 5400, 6500, 7800, 9300, 11000, 13000];
+var NIV = [0, 350, 800, 1350, 2000, 2750, 3600, 4550, 5600, 6750, 8000, 9300, 10700, 12100, 13500];
 var NIVN = ['Curiosa', 'Despierta', 'Valiente', 'Consciente', 'Constante', 'Serena', 'Fuerte', 'Sabia', 'Radiante', 'Imparable', 'Inspiradora', 'Luminosa', 'Maestra', 'Leyenda', 'Plena'];
 var NIVD = ['Empezaste con curiosidad: es el primer paso para entender tu cuerpo.', 'Ya abriste los ojos a lo que te pasa. Nada de aguantar en silencio.', 'Te atreviste a mirar de frente tus síntomas. Eso es valentía.', 'Sabes lo que pasa en tu cuerpo: el conocimiento quita miedo.', 'Vuelves cada día. La constancia es lo que cambia una etapa.', 'Estás encontrando calma en medio del cambio.', 'Tu cuerpo y tu mente se están cuidando de verdad.', 'Lo que sabes ya puede ayudar a otras mujeres.', 'Se nota: estás volviendo a sentirte tú.', 'Nada te detiene: tus hábitos ya son parte de ti.', 'Eres ejemplo para las mujeres que te rodean.', 'Brillas con luz propia en esta etapa.', 'Dominas tu salud: preguntas, decides y te cuidas.', 'Muy pocas llegan hasta aquí. Eres leyenda.', 'Llegaste a PLENA. No es el final de nada: es una graduación.'];
 var TIER = { 1: { n: 'Fácil', k: 't1' }, 2: { n: 'Media', k: 't2' }, 3: { n: 'Difícil', k: 't3' }, 4: { n: 'Legendaria', k: 't4' } };
@@ -229,7 +229,7 @@ function stats() {
     if (prog.quiz[id] === 1) S.qOk++; else if (prog.quiz[id] === 0) S.qNo++;
     if (x.l.mito) S.mitosN++;
     if (prog.mitos[id]) S.mitos++;
-    (x.l.lecturas || []).forEach(function (r) { S.lectN++; if (lecturaOk(r)) S.lect++; });
+    (x.l.lecturas || []).forEach(function (r) { S.lectN++; if (prog.done[id] && lecturaOk(r)) S.lect++; });
   });
   C.biblioteca.forEach(function (b) { var n = pagesRead(b.item), t = (ARCH[b.item] || {}).n || 0; S.pages += n; S.pagesN += t; if (n) S.books++; if (t && n >= t) S.booksFull++; });
   C.modulos.forEach(function (m) { if (modPct(m).p === 100) S.mods++; });
@@ -281,7 +281,7 @@ function badges() {
   add('fuerza15', 3, 'Titanio', '15 rutinas de fuerza', 'pesa', 'Práctica en video', function (S) { return S.vcat.fuerza || 0; }, 15);
   add('taichi15', 3, 'Maestra del flujo', '15 prácticas de taichi', 'chispa', 'Práctica en video', function (S) { return S.vcat.taichi || 0; }, 15);
   add('video75', 4, 'Práctica infinita', '75 videos completos', 'video', 'Práctica en video', function (S) { return S.vids; }, 75);
-  add('lectora', 1, 'Lectora', '50 páginas leídas', 'libro', 'Biblioteca', function (S) { return S.pages; }, 50);
+  add('lectora', 1, 'Lectora', '80 páginas leídas', 'libro', 'Biblioteca', function (S) { return S.pages; }, 80);
   add('libro1', 2, 'Libro terminado', 'Leíste un libro entero', 'check', 'Biblioteca', function (S) { return S.booksFull; }, 1);
   add('devora', 2, 'Devoralibros', '150 páginas leídas', 'libro', 'Biblioteca', function (S) { return S.pages; }, 150);
   add('estante', 3, 'Biblioteca abierta', 'Abriste los 13 libros', 'lupa', 'Biblioteca', function (S) { return S.books; }, C.biblioteca.length);
@@ -561,9 +561,11 @@ function readBtn(r, lid) {
   var b = libro(r.item), ok = lecturaOk(r), n = r.hasta - r.desde + 1;
   return '<button class="read' + (ok ? ' ok' : '') + '" data-act="leer" data-item="' + r.item + '" data-p="' + r.desde + '" data-h="' + r.hasta + '" data-lid="' + (lid || '') + '"><span class="cv"><img src="' + cover(b.portada) + '" alt="" loading="lazy"></span><span><b>' + esc(r.titulo) + '</b><small>' + esc(b.titulo) + ' · ' + (n > 1 ? 'págs. ' + r.desde + '–' + r.hasta : 'pág. ' + r.desde) + '</small></span><span class="st">' + (ok ? '✓ Leída' : '+' + XP.lectura + ' XP') + '</span></button>';
 }
+var LESS_T = {}, LESS_MIN = 60000;   // momento en que se abrió cada lección (en esta visita) y tiempo mínimo para completarla
 function roomLesson(m, lid) {
   var idx = -1; m.lecciones.forEach(function (l, i) { if (l.id === lid) idx = i; }); if (idx < 0) return roomIntro(m, stats());
   var l = m.lecciones[idx], ok = !!prog.done[l.id];
+  if (!LESS_T[l.id]) LESS_T[l.id] = Date.now();
   if (prog.last !== m.id + '/' + l.id) { prog.last = m.id + '/' + l.id; saveProg(true); }
   var flat = allLessons(), fi = -1; flat.forEach(function (x, i) { if (x.l.id === l.id) fi = i; });
   var prev = flat[fi - 1], next = flat[fi + 1], lv = VBY[VLEC[l.id]];
@@ -799,7 +801,7 @@ function vCert() {
 var PLAYERS = [];
 function destroyPlayers() { PLAYERS.forEach(function (p) { try { p.destroy(); } catch (e) { } }); PLAYERS = []; }
 var PLYR_ES = { restart: 'Reiniciar', rewind: 'Retroceder {seektime}s', play: 'Reproducir', pause: 'Pausar', fastForward: 'Adelantar {seektime}s', seek: 'Buscar', seekLabel: '{currentTime} de {duration}', played: 'Reproducido', buffered: 'Cargado', currentTime: 'Tiempo actual', duration: 'Duración', volume: 'Volumen', mute: 'Silenciar', unmute: 'Activar sonido', enableCaptions: 'Activar subtítulos', disableCaptions: 'Desactivar subtítulos', enterFullscreen: 'Pantalla completa', exitFullscreen: 'Salir de pantalla completa', frameTitle: 'Reproductor de {title}', captions: 'Subtítulos', settings: 'Ajustes', speed: 'Velocidad', normal: 'Normal', quality: 'Calidad', loop: 'Repetir' };
-function savePos(id, t, d) { var P = lsJSON(KEY_VPOS, {}); P[id] = { t: Math.round(t), d: Math.round(d || 0), at: Date.now() }; var ks = Object.keys(P); if (ks.length > 80) { ks.sort(function (a, b) { return P[a].at - P[b].at; }).slice(0, ks.length - 80).forEach(function (k) { delete P[k]; }); } ls(KEY_VPOS, JSON.stringify(P)); }
+function savePos(id, t, d, w) { var P = lsJSON(KEY_VPOS, {}); P[id] = { t: Math.round(t), d: Math.round(d || 0), w: Math.round(w != null ? w : ((P[id] || {}).w || 0)), at: Date.now() }; var ks = Object.keys(P); if (ks.length > 80) { ks.sort(function (a, b) { return P[a].at - P[b].at; }).slice(0, ks.length - 80).forEach(function (k) { delete P[k]; }); } ls(KEY_VPOS, JSON.stringify(P)); }
 function markWatched(id, el) {
   if (prog.vid[id]) return;
   award(el, function () { prog.vid[id] = Date.now(); markDay(32); });
@@ -814,11 +816,11 @@ function mountPlayer(box, id) {
   box.classList.add('on'); box.innerHTML = '<div data-plyr-provider="youtube" data-plyr-embed-id="' + id + '"></div>';
   var p = new Plyr(box.firstChild, { autoplay: true, iconUrl: '/plena/vendor/plyr.svg', blankVideo: '', i18n: PLYR_ES, ratio: '16:9', youtube: { noCookie: true, rel: 0, showinfo: 0, iv_load_policy: 3, modestbranding: 1, playsinline: 1 },
     controls: ['play-large', 'play', 'rewind', 'progress', 'current-time', 'duration', 'mute', 'volume', 'settings', 'fullscreen'], settings: ['speed'], speed: { selected: 1, options: [0.75, 1, 1.25, 1.5, 2] }, seekTime: 10, keyboard: { focused: true, global: false } });
-  var last = 0, acc = 0, saved = 0, sought = false;
+  var last = 0, acc = (lsJSON(KEY_VPOS, {})[id] || {}).w || 0, saved = 0, sought = false;
   p.on('playing', function () { if (!sought && start > 15 && p.duration && start < p.duration - 20) { try { p.currentTime = start; } catch (e) { } } sought = true; });
   p.on('timeupdate', function () {
     var c = p.currentTime || 0, d = p.duration || 0, dt = c - last; if (dt > 0 && dt < 2.5) acc += dt; last = c;
-    if (Date.now() - saved > 4000) { saved = Date.now(); savePos(id, c, d); }
+    if (Date.now() - saved > 4000) { saved = Date.now(); savePos(id, c, d, acc); }
     if (!prog.vid[id] && d && acc >= Math.min(d * 0.6, 480)) markWatched(id, box);
   });
   p.on('ended', function () { savePos(id, 0, p.duration); if (!prog.vid[id]) markWatched(id, box); });
@@ -911,13 +913,17 @@ function visible(idx) {
   if (idx === 0) return [0];
   var l = idx % 2 ? idx : idx - 1; return [l, l + 1].filter(function (x) { return x < n; });
 }
-function onPage(idx) {
+var PAGE_DWELL = 5000;
+function onPage(idx, opts) {
   if (!RD) return;
-  RD.idx = idx; loadAround(idx);
+  RD.idx = idx; if (!opts || !opts.commit) loadAround(idx);
   var vis = visible(idx), a = RD.a, item = RD.item, nuevas = 0;
   var s = prog.read[item] || ''; while (s.length < a.n) s += '0';
   var before = snapshot();
-  vis.forEach(function (i) { if (s[i] !== '1') { s = s.slice(0, i) + '1' + s.slice(i + 1); nuevas++; } });
+  // una página cuenta como leída solo si se queda ~5 s en pantalla (pasar hojas rápido no suma XP)
+  clearTimeout(RD.dw);
+  if (!opts || !opts.commit) { RD.dw = setTimeout(function () { if (RD && RD.idx === idx) onPage(idx, { commit: true }); }, PAGE_DWELL); }
+  else vis.forEach(function (i) { if (s[i] !== '1') { s = s.slice(0, i) + '1' + s.slice(i + 1); nuevas++; } });
   if (nuevas) { prog.read[item] = s; markDay(8); hoyPag(nuevas); }
   var first = vis[0] + 1, last = vis[vis.length - 1] + 1;
   $('#rPg', RD.el).textContent = (first === last ? 'Página ' + first : 'Páginas ' + first + '–' + last) + ' de ' + a.n;
@@ -927,7 +933,7 @@ function onPage(idx) {
     var r = RD.range, tot = r.hasta - r.desde + 1, vis2 = 0; for (var p = r.desde; p <= r.hasta; p++) if (s[p - 1] === '1') vis2++;
     var g = $('#rGoal', RD.el);
     if (g) g.innerHTML = ic('libro', 16) + ' Lectura de la lección: págs. ' + r.desde + (r.hasta > r.desde ? '–' + r.hasta : '') + ' <span class="xbar"><i style="width:' + Math.round(vis2 / tot * 100) + '%"></i></span> ' + (vis2 === tot ? '✓ ¡Completada!' : vis2 + '/' + tot);
-    if (vis2 === tot && !RD.rangeDone) { RD.rangeDone = true; setTimeout(function () { toast('¡Lectura completada! +' + XP.lectura + ' XP'); confetti(50); }, 400); }
+    if (vis2 === tot && !RD.rangeDone) { RD.rangeDone = true; setTimeout(function () { toast(r.lid && prog.done[r.lid] ? '¡Lectura completada! +' + XP.lectura + ' XP' : '¡Lectura completada! Suma +' + XP.lectura + ' XP al completar su lección.'); confetti(50); }, 400); }
   }
   if (nuevas) { saveProg(true); afterAward(before, $('#rPg', RD.el)); }
   var th = $('#rThumbs', RD.el); if (th && th.classList.contains('on')) paintThumbs();
@@ -981,6 +987,10 @@ var TOUR = [
 ];
 function VIDS_N_TXT() { return '132 clases de fuerza, taichi, pilates, cardio, meditación, podcast y audiolibros.'; }
 var TOURI = -1;
+/* El recorrido espera a que no haya celebraciones abiertas ni en cola (primero la insignia, después el recorrido) */
+function startTourWhenFree(delay) {
+  setTimeout(function wait() { if ($('.cel') || CELQ.length || $('.ov')) { setTimeout(wait, 400); return; } if (ls(KEY_TOUR) !== 'hecho' && TOURI < 0) startTour(); }, delay || 900);
+}
 function startTour() {
   closeModal();
   if (parse().v !== 'inicio') { location.hash = '#inicio'; setTimeout(function () { TOURI = 0; showTour(); }, 500); return; }
@@ -1093,7 +1103,7 @@ function bindForms() {
       $('#main').innerHTML = vMagic(); var msgs = ['Ordenando los módulos según lo que más te pesa', 'Eligiendo tus primeras lecturas y videos', 'Preparando tus misiones de hoy', '¡Lista! Ahora te enseño dónde está todo'], k = 0;
       var tm = setInterval(function () { k++; var el = $('#mgT'); if (el && msgs[k]) el.textContent = msgs[k]; }, 700);
       var tk2 = setInterval(function () { tone('tap'); }, 700);
-      setTimeout(function () { clearInterval(tm); clearInterval(tk2); location.hash = '#inicio'; render(); tone('done'); confetti(100); afterAward(before, null); if (ls(KEY_TOUR) !== 'hecho') setTimeout(startTour, 1200); }, 2900);
+      setTimeout(function () { clearInterval(tm); clearInterval(tk2); location.hash = '#inicio'; render(); tone('done'); confetti(100); afterAward(before, null); if (ls(KEY_TOUR) !== 'hecho') startTourWhenFree(1400); }, 2900);
       return;
     }
     if (!et) return fail('Elige tu etapa.'); if (!ob.length) return fail('Elige al menos una cosa.'); if (ob.length > 3) return fail('Elige como máximo 3.');
@@ -1126,8 +1136,18 @@ document.addEventListener('click', function (e) {
   var a = b.dataset.act, id = b.dataset.id;
   if (a === 'leer') { e.preventDefault(); openReader(b.dataset.item, +b.dataset.p || 1, b.dataset.h ? { desde: +b.dataset.p, hasta: +b.dataset.h, lid: b.dataset.lid } : null); return; }
   if (a === 'play') { e.preventDefault(); mountPlayer(b.parentNode, b.dataset.vid); return; }
-  if (a === 'visto') { if (!prog.vid[b.dataset.vid]) markWatched(b.dataset.vid, b); else toast('Este video ya está completado.'); return; }
+  if (a === 'visto') {
+    var vi = b.dataset.vid; if (prog.vid[vi]) { toast('Este video ya está completado.'); return; }
+    var vp = lsJSON(KEY_VPOS, {})[vi] || {}, need = vp.d ? Math.min(vp.d * 0.5, 300) : 300;
+    if ((vp.w || 0) < need) { toast('Para marcarlo, mira al menos ' + (vp.d ? 'la mitad del video' : 'unos minutos del video') + '. Se marca sola cuando llegas.'); return; }
+    markWatched(vi, b); return;
+  }
   if (a === 'done') {
+    if (!prog.done[id]) {
+      if (!(id in prog.quiz)) { toast('Antes de completarla, responde la pregunta rápida.'); var qz = $('.rblock.quiz'); if (qz) qz.scrollIntoView({ block: 'center', behavior: reduced() ? 'auto' : 'smooth' }); return; }
+      var falta = Math.ceil((LESS_MIN - (Date.now() - (LESS_T[id] || Date.now()))) / 1000);
+      if (falta > 0) { toast('Tómate un momento con la lección: lee lo esencial y haz tu tarea. Podrás completarla en ' + falta + ' s.'); return; }
+    }
     if (prog.done[id]) { delete prog.done[id]; saveProg(true); toast('Lección marcada como pendiente.'); render(true); return; }
     award(b, function () { prog.done[id] = Date.now(); markDay(1); });
     confetti(); var t = totalPct(); toast(t.p === 100 ? '¡Completaste todo el curso! Tu certificado te espera.' : '¡Bien hecho! La lección queda con ✓ en la lista.');
@@ -1197,7 +1217,7 @@ function boot() {
     var nuevas = earned().filter(function (id) { return seen.indexOf(id) < 0; });
     if (nuevas.length) { ls('plena.nuevas', JSON.stringify(nuevas)); seen = seen.concat(nuevas); ls(KEY_SEEN, JSON.stringify(seen)); }
     render(); syncProg();
-    if (perfil && !ls(KEY_TOUR)) setTimeout(startTour, 1200);
+    if (perfil && !ls(KEY_TOUR)) startTourWhenFree(1200);
   }).catch(function (err) { if (window.console) console.error(err); main.innerHTML = '<div class="ov"><div class="box lg obox" style="text-align:center"><h1>Sin conexión</h1><p>No pudimos cargar tu academia. Revisa tu internet e inténtalo de nuevo.</p><button class="btn btn-p" onclick="location.reload()">Reintentar</button></div></div>'; });
 }
 boot();
