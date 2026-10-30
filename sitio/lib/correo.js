@@ -48,6 +48,17 @@ ${li("El curso de menopausia y psicomenopausia: 10 módulos con su ruta personal
   return { subject: "Tu cuenta de PLENA está lista", html: marco(origin, "Bienvenida a PLENA", cuerpo, "Tu usuario y cómo entrar a PLENA desde tu celular y tu computador."), text };
 }
 
+// Compra solo de libros (Biblioteca PAUSA): enlace a su página de descargas.
+export function entrega({ origin, nombre, link }) {
+  const n = esc(String(nombre || "").trim().split(/\s+/)[0] || "");
+  const cuerpo = `<h1 style="margin:8px 0 12px;font-family:'Playfair Display',Georgia,serif;font-size:28px;line-height:1.2;color:${TINTA}">¡Gracias${n ? ", " + n : ""}!</h1>
+<p style="margin:0 0 12px">Tu Biblioteca PAUSA ya es tuya: 13 libros para entender tu cuerpo y sentirte tú otra vez. Descárgalos cuando quieras desde tu página personal.</p>${boton(link, "Descargar mis libros")}
+<p style="margin:0 0 10px;font-size:15px;color:${SUAVE}">Guarda este correo: el enlace es personal y siempre te lleva a tus descargas. Para rellenar los PDF en el celular, ábrelos con una app de PDF (por ejemplo, Adobe Acrobat Reader).</p>
+<p style="margin:0;font-size:15px;color:${SUAVE}">En la misma página puedes sumar <b>PLENA</b> (la academia, Mi diario y tus logros) pagando solo la diferencia.</p>`;
+  const text = `¡Gracias${n ? ", " + n : ""}!\n\nTu Biblioteca PAUSA ya es tuya. Descarga tus 13 libros aquí:\n${link}\n\nGuarda este correo: el enlace es personal.\nDudas: ${SOPORTE}`;
+  return { subject: "Tus libros de PAUSA están listos", html: marco(origin, "Tus libros de PAUSA", cuerpo, "Descarga tus 13 libros desde tu página personal."), text };
+}
+
 export function crearCuenta({ origin, nombre, link }) {
   const n = esc(String(nombre || "").trim().split(/\s+/)[0] || "");
   const cuerpo = `<h1 style="margin:8px 0 12px;font-family:'Playfair Display',Georgia,serif;font-size:28px;line-height:1.2;color:${TINTA}">Hola${n ? ", " + n : ""}</h1>

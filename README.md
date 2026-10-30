@@ -8,11 +8,11 @@ Todo lo necesario para vender, entregar y dar soporte a dos productos digitales 
   - diario, plan de 30 días, plantillas e informe PDF;
   - copia cifrada entre dispositivos;
   - acceso solo para compradoras, con su cuenta.
-- **Página de ventas única**:
-  - oferta de 15 minutos;
-  - carrito y venta por separado;
-  - mejora a «Todo junto»;
-  - página de descargas.
+- **Página de ventas** (`/oferta/`):
+  - biblioteca PAUSA en 3D con adelanto de cada libro;
+  - videos de lanzamiento a todo lo ancho (9:16 en celular, 16:9 en computador);
+  - 2 ofertas: Biblioteca PAUSA (13 libros) y Libros + PLENA, con oferta de 15 minutos;
+  - mejora a PLENA pagando la diferencia y página de descargas.
 - **Cuentas personales** (correo + contraseña, Supabase) y correo de bienvenida desde Gmail.
 - **PLENA · Academia de Menopausia y Psicomenopausia** (`/plena/`): academia de 10 módulos con ruta personal, videoteca de 132 clases, libros que se hojean como un libro de verdad, la app integrada como «Mi diario», gamificación (XP, niveles, insignias, rachas y misiones) y certificado. Incluida en el pack.
 - **Panel de pedidos**: búsqueda, filtros, CSV, cortesías y revocación de accesos.
@@ -38,6 +38,8 @@ Sitio en vivo de referencia: https://menopausia-equilibrada.vercel.app/oferta/
 1. [Desplegar en Vercel](docs/01-DESPLEGAR.md): de cero a sitio en vivo.
 2. [Cobrar con Whop](docs/02-WHOP.md)
 3. [Otras pasarelas](docs/03-PAGOS.md)
+
+**Empieza aquí si solo quieres saber cómo funciona:** [12 · Cómo funciona todo](docs/12-COMO-FUNCIONA-TODO.md).
 4. [Productos, precios y oferta](docs/04-PRODUCTOS-Y-PRECIOS.md)
 5. [Panel, claves y base de datos](docs/05-PANEL-Y-CLAVES.md)
 6. [La app](docs/06-APP.md)

@@ -110,7 +110,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     <div class="card" id="upsell" hidden>
       <span class="pill-o">Solo para ti, ahora</span>
       <h2 style="margin-top:10px">Completa tu pack <span class="scr" style="font-size:34px">por la diferencia</span></h2>
-      <p>Te llevas <b>todo lo que te falta</b>: las 2 guías, los 6 bonos, las 3 plantillas, los 4 kits y la app. Solo pagas la diferencia con lo que ya compraste.</p>
+      <p id="upTxt">Te llevas <b>todo lo que te falta</b>: las 2 guías, los 6 bonos, las 3 plantillas, los 4 kits y PLENA, tu academia con Mi diario. Solo pagas la diferencia con lo que ya compraste.</p>
       <div class="upw"><div class="upv"><s id="upValue"></s><b id="upPrice"></b></div><button class="btn btn-d" type="button" id="upBtn">Completar mi pack</button></div>
       <div class="err" id="upErr" role="alert" hidden style="margin-top:10px"></div>
     </div>
@@ -136,7 +136,7 @@ function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.j
   $('#files').innerHTML=d.files.length?d.files.map(function(f){return '<a href="'+f.url+'" download target="_blank" rel="noopener"><span>'+f.title.replace(/</g,'&lt;')+'</span><span>Descargar</span></a>'}).join(''):'<p class="note">Tu compra es la app: ábrela abajo.</p>';
   if(d.viaCodigo&&d.cuenta){$('#ok').querySelectorAll('.card,.hero').forEach(function(x){x.hidden=true});cuenta(d);return}
   if(d.plena||d.cuenta)cuenta(d);
-  if(!d.viaCodigo&&(d.items||[]).indexOf('todo')<0){var diff=Math.max(500,(d.bundleCents||1900)-(d.cents||0));$('#upsell').hidden=false;$('#upValue').textContent='Valor '+usd(d.valueCents||10400);$('#upPrice').textContent=usd(diff);$('#upBtn').textContent='Completar mi pack · '+usd(diff)}
+  if(!d.viaCodigo&&(d.items||[]).indexOf('todo')<0){var diff=Math.max(500,(d.bundleCents||1900)-(d.cents||0));$('#upsell').hidden=false;$('#upValue').textContent='Valor '+usd(d.valueCents||10400);$('#upPrice').textContent=usd(diff);$('#upBtn').textContent='Completar mi pack · '+usd(diff);if(d.libros){$('#upTxt').innerHTML='Ya tienes tus 13 libros. Súmale <b>PLENA</b>: la academia de 10 módulos con su ruta personal, 132 videos de práctica, tus libros para hojear, <b>Mi diario</b> con tu informe para la consulta, tus logros y tu certificado. Solo pagas la diferencia.';$('#upBtn').textContent='Sumar PLENA · '+usd(diff)}}
   try{var pk='mePurch:'+d.id;if(!localStorage.getItem(pk)){localStorage.setItem(pk,'1');meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}}catch(e){meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}
   confetti();
 }).catch(function(){$('#loading').hidden=true;$('#pending').hidden=false})}

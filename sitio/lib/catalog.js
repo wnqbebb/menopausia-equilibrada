@@ -6,9 +6,15 @@ export const DELIVERY_DIR = "/entrega-f92e9c4d594a8499f33676e3c3fd18c8/";
 // Oferta de bienvenida: «Todo junto» a precio especial solo durante una ventana corta por visitante.
 // El servidor firma la hora de inicio (token) y la verifica al cobrar; fuera de la ventana se cobra el precio regular.
 export const OFFER_WINDOW_MS = 15 * 60 * 1000;
-export const BUNDLE_LAUNCH = 1900;
-export const BUNDLE_REGULAR = 3700;
+// Las 2 ofertas de la página de ventas:
+//   «todo»   = PLENA completa: los 13 libros + la academia PLENA + Mi diario (app) + videos, logros y certificado.
+//   «libros» = Biblioteca PAUSA: solo los 13 libros en PDF (sin PLENA ni app).
+export const BUNDLE_LAUNCH = 1900;          // PLENA completa, oferta de bienvenida
+export const BUNDLE_REGULAR = 3700;         // PLENA completa, precio normal
+export const LIBROS_LAUNCH = 1200;          // Biblioteca PAUSA, oferta de bienvenida
+export const LIBROS_REGULAR = 2400;         // Biblioteca PAUSA, precio normal
 export const bundleCents = (offerActive) => (offerActive ? BUNDLE_LAUNCH : BUNDLE_REGULAR);
+export const librosCents = (offerActive) => (offerActive ? LIBROS_LAUNCH : LIBROS_REGULAR);
 export async function makeOffer(key, issuedAt) { return `${issuedAt}.${await hmac(key, "oferta:" + issuedAt, 20)}`; }
 export async function checkOffer(key, token, now = Date.now()) {
   const m = String(token || "").match(/^(\d{13})\.([0-9a-f]{20})$/);
@@ -35,12 +41,16 @@ export const ITEMS = {
   app: { name: "App Menopausia Equilibrada (acceso de por vida)", cents: 2900, files: [], app: true },
 };
 export const ORDER = Object.keys(ITEMS);
+export const LIBROS = ORDER.filter((k) => !ITEMS[k].app);                  // los 13 libros en PDF
 export const VALUE_CENTS = ORDER.reduce((a, k) => a + ITEMS[k].cents, 0); // valor si se compra todo por separado
+export const LIBROS_VALUE_CENTS = LIBROS.reduce((a, k) => a + ITEMS[k].cents, 0);
 
 export function cleanItems(list) {
-  const ids = Array.isArray(list) ? list.filter((k) => k === "todo" || ITEMS[k]) : [];
+  const ids = Array.isArray(list) ? list.filter((k) => k === "todo" || k === "libros" || ITEMS[k]) : [];
   const set = [...new Set(ids)];
-  return set.includes("todo") ? ["todo"] : ORDER.filter((k) => set.includes(k));
+  if (set.includes("todo")) return ["todo"];
+  if (set.includes("libros")) return set.includes("app") ? ["todo"] : ["libros"];
+  return ORDER.filter((k) => set.includes(k));
 }
 
 // Devuelve { items, cents, lines, upgraded } — si la suma por separado iguala o supera «Todo junto», cobra «Todo junto».
@@ -48,7 +58,11 @@ export function quote(items, { upgradeFromCents = 0, offerActive = false } = {})
   const b = upgradeFromCents ? BUNDLE_LAUNCH : bundleCents(offerActive);
   if (items.includes("todo")) {
     const cents = upgradeFromCents ? Math.max(500, b - upgradeFromCents) : b;
-    return { items: ["todo"], cents, lines: [{ name: upgradeFromCents ? "Completa tu pack: todo lo que te falta" : "Pack Menopausia sin tabú · Todo junto (2 guías, 6 bonos, 3 plantillas, 4 kits y app)", cents }], upgraded: false };
+    return { items: ["todo"], cents, lines: [{ name: upgradeFromCents ? "Completa tu pack: PLENA y todo lo que te falta" : "PLENA completa · 13 libros + academia PLENA + Mi diario (app)", cents }], upgraded: false };
+  }
+  if (items.includes("libros")) {
+    const cents = librosCents(offerActive);
+    return { items: ["libros"], cents, lines: [{ name: "Biblioteca PAUSA · 13 libros (PAUSA, Guía Integral, 6 bonos, 3 plantillas y 4 kits)", cents }], upgraded: false };
   }
   const sum = items.reduce((a, k) => a + ITEMS[k].cents, 0);
   if (!upgradeFromCents && sum >= b) return { ...quote(["todo"], { offerActive }), upgraded: true };
@@ -56,12 +70,13 @@ export function quote(items, { upgradeFromCents = 0, offerActive = false } = {})
 }
 
 export function hasApp(items) { return items.includes("todo") || items.includes("app"); }
+export const esLibros = (items) => items.includes("libros");
 
 // FILES_BASE (opcional): otra carpeta o CDN para los PDF. Vacía = se sirven desde el propio sitio (Vercel)
 // (https://github.com/USUARIO/REPO/releases/download/v1/). Así las descargas no gastan el ancho de banda del hosting.
 export function filesFor(items, filesBase = "") {
   const base = String(filesBase || "").trim() ? String(filesBase).trim().replace(/\/?$/, "/") : DELIVERY_DIR;
-  const keys = items.includes("todo") ? ORDER : items;
+  const keys = items.includes("todo") ? ORDER : items.includes("libros") ? LIBROS : items;
   const out = [];
   keys.forEach((k) => (ITEMS[k]?.files || []).forEach(([t, f]) => out.push({ title: t, url: base + f })));
   return out;

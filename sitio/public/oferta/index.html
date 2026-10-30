@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Menopausia sin tabú · Todo junto por USD 19 (oferta de bienvenida)</title>
-<meta name="description" content="Tu plan completo para dormir mejor, recuperar energía y entender tu menopausia: 2 guías con fuentes, 6 bonos, 3 plantillas rellenables, 4 kits y una app privada. Valor por separado USD 124; todo junto USD 19 con la oferta de bienvenida.">
+<title>Menopausia sin tabú · Biblioteca PAUSA (13 libros) y academia PLENA</title>
+<meta name="description" content="13 libros para entender y vivir mejor tu menopausia: PAUSA, la Guía Integral, 6 bonos, 3 plantillas y 4 kits. Llévate solo los libros o súmale PLENA, la academia con 10 módulos, 132 videos y Mi diario. Pago único.">
 <meta name="theme-color" content="#E0337A">
-<meta property="og:title" content="Menopausia sin tabú · Todo junto por USD 19">
-<meta property="og:description" content="2 guías, 6 bonos, 3 plantillas, 4 kits y app privada. Pago único.">
+<meta property="og:title" content="Biblioteca PAUSA · 13 libros + academia PLENA">
+<meta property="og:description" content="Solo los 13 libros, o los libros con PLENA: 10 módulos, 132 videos y Mi diario. Pago único.">
 <meta property="og:image" content="https://menopausia-equilibrada.vercel.app/oferta/img/og-share.jpg">
 <meta property="og:image:secure_url" content="https://menopausia-equilibrada.vercel.app/oferta/img/og-share.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Pack Menopausia sin tabú: guías, bonos, plantillas, kits y app">
+<meta property="og:image:alt" content="Biblioteca PAUSA y academia PLENA">
 <meta property="og:url" content="https://menopausia-equilibrada.vercel.app/oferta/">
 <meta property="og:site_name" content="Menopausia sin tabú">
 <meta property="og:locale" content="es_LA">
@@ -26,8 +26,8 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Great+Vibes&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap">
-<link rel="preload" as="image" href="/oferta/img/c-pausa.webp">
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Great+Vibes&family=Newsreader:opsz,wght@6..72,400&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap">
 <link rel="preload" as="image" href="/oferta/img/c-guia.webp">
 <style>
 
@@ -450,6 +450,169 @@ dialog.lb p{color:#fff;text-align:center;margin-top:10px;font-weight:600}
 .dig b{color:#fff}
 .hurry .ann .cd,.hurry .cdbox b{color:#FFD95A}
 .hurry .ann .cd{animation:beat 1s ease-in-out infinite;color:#fff}
+
+/* ===== v3: biblioteca 3D, videos y 2 ofertas ===== */
+/* Biblioteca PAUSA en 3D (portada) */
+.biblio{--H:min(42vh,27vw);--l3:#ad3469;position:relative;overflow:hidden;background:radial-gradient(120% 85% at 50% 38%,#fff 0,#FFF2F6 52%,#F9DCE7 100%);padding:clamp(22px,3.5vw,40px) 0 clamp(30px,4vw,48px);user-select:none;-webkit-user-select:none}
+.biblio .bh{text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;padding:0 18px}
+.biblio h1{font-size:clamp(38px,4.6vw,64px);font-weight:900;line-height:.98;letter-spacing:-.02em}
+.biblio h1 .scr{display:inline-block;font-size:1.05em;transform:rotate(-3deg);padding:0 .08em}
+.biblio .bsub{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:40em;font-weight:500}
+.biblio .bsub b{color:var(--berry)}
+.l3-tabs{position:relative;display:flex;margin:16px auto 0;width:max-content;max-width:calc(100% - 24px);overflow-x:auto;scrollbar-width:none}
+.l3-tabs::-webkit-scrollbar{display:none}
+.l3-tabs button{position:relative;z-index:1;height:32px;padding:0 13px;border:1px solid rgba(43,27,36,.8);margin-left:-1px;background:transparent;font:700 11px/1 var(--fb);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);cursor:pointer;white-space:nowrap;transition:color .45s}
+.l3-tabs button.active{color:#fff}
+.l3-indicator{position:absolute;left:0;top:0;height:32px;background:var(--l3);transition:width .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1)}
+.l3-shelf{position:relative;width:100%;height:calc(var(--H) + 80px);perspective:2200px;perspective-origin:50% 50%;touch-action:pan-y;cursor:grab;margin-top:6px}
+.l3-shelf:active{cursor:grabbing}
+.l3-stage{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.l3-tape{position:absolute;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+.l3-face{position:absolute;top:calc(var(--H)/-2);height:var(--H);backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:2px;padding:0;cursor:pointer;font:inherit}
+.l3-sp{width:var(--ws);left:calc(var(--ws)/-2);transform:translateZ(calc(var(--d)/2));background:var(--book-bg);color:var(--book-ink);border:1px solid rgba(20,10,15,.18);box-shadow:inset 3px 0 5px rgba(0,0,0,.12),inset -2px 0 3px rgba(0,0,0,.08);overflow:hidden}
+.l3-sp:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.17),transparent 18%,rgba(255,255,255,.2) 45%,transparent 68%,rgba(0,0,0,.12));pointer-events:none}
+.l3-cv{width:var(--d);left:calc(var(--d)/-2);transform:rotateY(90deg) translateZ(calc(var(--ws)/2));box-shadow:0 30px 60px -28px rgba(80,10,40,.55);background-size:100% 100%;background-repeat:no-repeat;background-color:#faf7f4;border:1px solid rgba(22,10,18,.12)}
+.l3-face:after{content:'';position:absolute;inset:0;background:#000;opacity:var(--shade,0);pointer-events:none}
+.l3-name{position:absolute;inset:12% 12% 15%;writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Newsreader',Georgia,serif;font-size:calc(var(--H)*.052);line-height:1.05;text-align:center;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em}
+.l3-mark{position:absolute;bottom:4%;left:0;right:0;text-align:center;font-size:calc(var(--H)*.019);letter-spacing:.1em;font-weight:600}
+.l3-num{position:absolute;top:4%;left:0;right:0;font-size:calc(var(--H)*.025);text-align:center;font-weight:600}
+.l3-play{position:absolute;width:54px;height:54px;border-radius:50%;background:var(--fucsia);color:#fff;display:grid;place-items:center;z-index:5;border:3px solid #fff;box-shadow:0 10px 24px rgba(224,51,122,.45);cursor:pointer;font-size:22px;line-height:1;padding:0}
+.biblio.on-cover .l3-shelf{cursor:pointer}
+.l3-capw{position:relative;max-width:980px;margin:0 auto;padding:0 64px}
+.l3-caption{display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center;pointer-events:none}
+.l3-mask{overflow:hidden;position:relative;width:100%}
+.l3-mask span{display:flex;align-items:center;justify-content:center;min-height:100%}
+.l3-mask span+span{position:absolute;inset:0}
+.l3-title{font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,2.6vw,32px);line-height:1.1;height:2.25em}
+.l3-sub{color:var(--l3);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;height:1.6em}
+.l3-year{font-size:13.5px;font-weight:600;color:var(--muted);height:1.7em}
+.l3-arrow{position:absolute;top:8px;width:50px;height:50px;border-radius:50%;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;display:grid;place-items:center;box-shadow:var(--sh2);transition:border-color .2s,transform .2s}
+.l3-arrow:hover{border-color:var(--fucsia);transform:scale(1.06)}
+.l3-arrow svg{width:18px;height:10px;fill:none;stroke:currentColor;stroke-width:1.6}
+.l3-prev{left:6px}.l3-next{right:6px}
+.l3-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px;padding:0 18px}
+.l3-cta .btn{min-width:min(100%,290px)}
+.l3-hint{display:block;text-align:center;font-size:13px;font-weight:600;color:var(--muted);margin-top:12px;padding:0 18px}
+/* lector de adelanto */
+.l3-reader{position:fixed;inset:0;z-index:75;background:#FBF4F6;visibility:hidden;display:grid;grid-template-rows:auto 1fr;isolation:isolate;user-select:text}
+.l3-bar{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:18px;padding:12px max(18px,env(safe-area-inset-left,0px));background:#fff;border-bottom:1px solid var(--line);min-height:70px}
+.l3-back{height:40px;padding:0 14px;border-radius:999px;border:2px solid var(--line);background:#fff;font:700 14px var(--fb);color:var(--ink);cursor:pointer;white-space:nowrap}
+.l3-back:hover{border-color:var(--fucsia)}
+.l3-heading{min-width:0;display:flex;flex-direction:column;gap:3px}
+.l3-heading h2{font:400 22px/1.1 'Newsreader',Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:0}
+.l3-reader-label{color:var(--l3);font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.l3-ctrls{display:flex;gap:7px;align-items:center;white-space:nowrap}
+.l3-ctrls>button{height:38px;min-width:38px;border:1.5px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;font:700 14px var(--fb);color:var(--ink);padding:0 10px}
+.l3-ctrls>button:disabled{opacity:.4;cursor:default}
+.l3-ctrls .l3-buy{background:var(--fucsia);border-color:var(--fucsia);color:#fff;border-radius:999px;padding:0 16px}
+.l3-page-input{width:48px;height:38px;border:1.5px solid var(--line);border-radius:10px;text-align:center;font:700 14px var(--fb);color:var(--ink);background:#fff;-moz-appearance:textfield}
+.l3-page-input::-webkit-inner-spin-button{appearance:none}
+.l3-page-total{font-size:13px;color:var(--muted);font-weight:600;padding-right:4px}
+.l3-scroll{overflow:auto;overscroll-behavior:contain;background:#EFE2E8}
+.l3-pages{display:flex;flex-direction:column;gap:22px;padding:24px 14px 60px;align-items:center;--pw:820px}
+.l3-reader.zoomed .l3-pages{--pw:1200px}
+.l3-page{margin:0;max-width:var(--pw);width:100%}
+.l3-page img{width:100%;height:auto;aspect-ratio:1400/1978;background:#fff;box-shadow:0 4px 20px rgba(60,20,40,.14)}
+.l3-page figcaption{text-align:center;font-size:12px;color:var(--muted);padding-top:6px;font-weight:600}
+.l3-more{max-width:var(--pw);width:100%;background:var(--negro);color:#fff;border-radius:26px;padding:clamp(22px,4vw,36px);text-align:center;display:grid;gap:12px}
+.l3-more .kick{color:var(--rosa);justify-content:center}
+.l3-more h3{color:#fff;font-size:clamp(24px,3vw,34px)}
+.l3-more p{color:#F6D5E1;max-width:34em;margin:0 auto}
+.l3-more-b{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:6px}
+.l3-progress{position:absolute;bottom:-1px;left:0;height:3px;width:100%;background:var(--fucsia);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+html.l3-lock,html.l3-lock body{overflow:hidden}
+@media (max-width:767px){
+  .biblio{--H:min(62vw,40svh)}
+  .l3-tabs button{padding:0 9px;font-size:10px}
+  .l3-capw{padding:0 54px}
+  .l3-arrow{width:44px;height:44px}
+  .l3-bar{grid-template-columns:auto minmax(0,1fr);gap:10px;padding:10px 12px}
+  .l3-ctrls{grid-column:1/-1;justify-content:center}
+  .l3-heading h2{font-size:19px}
+  .l3-pages{padding:14px 8px 40px;gap:14px}
+  .l3-reader.zoomed .l3-pages{--pw:820px;min-width:836px;align-items:flex-start}
+  .l3-reader.zoomed .l3-page{width:820px;max-width:none}
+}
+@media (max-height:640px) and (min-width:768px){.biblio{--H:min(38vh,27vw)}}
+
+/* Videos a todo lo ancho: 16:9 en computador, 9:16 en celular */
+.vid{position:relative;background:#14090F;overflow:hidden}
+.vid video{display:block;width:100%;height:auto;background:#14090F;object-fit:cover}
+.vid .v169{aspect-ratio:16/9;max-height:100vh;max-height:100svh}
+.vid .v916{display:none;aspect-ratio:9/16;max-height:100vh;max-height:100svh}
+@media (max-width:767px),(orientation:portrait) and (max-width:1024px){.vid .v169{display:none}.vid .v916{display:block}}
+.vsnd{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:18px;z-index:3;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 18px;border-radius:999px;border:2px solid rgba(255,255,255,.75);background:rgba(30,20,25,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font:700 14.5px var(--fb);cursor:pointer}
+.vsnd:hover{background:rgba(224,51,122,.85);border-color:#fff}
+.vsnd svg{width:20px;height:20px}
+.vplay{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:18px;z-index:3;width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,255,255,.75);background:rgba(30,20,25,.55);color:#fff;cursor:pointer;display:grid;place-items:center}
+.vplay svg{width:18px;height:18px}
+.vhead{background:var(--negro);color:#fff;text-align:center;padding:clamp(44px,6vw,72px) 18px clamp(26px,3vw,36px)}
+.vhead h2{color:#fff}
+.vhead .kick{color:var(--rosa);justify-content:center}
+.vhead p{color:#F6D5E1;max-width:40em;margin:12px auto 0;font-size:clamp(16px,1.6vw,18px)}
+.vfoot{background:var(--negro);color:#fff;padding:22px 18px 30px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+/* PLENA */
+.plena-sec{background:linear-gradient(180deg,var(--negro) 0,#2A1621 100%);color:#fff}
+.plena-sec h2,.plena-sec h3{color:#fff}
+.plena-sec .lede{color:#F6D5E1}
+.plena-sec .kick{color:var(--rosa)}
+.pf{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pf>div{background:rgba(255,255,255,.06);border:1px solid rgba(247,168,199,.25);border-radius:22px;padding:20px 18px;display:flex;flex-direction:column;gap:6px}
+.pf b.n{font-family:var(--fd);font-weight:900;font-size:clamp(38px,4vw,50px);line-height:1;color:var(--rosa)}
+.pf h3{font-size:20px}
+.pf p{font-size:14.5px;color:#E9C7D5;line-height:1.5}
+@media (max-width:980px){.pf{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.pf{grid-template-columns:1fr}}
+
+/* Las 2 ofertas */
+.offers{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:stretch;max-width:1080px;margin:0 auto}
+.ofc{background:#fff;border-radius:30px;padding:clamp(22px,3vw,34px);border:2px solid var(--line);display:flex;flex-direction:column;gap:14px;position:relative;box-shadow:var(--sh2)}
+.ofc.best{background:var(--negro);color:#fff;border-color:var(--fucsia);box-shadow:0 30px 70px rgba(155,27,79,.3)}
+.ofc .badge{position:absolute;top:-17px;left:50%;transform:translateX(-50%);background:var(--sun);color:var(--ink);font-weight:800;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 18px rgba(0,0,0,.18)}
+.ofc .on{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--berry)}
+.ofc.best .on{color:var(--rosa)}
+.ofc h3{font-size:clamp(28px,2.8vw,36px)}
+.ofc.best h3{color:#fff}
+.ofc .for{font-size:15.5px;color:var(--muted);line-height:1.5}
+.ofc.best .for{color:#F6D5E1}
+.ofc .fan{position:relative;height:118px;margin:4px 0 2px}
+.ofc .fan img{position:absolute;bottom:0;width:70px;border-radius:3px 6px 6px 3px;box-shadow:0 8px 16px rgba(80,10,40,.28)}
+.ofc .fan .ph{position:absolute;bottom:0;width:66px;border-radius:14px;border:4px solid #2B1B24;box-shadow:0 10px 22px rgba(0,0,0,.35)}
+.ofc .pr{display:flex;align-items:flex-end;gap:6px 14px;flex-wrap:wrap}
+.ofc .pr s{color:var(--muted);font-weight:700;font-size:17px;display:block}
+.ofc .pr b{font-family:var(--fd);font-size:clamp(58px,6vw,78px);font-weight:900;line-height:.9;color:var(--fucsia);display:block;white-space:nowrap}
+.ofc .pr b small{font-size:.34em;vertical-align:top;margin-right:4px}
+.ofc .pr em{font-style:normal;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--berry);padding-bottom:6px}
+.ofc.best .pr b{color:#fff}.ofc.best .pr s{color:#B9A3AE}.ofc.best .pr em{color:var(--sun)}
+.ofc ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.ofc li{display:flex;gap:10px;font-size:15.5px;line-height:1.45}
+.ofc li::before{content:"✓";color:var(--fucsia);font-weight:900;flex:0 0 auto}
+.ofc li.x{color:#A58C98}.ofc li.x::before{content:"✕";color:#C9B3BE}
+.ofc.best li::before{color:var(--rosa)}
+.ofc li b{font-weight:700}
+.ofc .btn{width:100%;margin-top:auto}
+.ofc .fine{font-size:13px;color:var(--muted);text-align:center;margin-top:-4px}
+.ofc.best .fine{color:#E9C7D5}
+.ofc.best .cdbox{grid-template-columns:repeat(2,1fr)}
+.ofc.best .cdbox b{font-size:34px}
+@media (max-width:900px){.offers{grid-template-columns:1fr;max-width:560px}.ofc.best{order:-1}}
+.cmp{max-width:1080px;margin:34px auto 0;background:#fff;border-radius:26px;border:1px solid #FBE3EC;box-shadow:var(--sh2);overflow:hidden}
+.cmp table{width:100%;border-collapse:collapse;font-size:15px}
+.cmp th,.cmp td{padding:12px 16px;border-bottom:1px solid #FBE3EC;text-align:center}
+.cmp th:first-child,.cmp td:first-child{text-align:left}
+.cmp thead th{font-family:var(--fd);font-size:18px;background:var(--blush)}
+.cmp thead th:last-child{background:var(--negro);color:#fff}
+.cmp td:last-child{background:#FFF5F8;font-weight:800;color:var(--fucsia)}
+.cmp .no{color:#C9B3BE;font-weight:800}
+.cmp tr:last-child td{border-bottom:0;font-family:var(--fd);font-size:20px}
+@media (max-width:560px){.cmp th,.cmp td{padding:10px 8px;font-size:13.5px}.cmp thead th{font-size:15px}}
+.upg{max-width:1080px;margin:18px auto 0;text-align:center;font-size:15px;color:var(--muted)}
+.upg b{color:var(--berry)}
+.ofc .btn{white-space:nowrap}
+@media (max-width:420px){.ofc .btn{font-size:15px;padding:16px 14px}.l3-cta .btn{font-size:15.5px}}
+@media (max-width:560px){.top nav .btn-p{display:inline-flex;padding:10px 14px;font-size:13.5px;min-height:42px}}
+.co .empty .btn{width:100%;margin-top:10px;min-height:50px;font-size:15.5px}
 </style>
 <!-- EMBUDO / MEDICIÓN: pega aquí el código base de tu Píxel de Meta, TikTok o Google (gtag).
      La página ya envía los eventos solos si existen: ViewContent, AddToCart, InitiateCheckout (aquí) y Purchase (en gracias.html).
@@ -465,67 +628,64 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     <path id="star" d="M12 1.6l3.2 6.6 7.2 1-5.2 5 1.3 7.2L12 18l-6.5 3.4 1.3-7.2-5.2-5 7.2-1z"/>
     <path id="spk" d="M12 0C12.9 7 17 11.1 24 12 17 12.9 12.9 17 12 24 11.1 17 7 12.9 0 12 7 11.1 11.1 7 12 0z"/>
     <symbol id="chk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#E0337A"/><path d="M7 12.5l3.2 3.2L17.5 8.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="snd0" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="snd1" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="pau" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></symbol>
+    <symbol id="ply" viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></symbol>
   </defs>
 </svg>
 
-<div class="ann" id="ann"><span data-launch>Oferta de bienvenida: <b>todo junto USD <span data-bundle>19</span></b> · expira en <span class="cd" data-cd>15:00</span> · si sales, la pierdes</span><span data-after hidden>Pack completo · <b>todo junto USD <span data-bundle>37</span></b> · pago único</span></div>
+<div class="ann" id="ann"><span data-launch>Oferta de bienvenida: <b>13 libros USD <span data-lib>12</span></b> · <b>con PLENA USD <span data-bundle>19</span></b> · expira en <span class="cd" data-cd>15:00</span></span><span data-after hidden>13 libros <b>USD <span data-lib>24</span></b> · con PLENA <b>USD <span data-bundle>37</span></b> · pago único</span></div>
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#inicio" aria-label="Menopausia sin tabú, inicio"><b>Menopausia</b><i>sin tabú</i></a>
     <nav aria-label="Secciones">
-      <a class="nl" href="#incluye">Qué incluye</a>
-      <a class="nl" href="#oferta">Oferta</a>
-      <a class="nl" href="#tienda">Por separado</a>
+      <a class="nl" href="#biblio">Biblioteca</a>
+      <a class="nl" href="#plena">PLENA</a>
+      <a class="nl" href="#ofertas">Ofertas</a>
       <a class="nl" href="#preguntas">Preguntas</a>
-      <button type="button" class="btn btn-p" data-buy-all>Quiero todo</button>
-      <button type="button" class="cartb" id="cartBtn" aria-label="Ver carrito"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20.5" r="1.4" fill="currentColor"/><circle cx="17" cy="20.5" r="1.4" fill="currentColor"/></svg><span id="cartN" hidden>0</span></button>
+      <a class="btn btn-p" href="#ofertas">Ver las 2 ofertas</a>
     </nav>
   </div>
 </header>
 
 <main id="inicio">
-<!-- HERO -->
-<section class="hero">
-  <svg class="sv fl" style="left:3%;top:12%;width:26px;--rot:10deg" viewBox="-2 -2 28 28" aria-hidden="true"><use href="#spk" fill="#F7A8C7"/></svg>
-  <div class="wrap">
-    <div class="txt rv">
-      <span class="pill">Para mujeres de 40 a 60</span>
-      <h1 style="margin-top:18px"><span class="m">Menopausia</span><span class="scr">sin tabú</span></h1>
-      <p class="sub">Tu plan completo para <b>dormir mejor, recuperar tu energía y entender qué le pasa a tu cuerpo</b>, paso a paso, con fuentes y sin pasarlo sola.</p>
-      <ul class="checks">
-        <li><svg width="22" height="22" aria-hidden="true"><use href="#chk"/></svg><span>Empiezas hoy en 10 minutos: sabes qué hacer esta misma noche.</span></li>
-        <li><svg width="22" height="22" aria-hidden="true"><use href="#chk"/></svg><span>1 minuto al día en tu app privada para ver tu progreso.</span></li>
-        <li><svg width="22" height="22" aria-hidden="true"><use href="#chk"/></svg><span>Llegas a tu consulta con datos, preguntas y opciones claras.</span></li>
-      </ul>
-      <div class="pricehero">
-        <div><s>Valor USD <span data-value>124</span></s><b>USD <span data-bundle>19</span></b><small data-launch>oferta de bienvenida · expira en <span data-cd>15:00</span></small></div>
-        <button type="button" class="btn btn-p" data-buy-all>Quiero todo por USD <span data-bundle>19</span></button>
-      </div>
-      <div class="micro"><span>✓ Pago único</span><span>✓ Sin suscripciones</span><span>✓ Descarga inmediata</span><span>✓ App privada incluida</span></div>
-    </div>
-    <div class="collage rv d2" aria-label="Portadas del pack: libro PAUSA, Guía Integral, bonos y la app">
-      <div class="blob" style="width:84%;aspect-ratio:1;left:10%;top:4%"></div>
-      <div class="blob" style="width:30%;aspect-ratio:1;left:-2%;top:62%;background:#FCE4EC"></div>
-      <div class="cv" style="width:42%;left:50%;top:2%;--rot:7deg;transform:rotate(7deg);z-index:2"><img src="/oferta/img/c-guia.webp" alt="Portada de la Guía Integral Menopausia Equilibrada" width="560" height="792"></div>
-      <div class="cv" style="width:46%;left:8%;top:4%;--rot:-5deg;transform:rotate(-5deg);z-index:3"><img src="/oferta/img/c-pausa.webp" alt="Portada del libro PAUSA" width="560" height="792"></div>
-      <div class="cv" style="width:28%;left:1%;top:55%;--rot:-10deg;transform:rotate(-10deg);z-index:4"><img src="/oferta/img/c-recetario.webp" alt="Portada del Recetario" width="560" height="792"></div>
-      <img class="stk fl" src="/oferta/img/cut15a.webp" alt="" style="position:absolute;width:35%;left:37%;top:46%;z-index:5;--rot:-2deg;animation-delay:-1.5s" width="840" height="1100">
-      <div class="phone fl" style="width:24%;left:73%;top:50%;z-index:6;--rot:6deg"><img src="/oferta/img/app-hoy.webp" alt="Pantalla de la app: registro diario" width="540" height="1169"></div>
-      <div class="tag" style="left:2%;top:91%;transform:rotate(-4deg);z-index:7">14 productos</div>
-      <div class="tag" style="right:0;top:0;transform:rotate(5deg);z-index:7;background:var(--sun)">−85 %</div>
-      <div class="tag" style="left:40%;top:94%;transform:rotate(3deg);z-index:7;background:var(--rosa)">App privada</div>
-      <svg class="sv fl" style="right:2%;top:38%;width:42px;z-index:7;--rot:12deg" viewBox="-3 -3 30 30" aria-hidden="true"><use href="#star" fill="#FFD95A" stroke="#fff" stroke-width="2.2"/></svg>
-      <svg class="sv" style="left:3%;top:1%;width:46px;z-index:7;animation:beat 1.6s ease-in-out infinite" viewBox="-3 -3 30 30" aria-hidden="true"><use href="#hrt" fill="#E0337A" stroke="#fff" stroke-width="2.2"/></svg>
-    </div>
+<!-- 1 · BIBLIOTECA PAUSA EN 3D -->
+<section class="biblio" id="biblio" aria-labelledby="bTitle">
+  <div class="bh">
+    <span class="pill" id="l3Count">13 libros</span>
+    <h1 id="bTitle">Tu biblioteca para la <span class="scr">menopausia</span></h1>
+    <p class="bsub">Desliza los libros, toca una portada y <b>lee un adelanto</b>. Son 13 libros con fuentes, en palabras sencillas, para dormir mejor, recuperar tu energía y entender qué le pasa a tu cuerpo.</p>
   </div>
+  <nav class="l3-tabs" aria-label="Colecciones"><div class="l3-indicator"></div><button type="button" data-category="all">Todos</button><button type="button" data-category="pausa">PAUSA</button><button type="button" data-category="guias">Guía</button><button type="button" data-category="bonos">Bonos</button><button type="button" data-category="plantillas">Plantillas</button></nav>
+  <div class="l3-shelf" aria-label="Estantería de libros en 3D: arrastra a los lados o usa las flechas"><div class="l3-stage"></div></div>
+  <button type="button" class="l3-play" aria-label="Leer un adelanto del libro">↗</button>
+  <div class="l3-capw">
+    <div class="l3-caption" aria-live="polite" aria-atomic="true"><div class="l3-mask l3-title"></div><div class="l3-mask l3-sub"></div><div class="l3-mask l3-year"></div></div>
+    <button type="button" class="l3-arrow l3-prev" aria-label="Libro anterior"><svg viewBox="0 0 18 10" aria-hidden="true"><path d="M5 1L1 5L5 9M1 5H17"/></svg></button>
+    <button type="button" class="l3-arrow l3-next" aria-label="Libro siguiente"><svg viewBox="0 0 18 10" aria-hidden="true"><path d="M13 1L17 5L13 9M1 5H17"/></svg></button>
+  </div>
+  <div class="l3-cta">
+    <button type="button" class="btn btn-g" data-buy="libros">Solo los 13 libros · USD <span data-lib>12</span></button>
+    <button type="button" class="btn btn-p" data-buy="todo">Libros + PLENA · USD <span data-bundle>19</span></button>
+  </div>
+  <span class="l3-hint">Pago único · <span data-launch>precio de bienvenida por <b data-cd>15:00</b></span><span data-after hidden>sin suscripciones</span> · acceso inmediato</span>
+</section>
+
+<!-- 2 · VIDEO DE LA BIBLIOTECA -->
+<section class="vid" aria-label="Video: presentación de la biblioteca PAUSA">
+  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto/v1793381705/PAUSA_Presentacion_30s_16x9.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2/v1793381705/PAUSA_Presentacion_30s_16x9.jpg" muted loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
+  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto/v1793381715/PAUSA_Presentacion_30s_9x16.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2/v1793381715/PAUSA_Presentacion_30s_9x16.jpg" muted loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
+  <button type="button" class="vplay" aria-label="Pausar video"><svg aria-hidden="true"><use href="#pau"/></svg></button>
+  <button type="button" class="vsnd" aria-pressed="false"><svg aria-hidden="true"><use href="#snd0"/></svg><span>Activar sonido</span></button>
 </section>
 
 <div class="marqw"><div class="marq" aria-hidden="true"><div><span>Sofocos</span><span>Insomnio</span><span>Ansiedad</span><span>Cansancio constante</span><span>Kilos que cambian de lugar</span><span>Cambios hormonales</span><span>Autoestima</span><span>Sofocos</span><span>Insomnio</span><span>Ansiedad</span><span>Cansancio constante</span><span>Kilos que cambian de lugar</span><span>Cambios hormonales</span><span>Autoestima</span></div></div></div>
 
-<!-- DOLORES -->
+<!-- 3 · DOLORES -->
 <section class="sec" id="dolores">
   <div class="wrap">
-    <div class="sec-h rv"><span class="kick">¿Te suena?</span><h2>No estás exagerando. <span class="scr">Es real.</span></h2><p class="lede">Y tiene explicación, opciones y un plan. Esto es lo que más nos cuentan las mujeres de 40 a 60, y lo que resuelve el pack.</p></div>
+    <div class="sec-h rv"><span class="kick">¿Te suena?</span><h2>No estás exagerando. <span class="scr">Es real.</span></h2><p class="lede">Y tiene explicación, opciones y un plan. Esto es lo que más nos cuentan las mujeres de 40 a 60, y lo que resuelven los libros.</p></div>
     <div class="pains">
       <article class="pain rv"><div class="ph"><img src="/oferta/img/cut03a.webp" alt="" loading="lazy" width="300" height="300"></div><h3>Sofocos que no avisan</h3><p>Calor de golpe, sudor, la cara roja en plena reunión.</p><em>Guía · Kit Noches frescas</em></article>
       <article class="pain rv d1"><div class="ph"><img src="/oferta/img/cut09b.webp" alt="" loading="lazy" width="300" height="300"></div><h3>Noches sin dormir</h3><p>Te despiertas a las 3 a. m. y ya no vuelves a dormir.</p><em>Sueño y descanso · rutina nocturna</em></article>
@@ -534,12 +694,12 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
       <article class="pain rv"><div class="ph"><img src="/oferta/img/cut16a.webp" alt="" loading="lazy" width="300" height="300"></div><h3>Kilos que cambian de lugar</h3><p>Comes igual, pero la cintura ya no es la misma.</p><em>Alimentación · 20 recetas · fuerza</em></article>
       <article class="pain rv d1"><div class="ph"><img src="/oferta/img/cut19a.webp" alt="" loading="lazy" width="300" height="300"></div><h3>Cambios hormonales</h3><p>Reglas irregulares y mil dudas sobre tratamientos.</p><em>Salud hormonal con evidencia</em></article>
       <article class="pain rv d2"><div class="ph"><img src="/oferta/img/cut15a.webp" alt="" loading="lazy" width="300" height="300"></div><h3>Baja autoestima</h3><p>No te reconoces en el espejo y eso duele.</p><em>Autocompasión · diario</em></article>
-      <article class="pain dk rv d3"><h3>No tienes que pasarlo sola.</h3><p>Ni aguantarlo en silencio. Hay mucho que puedes hacer desde hoy.</p><button type="button" class="btn btn-p" data-buy-all style="margin-top:8px">Empezar hoy</button></article>
+      <article class="pain dk rv d3"><h3>No tienes que pasarlo sola.</h3><p>Ni aguantarlo en silencio. Hay mucho que puedes hacer desde hoy.</p><a class="btn btn-p" href="#ofertas" style="margin-top:8px">Empezar hoy</a></article>
     </div>
   </div>
 </section>
 
-<!-- CIFRAS -->
+<!-- 4 · CIFRAS -->
 <section class="sec" style="padding-top:0">
   <div class="wrap">
     <div class="sec-h rv"><span class="kick">Lo que dicen los datos</span><h2>Es más común de lo que <span class="scr">te hicieron creer</span></h2></div>
@@ -552,93 +712,75 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   </div>
 </section>
 
-<!-- 3 CAMINOS -->
+<!-- 5 · 3 CAMINOS -->
 <section class="sec" style="background:#fff">
   <div class="wrap">
     <div class="sec-h rv"><span class="kick">Tienes 3 caminos</span><h2>¿Seguir adivinando <span class="scr">o tener un plan?</span></h2></div>
     <div class="ways">
       <div class="way rv"><span class="wn">Camino 1</span><h3>Buscar en internet</h3><ul><li class="x">Consejos que se contradicen</li><li class="x">Mitos y productos milagro</li><li class="x">Horas leyendo y sigues igual</li></ul></div>
       <div class="way rv d1"><span class="wn">Camino 2</span><h3>Esperar y aguantar</h3><ul><li class="x">Llegas a la consulta sin datos</li><li class="x">Olvidas lo que querías preguntar</li><li class="x">Meses de noches malas</li></ul></div>
-      <div class="way best rv d2"><span class="wn">Camino 3</span><h3>Menopausia sin tabú</h3><ul><li>Información con fuentes, en palabras sencillas</li><li>Un plan de 30 días, paso a paso</li><li>Tu progreso y tu resumen para la consulta</li></ul><button type="button" class="btn btn-p" data-buy-all style="width:100%;margin-top:14px">Elijo el camino 3</button></div>
+      <div class="way best rv d2"><span class="wn">Camino 3</span><h3>Menopausia sin tabú</h3><ul><li>13 libros con fuentes, en palabras sencillas</li><li>Un plan de 30 días, paso a paso</li><li>Con PLENA: clases en video, Mi diario y tu resumen para la consulta</li></ul><a class="btn btn-p" href="#ofertas" style="width:100%;margin-top:14px">Elijo el camino 3</a></div>
     </div>
   </div>
 </section>
 
-<!-- ECUACIÓN DE VALOR -->
+<!-- 6 · LOS 13 LIBROS (stack de valor) -->
+<section class="sec" id="incluye">
+  <div class="wrap">
+    <div class="sec-h rv"><span class="kick">La Biblioteca PAUSA</span><h2>13 libros. <span class="scr">Un solo pago.</span></h2><p class="lede">Esto es lo que vale cada libro por separado. Con cualquiera de las 2 ofertas te los llevas todos. Toca una portada para verla en grande.</p></div>
+    <div class="stack" id="stack"></div>
+    <div class="stack-total rv">
+      <div class="st-l"><span>Los 13 libros por separado</span><s>USD <span data-lib-value>95</span></s></div>
+      <div class="st-r"><span data-launch>Hoy, los 13 juntos (bienvenida)</span><span data-after hidden>Hoy, los 13 juntos</span><b>USD <span data-lib>12</span></b><em>Ahorras USD <span data-lib-save>83</span> · o súmale PLENA por USD <span data-diff>7</span> más</em></div>
+      <a class="btn btn-p" href="#ofertas">Ver las 2 ofertas</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · PLENA -->
+<section class="vhead" id="plena">
+  <span class="kick">La oferta completa incluye</span>
+  <h2 style="margin-top:10px">PLENA, tu <span class="scr">academia</span></h2>
+  <p>Los 13 libros cobran vida: clases en video, lecciones cortas que te dicen qué hacer, Mi diario para ver tu progreso y logros que te acompañan cada día. En tu celular y en tu computador, con tu propia cuenta.</p>
+</section>
+<section class="vid" aria-label="Video: presentación de PLENA">
+  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto/v1793381749/PLENA_lanzamiento_16x9.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2/v1793381749/PLENA_lanzamiento_16x9.jpg" muted loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
+  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto/v1793381747/PLENA_lanzamiento_9x16.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2/v1793381747/PLENA_lanzamiento_9x16.jpg" muted loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
+  <button type="button" class="vplay" aria-label="Pausar video"><svg aria-hidden="true"><use href="#pau"/></svg></button>
+  <button type="button" class="vsnd" aria-pressed="false"><svg aria-hidden="true"><use href="#snd0"/></svg><span>Activar sonido</span></button>
+</section>
+<section class="sec plena-sec">
+  <div class="wrap">
+    <div class="sec-h rv"><span class="kick">Qué hay dentro de PLENA</span><h2>Aprendes, practicas <span class="scr">y lo notas</span></h2><p class="lede">No es «otro PDF más»: PLENA te lleva de la mano, módulo a módulo, y te muestra tu avance.</p></div>
+    <div class="pf">
+      <div class="rv"><b class="n">10</b><h3>Módulos</h3><p>De entender tu etapa a dormir, comer, moverte, tu ánimo, tu intimidad y tu consulta. 31 lecciones con tarea, mitos y pregunta rápida.</p></div>
+      <div class="rv d1"><b class="n">132</b><h3>Videos para practicar</h3><p>Clases, respiración, movimiento, podcast, audiolibros y música para tus noches.</p></div>
+      <div class="rv d2"><b class="n">13</b><h3>Libros para hojear</h3><p>La Biblioteca PAUSA completa, dentro de la app: cada lección abre las páginas exactas.</p></div>
+      <div class="rv d3"><b class="n">1′</b><h3>Mi diario</h3><p>Registra tu día en un minuto: sofocos, sueño, energía y ánimo. Gráficas e informe en PDF para tu médica.</p></div>
+      <div class="rv"><b class="n">50</b><h3>Insignias y 15 niveles</h3><p>Misiones del día, rachas y celebraciones que te animan a seguir.</p></div>
+      <div class="rv d1"><b class="n">✓</b><h3>Certificado</h3><p>Al terminar el curso desbloqueas tu certificado, con tu nombre y tu foto.</p></div>
+      <div class="rv d2"><b class="n">2</b><h3>Celular y computador</h3><p>Entras con tu correo y tu contraseña, y tu progreso es el mismo en los dos.</p></div>
+      <div class="rv d3"><b class="n">🔒</b><h3>Privada de verdad</h3><p>Tu diario se guarda cifrado con tu contraseña. Solo tú puedes leerlo.</p></div>
+    </div>
+    <div class="cta-row" style="justify-content:center;margin-top:34px"><button type="button" class="btn btn-p" data-buy="todo">Quiero los libros + PLENA · USD <span data-bundle>19</span></button></div>
+  </div>
+</section>
+
+<!-- 8 · ECUACIÓN DE VALOR -->
 <section class="sec">
   <div class="wrap">
     <div class="sec-h rv"><span class="kick">Pensado para que funcione</span><h2>Lo hicimos <span class="scr">fácil</span> de verdad</h2></div>
     <div class="veq">
       <div class="rv"><span class="vi">01</span><h3>Lo que quieres</h3><p>Dormir mejor, tener energía, sentirte tú otra vez y entender tus opciones.</p></div>
       <div class="rv d1"><span class="vi">02</span><h3>Que de verdad sirva</h3><p>Cada consejo con su fuente y un semáforo de evidencia: sabes qué funciona y qué no.</p></div>
-      <div class="rv d2"><span class="vi">03</span><h3>Empiezas hoy</h3><p>«Empieza aquí» te dice qué hacer en los primeros 10 minutos. Nada de leer 170 páginas antes.</p></div>
-      <div class="rv d3"><span class="vi">04</span><h3>Sin esfuerzo extra</h3><p>1 minuto al día en la app, recetas con ingredientes de supermercado y plantillas ya hechas.</p></div>
+      <div class="rv d2"><span class="vi">03</span><h3>Empiezas hoy</h3><p>«Empieza aquí» te dice qué hacer en los primeros 10 minutos. Nada de leer 197 páginas antes.</p></div>
+      <div class="rv d3"><span class="vi">04</span><h3>Sin esfuerzo extra</h3><p>Recetas con ingredientes de supermercado, plantillas ya hechas y, con PLENA, 1 minuto al día en Mi diario.</p></div>
     </div>
   </div>
 </section>
 
-<!-- STACK DE VALOR -->
-<section class="sec" id="incluye" style="background:#fff">
-  <div class="wrap">
-    <div class="sec-h rv"><span class="kick">Todo lo que recibes</span><h2>14 productos. <span class="scr">Un solo pago.</span></h2><p class="lede">Este es el valor de cada producto si lo compras por separado en esta misma página. Toca una portada para verla en grande.</p></div>
-    <div class="stack" id="stack"></div>
-    <div class="stack-total rv">
-      <div class="st-l"><span>Valor si lo compras todo por separado</span><s>USD <span data-value>124</span></s></div>
-      <div class="st-r"><span data-launch>Hoy, todo junto (oferta de bienvenida)</span><span data-after hidden>Hoy, todo junto</span><b>USD <span data-bundle>19</span></b><em>Ahorras USD <span data-save>105</span> · <span data-pct>85</span> %</em></div>
-      <button type="button" class="btn btn-p" data-buy-all>Quiero todo por USD <span data-bundle>19</span></button>
-    </div>
-  </div>
-</section>
-
-<!-- POR DENTRO -->
-<section class="sec" id="dentro">
-  <div class="wrap">
-    <div class="sec-h rv"><span class="kick">Mira por dentro</span><h2>Bonito, claro <span class="scr">y fácil de leer</span></h2><p class="lede">Letra grande, colores suaves y una idea por página. Toca para ampliar.</p></div>
-    <div class="peek" id="peek">
-      <button type="button" data-zoom="/oferta/img/i-sofocos.webp" data-cap="Guía · Sofocos y sudores nocturnos"><img src="/oferta/img/i-sofocos.webp" alt="Página interior sobre sofocos" loading="lazy" width="794" height="1123"><figcaption>Guía · Sofocos</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-receta.webp" data-cap="Recetario · Bowl de pollo, quinoa y brócoli"><img src="/oferta/img/i-receta.webp" alt="Página de receta" loading="lazy" width="794" height="1123"><figcaption>Recetario · Bowl de pollo</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-sueno.webp" data-cap="PAUSA · Cuando la noche se vuelve larga"><img src="/oferta/img/i-sueno.webp" alt="Página sobre el sueño" loading="lazy" width="794" height="1123"><figcaption>PAUSA · Sueño</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-plan.webp" data-cap="Plan de 30 días"><img src="/oferta/img/i-plan.webp" alt="Página del plan de 30 días" loading="lazy" width="794" height="1123"><figcaption>Plan de 30 días</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-diario.webp" data-cap="Diario de síntomas (rellenable)"><img src="/oferta/img/i-diario.webp" alt="Página del diario de síntomas" loading="lazy" width="794" height="1123"><figcaption>Diario · rellenable</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-plato.webp" data-cap="Guía · El plato equilibrado"><img src="/oferta/img/i-plato.webp" alt="Página sobre el plato equilibrado" loading="lazy" width="794" height="1123"><figcaption>Guía · Alimentación</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-vit.webp" data-cap="Vitaminas y suplementos"><img src="/oferta/img/i-vit.webp" alt="Página de vitaminas" loading="lazy" width="794" height="1123"><figcaption>Vitaminas</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-yoga.webp" data-cap="Yoga en calma"><img src="/oferta/img/i-yoga.webp" alt="Página de yoga" loading="lazy" width="794" height="1123"><figcaption>Yoga en calma</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-guion.webp" data-cap="PAUSA · Tu consulta"><img src="/oferta/img/i-guion.webp" alt="Página del guion de consulta" loading="lazy" width="794" height="1123"><figcaption>PAUSA · Consulta</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-aroma.webp" data-cap="Aromaterapia"><img src="/oferta/img/i-aroma.webp" alt="Página de aromaterapia" loading="lazy" width="794" height="1123"><figcaption>Aromaterapia</figcaption></button>
-      <button type="button" data-zoom="/oferta/img/i-mitos.webp" data-cap="PAUSA · Mitos y realidad"><img src="/oferta/img/i-mitos.webp" alt="Página de mitos" loading="lazy" width="794" height="1123"><figcaption>PAUSA · Mitos</figcaption></button>
-    </div>
-    <div class="peek-nav"><button type="button" data-peek="-1" aria-label="Anterior">‹</button><button type="button" data-peek="1" aria-label="Siguiente">›</button></div>
-  </div>
-</section>
-
-<!-- APP -->
-<section class="sec appsec" id="app">
-  <div class="wrap appgrid">
-    <div class="phones rv" aria-label="Pantallas de la app">
-      <div class="phone fl" style="left:0;top:8%;transform:rotate(-7deg);--rot:-7deg;animation-delay:-1s"><img src="/oferta/img/app-plan30.webp" alt="Plan de 30 días en la app" loading="lazy" width="540" height="1169"></div>
-      <div class="phone fl" style="left:32%;top:0;z-index:2;--rot:0deg"><img src="/oferta/img/app-hoy.webp" alt="Registro diario en la app" loading="lazy" width="540" height="1169"></div>
-      <div class="phone fl" style="left:64%;top:12%;transform:rotate(7deg);--rot:7deg;animation-delay:-2.2s"><img src="/oferta/img/app-consulta.webp" alt="Resumen para tu consulta en la app" loading="lazy" width="540" height="1169"></div>
-      <svg class="sv" style="left:44%;top:-4%;width:54px;z-index:3;animation:beat 1.6s ease-in-out infinite" viewBox="-3 -3 30 30" aria-hidden="true"><use href="#hrt" fill="#E0337A" stroke="#fff" stroke-width="2.2"/></svg>
-    </div>
-    <div class="rv d1">
-      <span class="kick">App privada · solo para clientas</span>
-      <h2 style="margin-top:12px">Tu diario, tu plan y tu <span class="scr">memoria</span> para la consulta</h2>
-      <p class="lede" style="margin-top:14px">Entras con tu código personal de acceso. Funciona en el navegador del celular y del computador, sin descargar nada y sin crear contraseñas.</p>
-      <div class="feat">
-        <div><b>Registro en 1 minuto</b><span>Sofocos, sueño, energía, ánimo, agua y síntomas.</span></div>
-        <div><b>Gráficas de tu progreso</b><span>Mira cómo cambian tus noches y tu energía.</span></div>
-        <div><b>Plan de 30 días</b><span>Seis hábitos con racha y confeti al cumplir.</span></div>
-        <div><b>Informe en PDF</b><span>Un resumen bonito para llevar a tu médica.</span></div>
-        <div><b>Plantillas editables</b><span>Menú, compras, consulta y suplementos.</span></div>
-        <div><b>Sincroniza sola</b><span>Lo mismo en tu celular y en tu computador.</span></div>
-      </div>
-      <div class="cta-row"><button type="button" class="btn btn-p" data-buy-all>Quiero la app y todo el pack</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- RECETAS -->
-<section class="sec">
+<!-- 9 · RECETAS -->
+<section class="sec" style="background:#fff">
   <div class="wrap">
     <div class="sec-h rv"><span class="kick">Recetario incluido</span><h2>Comida rica, <span class="scr">de verdad</span></h2><p class="lede">20 recetas fáciles con ingredientes de supermercado, pensadas para tus huesos, tu músculo y tu energía.</p></div>
     <div class="food">
@@ -650,54 +792,81 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   </div>
 </section>
 
-<!-- OFERTA -->
-<section class="sec" id="oferta" style="background:#fff">
+<!-- 10 · LAS 2 OFERTAS -->
+<section class="sec" id="ofertas">
   <div class="wrap">
-    <div class="sec-h rv"><span class="kick" data-launch>Oferta de bienvenida · solo esta visita</span><span class="kick" data-after hidden>La oferta</span><h2>Todo junto, <span class="scr">un solo pago</span></h2></div>
-    <div class="offer rv">
-      <div class="l">
-        <h3 style="font-size:28px">Pack Menopausia sin tabú · Todo junto</h3>
-        <ul id="offerList"></ul>
-      </div>
-      <div class="r">
-        <span class="pill" style="align-self:flex-start" data-launch>Expira en <span data-cd>15:00</span></span>
-        <span class="pill" style="align-self:flex-start;background:#FFD95A" data-after hidden>Tu oferta de bienvenida terminó</span>
-        <div class="vline">Valor por separado <s>USD <span data-value>124</span></s></div>
-        <div class="price"><small>USD</small><span data-bundle>19</span></div>
-        <p class="note"><b style="color:#fff">Ahorras USD <span data-save>105</span>.</b> <span data-launch>Es solo para esta visita: cuando el contador llegue a cero, o si sales de la página, vuelve a USD <span data-regular>37</span>.</span> Pago único: sin suscripciones.</p>
+    <div class="sec-h rv"><span class="kick" data-launch>Oferta de bienvenida · solo esta visita</span><span class="kick" data-after hidden>Elige tu oferta</span><h2>Elige cómo <span class="scr">empezar</span></h2><p class="lede" data-launch>Los dos precios de bienvenida valen <b>solo durante esta visita</b>. Cuando el contador llegue a cero, o si sales de la página, vuelven a su precio normal.</p><p class="lede" data-after hidden>Pago único, sin suscripciones. Recibes todo en tu correo en cuanto se confirma tu pago.</p></div>
+    <div class="offers">
+      <article class="ofc rv">
+        <span class="on">Oferta 1</span>
+        <h3>Biblioteca PAUSA</h3>
+        <p class="for">Para leer a tu ritmo: los 13 libros en PDF para descargar, imprimir y rellenar.</p>
+        <div class="fan" aria-hidden="true"><img src="/oferta/img/c-pausa.webp" alt="" loading="lazy" style="left:0;transform:rotate(-8deg)"><img src="/oferta/img/c-guia.webp" alt="" loading="lazy" style="left:48px;transform:rotate(-3deg)"><img src="/oferta/img/c-recetario.webp" alt="" loading="lazy" style="left:96px;transform:rotate(2deg)"><img src="/oferta/img/c-k1.webp" alt="" loading="lazy" style="left:144px;transform:rotate(6deg)"><img src="/oferta/img/c-k4.webp" alt="" loading="lazy" style="left:192px;transform:rotate(10deg)"></div>
+        <div class="pr"><div><s>Valor USD <span data-lib-value>95</span></s><b><small>USD</small><span data-lib>12</span></b></div><em data-launch>Bienvenida · luego USD <span data-lib-regular>24</span></em></div>
+        <ul>
+          <li><span><b>PAUSA</b>, el manual de la menopausia (60 páginas)</span></li>
+          <li><span><b>Guía Integral</b> Menopausia Equilibrada (38 páginas)</span></li>
+          <li><span><b>6 bonos:</b> recetario, plan de 30 días, vitaminas, diario de síntomas, yoga y aromaterapia</span></li>
+          <li><span><b>3 plantillas</b> rellenables para tu consulta</span></li>
+          <li><span><b>4 kits:</b> noches frescas, intimidad, trabajo y fuerza</span></li>
+          <li class="x"><span>Sin la academia PLENA, sin videos y sin Mi diario</span></li>
+        </ul>
+        <button type="button" class="btn btn-g" data-buy="libros" style="border-color:var(--fucsia)">Quiero los 13 libros · USD <span data-lib>12</span></button>
+        <p class="fine">Te llegan al correo para descargar.</p>
+      </article>
+      <article class="ofc best rv d1">
+        <span class="badge">★ La más elegida · ahorras más</span>
+        <span class="on">Oferta 2 · completa</span>
+        <h3>Libros + PLENA</h3>
+        <p class="for">Todo lo de la oferta 1, más tu academia: te dice qué hacer cada día y te muestra tu progreso.</p>
+        <div class="fan" aria-hidden="true"><img src="/oferta/img/c-pausa.webp" alt="" loading="lazy" style="left:0;transform:rotate(-8deg)"><img src="/oferta/img/c-guia.webp" alt="" loading="lazy" style="left:46px;transform:rotate(-3deg)"><img src="/oferta/img/c-k2.webp" alt="" loading="lazy" style="left:92px;transform:rotate(2deg)"><img class="ph" src="/oferta/img/app-hoy.webp" alt="" loading="lazy" style="left:150px;transform:rotate(7deg)"></div>
+        <div class="pr"><div><s>Valor USD <span data-value>124</span></s><b><small>USD</small><span data-bundle>19</span></b></div><em data-launch>Bienvenida · luego USD <span data-regular>37</span></em></div>
+        <ul>
+          <li><span><b>Los 13 libros</b> de la Biblioteca PAUSA en PDF</span></li>
+          <li><span><b>Academia PLENA:</b> 10 módulos y 31 lecciones</span></li>
+          <li><span><b>132 videos</b> para practicar, podcast y música</span></li>
+          <li><span><b>Mi diario</b> (app): registro en 1 minuto, gráficas e informe en PDF</span></li>
+          <li><span>Los libros para hojear <b>dentro de PLENA</b></span></li>
+          <li><span><b>Logros, misiones y certificado</b></span></li>
+          <li><span>Tu cuenta personal en <b>celular y computador</b></span></li>
+        </ul>
         <div class="cdbox" data-launch aria-live="off"><div><b data-cdm>15</b><span>minutos</span></div><div><b data-cds>00</b><span>segundos</span></div></div>
-        <button type="button" class="btn btn-p" data-buy-all style="width:100%;font-size:18px">Quiero todo por USD <span data-bundle>19</span></button>
-        <div class="dig"><b>Producto digital, acceso inmediato.</b> Recibes tus PDF y tu código de la app en cuanto se confirma tu pago.</div>
-        <p class="note" id="payNote" style="font-size:13px">Recibes tus descargas y tu código de la app.</p>
-        <svg class="sv fl" style="right:18px;top:18px;width:46px;--rot:12deg" viewBox="-3 -3 30 30" aria-hidden="true"><use href="#star" fill="#FFD95A" stroke="#fff" stroke-width="2.2"/></svg>
-      </div>
+        <button type="button" class="btn btn-p" data-buy="todo">Quiero libros + PLENA · USD <span data-bundle>19</span></button>
+        <p class="fine">Solo USD <span data-diff>7</span> más que los libros solos.</p>
+      </article>
     </div>
+    <div class="cmp rv">
+      <table>
+        <thead><tr><th scope="col">Qué recibes</th><th scope="col">Biblioteca PAUSA</th><th scope="col">Libros + PLENA</th></tr></thead>
+        <tbody>
+          <tr><td>13 libros en PDF (descargar, imprimir, rellenar)</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Academia PLENA: 10 módulos y 31 lecciones</td><td class="no">—</td><td>✓</td></tr>
+          <tr><td>132 videos, podcast y música</td><td class="no">—</td><td>✓</td></tr>
+          <tr><td>Mi diario (app) con gráficas e informe en PDF</td><td class="no">—</td><td>✓</td></tr>
+          <tr><td>Logros, misiones y certificado</td><td class="no">—</td><td>✓</td></tr>
+          <tr><td>Cuenta personal en celular y computador</td><td class="no">—</td><td>✓</td></tr>
+          <tr><td>Precio hoy</td><td>USD <span data-lib>12</span></td><td>USD <span data-bundle>19</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="upg rv">¿Empiezas con los libros? Puedes <b>sumar PLENA después</b> desde tu página de descarga, pagando solo la diferencia.</p>
   </div>
 </section>
 
-<!-- TIENDA -->
-<section class="sec" id="tienda" style="background:#fff">
-  <div class="wrap">
-    <div class="sec-h rv"><span class="kick">¿Solo necesitas una parte?</span><h2>Cómpralo <span class="scr">por separado</span></h2><p class="lede">Elige solo lo que quieras. Si la suma llega a USD <span data-bundle>19</span>, te damos todo el pack por ese precio automáticamente.</p></div>
-    <div class="shop" id="shop"></div>
-    <div class="shopbar rv"><span>Por separado todo suma <b>USD <span data-value>124</span></b>. Todo junto cuesta <b>USD <span data-bundle>19</span></b>.</span><button type="button" class="btn btn-p" data-buy-all>Mejor me llevo todo</button></div>
-  </div>
-</section>
-
-<!-- CÓMO FUNCIONA -->
-<section class="sec">
+<!-- 11 · CÓMO FUNCIONA -->
+<section class="sec" style="background:#fff">
   <div class="wrap">
     <div class="sec-h rv"><span class="kick">Así de fácil</span><h2>Empiezas <span class="scr">hoy mismo</span></h2></div>
     <div class="steps">
-      <div class="step rv"><h3>Elige</h3><p>Todo junto o solo lo que necesites. Pagas una sola vez.</p></div>
-      <div class="step rv d1"><h3>Descarga</h3><p>Recibes tus PDF y, si tu compra la incluye, tu código de acceso a la app.</p></div>
-      <div class="step rv d2"><h3>Empieza</h3><p>Lee «Empieza aquí», registra tu día y sigue tu plan de 30 días.</p></div>
+      <div class="step rv"><h3>Elige</h3><p>Solo los 13 libros o los libros con PLENA. Pagas una sola vez, sin suscripciones.</p></div>
+      <div class="step rv d1"><h3>Revisa tu correo</h3><p>Con los libros te llega el enlace de descarga. Con PLENA, además, creas tu cuenta con tu correo y una contraseña.</p></div>
+      <div class="step rv d2"><h3>Empieza</h3><p>Lee «Empieza aquí» o entra a PLENA: tu siguiente paso ya te está esperando.</p></div>
     </div>
   </div>
 </section>
 
-<!-- PARA QUIÉN -->
-<section class="sec" style="background:#fff">
+<!-- 12 · PARA QUIÉN -->
+<section class="sec">
   <div class="wrap">
     <div class="sec-h rv"><span class="kick">Con honestidad</span><h2>¿Es para ti?</h2></div>
     <div class="fit">
@@ -707,8 +876,8 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   </div>
 </section>
 
-<!-- EVIDENCIA -->
-<section class="sec">
+<!-- 13 · EVIDENCIA -->
+<section class="sec" style="background:#fff">
   <div class="wrap ev">
     <div class="rv">
       <span class="kick">Hecho con evidencia</span>
@@ -726,16 +895,18 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="sec" id="preguntas" style="background:#fff">
+<!-- 14 · FAQ -->
+<section class="sec" id="preguntas">
   <div class="wrap">
     <div class="sec-h rv"><span class="kick">Preguntas frecuentes</span><h2>Antes de <span class="scr">decidir</span></h2></div>
     <div class="faq">
-      <details class="rv"><summary>¿Cómo recibo todo?</summary><p>Al confirmarse tu pago ves una página con los botones de descarga de cada PDF y, si tu compra incluye la app, tu código de acceso. Guarda esa página o descarga los archivos en tu celular o computador.</p></details>
-      <details class="rv"><summary>¿Por qué todo junto cuesta menos que dos productos sueltos?</summary><p>Porque queremos que tengas el plan completo: las guías, los bonos, las plantillas, los kits y la app funcionan mejor juntos. Por eso el precio de todo junto es el más conveniente.</p></details>
-      <details class="rv"><summary>¿Por qué la oferta dura tan poco?</summary><p>Es una oferta de bienvenida solo para esta visita: todo junto por USD 19 durante 15 minutos. Si el tiempo termina o sales de la página, todo junto vuelve a costar USD 37.</p></details>
-      <details class="rv"><summary>¿Puedo pedir devolución?</summary><p>Es un producto digital de entrega inmediata: al confirmarse tu pago recibes todos los archivos y tu acceso, por eso no hay devoluciones. Antes de comprar puedes ver las portadas y las páginas de muestra en esta misma página.</p></details>
-      <details class="rv"><summary>¿Cómo entro a la app?</summary><p>Con el código personal que recibes al comprar el pack completo (o la app por separado). Ábrela desde el botón «Abrir mi app» y guarda tu enlace personal para usarla igual en tu celular y en tu computador.</p></details>
+      <details class="rv"><summary>¿Qué diferencia hay entre las 2 ofertas?</summary><p>La Biblioteca PAUSA son los 13 libros en PDF para descargar. Libros + PLENA incluye esos mismos 13 libros y, además, la academia PLENA: 10 módulos con 31 lecciones, 132 videos, Mi diario (la app para registrar tu día y ver tu progreso), logros y certificado, con tu cuenta personal.</p></details>
+      <details class="rv"><summary>¿Cómo recibo mi compra?</summary><p>Al confirmarse tu pago te llega un correo a la dirección que escribiste. Con la Biblioteca PAUSA, el correo trae el botón para descargar tus 13 libros. Con Libros + PLENA, además creas tu cuenta: tu usuario es tu correo y tú eliges la contraseña. Nadie más la conoce y nunca te la enviamos por correo.</p></details>
+      <details class="rv"><summary>¿Puedo empezar con los libros y sumar PLENA después?</summary><p>Sí. En tu página de descarga verás el botón para sumar PLENA pagando solo la diferencia.</p></details>
+      <details class="rv"><summary>¿Por qué la oferta dura tan poco?</summary><p>Es una oferta de bienvenida solo para esta visita: durante 15 minutos los 13 libros cuestan USD <span data-lib-launch>12</span> y los libros con PLENA USD <span data-bundle-launch>19</span>. Si el tiempo termina o sales de la página, vuelven a USD <span data-lib-regular>24</span> y USD <span data-regular>37</span>.</p></details>
+      <details class="rv"><summary>¿Cómo entro a PLENA?</summary><p>En tu celular o en tu computador, con tu correo y la contraseña que creaste. Si la olvidas, toca «¿Olvidaste tu contraseña?» y te llega un enlace para crear una nueva.</p></details>
+      <details class="rv"><summary>¿Mis datos son privados?</summary><p>Sí. Tu cuenta es personal y lo que escribes en Mi diario se guarda cifrado con tu contraseña: solo tú puedes leerlo. Puedes descargar tus datos o borrar tu cuenta cuando quieras. Lee la <a href="/privacidad.html">política de privacidad</a>.</p></details>
+      <details class="rv"><summary>¿Puedo pedir devolución?</summary><p>Es un producto digital de entrega inmediata: al confirmarse tu pago recibes todos los archivos y tu acceso, por eso no hay devoluciones. Antes de comprar puedes leer un adelanto de cada libro en la biblioteca de arriba.</p></details>
       <details class="rv"><summary>¿Reemplaza a mi médica?</summary><p>No. Es información educativa para que entiendas lo que te pasa, conozcas tus opciones y llegues a la consulta con datos y preguntas. Las decisiones sobre tratamientos se toman con tu profesional de salud.</p></details>
       <details class="rv"><summary>¿Sirve si vivo en Latinoamérica?</summary><p>Sí. Está escrito en español neutro, con datos de la región cuando existen y con fuentes internacionales. Cuando una cifra es de otro país, lo decimos.</p></details>
       <details class="rv"><summary>¿Puedo llenar las plantillas en el celular?</summary><p>Sí. Los PDF tienen campos rellenables: ábrelos con una app de PDF (por ejemplo, Adobe Acrobat Reader, gratis) y escribe directo. También puedes imprimirlos.</p></details>
@@ -744,14 +915,14 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   </div>
 </section>
 
-<!-- FINAL -->
+<!-- 15 · FINAL -->
 <section class="sec final">
   <img class="stk fl" src="/oferta/img/cut22a.webp" alt="" loading="lazy" style="position:absolute;width:min(220px,26vw);left:2%;bottom:0;--rot:-4deg" width="641" height="1100">
   <img class="stk fl" src="/oferta/img/cut27a.webp" alt="" loading="lazy" style="position:absolute;width:min(230px,26vw);right:2%;bottom:0;--rot:4deg;animation-delay:-2s" width="900" height="1100">
   <div class="wrap" style="position:relative;z-index:2">
     <h2>Esta es una etapa, <span class="scr">no el final</span></h2>
-    <p>14 productos, valor USD <span data-value>124</span>, hoy todo junto por USD <span data-bundle>19</span>. Pago único.</p>
-    <div class="cta-row" style="justify-content:center"><button type="button" class="btn btn-p" data-buy-all>Quiero todo por USD <span data-bundle>19</span></button></div>
+    <p>13 libros por USD <span data-lib>12</span>, o los libros con PLENA por USD <span data-bundle>19</span>. Pago único.</p>
+    <div class="cta-row" style="justify-content:center"><button type="button" class="btn btn-p" data-buy="todo">Libros + PLENA · USD <span data-bundle>19</span></button><button type="button" class="btn btn-g" data-buy="libros">Solo los libros · USD <span data-lib>12</span></button></div>
     <p data-launch style="font-size:15px;margin-top:14px">Tu oferta de bienvenida expira en <b data-cd>15:00</b></p>
   </div>
 </section>
@@ -766,9 +937,24 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   </div>
 </footer>
 
-<div class="mbar" id="mbar" aria-hidden="true"><div><b>Todo por USD <span data-bundle>19</span></b><span><s>USD <span data-value>124</span></s> · <span data-launch>expira en <span data-cd>15:00</span></span><span data-after hidden>pago único</span></span></div><button type="button" class="btn btn-p" data-buy-all tabindex="-1">Lo quiero</button></div>
+<div class="mbar" id="mbar" aria-hidden="true"><div><b>Desde USD <span data-lib>12</span></b><span>Con PLENA USD <span data-bundle>19</span> · <span data-launch>expira en <span data-cd>15:00</span></span><span data-after hidden>pago único</span></span></div><a class="btn btn-p" href="#ofertas" tabindex="-1">Ver ofertas</a></div>
 
-<!-- CARRITO / CHECKOUT -->
+<!-- LECTOR DE ADELANTOS (biblioteca 3D) -->
+<section class="l3-reader" id="l3Reader" role="dialog" aria-modal="true" aria-labelledby="l3ReaderTitle" aria-hidden="true" inert>
+  <header class="l3-bar">
+    <button type="button" class="l3-back">← Biblioteca</button>
+    <div class="l3-heading"><span class="l3-reader-label"></span><h2 id="l3ReaderTitle"></h2></div>
+    <div class="l3-ctrls">
+      <button type="button" class="l3-page-prev" aria-label="Página anterior">←</button><input class="l3-page-input" type="number" min="1" step="1" aria-label="Ir a la página"><span class="l3-page-total"></span><button type="button" class="l3-page-next" aria-label="Página siguiente">→</button>
+      <button type="button" class="l3-zoom" aria-pressed="false">Ampliar</button>
+      <button type="button" class="l3-buy" data-l3-oferta>Lo quiero</button>
+    </div>
+    <div class="l3-progress"></div>
+  </header>
+  <div class="l3-scroll" tabindex="0" aria-label="Páginas del adelanto"><div class="l3-pages"></div></div>
+</section>
+
+<!-- CHECKOUT -->
 <div class="ov" id="ov"></div>
 <aside class="co" id="co" role="dialog" aria-modal="true" aria-labelledby="coTitle" aria-hidden="true">
   <div class="co-h"><h2 id="coTitle">Tu pedido</h2><button type="button" class="co-x" id="coX" aria-label="Cerrar">✕</button></div>
@@ -777,7 +963,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     <div id="cartLines" class="cart"></div>
     <div id="nudge"></div>
     <div class="sum" aria-live="polite">
-      <div id="sSub" hidden><span>Por separado</span><span id="sSubV"></span></div>
+      <div id="sSub" hidden><span>Valor por separado</span><span id="sSubV"></span></div>
       <div id="sSave" class="sv2" hidden><span>Tu ahorro</span><span id="sSaveV"></span></div>
       <div class="tt"><span>Total</span><span id="sTotal">USD 19</span></div>
     </div>
@@ -793,7 +979,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     <div class="done" id="coDone" hidden>
       <div class="big">¡Gracias!</div>
       <h3 style="font-size:26px">Tu pedido está reservado</h3>
-      <p>Te escribiremos a <b id="dEmail"></b> con tu enlace de pago. Cuando se confirme, recibirás el enlace para descargar todo.</p>
+      <p>Te escribiremos a <b id="dEmail"></b> con tu enlace de pago. Cuando se confirme, recibirás tu compra en ese mismo correo.</p>
       <p style="font-size:14px;color:var(--muted)">Número de pedido: <b id="dId"></b></p>
     </div>
   </div>
@@ -803,10 +989,11 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 <dialog class="lb" id="lb" aria-label="Vista ampliada"><button type="button" id="lbX" aria-label="Cerrar">✕</button><img id="lbImg" alt=""><p id="lbCap"></p></dialog>
 <div class="toast" id="toast" role="status" hidden></div>
 
+<script src="/oferta/biblioteca3d.js" defer></script>
 <script>
 (function(){
 'use strict';
-// Catálogo (debe coincidir con lib/catalog.js)
+// Los 13 libros (deben coincidir con lib/catalog.js: id, nombre, detalle, descripción, valor USD, portada, grupo)
 var CAT=[
  ['pausa','PAUSA · El manual de la menopausia','60 páginas · 10 capítulos · 10 herramientas','Qué es cada etapa, tratamientos con evidencia y guiones para tu consulta, tu pareja y tu trabajo.',14,'c-pausa','Núcleo'],
  ['guia','Guía Integral Menopausia Equilibrada','38 páginas · 6 áreas','Síntomas, alimentación, ejercicio, sueño, salud hormonal y bienestar emocional.',12,'c-guia','Núcleo'],
@@ -820,12 +1007,13 @@ var CAT=[
  ['k1','Kit Noches frescas','Protocolo de 21 días','Para sofocos nocturnos y sueño interrumpido.',9,'c-k1','Kit'],
  ['k2','Kit Intimidad sin dolor','Guía + conversación','Sequedad, dolor y deseo: opciones y cómo hablarlo.',8,'c-k2','Kit'],
  ['k3','Kit Menopausia en el trabajo','Correos y guion listos','Pide ajustes sin pedir favores.',7,'c-k3','Kit'],
- ['k4','Kit Fuerte después de los 45','12 semanas en casa','Fuerza para huesos y músculo, sin gimnasio.',9,'c-k4','Kit'],
- ['app','App Menopausia Equilibrada','Acceso privado de por vida','Registro diario, plan, gráficas, plantillas e informe en PDF. Celular y computador.',29,'app-hoy','App']
+ ['k4','Kit Fuerte después de los 45','12 semanas en casa','Fuerza para huesos y músculo, sin gimnasio.',9,'c-k4','Kit']
 ];
-var BY={};CAT.forEach(function(c){BY[c[0]]=c});
+var APP_VALUE=29;
 var WIN=15*60*1000;
-var B={launch:19,regular:37,ends:0,value:CAT.reduce(function(a,c){return a+c[4]},0)};
+var libVal=CAT.reduce(function(a,c){return a+c[4]},0);
+// 2 ofertas: «libros» (Biblioteca PAUSA) y «todo» (libros + PLENA). Precios por defecto; el servidor manda los reales.
+var B={launch:19,regular:37,libLaunch:12,libRegular:24,ends:0,libValue:libVal,value:libVal+APP_VALUE};
 var skew=0,mode='pedido',expiredShown=false;
 // Oferta de bienvenida: válida solo en esta visita (pestaña) y durante 15 minutos; el servidor firma la hora de inicio.
 var tok='';try{tok=localStorage.getItem('ofTok')||''}catch(e){}
@@ -834,101 +1022,91 @@ var gone=!!tok&&!inSess&&!/[?&]pago=cancelado/.test(location.search);
 B.ends=gone?0:Date.now()+WIN;
 if(!gone){try{sessionStorage.setItem('ofSess','1')}catch(e){}}
 function now(){return Date.now()+skew}
-function bundle(){return now()<=B.ends?B.launch:B.regular}
 function isLaunch(){return now()<=B.ends}
-var cart=[];try{var sv=JSON.parse(sessionStorage.getItem('ofCart')||'[]');if(Array.isArray(sv))cart=sv.filter(function(k){return k==='todo'||BY[k]})}catch(e){}
+function bundle(){return isLaunch()?B.launch:B.regular}
+function lib(){return isLaunch()?B.libLaunch:B.libRegular}
+var cart=[];try{var sv=JSON.parse(sessionStorage.getItem('ofCart')||'[]');if(Array.isArray(sv))cart=sv.filter(function(k){return k==='todo'||k==='libros'}).slice(0,1)}catch(e){}
 function $(s,c){return (c||document).querySelector(s)}function $$(s,c){return [].slice.call((c||document).querySelectorAll(s))}
 function usd(n){return 'USD '+n}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function imgOf(c){return '/oferta/img/'+c[5]+'.webp'}
-setTimeout(function(){meTrack('ViewContent',{content_name:'Pack Menopausia sin tabú',currency:'USD'})},800);
+setTimeout(function(){meTrack('ViewContent',{content_name:'Biblioteca PAUSA y PLENA',currency:'USD'})},800);
 function quote(){
-  if(!cart.length)return{todo:false,total:0,sum:0,auto:false};
-  if(cart.indexOf('todo')>=0)return{todo:true,total:bundle(),sum:B.value,auto:false};
-  var sum=cart.reduce(function(a,k){return a+BY[k][4]},0);
-  if(sum>=bundle())return{todo:true,total:bundle(),sum:sum,auto:true};
-  return{todo:false,total:sum,sum:sum,auto:false};
+  if(cart[0]==='todo')return{k:'todo',total:bundle(),value:B.value};
+  if(cart[0]==='libros')return{k:'libros',total:lib(),value:B.libValue};
+  return{k:'',total:0,value:0};
 }
 function toast(m){var t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(window._tt);window._tt=setTimeout(function(){t.hidden=true},2600)}
 
-// stack de valor + lista de la oferta + tienda
-var grp={'Núcleo':'El núcleo','Bono':'6 bonos','Herramienta':'Herramientas','Kit':'4 kits para tu dolor más fuerte','App':'Tu app privada'};
+// los 13 libros con su valor
+var grp={'Núcleo':'Los 2 libros principales','Bono':'6 bonos','Herramienta':'Herramientas','Kit':'4 kits para tu dolor más fuerte'};
 var h='',last='';
-CAT.forEach(function(c,i){
+CAT.forEach(function(c){
   if(c[6]!==last){h+='<div class="sg rv">'+grp[c[6]]+'</div>';last=c[6]}
-  h+='<div class="si rv"><button type="button" class="sc'+(c[0]==='app'?' ap':'')+'" data-zoom="'+imgOf(c)+'" data-cap="'+esc(c[1])+'" aria-label="Ver '+esc(c[1])+' en grande"><img src="'+imgOf(c)+'" alt="" loading="lazy" width="560" height="792"></button><div class="st2"><b>'+esc(c[1])+'</b><span class="sd">'+esc(c[2])+'</span><p>'+esc(c[3])+'</p></div><div class="sv3"><span>Valor</span><b>USD '+c[4]+'</b></div></div>';
+  h+='<div class="si rv"><button type="button" class="sc" data-zoom="'+imgOf(c)+'" data-cap="'+esc(c[1])+'" aria-label="Ver '+esc(c[1])+' en grande"><img src="'+imgOf(c)+'" alt="" loading="lazy" width="560" height="792"></button><div class="st2"><b>'+esc(c[1])+'</b><span class="sd">'+esc(c[2])+'</span><p>'+esc(c[3])+'</p></div><div class="sv3"><span>Valor</span><b>USD '+c[4]+'</b></div></div>';
 });
 $('#stack').innerHTML=h;
-$('#offerList').innerHTML=CAT.map(function(c){return '<li><svg width="22" height="22" aria-hidden="true"><use href="#chk"/></svg><span>'+esc(c[1])+'</span><em>USD '+c[4]+'</em></li>'}).join('');
-$('#shop').innerHTML=CAT.map(function(c){return '<article class="pi rv" data-pi="'+c[0]+'"><button type="button" class="sc'+(c[0]==='app'?' ap':'')+'" data-zoom="'+imgOf(c)+'" data-cap="'+esc(c[1])+'" aria-label="Ver '+esc(c[1])+' en grande"><img src="'+imgOf(c)+'" alt="" loading="lazy" width="560" height="792"></button><span class="pt">'+esc(c[6])+'</span><b>'+esc(c[1])+'</b><span class="pd">'+esc(c[2])+'</span><div class="pp"><strong>USD '+c[4]+'</strong><button type="button" class="btn btn-g" data-add="'+c[0]+'">Añadir</button></div></article>'}).join('');
 
+function set(sel,v){$$(sel).forEach(function(e){e.textContent=v})}
 function render(){
-  var b=bundle(),L=isLaunch(),q=quote();
-  $$('[data-bundle]').forEach(function(e){e.textContent=b});
-  $$('[data-regular]').forEach(function(e){e.textContent=B.regular});
-  $$('[data-value]').forEach(function(e){e.textContent=B.value});
-  $$('[data-save]').forEach(function(e){e.textContent=B.value-b});
-  $$('[data-pct]').forEach(function(e){e.textContent=Math.round((1-b/B.value)*100)});
+  var b=bundle(),l=lib(),L=isLaunch(),q=quote();
+  set('[data-bundle]',b);set('[data-lib]',l);
+  set('[data-regular]',B.regular);set('[data-lib-regular]',B.libRegular);
+  set('[data-bundle-launch]',B.launch);set('[data-lib-launch]',B.libLaunch);
+  set('[data-value]',B.value);set('[data-lib-value]',B.libValue);
+  set('[data-save]',B.value-b);set('[data-lib-save]',B.libValue-l);set('[data-diff]',Math.max(0,b-l));
   $$('[data-launch]').forEach(function(e){e.hidden=!L});$$('[data-after]').forEach(function(e){e.hidden=L});
-  // carrito
-  var n=cart.indexOf('todo')>=0?1:cart.length;$('#cartN').hidden=!n;$('#cartN').textContent=n;
+  // pedido
   var lines='';
-  if(!cart.length){lines='<p class="empty">Tu carrito está vacío.</p>'}
-  else if(cart.indexOf('todo')>=0){lines='<div class="line big"><div class="mini"><img src="/oferta/img/c-pausa.webp" alt=""><img src="/oferta/img/c-guia.webp" alt=""><img src="/oferta/img/c-k1.webp" alt=""></div><div><b>Pack Menopausia sin tabú · Todo junto</b><small>14 productos: 2 guías, 6 bonos, 3 plantillas, 4 kits y app privada</small><small><s>Valor USD '+B.value+'</s></small></div><strong>'+usd(b)+'</strong><button type="button" class="rm" data-rm="todo" aria-label="Quitar">✕</button></div>'}
-  else{cart.forEach(function(k){var c=BY[k];lines+='<div class="line"><img src="'+imgOf(c)+'" alt="" width="48"><div><b>'+esc(c[1])+'</b><small>'+esc(c[2])+'</small></div><strong>'+usd(c[4])+'</strong><button type="button" class="rm" data-rm="'+k+'" aria-label="Quitar '+esc(c[1])+'">✕</button></div>'})}
+  if(q.k==='todo'){lines='<div class="line big"><div class="mini"><img src="/oferta/img/c-pausa.webp" alt=""><img src="/oferta/img/c-guia.webp" alt=""><img src="/oferta/img/c-k1.webp" alt=""></div><div><b>Libros + PLENA</b><small>13 libros + academia PLENA (10 módulos, 132 videos) + Mi diario</small><small><s>Valor USD '+B.value+'</s></small></div><strong>'+usd(b)+'</strong><button type="button" class="rm" data-rm aria-label="Quitar">✕</button></div>'}
+  else if(q.k==='libros'){lines='<div class="line big"><div class="mini"><img src="/oferta/img/c-pausa.webp" alt=""><img src="/oferta/img/c-guia.webp" alt=""><img src="/oferta/img/c-recetario.webp" alt=""></div><div><b>Biblioteca PAUSA · 13 libros</b><small>PAUSA, Guía Integral, 6 bonos, 3 plantillas y 4 kits en PDF</small><small><s>Valor USD '+B.libValue+'</s></small></div><strong>'+usd(l)+'</strong><button type="button" class="rm" data-rm aria-label="Quitar">✕</button></div>'}
+  else{lines='<div class="empty"><p>Elige tu oferta:</p><button type="button" class="btn btn-p" data-buy="todo">Libros + PLENA · '+usd(b)+'</button><button type="button" class="btn btn-g" data-buy="libros">Solo los 13 libros · '+usd(l)+'</button></div>'}
   $('#cartLines').innerHTML=lines;
-  var nd='';
-  if(cart.length&&cart.indexOf('todo')<0){
-    if(q.auto){nd='<div class="nudge ok"><b>¡Te conviene todo junto!</b> Tu selección suma '+usd(q.sum)+'. Por '+usd(b)+' te llevamos los 14 productos. Ya lo aplicamos.</div>'}
-    else{nd='<div class="nudge"><b>Por solo '+usd(b-q.sum)+' más</b> te llevas los 14 productos (valor '+usd(B.value)+'), con la app privada y los 4 kits.<button type="button" class="btn btn-p" data-buy-all style="width:100%;margin-top:10px;min-height:48px;font-size:15px">Cambiar a todo junto · '+usd(b)+'</button></div>'}
-  }
-  $('#nudge').innerHTML=nd;
-  $('#sSub').hidden=!(q.todo&&cart.length);$('#sSubV').innerHTML='<s>'+usd(q.auto?q.sum:B.value)+'</s>';
-  var save=(q.auto?q.sum:B.value)-b;$('#sSave').hidden=!(q.todo&&cart.length);$('#sSaveV').textContent='−'+usd(save);
+  $('#nudge').innerHTML=q.k==='libros'?'<div class="nudge"><b>Por solo '+usd(Math.max(0,b-l))+' más</b> te llevas también PLENA: 10 módulos, 132 videos, Mi diario, logros y certificado.<button type="button" class="btn btn-p" data-buy="todo" style="width:100%;margin-top:10px;min-height:48px;font-size:15px">Cambiar a libros + PLENA · '+usd(b)+'</button></div>':'';
+  $('#sSub').hidden=$('#sSave').hidden=!q.k;
+  $('#sSubV').innerHTML='<s>'+usd(q.value)+'</s>';$('#sSaveV').textContent='−'+usd(q.value-q.total);
   $('#sTotal').textContent=usd(q.total);$('#coPayV').textContent=usd(q.total);
-  $('#coPay').disabled=!cart.length;
-  $$('[data-pi]').forEach(function(a){var k=a.dataset.pi,on=cart.indexOf(k)>=0||cart.indexOf('todo')>=0;a.classList.toggle('on',on);var bt=$('[data-add]',a);bt.textContent=cart.indexOf('todo')>=0?'Incluido ✓':(on?'Añadido ✓':'Añadir');bt.className='btn '+(on?'btn-p':'btn-g')});
+  $('#coPay').disabled=!q.k;
+  $('#cEmailN').textContent=q.k==='libros'?'Escríbelo bien: a este correo te llegan tus 13 libros.':'Escríbelo bien: a este correo te llega el acceso para crear tu cuenta de PLENA, y será tu usuario.';
   try{sessionStorage.setItem('ofCart',JSON.stringify(cart))}catch(e){}
 }
-function setAll(){cart=['todo'];render();meTrack('AddToCart',{value:bundle(),currency:'USD',content_ids:['todo']})}
-function add(k){if(cart.indexOf('todo')>=0){toast('Ya está incluido en todo junto.');return}var i=cart.indexOf(k);if(i>=0){cart.splice(i,1)}else{cart.push(k);toast('Añadido: '+BY[k][1]);meTrack('AddToCart',{value:BY[k][4],currency:'USD',content_ids:[k]})}cart.sort(function(a,b){return Object.keys(BY).indexOf(a)-Object.keys(BY).indexOf(b)});render()}
+function choose(k){var was=cart[0];cart=[k];render();if(was!==k)meTrack('AddToCart',{value:k==='todo'?bundle():lib(),currency:'USD',content_ids:[k]})}
 
 // checkout
 var co=$('#co'),ov=$('#ov'),lastFocus=null;
-function openCo(){lastFocus=document.activeElement;co.classList.add('open');ov.classList.add('open');co.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(function(){$('#coX').focus()},50);onScroll()}
+function openCo(){if(!co.classList.contains('open'))lastFocus=document.activeElement;co.classList.add('open');ov.classList.add('open');co.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(function(){$('#coX').focus()},50);onScroll()}
 function closeCo(){co.classList.remove('open');ov.classList.remove('open');co.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus();onScroll()}
 document.addEventListener('click',function(e){
-  var b=e.target.closest('[data-buy-all]');if(b){e.preventDefault();setAll();openCo();return}
-  var a=e.target.closest('[data-add]');if(a){add(a.dataset.add);burst(a);return}
-  var r=e.target.closest('[data-rm]');if(r){var k=r.dataset.rm;cart=k==='todo'?[]:cart.filter(function(x){return x!==k});render();return}
-  if(e.target.closest('#cartBtn')){openCo();return}
+  var b=e.target.closest('[data-buy],[data-buy-all]');if(b){e.preventDefault();var k=b.dataset.buy||'todo';if(co.classList.contains('open')&&k==='todo'&&cart[0]==='libros')burst(b);choose(k);openCo();return}
+  if(e.target.closest('[data-rm]')){cart=[];render();return}
   var z=e.target.closest('[data-zoom]');if(z){zoom(z.dataset.zoom,z.dataset.cap||'');return}
-  var pk=e.target.closest('[data-peek]');if(pk){var p=$('#peek');p.scrollBy({left:(+pk.dataset.peek)*Math.min(600,p.clientWidth*.8),behavior:'smooth'});return}
 });
 $('#coX').addEventListener('click',closeCo);ov.addEventListener('click',closeCo);
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&co.classList.contains('open'))closeCo();
   if(e.key==='Tab'&&co.classList.contains('open')){var f=$$('button,input,a[href]',co).filter(function(x){return x.offsetParent!==null&&!x.disabled});if(!f.length)return;var a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
 $('#coForm').addEventListener('input',function(){$('#pg2').classList.add('on')});
 fetch('/api/oferta',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({token:gone?'':tok})}).then(function(r){return r.json()}).then(function(d){
-  if(d.now)skew=d.now-Date.now();if(d.launchCents)B.launch=d.launchCents/100;if(d.regularCents)B.regular=d.regularCents/100;
+  if(d.now)skew=d.now-Date.now();
+  if(d.launchCents)B.launch=d.launchCents/100;if(d.regularCents)B.regular=d.regularCents/100;
+  if(d.librosLaunchCents)B.libLaunch=d.librosLaunchCents/100;if(d.librosRegularCents)B.libRegular=d.librosRegularCents/100;
   if(!gone&&d.token){tok=d.token;try{localStorage.setItem('ofTok',tok)}catch(e){}B.ends=d.expiresAt}
   render();tick();
 }).catch(function(){});
 fetch('/api/checkout').then(function(r){return r.json()}).then(function(d){mode=d.mode||'pedido';applyMode();render()}).catch(function(){applyMode()});
 function applyMode(){
-  if(mode==='pedido'){$('#coPayL').textContent='Reservar mi pedido';$('#coSecure').textContent='Te enviaremos el enlace de pago a tu correo. Tus datos solo se usan para entregarte tu compra. Producto digital: no admite devoluciones.';$('#payNote').textContent='Reserva tu pedido: te enviamos el enlace de pago a tu correo y, al confirmarse, tus descargas y tu código de la app.'}
-  else if(mode==='whop'){$('#coSecure').textContent='Pago seguro con tarjeta, Apple Pay o Google Pay a través de Whop. Al terminar, vuelves aquí para descargar todo. Producto digital: no admite devoluciones.'}
-  else if(mode==='stripe'){$('#coSecure').textContent='Pago seguro con tarjeta a través de Stripe. Al terminar, vuelves aquí para descargar todo. Producto digital: no admite devoluciones.'}
+  if(mode==='pedido'){$('#coPayL').textContent='Reservar mi pedido';$('#coSecure').textContent='Te enviaremos el enlace de pago a tu correo. Tus datos solo se usan para entregarte tu compra. Producto digital: no admite devoluciones.'}
+  else if(mode==='whop'){$('#coSecure').textContent='Pago seguro con tarjeta, Apple Pay o Google Pay a través de Whop. Al terminar, vuelves aquí y te llega todo a tu correo. Producto digital: no admite devoluciones.'}
+  else if(mode==='stripe'){$('#coSecure').textContent='Pago seguro con tarjeta a través de Stripe. Al terminar, vuelves aquí y te llega todo a tu correo. Producto digital: no admite devoluciones.'}
   else{$('#coSecure').textContent='Te llevamos a la pasarela de pago segura para terminar tu compra. Producto digital: no admite devoluciones.'}
 }
 $('#coForm').addEventListener('submit',function(e){
   e.preventDefault();var err=$('#coErr');err.hidden=true;if(PRUEBA&&!cart.length)cart=['todo'];
-  if(!cart.length){err.textContent='Tu carrito está vacío.';err.hidden=false;return}
+  if(!cart.length){err.textContent='Elige una de las 2 ofertas.';err.hidden=false;return}
   var name=$('#cName').value.trim(),email=$('#cEmail').value.trim(),phone=$('#cPhone').value.trim();
   if(!name){err.textContent='Escribe tu nombre.';err.hidden=false;$('#cName').focus();return}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){err.textContent='Revisa tu correo: así te llega tu compra.';err.hidden=false;$('#cEmail').focus();return}
   if(!$('#cOk').checked){err.textContent='Para continuar, acepta la política de privacidad.';err.hidden=false;$('#cOk').focus();return}
-  var btn=$('#coPay');btn.disabled=true;btn.style.opacity=.7;$('#pg3').classList.add('on');meTrack('InitiateCheckout',{value:quote().total,currency:'USD'});
+  var btn=$('#coPay');btn.disabled=true;btn.style.opacity=.7;$('#pg3').classList.add('on');meTrack('InitiateCheckout',{value:quote().total,currency:'USD',content_ids:cart});
   fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:name,email:email,phone:phone,items:cart,offer:isLaunch()?tok:'',acepta:true,prueba:PRUEBA||undefined})})
   .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})})
   .then(function(x){
@@ -947,28 +1125,53 @@ var lb=$('#lb');
 function zoom(src,cap){$('#lbImg').src=src;$('#lbImg').alt=cap;$('#lbCap').textContent=cap;if(lb.showModal)lb.showModal();else window.open(src,'_blank')}
 $('#lbX').addEventListener('click',function(){lb.close()});lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
 
-// cuenta regresiva (fecha real del precio de lanzamiento)
+// cuenta regresiva
 function pad(n){return String(n).padStart(2,'0')}
 function tick(){
   var ms=B.ends-now();
   if(ms<=0){if(!expiredShown){expiredShown=true;render()}return}
   var m=Math.floor(ms/6e4),sx=Math.floor(ms%6e4/1e3),t=pad(m)+':'+pad(sx);
-  $$('[data-cd]').forEach(function(e){e.textContent=t});
-  $$('[data-cdm]').forEach(function(e){e.textContent=pad(m)});$$('[data-cds]').forEach(function(e){e.textContent=pad(sx)});
+  set('[data-cd]',t);set('[data-cdm]',pad(m));set('[data-cds]',pad(sx));
   document.documentElement.classList.toggle('hurry',ms<120000);
 }
 setInterval(tick,1000);
 
-// animaciones
+// videos a todo lo ancho: se carga solo el formato que se ve (16:9 computador, 9:16 celular) y solo cuando está cerca
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var vMq=window.matchMedia?matchMedia('(max-width:767px),(orientation:portrait) and (max-width:1024px)'):{matches:false};
+function vidOf(sec){return $(vMq.matches?'.v916':'.v169',sec)}
+function vLoad(v){if(!v.src&&v.dataset.src){v.poster=v.dataset.poster;v.src=v.dataset.src;v.preload='auto'}}
+function vSync(sec){var v=vidOf(sec),o=$(vMq.matches?'.v169':'.v916',sec);if(!o.paused)o.pause();o.muted=true;
+  v.muted=!sec.classList.contains('snd');$('.vsnd use',sec).setAttribute('href',v.muted?'#snd0':'#snd1');$('.vsnd span',sec).textContent=v.muted?'Activar sonido':'Silenciar';$('.vsnd',sec).setAttribute('aria-pressed',String(!v.muted));
+  if(sec.dataset.near==='1'){vLoad(v);if(sec.dataset.vis==='1'&&!sec.classList.contains('stop')&&!reduce){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()}
+  $('.vplay use',sec).setAttribute('href',v.paused&&(sec.classList.contains('stop')||reduce)?'#ply':'#pau');$('.vplay',sec).setAttribute('aria-label',sec.classList.contains('stop')||reduce?'Reproducir video':'Pausar video')}
+var vids=$$('.vid');
+vids.forEach(function(sec){
+  if(reduce)sec.classList.add('stop');
+  $('.vsnd',sec).addEventListener('click',function(){var on=sec.classList.toggle('snd');if(on){sec.classList.remove('stop');vids.forEach(function(o){if(o!==sec&&o.classList.contains('snd')){o.classList.remove('snd');vSync(o)}})}sec.dataset.near='1';vSync(sec);if(on){var v=vidOf(sec);v.muted=false;var p=v.play();if(p&&p.catch)p.catch(function(){})}});
+  $('.vplay',sec).addEventListener('click',function(){sec.classList.toggle('stop');sec.dataset.near='1';if(!sec.classList.contains('stop')){var v=vidOf(sec);vLoad(v);var p=v.play();if(p&&p.catch)p.catch(function(){})}vSync(sec)});
+  $$('video',sec).forEach(function(v){v.addEventListener('play',function(){vSync2(sec)});v.addEventListener('pause',function(){vSync2(sec)})});
+});
+function vSync2(sec){var v=vidOf(sec);$('.vplay use',sec).setAttribute('href',v.paused?'#ply':'#pau');$('.vplay',sec).setAttribute('aria-label',v.paused?'Reproducir video':'Pausar video')}
+if('IntersectionObserver' in window){
+  var near=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.dataset.near='1';vSync(en.target);near.unobserve(en.target)}})},{rootMargin:'600px 0px'});
+  var vis=new IntersectionObserver(function(es){es.forEach(function(en){en.target.dataset.vis=en.isIntersecting?'1':'0';vSync(en.target)})},{threshold:.35});
+  vids.forEach(function(s){near.observe(s);vis.observe(s)});
+}else vids.forEach(function(s){s.dataset.near=s.dataset.vis='1';vSync(s)});
+if(vMq.addEventListener)vMq.addEventListener('change',function(){vids.forEach(vSync)});
+document.addEventListener('visibilitychange',function(){if(document.hidden)$$('.vid video').forEach(function(v){v.pause()});else vids.forEach(vSync)});
+
+// animaciones
 function observe(){if('IntersectionObserver' in window&&!reduce){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);var c=$('[data-count]',en.target)||(en.target.dataset.count?en.target:null);if(c)count(c)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});$$('.rv:not(.in)').forEach(function(el){io.observe(el)})}else{$$('.rv').forEach(function(el){el.classList.add('in')})}}
 function count(el){var to=+el.dataset.count,dec=+(el.dataset.dec||0),suf=el.dataset.suf||'',t0=null;function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1100),v=to*(1-Math.pow(1-p,3));el.textContent=v.toLocaleString('es',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
-var hero=$('.hero'),mbar=$('#mbar');
-function onScroll(){var show=hero.getBoundingClientRect().bottom<0&&!co.classList.contains('open');mbar.classList.toggle('show',show);mbar.setAttribute('aria-hidden',!show);$('[data-buy-all]',mbar).tabIndex=show?0:-1}
+var hero=$('#biblio'),mbar=$('#mbar'),ofs=$('#ofertas');
+function onScroll(){var r=ofs.getBoundingClientRect(),inOf=r.top<innerHeight&&r.bottom>0;var show=hero.getBoundingClientRect().bottom<0&&!inOf&&!co.classList.contains('open');mbar.classList.toggle('show',show);mbar.setAttribute('aria-hidden',!show);$('a',mbar).tabIndex=show?0:-1}
 window.addEventListener('scroll',onScroll,{passive:true});
 function confetti(){if(reduce)return;var c=document.createElement('div');c.className='confetti';var cols=['#E0337A','#F7A8C7','#FFD95A','#CFE3F7','#9B1B4F'];for(var i=0;i<46;i++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.background=cols[i%5];s.style.borderRadius=i%3?'50%':'3px';s.style.animationDelay=(Math.random()*.6)+'s';s.style.width=s.style.height=(10+Math.random()*12)+'px';c.appendChild(s)}document.body.appendChild(c);setTimeout(function(){c.remove()},3400)}
 function burst(el){if(reduce||!el||!el.getBoundingClientRect)return;var r=el.getBoundingClientRect();for(var i=0;i<8;i++){var h=document.createElement('span');h.textContent='♥';h.style.cssText='position:fixed;z-index:90;pointer-events:none;color:#E0337A;font-size:18px;left:'+(r.left+r.width/2)+'px;top:'+(r.top)+'px;transition:transform .8s ease-out,opacity .8s';document.body.appendChild(h);(function(h,i){requestAnimationFrame(function(){h.style.transform='translate('+(Math.cos(i/8*6.28)*60)+'px,'+(Math.sin(i/8*6.28)*60-30)+'px) scale(1.3)';h.style.opacity=0});setTimeout(function(){h.remove()},900)})(h,i)}}
 if(/[?&]pago=cancelado/.test(location.search)){setTimeout(function(){openCo();var err=$('#coErr');err.textContent='El pago no se completó. Puedes intentarlo de nuevo cuando quieras.';err.hidden=false},400)}
+// Enlaces directos: /oferta/?oferta=libros o ?oferta=todo abren el pedido de esa oferta.
+var pre=(new URLSearchParams(location.search).get('oferta')||'');if(pre==='libros'||pre==='todo'){setTimeout(function(){choose(pre);openCo()},300)}
 render();tick();observe();onScroll();
 })();
 </script>

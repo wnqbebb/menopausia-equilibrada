@@ -1,6 +1,20 @@
 # 4 · Productos, precios y oferta
 
-## Catálogo actual
+## Las 2 ofertas de la página de ventas
+
+La página `/oferta/` vende solo dos cosas (la tienda «por separado» ya no se muestra):
+
+| Oferta | ID | Qué incluye | Bienvenida (15 min) | Después |
+|---|---|---|---|---|
+| **Biblioteca PAUSA** | `libros` | Los 13 libros en PDF (PAUSA, Guía Integral, 6 bonos, 3 plantillas y 4 kits). Sin PLENA. Valor 95 USD. | **12 USD** | **24 USD** |
+| **Libros + PLENA** (recomendada) | `todo` | Los 13 libros + academia PLENA (10 módulos, 132 videos) + Mi diario + logros y certificado. Valor 124 USD. | **19 USD** | **37 USD** |
+
+- Quien compra `libros` recibe el correo «Tus libros de PAUSA están listos» con el botón de descarga. Quien compra `todo` recibe «Crea tu cuenta de PLENA».
+- Quien compró `libros` puede sumar PLENA desde su página de descargas pagando la diferencia (19 − 12 = 7 USD; mínimo 5 USD).
+- Enlaces directos: `/oferta/?oferta=libros` y `/oferta/?oferta=todo` abren el pedido de esa oferta (útil en anuncios y WhatsApp).
+- Para cambiar los precios: `LIBROS_LAUNCH`, `LIBROS_REGULAR`, `BUNDLE_LAUNCH` y `BUNDLE_REGULAR` en `sitio/lib/catalog.js` (en centavos). La página los toma sola del servidor (`/api/oferta`); los números del HTML son solo el valor inicial.
+
+## Catálogo (productos individuales)
 
 | ID | Producto | Precio suelto | Archivo entregado |
 |---|---|---|---|
@@ -18,7 +32,8 @@
 | `k3` | Kit Menopausia en el trabajo | 7 USD | `PAUSA_Upsell3_Menopausia_en_el_trabajo.pdf` |
 | `k4` | Kit Fuerte después de los 45 | 9 USD | `PAUSA_Upsell4_Fuerte_despues_de_los_45.pdf` |
 | `app` | App Menopausia Equilibrada (de por vida) | 29 USD | cuenta (ver nota) |
-| `todo` | **Todo junto** (valor 124 USD) | **19 USD** durante la oferta de 15 min · **37 USD** después | todo lo anterior |
+| `libros` | **Biblioteca PAUSA** (los 13 PDF, valor 95 USD) | **12 USD** durante la oferta · **24 USD** después | los 13 PDF |
+| `todo` | **Libros + PLENA** (valor 124 USD) | **19 USD** durante la oferta de 15 min · **37 USD** después | todo lo anterior |
 
 Los PDF están en `sitio/public/entrega-f92e9c4d594a8499f33676e3c3fd18c8/`.
 
@@ -26,7 +41,7 @@ Los PDF están en `sitio/public/entrega-f92e9c4d594a8499f33676e3c3fd18c8/`.
 
 ## Reglas de precio (las aplica el servidor; el navegador solo las muestra)
 
-- **Oferta de bienvenida:** en la primera visita, el servidor firma la hora de inicio (`/api/oferta`). Durante 15 minutos «Todo junto» cuesta 19 USD. Si la clienta se va y vuelve, o se acaba el tiempo, pasa a 37 USD. No se puede trucar desde el navegador.
+- **Oferta de bienvenida:** en la primera visita, el servidor firma la hora de inicio (`/api/oferta`). Durante 15 minutos la Biblioteca PAUSA cuesta 12 USD y «Libros + PLENA» 19 USD. Si la clienta se va y vuelve, o se acaba el tiempo, pasan a 24 y 37 USD. No se puede trucar desde el navegador.
 - **Mejora automática:** si la suma de lo que eligió por separado es igual o mayor que el precio de «Todo junto», se le cobra «Todo junto».
 - **Mejora después de comprar:** en la página de descargas se ofrece completar el pack pagando la diferencia hasta 19 USD (mínimo 5 USD). Requiere la firma de su pedido.
 
@@ -36,10 +51,12 @@ Hay que tocar **dos sitios** y mantenerlos iguales:
 
 1. **Servidor**, en `sitio/lib/catalog.js`:
    - `ITEMS`: nombre, precio en centavos (`cents: 1400` = 14 USD) y archivos.
-   - `BUNDLE_LAUNCH` (1900) y `BUNDLE_REGULAR` (3700): precios del pack.
+   - `BUNDLE_LAUNCH` (1900) y `BUNDLE_REGULAR` (3700): precios de «Libros + PLENA».
+   - `LIBROS_LAUNCH` (1200) y `LIBROS_REGULAR` (2400): precios de la Biblioteca PAUSA.
    - `OFFER_WINDOW_MS`: duración de la oferta (15 min = `15 * 60 * 1000`).
-2. **Página**, en `sitio/public/oferta/index.html`, en el arreglo `CAT` (busca `var CAT=`). Cada fila es:
-   `[id, nombre, subtítulo, descripción, precio_en_USD, …]`.
+2. **Página**, en `sitio/public/oferta/index.html`, en el arreglo `CAT` (busca `var CAT=`): la lista de los 13 libros con su valor por separado. Cada fila es:
+   `[id, nombre, subtítulo, descripción, valor_en_USD, portada, grupo]`.
+3. **Biblioteca 3D** (`sitio/public/oferta/biblioteca3d.js`): título, colores del lomo y número de páginas de cada libro. El lector muestra solo un adelanto (hasta 4 páginas) de `/plena/libros/<id>/`.
 
 Si añades un producto nuevo:
 

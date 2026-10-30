@@ -36,6 +36,7 @@ Hay dos formas de usar Whop. Se pueden combinar.
 | `WHOP_API_KEY` | tu API key |
 | `WHOP_COMPANY_ID` | `biz_…` |
 | `WHOP_PRODUCT_ID` | `prod_…` |
+| `WHOP_PRODUCTO_LIBROS` | `prod_…` (opcional) del producto «Biblioteca PAUSA» si vendes los 13 libros solos con un enlace de Whop: esas compras reciben solo los libros, sin PLENA. |
 | `WHOP_WEBHOOK_SECRET` | `ws_…` |
 
 En Vercel: **Settings → Environment Variables**, añade las 4 y vuelve a desplegar (**Deployments → ⋯ → Redeploy**). Desde ese momento el botón de pago abre Whop automáticamente: el modo `whop` tiene prioridad sobre Stripe, enlaces y pedido manual.

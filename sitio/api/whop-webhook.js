@@ -4,7 +4,7 @@
 // Firma: estándar «Standard Webhooks» (cabeceras webhook-id, webhook-timestamp, webhook-signature).
 import { db } from "../lib/store.js";
 import { json, CURRENCY, envGet as env } from "../lib/catalog.js";
-import { reflejarEnCuenta, correoCrearCuenta, avisarPagado, origen } from "../lib/cuentas.js";
+import { reflejarEnCuenta, avisarPagado, origen } from "../lib/cuentas.js";
 
 const enc = new TextEncoder();
 const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
@@ -87,7 +87,8 @@ async function handler(req) {
 
 // ---------- Ventas hechas directamente en Whop (tienda de Whop o enlace de pago enviado por WhatsApp) ----------
 // No traen nuestro número de pedido: se crea uno «pagado» con el pack completo y se envía «Crea tu cuenta de PLENA».
-// Productos aceptados: WHOP_PRODUCT_ID y los de WHOP_PRODUCTOS_DIRECTOS (ids prod_… separados por comas).
+// Productos aceptados: WHOP_PRODUCT_ID y los de WHOP_PRODUCTOS_DIRECTOS (ids prod_… separados por comas) → PLENA completa;
+// WHOP_PRODUCTO_LIBROS (prod_…) → solo la Biblioteca PAUSA (13 libros, sin PLENA).
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 const txt = (v) => (typeof v === "string" ? v.trim() : "");
 function productoDe(p) { return txt(p.product?.id) || txt(p.product_id) || txt(p.plan?.product?.id) || txt(p.plan?.product_id) || txt(p.access_pass?.id); }
@@ -112,8 +113,10 @@ async function completarDesdeWhop(p) {
 
 async function ventaDirecta(p, req) {
   const permitidos = [env("WHOP_PRODUCT_ID"), ...env("WHOP_PRODUCTOS_DIRECTOS").split(",")].map((x) => x.trim()).filter(Boolean);
+  const prodLibros = env("WHOP_PRODUCTO_LIBROS").trim();
   const prod = productoDe(p);
-  if (prod && permitidos.length && !permitidos.includes(prod)) return json({ ok: true, note: "Pago de otro producto de Whop: no es PLENA." });
+  const soloLibros = !!(prod && prodLibros && prod === prodLibros);
+  if (prod && !soloLibros && permitidos.length && !permitidos.includes(prod)) return json({ ok: true, note: "Pago de otro producto de Whop: no es PLENA." });
   const pagoId = txt(p.id);
   if (!pagoId) return json({ ok: true, note: "Pago sin id." });
   const marcas = db().marcas;
@@ -125,12 +128,12 @@ async function ventaDirecta(p, req) {
   const ORIGIN = origen(null, req.url);
   const rec = {
     v: 2, id: "", createdAt: now, name: nombreDe(p) || (email ? email.split("@")[0] : "Compra en Whop"), email, phone: telefonoDe(p),
-    items: ["todo"], cents: paidCents, paidCents, currency: CURRENCY, mode: "whop-directo", paymentId: pagoId, origin: ORIGIN,
+    items: soloLibros ? ["libros"] : ["todo"], cents: paidCents, paidCents, currency: CURRENCY, mode: "whop-directo", paymentId: pagoId, origin: ORIGIN,
     status: email ? "pagado" : "revisar", paidAt: email ? now : undefined,
     note: email ? "" : "Whop no envió el correo de la compradora. Búscalo en Whop (Pagos), ponlo con «Poner correo» y marca el pedido como pagado.",
   };
   await db().orders.create(rec);
-  if (email) { await correoCrearCuenta(rec, ORIGIN); await db().orders.save(rec); }
+  if (email) await avisarPagado(rec, ORIGIN);
   return json({ ok: true, status: rec.status, pedido: rec.id, directa: true });
 }
 

@@ -2,7 +2,7 @@
 // (sesión de Stripe pagada, o pedido marcado «pagado» por el webhook o la administradora).
 // También acepta el código antiguo de la app (?k=ID-FIRMA): sirve UNA sola vez, para crear la cuenta de su pedido.
 import { db } from "../lib/store.js";
-import { cleanItems, filesFor, hasApp, json, hmac, itemsOf, BUNDLE_LAUNCH, VALUE_CENTS, envGet as env } from "../lib/catalog.js";
+import { cleanItems, filesFor, hasApp, json, hmac, itemsOf, esLibros, BUNDLE_LAUNCH, VALUE_CENTS, envGet as env } from "../lib/catalog.js";
 import { pedidoFirmado, reflejarEnCuenta, avisarPagado, origen } from "../lib/cuentas.js";
 
 async function payload(rec, items) {
@@ -11,6 +11,7 @@ async function payload(rec, items) {
   if (key && rec.id) out.t = await hmac(key, rec.id); // permite la mejora a «Todo junto» desde gracias.html
   out.plena = hasApp(items);              // puede crear su cuenta de PLENA
   out.pack = items.includes("todo");
+  out.libros = esLibros(items);           // compró solo la Biblioteca PAUSA
   out.cuenta = !!rec.userId;              // ya creó su cuenta
   return out;
 }

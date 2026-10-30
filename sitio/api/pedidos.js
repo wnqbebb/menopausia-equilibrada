@@ -6,7 +6,7 @@
 //                                                              | manual (venta por WhatsApp o pago local) | correo (poner el correo de un pedido)
 import { db } from "../lib/store.js";
 import { json, hmac, hasApp, itemsOf, CURRENCY, envGet as env } from "../lib/catalog.js";
-import { reflejarEnCuenta, correoBienvenida, correoCrearCuenta, enlaceCuenta } from "../lib/cuentas.js";
+import { reflejarEnCuenta, correoBienvenida, correoCrearCuenta, enlaceCuenta, avisarPagado } from "../lib/cuentas.js";
 
 const PAGE_MAX = 200;
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
@@ -68,11 +68,14 @@ async function handler(req) {
       if (!Number.isFinite(usd) || usd < 0 || usd > 10000) return json({ error: "Escribe el valor en USD (por ejemplo 19 o 19.50)." }, 400);
       const metodo = ["transferencia", "nequi", "efectivo", "whatsapp", "otro"].includes(b.metodo) ? b.metodo : "otro";
       const now = new Date().toISOString();
-      const rec = { v: 2, id: "", createdAt: now, name: String(b.name || "").trim().slice(0, 80) || email.split("@")[0], email, phone: String(b.phone || "").trim().slice(0, 30), items: ["todo"], cents: Math.round(usd * 100), currency: CURRENCY, mode: "manual", metodo, status: "pagado", paidAt: now, origin: ORIGIN, consent: { at: now, policy: "privacidad-2026-10-30", via: "manual" } };
+      const items = b.oferta === "libros" ? ["libros"] : ["todo"];   // Biblioteca PAUSA o PLENA completa
+      const rec = { v: 2, id: "", createdAt: now, name: String(b.name || "").trim().slice(0, 80) || email.split("@")[0], email, phone: String(b.phone || "").trim().slice(0, 30), items, cents: Math.round(usd * 100), currency: CURRENCY, mode: "manual", metodo, status: "pagado", paidAt: now, origin: ORIGIN, consent: { at: now, policy: "privacidad-2026-10-30", via: "manual" } };
       await store.create(rec);
-      const mail = await correoCrearCuenta(rec, ORIGIN);
+      const mail = await avisarPagado(rec, ORIGIN);
       await store.save(rec);
-      return json({ ok: true, ...(await extra(rec)), enviado: mail.ok });
+      const out = await extra(rec);
+      if (!out.crearCuenta) out.crearCuenta = out.entrega;   // solo libros: el enlace es el de sus descargas
+      return json({ ok: true, ...out, enviado: !!(mail && mail.ok) });
     }
     if (b.action === "cortesia") {
       // Regalar acceso: crea un pedido pagado de 0 USD con todo incluido y envía el enlace para crear la cuenta.
@@ -109,7 +112,7 @@ async function handler(req) {
       if (rec.status === "revisar" && rec.mode === "whop-directo") { rec.status = "pagado"; rec.paidAt = new Date().toISOString(); }
       await store.save(rec);
       let mail = null;
-      if (rec.status === "pagado") { mail = await correoCrearCuenta(rec, ORIGIN); await store.save(rec); }
+      if (rec.status === "pagado") { rec.correos = (rec.correos || []).filter((c) => c.ok); mail = await avisarPagado(rec, ORIGIN) || (hasApp(itemsOf(rec)) ? await correoCrearCuenta(rec, ORIGIN) : null); await store.save(rec); }
       return json({ ok: true, correo: mail ? mail.ok : null });
     }
     if (b.action === "enlaceCuenta" || b.action === "bienvenida") {

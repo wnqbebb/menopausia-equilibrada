@@ -44,10 +44,13 @@ export async function correoBienvenida(rec, origin) {
 }
 // Al confirmarse el pago de una compra con PLENA, se le envía una vez el enlace para crear la cuenta
 // (por si cierra la página de gracias sin crearla).
+// Sin PLENA (solo libros): se le envía una vez el enlace a sus descargas.
 export async function avisarPagado(rec, origin) {
-  if (rec.status !== "pagado" || rec.userId || !rec.email || !hasApp(itemsOf(rec))) return null;
-  if ((rec.correos || []).some((c) => c.tipo === "crear-cuenta" && c.ok)) return null;
-  const r = await correoCrearCuenta(rec, origin);
+  if (rec.status !== "pagado" || rec.userId || !rec.email) return null;
+  const tipo = hasApp(itemsOf(rec)) ? "crear-cuenta" : "entrega";
+  if ((rec.correos || []).some((c) => c.tipo === tipo && c.ok)) return null;
+  const r = tipo === "crear-cuenta" ? await correoCrearCuenta(rec, origin)
+    : await correo.enviarYRegistrar(rec, "entrega", correo.entrega({ origin, nombre: rec.name, link: (await enlaceCuenta(rec, origin)).replace(/#cuenta$/, "") }));
   await db().orders.save(rec);
   return r;
 }
