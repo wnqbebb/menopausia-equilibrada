@@ -75,6 +75,10 @@ header{padding:18px 0;border-bottom:1px solid var(--line);background:#fff}
 .chk{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:500;line-height:1.45}.chk input{width:22px;height:22px;flex:0 0 22px;margin-top:2px;accent-color:var(--fucsia)}
 .bibh{text-align:center;padding:0 18px}.bibh .big{font-family:'Great Vibes',cursive;font-size:clamp(56px,10vw,96px);color:var(--fucsia);line-height:1}.bibh h1{font-size:clamp(28px,4.4vw,44px);margin-top:4px}.bibh p{color:var(--muted);max-width:38em;margin:10px auto 0}
 .biblio .l3-tabs{margin-top:14px}
+.orden{list-style:none;counter-reset:o;margin:0;padding:0;display:grid;gap:10px}
+.orden li{counter-increment:o;display:grid;grid-template-columns:42px 1fr;column-gap:12px;background:var(--blush);border-radius:16px;padding:12px 14px;align-items:start}
+.orden li::before{content:counter(o);grid-row:span 2;width:38px;height:38px;border-radius:50%;background:var(--fucsia);color:#fff;font-family:'Playfair Display',serif;font-weight:900;font-size:20px;display:grid;place-items:center}
+.orden b{font-size:16px;line-height:1.3}.orden span{font-size:14.5px;color:var(--muted);line-height:1.45}
 .ok-box{background:#E9F6EF;color:var(--ok);border-radius:12px;padding:12px;font-weight:600}
 </style>
 <!-- EMBUDO / MEDICIÓN: pega aquí el código base de tu Píxel de Meta, TikTok o Google (gtag).
@@ -123,7 +127,16 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   <section id="ok" hidden>
     <div class="hero" id="okHero"><div class="big">¡Gracias<span id="nm"></span>!</div><h1 id="okH1">Ya es tuyo. Empieza por aquí.</h1><p>Descarga tus archivos y guárdalos en tu celular o computador. <b>Guarda también esta página</b> (agrégala a favoritos): es tu acceso a las descargas.</p></div>
     <div class="card" id="dlCard"><h2>Tus descargas</h2><div class="dl" id="files"></div><p class="note" style="margin-top:12px">Para llenar los PDF en el celular, ábrelos con una app de PDF (por ejemplo, Adobe Acrobat Reader, gratis).</p></div>
-    <div class="card" id="stepsCard"><h2>Tus primeros 10 minutos</h2><div class="steps"><div><b>Abre PAUSA</b><span>Lee «Empieza aquí» y elige tu síntoma número 1.</span></div><div><b>Entra a PLENA</b><span>Si tu compra la incluye: crea tu cuenta aquí abajo y registra tu día en Mi diario.</span></div><div><b>Empieza el plan</b><span>Día 1 del Plan de 30 días: solo 6 hábitos sencillos.</span></div></div></div>
+    <div class="card" id="stepsCard"><h2>El orden recomendado para leer tus libros</h2><p class="note" style="margin:-4px 0 14px;font-size:15px">No tienes que leerlo todo de una vez. Sigue este orden, a tu ritmo.</p>
+      <ol class="orden">
+        <li><b>PAUSA · El manual de la menopausia</b><span>Empieza aquí: entiende qué etapa vives y qué opciones tienes. Lee primero «Empieza aquí».</span></li>
+        <li><b>Guía Integral Menopausia Equilibrada</b><span>Las 6 áreas de tu bienestar: síntomas, alimentación, ejercicio, sueño, hormonas y emociones.</span></li>
+        <li><b>Plan de 30 días + Diario de síntomas</b><span>Pasa a la acción: 6 hábitos sencillos al día y anota cómo te sientes para ver tu progreso.</span></li>
+        <li><b>Recetario y Guía de vitaminas</b><span>Qué comer y qué suplementos tienen respaldo (y cuáles no).</span></li>
+        <li><b>Yoga en calma y Aromaterapia</b><span>Para bajar el estrés y dormir mejor.</span></li>
+        <li><b>El kit de tu síntoma más fuerte</b><span>Noches frescas (sofocos e insomnio), Intimidad sin dolor, Menopausia en el trabajo o Fuerte después de los 45.</span></li>
+        <li><b>Las 3 plantillas</b><span>Antes de tu próxima cita médica: llega con tus datos y tus preguntas listas.</span></li>
+      </ol></div>
     <section class="acct" id="cuenta" hidden>
       <div id="acNew"><span class="pill-o">Último paso</span><h2 style="margin-top:10px">Crea tu cuenta de <span class="plena">Plena</span></h2>
       <p class="note" style="font-size:15.5px">Tu usuario es el <b>correo que pusiste en la compra</b>: a ese correo te llega también la bienvenida. Con él y una contraseña entras a tu academia, tu diario y tus logros desde el celular y el computador. Tu contraseña no se envía por correo ni la vemos nosotras.</p>
@@ -146,7 +159,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
       <div class="upw"><div class="upv"><s id="upValue"></s><b id="upPrice"></b></div><button class="btn btn-d" type="button" id="upBtn">Completar mi pack</button></div>
       <div class="err" id="upErr" role="alert" hidden style="margin-top:10px"></div>
     </div>
-    <p class="note" style="text-align:center;margin:26px 0 60px">Este material es educativo y no sustituye a tu profesional de salud.</p>
+    <div style="height:50px"></div>
   </section>
 <p style="text-align:center;font-size:13.5px;color:#6B4E5C;margin:34px 0 0">© 2026 DisierTECH · <a href="/privacidad.html" style="color:#9B1B4F">Política de privacidad</a> · Soporte: <a href="mailto:cristinaaguilarrojas1@gmail.com" style="color:#9B1B4F">cristinaaguilarrojas1@gmail.com</a></p>
 </main>
