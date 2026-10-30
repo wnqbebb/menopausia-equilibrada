@@ -29,6 +29,7 @@
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Great+Vibes&family=Newsreader:opsz,wght@6..72,400&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap">
 <link rel="preload" as="image" href="/oferta/img/c-guia.webp">
+<link rel="stylesheet" href="/oferta/biblioteca3d.css?v=2">
 <style>
 
 :root{
@@ -452,89 +453,6 @@ dialog.lb p{color:#fff;text-align:center;margin-top:10px;font-weight:600}
 .hurry .ann .cd{animation:beat 1s ease-in-out infinite;color:#fff}
 
 /* ===== v3: biblioteca 3D, videos y 2 ofertas ===== */
-/* Biblioteca PAUSA en 3D (portada) */
-.biblio{--H:min(42vh,27vw);--l3:#ad3469;position:relative;overflow:hidden;background:radial-gradient(120% 85% at 50% 38%,#fff 0,#FFF2F6 52%,#F9DCE7 100%);padding:clamp(22px,3.5vw,40px) 0 clamp(30px,4vw,48px);user-select:none;-webkit-user-select:none}
-.biblio .bh{text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;padding:0 18px}
-.biblio h1{font-size:clamp(38px,4.6vw,64px);font-weight:900;line-height:.98;letter-spacing:-.02em}
-.biblio h1 .scr{display:inline-block;font-size:1.05em;transform:rotate(-3deg);padding:0 .08em}
-.biblio .bsub{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:40em;font-weight:500}
-.biblio .bsub b{color:var(--berry)}
-.l3-tabs{position:relative;display:flex;margin:16px auto 0;width:max-content;max-width:calc(100% - 24px);overflow-x:auto;scrollbar-width:none}
-.l3-tabs::-webkit-scrollbar{display:none}
-.l3-tabs button{position:relative;z-index:1;height:32px;padding:0 13px;border:1px solid rgba(43,27,36,.8);margin-left:-1px;background:transparent;font:700 11px/1 var(--fb);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);cursor:pointer;white-space:nowrap;transition:color .45s}
-.l3-tabs button.active{color:#fff}
-.l3-indicator{position:absolute;left:0;top:0;height:32px;background:var(--l3);transition:width .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1)}
-.l3-shelf{position:relative;width:100%;height:calc(var(--H) + 80px);perspective:2200px;perspective-origin:50% 50%;touch-action:pan-y;cursor:grab;margin-top:6px}
-.l3-shelf:active{cursor:grabbing}
-.l3-stage{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
-.l3-tape{position:absolute;width:0;height:0;transform-style:preserve-3d;will-change:transform}
-.l3-face{position:absolute;top:calc(var(--H)/-2);height:var(--H);backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:2px;padding:0;cursor:pointer;font:inherit}
-.l3-sp{width:var(--ws);left:calc(var(--ws)/-2);transform:translateZ(calc(var(--d)/2));background:var(--book-bg);color:var(--book-ink);border:1px solid rgba(20,10,15,.18);box-shadow:inset 3px 0 5px rgba(0,0,0,.12),inset -2px 0 3px rgba(0,0,0,.08);overflow:hidden}
-.l3-sp:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.17),transparent 18%,rgba(255,255,255,.2) 45%,transparent 68%,rgba(0,0,0,.12));pointer-events:none}
-.l3-cv{width:var(--d);left:calc(var(--d)/-2);transform:rotateY(90deg) translateZ(calc(var(--ws)/2));box-shadow:0 30px 60px -28px rgba(80,10,40,.55);background-size:100% 100%;background-repeat:no-repeat;background-color:#faf7f4;border:1px solid rgba(22,10,18,.12)}
-.l3-face:after{content:'';position:absolute;inset:0;background:#000;opacity:var(--shade,0);pointer-events:none}
-.l3-name{position:absolute;inset:12% 12% 15%;writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Newsreader',Georgia,serif;font-size:calc(var(--H)*.052);line-height:1.05;text-align:center;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em}
-.l3-mark{position:absolute;bottom:4%;left:0;right:0;text-align:center;font-size:calc(var(--H)*.019);letter-spacing:.1em;font-weight:600}
-.l3-num{position:absolute;top:4%;left:0;right:0;font-size:calc(var(--H)*.025);text-align:center;font-weight:600}
-.l3-play{position:absolute;width:54px;height:54px;border-radius:50%;background:var(--fucsia);color:#fff;display:grid;place-items:center;z-index:5;border:3px solid #fff;box-shadow:0 10px 24px rgba(224,51,122,.45);cursor:pointer;font-size:22px;line-height:1;padding:0}
-.biblio.on-cover .l3-shelf{cursor:pointer}
-.l3-capw{position:relative;max-width:980px;margin:0 auto;padding:0 64px}
-.l3-caption{display:flex;flex-direction:column;gap:4px;align-items:center;text-align:center;pointer-events:none}
-.l3-mask{overflow:hidden;position:relative;width:100%}
-.l3-mask span{display:flex;align-items:center;justify-content:center;min-height:100%}
-.l3-mask span+span{position:absolute;inset:0}
-.l3-title{font-family:'Newsreader',Georgia,serif;font-size:clamp(24px,2.6vw,32px);line-height:1.1;height:2.25em}
-.l3-sub{color:var(--l3);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;height:1.6em}
-.l3-year{font-size:13.5px;font-weight:600;color:var(--muted);height:1.7em}
-.l3-arrow{position:absolute;top:8px;width:50px;height:50px;border-radius:50%;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;display:grid;place-items:center;box-shadow:var(--sh2);transition:border-color .2s,transform .2s}
-.l3-arrow:hover{border-color:var(--fucsia);transform:scale(1.06)}
-.l3-arrow svg{width:18px;height:10px;fill:none;stroke:currentColor;stroke-width:1.6}
-.l3-prev{left:6px}.l3-next{right:6px}
-.l3-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px;padding:0 18px}
-.l3-cta .btn{min-width:min(100%,290px)}
-.l3-hint{display:block;text-align:center;font-size:13px;font-weight:600;color:var(--muted);margin-top:12px;padding:0 18px}
-/* lector de adelanto */
-.l3-reader{position:fixed;inset:0;z-index:75;background:#FBF4F6;visibility:hidden;display:grid;grid-template-rows:auto 1fr;isolation:isolate;user-select:text}
-.l3-bar{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:18px;padding:12px max(18px,env(safe-area-inset-left,0px));background:#fff;border-bottom:1px solid var(--line);min-height:70px}
-.l3-back{height:40px;padding:0 14px;border-radius:999px;border:2px solid var(--line);background:#fff;font:700 14px var(--fb);color:var(--ink);cursor:pointer;white-space:nowrap}
-.l3-back:hover{border-color:var(--fucsia)}
-.l3-heading{min-width:0;display:flex;flex-direction:column;gap:3px}
-.l3-heading h2{font:400 22px/1.1 'Newsreader',Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:0}
-.l3-reader-label{color:var(--l3);font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.l3-ctrls{display:flex;gap:7px;align-items:center;white-space:nowrap}
-.l3-ctrls>button{height:38px;min-width:38px;border:1.5px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;font:700 14px var(--fb);color:var(--ink);padding:0 10px}
-.l3-ctrls>button:disabled{opacity:.4;cursor:default}
-.l3-ctrls .l3-buy{background:var(--fucsia);border-color:var(--fucsia);color:#fff;border-radius:999px;padding:0 16px}
-.l3-page-input{width:48px;height:38px;border:1.5px solid var(--line);border-radius:10px;text-align:center;font:700 14px var(--fb);color:var(--ink);background:#fff;-moz-appearance:textfield}
-.l3-page-input::-webkit-inner-spin-button{appearance:none}
-.l3-page-total{font-size:13px;color:var(--muted);font-weight:600;padding-right:4px}
-.l3-scroll{overflow:auto;overscroll-behavior:contain;background:#EFE2E8}
-.l3-pages{display:flex;flex-direction:column;gap:22px;padding:24px 14px 60px;align-items:center;--pw:820px}
-.l3-reader.zoomed .l3-pages{--pw:1200px}
-.l3-page{margin:0;max-width:var(--pw);width:100%}
-.l3-page img{width:100%;height:auto;aspect-ratio:1400/1978;background:#fff;box-shadow:0 4px 20px rgba(60,20,40,.14)}
-.l3-page figcaption{text-align:center;font-size:12px;color:var(--muted);padding-top:6px;font-weight:600}
-.l3-more{max-width:var(--pw);width:100%;background:var(--negro);color:#fff;border-radius:26px;padding:clamp(22px,4vw,36px);text-align:center;display:grid;gap:12px}
-.l3-more .kick{color:var(--rosa);justify-content:center}
-.l3-more h3{color:#fff;font-size:clamp(24px,3vw,34px)}
-.l3-more p{color:#F6D5E1;max-width:34em;margin:0 auto}
-.l3-more-b{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:6px}
-.l3-progress{position:absolute;bottom:-1px;left:0;height:3px;width:100%;background:var(--fucsia);transform:scaleX(0);transform-origin:left;transition:transform .3s}
-html.l3-lock,html.l3-lock body{overflow:hidden}
-@media (max-width:767px){
-  .biblio{--H:min(62vw,40svh)}
-  .l3-tabs button{padding:0 9px;font-size:10px}
-  .l3-capw{padding:0 54px}
-  .l3-arrow{width:44px;height:44px}
-  .l3-bar{grid-template-columns:auto minmax(0,1fr);gap:10px;padding:10px 12px}
-  .l3-ctrls{grid-column:1/-1;justify-content:center}
-  .l3-heading h2{font-size:19px}
-  .l3-pages{padding:14px 8px 40px;gap:14px}
-  .l3-reader.zoomed .l3-pages{--pw:820px;min-width:836px;align-items:flex-start}
-  .l3-reader.zoomed .l3-page{width:820px;max-width:none}
-}
-@media (max-height:640px) and (min-width:768px){.biblio{--H:min(38vh,27vw)}}
-
 /* Videos a todo lo ancho: 16:9 en computador, 9:16 en celular */
 .vid{position:relative;background:#14090F;overflow:hidden}
 .vid video{display:block;width:100%;height:auto;background:#14090F;object-fit:cover}
@@ -651,15 +569,15 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 
 <main id="inicio">
 <!-- 1 · BIBLIOTECA PAUSA EN 3D -->
-<section class="biblio" id="biblio" aria-labelledby="bTitle">
+<section class="biblio" id="biblio" data-modo="venta" aria-labelledby="bTitle">
   <div class="bh">
     <span class="pill" id="l3Count">13 libros</span>
     <h1 id="bTitle">Tu biblioteca para la <span class="scr">menopausia</span></h1>
-    <p class="bsub">Desliza los libros, toca una portada y <b>lee un adelanto</b>. Son 13 libros con fuentes, en palabras sencillas, para dormir mejor, recuperar tu energía y entender qué le pasa a tu cuerpo.</p>
+    <p class="bsub">Desliza los libros y mira cada portada. Son 13 libros con fuentes, en palabras sencillas, para dormir mejor, recuperar tu energía y entender qué le pasa a tu cuerpo.</p>
   </div>
   <nav class="l3-tabs" aria-label="Colecciones"><div class="l3-indicator"></div><button type="button" data-category="all">Todos</button><button type="button" data-category="pausa">PAUSA</button><button type="button" data-category="guias">Guía</button><button type="button" data-category="bonos">Bonos</button><button type="button" data-category="plantillas">Plantillas</button></nav>
   <div class="l3-shelf" aria-label="Estantería de libros en 3D: arrastra a los lados o usa las flechas"><div class="l3-stage"></div></div>
-  <button type="button" class="l3-play" aria-label="Leer un adelanto del libro">↗</button>
+  <button type="button" class="l3-play" aria-label="Ver las ofertas">↗</button>
   <div class="l3-capw">
     <div class="l3-caption" aria-live="polite" aria-atomic="true"><div class="l3-mask l3-title"></div><div class="l3-mask l3-sub"></div><div class="l3-mask l3-year"></div></div>
     <button type="button" class="l3-arrow l3-prev" aria-label="Libro anterior"><svg viewBox="0 0 18 10" aria-hidden="true"><path d="M5 1L1 5L5 9M1 5H17"/></svg></button>
@@ -674,8 +592,8 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 
 <!-- 2 · VIDEO DE LA BIBLIOTECA -->
 <section class="vid" aria-label="Video: presentación de la biblioteca PAUSA">
-  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto/v1793381705/PAUSA_Presentacion_30s_16x9.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2/v1793381705/PAUSA_Presentacion_30s_16x9.jpg" muted loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
-  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto/v1793381715/PAUSA_Presentacion_30s_9x16.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2/v1793381715/PAUSA_Presentacion_30s_9x16.jpg" muted loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
+  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381705/PAUSA_Presentacion_30s_16x9.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381705/PAUSA_Presentacion_30s_16x9.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
+  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381715/PAUSA_Presentacion_30s_9x16.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381715/PAUSA_Presentacion_30s_9x16.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la biblioteca PAUSA"></video>
   <button type="button" class="vplay" aria-label="Pausar video"><svg aria-hidden="true"><use href="#pau"/></svg></button>
   <button type="button" class="vsnd" aria-pressed="false"><svg aria-hidden="true"><use href="#snd0"/></svg><span>Activar sonido</span></button>
 </section>
@@ -744,8 +662,8 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
   <p>Los 13 libros cobran vida: clases en video, lecciones cortas que te dicen qué hacer, Mi diario para ver tu progreso y logros que te acompañan cada día. En tu celular y en tu computador, con tu propia cuenta.</p>
 </section>
 <section class="vid" aria-label="Video: presentación de PLENA">
-  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto/v1793381749/PLENA_lanzamiento_16x9.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2/v1793381749/PLENA_lanzamiento_16x9.jpg" muted loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
-  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto/v1793381747/PLENA_lanzamiento_9x16.mp4" data-poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2/v1793381747/PLENA_lanzamiento_9x16.jpg" muted loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
+  <video class="v169" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_1280,vc_h264/v1793381749/PLENA_lanzamiento_16x9.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_1280,q_auto:eco/v1793381749/PLENA_lanzamiento_16x9.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
+  <video class="v916" data-src="https://res.cloudinary.com/qff0gu4u/video/upload/q_auto:eco,w_720,vc_h264/v1793381747/PLENA_lanzamiento_9x16.mp4" poster="https://res.cloudinary.com/qff0gu4u/video/upload/so_2,w_720,q_auto:eco/v1793381747/PLENA_lanzamiento_9x16.jpg" muted autoplay loop playsinline preload="none" aria-label="Presentación de la academia PLENA"></video>
   <button type="button" class="vplay" aria-label="Pausar video"><svg aria-hidden="true"><use href="#pau"/></svg></button>
   <button type="button" class="vsnd" aria-pressed="false"><svg aria-hidden="true"><use href="#snd0"/></svg><span>Activar sonido</span></button>
 </section>
@@ -906,7 +824,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
       <details class="rv"><summary>¿Por qué la oferta dura tan poco?</summary><p>Es una oferta de bienvenida solo para esta visita: durante 15 minutos los 13 libros cuestan USD <span data-lib-launch>12</span> y los libros con PLENA USD <span data-bundle-launch>19</span>. Si el tiempo termina o sales de la página, vuelven a USD <span data-lib-regular>24</span> y USD <span data-regular>37</span>.</p></details>
       <details class="rv"><summary>¿Cómo entro a PLENA?</summary><p>En tu celular o en tu computador, con tu correo y la contraseña que creaste. Si la olvidas, toca «¿Olvidaste tu contraseña?» y te llega un enlace para crear una nueva.</p></details>
       <details class="rv"><summary>¿Mis datos son privados?</summary><p>Sí. Tu cuenta es personal y lo que escribes en Mi diario se guarda cifrado con tu contraseña: solo tú puedes leerlo. Puedes descargar tus datos o borrar tu cuenta cuando quieras. Lee la <a href="/privacidad.html">política de privacidad</a>.</p></details>
-      <details class="rv"><summary>¿Puedo pedir devolución?</summary><p>Es un producto digital de entrega inmediata: al confirmarse tu pago recibes todos los archivos y tu acceso, por eso no hay devoluciones. Antes de comprar puedes leer un adelanto de cada libro en la biblioteca de arriba.</p></details>
+      <details class="rv"><summary>¿Puedo pedir devolución?</summary><p>Es un producto digital de entrega inmediata: al confirmarse tu pago recibes todos los archivos y tu acceso, por eso no hay devoluciones. Antes de comprar puedes ver cada portada en la biblioteca de arriba y el video de presentación.</p></details>
       <details class="rv"><summary>¿Reemplaza a mi médica?</summary><p>No. Es información educativa para que entiendas lo que te pasa, conozcas tus opciones y llegues a la consulta con datos y preguntas. Las decisiones sobre tratamientos se toman con tu profesional de salud.</p></details>
       <details class="rv"><summary>¿Sirve si vivo en Latinoamérica?</summary><p>Sí. Está escrito en español neutro, con datos de la región cuando existen y con fuentes internacionales. Cuando una cifra es de otro país, lo decimos.</p></details>
       <details class="rv"><summary>¿Puedo llenar las plantillas en el celular?</summary><p>Sí. Los PDF tienen campos rellenables: ábrelos con una app de PDF (por ejemplo, Adobe Acrobat Reader, gratis) y escribe directo. También puedes imprimirlos.</p></details>
@@ -989,7 +907,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 <dialog class="lb" id="lb" aria-label="Vista ampliada"><button type="button" id="lbX" aria-label="Cerrar">✕</button><img id="lbImg" alt=""><p id="lbCap"></p></dialog>
 <div class="toast" id="toast" role="status" hidden></div>
 
-<script src="/oferta/biblioteca3d.js" defer></script>
+<script src="/oferta/biblioteca3d.js?v=2" defer></script>
 <script>
 (function(){
 'use strict';
@@ -1140,7 +1058,7 @@ setInterval(tick,1000);
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 var vMq=window.matchMedia?matchMedia('(max-width:767px),(orientation:portrait) and (max-width:1024px)'):{matches:false};
 function vidOf(sec){return $(vMq.matches?'.v916':'.v169',sec)}
-function vLoad(v){if(!v.src&&v.dataset.src){v.poster=v.dataset.poster;v.src=v.dataset.src;v.preload='auto'}}
+function vLoad(v){if(!v.getAttribute('src')&&v.dataset.src){v.src=v.dataset.src;v.preload='auto';v.muted=true;v.defaultMuted=true}}
 function vSync(sec){var v=vidOf(sec),o=$(vMq.matches?'.v169':'.v916',sec);if(!o.paused)o.pause();o.muted=true;
   v.muted=!sec.classList.contains('snd');$('.vsnd use',sec).setAttribute('href',v.muted?'#snd0':'#snd1');$('.vsnd span',sec).textContent=v.muted?'Activar sonido':'Silenciar';$('.vsnd',sec).setAttribute('aria-pressed',String(!v.muted));
   if(sec.dataset.near==='1'){vLoad(v);if(sec.dataset.vis==='1'&&!sec.classList.contains('stop')&&!reduce){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()}
@@ -1154,9 +1072,11 @@ vids.forEach(function(sec){
 });
 function vSync2(sec){var v=vidOf(sec);$('.vplay use',sec).setAttribute('href',v.paused?'#ply':'#pau');$('.vplay',sec).setAttribute('aria-label',v.paused?'Reproducir video':'Pausar video')}
 if('IntersectionObserver' in window){
-  var near=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.dataset.near='1';vSync(en.target);near.unobserve(en.target)}})},{rootMargin:'600px 0px'});
-  var vis=new IntersectionObserver(function(es){es.forEach(function(en){en.target.dataset.vis=en.isIntersecting?'1':'0';vSync(en.target)})},{threshold:.35});
+  var near=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.dataset.near='1';vSync(en.target);near.unobserve(en.target)}})},{rootMargin:'1200px 0px'});
+  var vis=new IntersectionObserver(function(es){es.forEach(function(en){en.target.dataset.vis=en.isIntersecting?'1':'0';vSync(en.target)})},{threshold:.15});
   vids.forEach(function(s){near.observe(s);vis.observe(s)});
+  // el video de la biblioteca empieza a cargar en cuanto abre la página, para que ya esté sonando al llegar
+  if(vids[0]){vids[0].dataset.near='1';vLoad(vidOf(vids[0]))}
 }else vids.forEach(function(s){s.dataset.near=s.dataset.vis='1';vSync(s)});
 if(vMq.addEventListener)vMq.addEventListener('change',function(){vids.forEach(vSync)});
 document.addEventListener('visibilitychange',function(){if(document.hidden)$$('.vid video').forEach(function(v){v.pause()});else vids.forEach(vSync)});

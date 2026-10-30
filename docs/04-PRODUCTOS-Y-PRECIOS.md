@@ -9,7 +9,7 @@ La página `/oferta/` vende solo dos cosas (la tienda «por separado» ya no se 
 | **Biblioteca PAUSA** | `libros` | Los 13 libros en PDF (PAUSA, Guía Integral, 6 bonos, 3 plantillas y 4 kits). Sin PLENA. Valor 95 USD. | **12 USD** | **24 USD** |
 | **Libros + PLENA** (recomendada) | `todo` | Los 13 libros + academia PLENA (10 módulos, 132 videos) + Mi diario + logros y certificado. Valor 124 USD. | **19 USD** | **37 USD** |
 
-- Quien compra `libros` recibe el correo «Tus libros de PAUSA están listos» con el botón de descarga. Quien compra `todo` recibe «Crea tu cuenta de PLENA».
+- Quien compra `libros` recibe el correo «Tu Biblioteca PAUSA está lista» con el botón de descarga. Quien compra `todo` recibe «Crea tu cuenta de PLENA».
 - Quien compró `libros` puede sumar PLENA desde su página de descargas pagando la diferencia (19 − 12 = 7 USD; mínimo 5 USD).
 - Enlaces directos: `/oferta/?oferta=libros` y `/oferta/?oferta=todo` abren el pedido de esa oferta (útil en anuncios y WhatsApp).
 - Para cambiar los precios: `LIBROS_LAUNCH`, `LIBROS_REGULAR`, `BUNDLE_LAUNCH` y `BUNDLE_REGULAR` en `sitio/lib/catalog.js` (en centavos). La página los toma sola del servidor (`/api/oferta`); los números del HTML son solo el valor inicial.

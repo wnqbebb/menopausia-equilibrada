@@ -78,7 +78,7 @@ export function filesFor(items, filesBase = "") {
   const base = String(filesBase || "").trim() ? String(filesBase).trim().replace(/\/?$/, "/") : DELIVERY_DIR;
   const keys = items.includes("todo") ? ORDER : items.includes("libros") ? LIBROS : items;
   const out = [];
-  keys.forEach((k) => (ITEMS[k]?.files || []).forEach(([t, f]) => out.push({ title: t, url: base + f })));
+  keys.forEach((k) => (ITEMS[k]?.files || []).forEach(([t, f]) => out.push({ item: k, title: t, url: base + f })));
   return out;
 }
 

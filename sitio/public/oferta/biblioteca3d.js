@@ -1,7 +1,9 @@
-/* Biblioteca PAUSA en 3D (portada de la página de ventas).
-   Basada en la estantería «PAUSA — Tu biblioteca digital»: los lomos giran, la portada se abre y se lee un ADELANTO.
-   Adaptada para vivir dentro de la página: no bloquea el desplazamiento vertical, solo se anima cuando se ve,
-   y el lector muestra unas páginas de muestra con la invitación a comprar (los PDF completos son de las clientas). */
+/* Biblioteca PAUSA en 3D. Basada en la estantería «PAUSA — Tu biblioteca digital».
+   Dos modos (atributo data-modo de #biblio):
+   - «venta» (página de ventas): los libros giran y se inclinan, pero al tocar la portada NO se abre el libro: lleva a las ofertas.
+   - «lectura» (página de entrega de la Biblioteca PAUSA): al tocar la portada se abre el libro completo, con su botón de descarga.
+     La página fija window.L3_PDF = { guia: 'url del PDF', … } antes de que la clienta abra un libro.
+   Vive dentro de la página: no bloquea el desplazamiento vertical y solo se anima cuando se ve. */
 (function () {
 'use strict';
 var root = document.getElementById('biblio');
@@ -22,7 +24,8 @@ var books = [
   { item: 'k3', title: 'Menopausia en el trabajo', label: 'PAUSA · Kit de trabajo', category: 'pausa', color: '#f2c6d7', ink: '#26131d', pages: 6, cover: 'c-k3' },
   { item: 'k4', title: 'Fuerte después de los 45', label: 'PAUSA · Programa de fuerza', category: 'pausa', color: '#2c1b26', ink: '#f5deea', pages: 6, cover: 'c-k4' }
 ];
-var preview = function (b) { return Math.min(4, Math.max(1, Math.ceil(b.pages / 2))); };
+var MODO = root.dataset.modo === 'lectura' ? 'lectura' : 'venta';
+var preview = function (b) { return b.pages; };
 var q = function (s, c) { return (c || root).querySelector(s); };
 var mod = function (x, n) { return ((x % n) + n) % n; };
 var smooth = function (x) { return x * x * (3 - 2 * x); };
@@ -33,7 +36,7 @@ var tabs = [].slice.call(root.querySelectorAll('[data-category]'));
 var H, ws, d, gap, W, HH, s = N, T = N, hover = -1, active = -1, mx = 0, my = 0, tiltX = 0, tiltY = 0, onCover = false;
 var isOpen = false, closing = false, drag = null, suppress = false, last = performance.now(), prevFocus = null, openBook = null;
 var currentPage = 1, selectedCategory = 'all', readerAnimation = null, visible = true, rafOn = false;
-q('#l3Count').textContent = N + ' libros · ' + books.reduce(function (a, b) { return a + b.pages; }, 0) + ' páginas';
+if (q('#l3Count')) q('#l3Count').textContent = N + ' libros · ' + books.reduce(function (a, b) { return a + b.pages; }, 0) + ' páginas';
 
 var tapes = Array.from({ length: L }, function (_, v) {
   var book = books[v % N], el = document.createElement('div');
@@ -53,7 +56,7 @@ var tapes = Array.from({ length: L }, function (_, v) {
   el.addEventListener('pointerleave', function () { if (hover === v) hover = -1; });
   el.addEventListener('click', function () {
     if (suppress || isOpen) return;
-    if (Math.abs(obj.r) < 0.5) openReader(); else { T = Math.round(s + obj.r); selectedCategory = 'all'; updateTab(); }
+    if (Math.abs(obj.r) < 0.5) abrir(); else { T = Math.round(s + obj.r); selectedCategory = 'all'; updateTab(); }
   });
   return obj;
 });
@@ -81,7 +84,7 @@ function updateTab() {
 function setActive(i, dir) {
   dir = dir || 1; active = i; var b = books[i];
   [q('.l3-caption .l3-title'), q('.l3-caption .l3-sub'), q('.l3-caption .l3-year')].forEach(function (mask, j) {
-    var val = [b.title, b.label, b.pages + ' páginas · Lee un adelanto'][j];
+    var val = [b.title, b.label, b.pages + (MODO === 'lectura' ? ' páginas · Toca la portada para leerlo' : ' páginas · Incluido en las 2 ofertas')][j];
     if (motion.matches || !mask.animate) { mask.textContent = ''; var e0 = document.createElement('span'); e0.textContent = val; mask.appendChild(e0); return; }
     [].slice.call(mask.children).forEach(function (old) {
       if (old.dataset.leaving) return; old.dataset.leaving = '1';
@@ -95,7 +98,15 @@ function jump(i) { T = Math.round(T) + mod(i - mod(Math.round(T), N) + N / 2, N)
 function move(n) { if (!isOpen) { T = Math.round(T) + n; selectedCategory = 'all'; updateTab(); } }
 q('.l3-prev').onclick = function () { move(-1); };
 q('.l3-next').onclick = function () { move(1); };
-q('.l3-play').onclick = openReader;
+// En la página de ventas el libro no se abre: la portada lleva a las ofertas.
+function irOfertas() {
+  var o = document.getElementById('ofertas');
+  if (o) o.scrollIntoView({ behavior: motion.matches ? 'auto' : 'smooth' });
+  if (window.meTrack && books[active]) meTrack('ViewContent', { content_name: 'Portada: ' + books[active].title, currency: 'USD' });
+}
+function abrir() { if (MODO === 'lectura') openReader(); else if (Math.abs(T - s) < 0.35) irOfertas(); }
+q('.l3-play').onclick = abrir;
+q('.l3-play').setAttribute('aria-label', MODO === 'lectura' ? 'Leer el libro' : 'Ver las ofertas');
 tabs.forEach(function (b) {
   b.onclick = function () {
     selectedCategory = b.dataset.category; updateTab();
@@ -163,7 +174,9 @@ function openReader() {
   T = Math.round(s); isOpen = true; closing = false; prevFocus = document.activeElement; openBook = books[active];
   var n = preview(openBook);
   q('#l3ReaderTitle', reader).textContent = openBook.title;
-  q('.l3-reader-label', reader).textContent = openBook.label + ' · Adelanto: ' + n + ' de ' + openBook.pages + ' páginas';
+  q('.l3-reader-label', reader).textContent = openBook.label + ' · ' + openBook.pages + ' páginas';
+  var pdf = (window.L3_PDF || {})[openBook.item] || '';
+  [].slice.call(reader.querySelectorAll('.l3-dl')).forEach(function (a) { a.hidden = !pdf; if (pdf) a.href = pdf; });
   q('.l3-page-total', reader).textContent = '/ ' + n;
   q('.l3-page-input', reader).max = n;
   reader.classList.remove('zoomed'); var zb = q('.l3-zoom', reader); zb.textContent = 'Ampliar'; zb.setAttribute('aria-pressed', 'false');
@@ -177,11 +190,11 @@ function openReader() {
     var cap = document.createElement('figcaption'); cap.textContent = i + ' / ' + openBook.pages;
     fig.appendChild(im); fig.appendChild(cap); pages.appendChild(fig);
   }
-  // Al final del adelanto: la invitación a tener el libro completo.
+  // Al final del libro: descargarlo y volver a la biblioteca.
   var end = document.createElement('div'); end.className = 'l3-more';
-  end.innerHTML = '<span class="kick">Fin del adelanto</span><h3>Las ' + openBook.pages + ' páginas de «' + openBook.title.replace(/</g, '&lt;') + '» te esperan</h3>' +
-    '<p>Llévate este libro y los otros 12 de la Biblioteca PAUSA. O súmale PLENA, tu academia con Mi diario y tus logros.</p>' +
-    '<div class="l3-more-b"><button type="button" class="btn btn-p" data-l3-oferta>Ver las 2 ofertas</button><button type="button" class="btn btn-g" data-l3-close>Seguir mirando libros</button></div>';
+  end.innerHTML = '<span class="kick">Terminaste «' + openBook.title.replace(/</g, '&lt;') + '»</span><h3>Guárdalo en tu celular o computador</h3>' +
+    '<p>Descarga el PDF para leerlo sin internet, imprimirlo o llenar sus campos.</p>' +
+    '<div class="l3-more-b">' + (pdf ? '<a class="btn btn-p" download target="_blank" rel="noopener" href="' + pdf.replace(/"/g, '&quot;') + '">↓ Descargar el PDF</a>' : '') + '<button type="button" class="btn btn-g" data-l3-close>Volver a la biblioteca</button></div>';
   pages.appendChild(end);
   var r = coverRect();
   reader.inert = false; reader.removeAttribute('aria-hidden'); reader.style.visibility = 'visible';
@@ -190,7 +203,6 @@ function openReader() {
   readerAnimation = reader.animate ? reader.animate([{ clipPath: inset(r), transform: 'rotate(-4.5deg)' }, { clipPath: 'inset(0px 0px 0px 0px round 0px)', transform: 'rotate(0deg)' }], { duration: motion.matches ? 1 : 1050, easing: 'cubic-bezier(.76,0,.18,1)', fill: 'both' }) : null;
   scrollArea.scrollTop = 0; setPage(1);
   q('.l3-back', reader).focus({ preventScroll: true });
-  if (window.meTrack) meTrack('ViewContent', { content_name: 'Adelanto: ' + openBook.title, currency: 'USD' });
 }
 scrollArea.addEventListener('scroll', function () {
   if (!isOpen || !openBook) return;
@@ -223,11 +235,21 @@ reader.addEventListener('click', function (e) {
   if (e.target.closest('[data-l3-oferta]')) { closeReader(function () { var o = document.getElementById('ofertas'); if (o) o.scrollIntoView({ behavior: motion.matches ? 'auto' : 'smooth' }); }); }
 });
 addEventListener('resize', resize);
+window.L3_resize = function () { visible = true; resize(); start(); };
 // Solo se anima mientras la biblioteca está a la vista (ahorra batería en el celular).
 if ('IntersectionObserver' in window) {
-  new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) start(); }, { threshold: 0.05 }).observe(root);
+  new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) { resize(); start(); } }, { threshold: 0.05 }).observe(root);
 }
 function start() { if (!rafOn) { rafOn = true; last = performance.now(); requestAnimationFrame(frame); } }
+// Cursor de la estantería original: anillo que se agranda sobre la portada con «LEER LIBRO» / «LO QUIERO».
+var fino = window.matchMedia && matchMedia('(pointer:fine)').matches, cur = null, ccx = 0, ccy = 0, px = -100, py = -100, dentro = false;
+if (fino) {
+  cur = document.createElement('div'); cur.className = 'l3-cursor'; cur.setAttribute('aria-hidden', 'true');
+  cur.innerHTML = '<div class="l3-ring"></div><div class="l3-dot"></div><span class="l3-clabel">' + (MODO === 'lectura' ? 'LEER<br>LIBRO' : 'LO<br>QUIERO') + '</span>';
+  document.body.appendChild(cur); root.classList.add('l3-fino');
+  root.addEventListener('pointermove', function (e) { px = e.clientX; py = e.clientY; if (!dentro) { dentro = true; ccx = px; ccy = py; } });
+  root.addEventListener('pointerleave', function () { dentro = false; cur.className = 'l3-cursor'; });
+}
 resize(); setActive(0); mx = W / 2; my = -1e4;
 function frame(now) {
   if (!visible && !isOpen) { rafOn = false; return; }
@@ -239,7 +261,8 @@ function frame(now) {
   if (i !== active) setActive(i, Math.sign(T - s) || 1);
   var shelfR = shelf.getBoundingClientRect(), rootR = root.getBoundingClientRect(), cy = shelfR.top - rootR.top + shelfR.height / 2;
   onCover = !isOpen && Math.abs(T - s) < 0.3 && Math.abs(mx - W / 2) < 0.55 * d && Math.abs(my - cy) < 0.55 * H;
-  var ty = onCover ? ((mx - W / 2) / (0.55 * d)) * 9 : ((mx - W / 2) / W) * 5, tx = onCover ? (-(my - cy) / (H / 2)) * 6 : 0;
+  var ty = onCover ? ((mx - W / 2) / (0.55 * d)) * 9 : ((mx - W / 2) / (W || 1)) * 5, tx = onCover ? (-(my - cy) / (H / 2 || 1)) * 6 : 0;
+  if (!isFinite(tiltX)) tiltX = 0; if (!isFinite(tiltY)) tiltY = 0;
   tiltX += (tx - tiltX) * (1 - Math.exp(-7 * dt)); tiltY += (ty - tiltY) * (1 - Math.exp(-7 * dt));
   for (var k = 0; k < tapes.length; k++) {
     var t = tapes[k], r = mod(t.v - s + L / 2, L) - L / 2; t.r = r;
@@ -257,6 +280,12 @@ function frame(now) {
   }
   q('.l3-play').style.transform = 'scale(' + (isOpen ? 0 : smooth(Math.max(0, 1 - Math.abs(T - s) * 3))) + ')';
   root.classList.toggle('on-cover', onCover);
+  if (cur) {
+    ccx += (px - ccx) * (1 - Math.exp(-16 * dt)); ccy += (py - ccy) * (1 - Math.exp(-16 * dt));
+    cur.style.transform = 'translate3d(' + ccx + 'px,' + ccy + 'px,0)';
+    var tg = dentro ? document.elementFromPoint(px, py) : null;
+    cur.className = 'l3-cursor' + (dentro && !isOpen ? ' on' : '') + (onCover ? ' open' : hover >= 0 && Math.abs(tapes[hover].r) > 0.5 ? ' spine' : tg && tg.closest('button,a,input') ? ' btn' : '');
+  }
   requestAnimationFrame(frame);
 }
 start();

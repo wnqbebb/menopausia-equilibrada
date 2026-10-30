@@ -67,7 +67,7 @@ async function handler(req) {
         metadata: { pedido: id, items: q.items.join(","), email },
         plan: {
           company_id: env("WHOP_COMPANY_ID"),
-          product_id: env("WHOP_PRODUCT_ID"),
+          product_id: (q.items.includes("libros") && env("WHOP_PRODUCTO_LIBROS")) || env("WHOP_PRODUCT_ID"),
           currency: CURRENCY,
           plan_type: "one_time",
           initial_price: q.cents / 100,

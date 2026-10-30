@@ -11,7 +11,8 @@
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Great+Vibes&family=Poppins:wght@400;500;600;700;800&family=Shrikhand&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Great+Vibes&family=Poppins:wght@400;500;600;700;800&family=Shrikhand&family=Newsreader:opsz,wght@6..72,400&display=swap">
+<link rel="stylesheet" href="/oferta/biblioteca3d.css?v=2">
 <style>
 :root{--bg:#FFF5F8;--blush:#FCE4EC;--rosa:#F7A8C7;--fucsia:#E0337A;--berry:#9B1B4F;--ink:#2B1B24;--negro:#1E1419;--muted:#6B4E5C;--line:#F2C6D6;--sun:#FFD95A;--ok:#1F7A52}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -72,6 +73,8 @@ header{padding:18px 0;border-bottom:1px solid var(--line);background:#fff}
 .pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--berry);font:inherit;font-size:14px;font-weight:800;padding:8px 10px;cursor:pointer;border-radius:10px;min-height:40px}
 .meter{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:700;color:var(--muted)}.meter i{flex:1;height:6px;border-radius:9px;background:var(--blush)}.meter i.on{background:var(--fucsia)}.meter.n0 i.on,.meter.n1 i.on{background:#E8833A}
 .chk{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:500;line-height:1.45}.chk input{width:22px;height:22px;flex:0 0 22px;margin-top:2px;accent-color:var(--fucsia)}
+.bibh{text-align:center;padding:0 18px}.bibh .big{font-family:'Great Vibes',cursive;font-size:clamp(56px,10vw,96px);color:var(--fucsia);line-height:1}.bibh h1{font-size:clamp(28px,4.4vw,44px);margin-top:4px}.bibh p{color:var(--muted);max-width:38em;margin:10px auto 0}
+.biblio .l3-tabs{margin-top:14px}
 .ok-box{background:#E9F6EF;color:var(--ok);border-radius:12px;padding:12px;font-weight:600}
 </style>
 <!-- EMBUDO / MEDICIÓN: pega aquí el código base de tu Píxel de Meta, TikTok o Google (gtag).
@@ -83,15 +86,43 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 </head>
 <body>
 <header><div class="wrap"><a class="logo" href="/oferta/">Menopausia <i>sin tabú</i></a></div></header>
+<!-- Biblioteca PAUSA (compra de los 13 libros): toca un libro para leerlo completo y descargarlo -->
+<section class="biblio" id="biblio" data-modo="lectura" hidden aria-labelledby="bibT">
+  <div class="bibh"><div class="big">¡Gracias<span class="nm2"></span>!</div><h1 id="bibT">Tu Biblioteca PAUSA ya es tuya</h1><p>Desliza los libros y <b>toca una portada para leerlo completo</b>. Dentro de cada libro tienes el botón <b>«↓ Descargar PDF»</b> para guardarlo en tu celular o computador. Guarda esta página en favoritos: es tu biblioteca.</p></div>
+  <nav class="l3-tabs" aria-label="Colecciones"><div class="l3-indicator"></div><button type="button" data-category="all">Todos</button><button type="button" data-category="pausa">PAUSA</button><button type="button" data-category="guias">Guía</button><button type="button" data-category="bonos">Bonos</button><button type="button" data-category="plantillas">Plantillas</button></nav>
+  <div class="l3-shelf" aria-label="Estantería de libros en 3D: arrastra a los lados o usa las flechas"><div class="l3-stage"></div></div>
+  <button type="button" class="l3-play" aria-label="Leer el libro">↗</button>
+  <div class="l3-capw">
+    <div class="l3-caption" aria-live="polite" aria-atomic="true"><div class="l3-mask l3-title"></div><div class="l3-mask l3-sub"></div><div class="l3-mask l3-year"></div></div>
+    <button type="button" class="l3-arrow l3-prev" aria-label="Libro anterior"><svg viewBox="0 0 18 10" aria-hidden="true"><path d="M5 1L1 5L5 9M1 5H17"/></svg></button>
+    <button type="button" class="l3-arrow l3-next" aria-label="Libro siguiente"><svg viewBox="0 0 18 10" aria-hidden="true"><path d="M13 1L17 5L13 9M1 5H17"/></svg></button>
+  </div>
+  <div class="l3-cta"><button type="button" class="btn btn-p" id="leerYa">Leer este libro</button></div>
+</section>
+<section class="l3-reader" id="l3Reader" role="dialog" aria-modal="true" aria-labelledby="l3ReaderTitle" aria-hidden="true" inert>
+  <header class="l3-bar">
+    <button type="button" class="l3-back">← Biblioteca</button>
+    <div class="l3-heading"><span class="l3-reader-label"></span><h2 id="l3ReaderTitle"></h2></div>
+    <div class="l3-ctrls">
+      <button type="button" class="l3-page-prev" aria-label="Página anterior">←</button><input class="l3-page-input" type="number" min="1" step="1" aria-label="Ir a la página"><span class="l3-page-total"></span><button type="button" class="l3-page-next" aria-label="Página siguiente">→</button>
+      <button type="button" class="l3-zoom" aria-pressed="false">Ampliar</button>
+      <a class="l3-dl" download target="_blank" rel="noopener" hidden>↓ Descargar PDF</a>
+    </div>
+    <div class="l3-progress"></div>
+  </header>
+  <div class="l3-scroll" tabindex="0" aria-label="Páginas del libro"><div class="l3-pages"></div></div>
+</section>
 <main class="wrap">
   <section class="hero" id="loading"><span class="wait" aria-hidden="true"></span><h1 style="margin-top:16px">Confirmando tu pago…</h1><p>Esto toma unos segundos.</p></section>
+
+  <section id="whopOk" hidden class="hero"><div class="big">¡Gracias!</div><h1>Tu pago está listo</h1><p>En unos minutos te llega un correo al que usaste para pagar: con <b>«Crea tu cuenta de PLENA»</b> si compraste los libros con PLENA, o con <b>tu Biblioteca PAUSA</b> si compraste los libros. Si no lo ves, revisa Spam o Promociones.</p></section>
 
   <section id="pending" hidden class="hero"><div class="big">Casi lista</div><h1>Tu pago aún no aparece confirmado</h1><p id="pendingMsg">Si acabas de pagar, espera un minuto y vuelve a intentarlo. Si ya pasó un rato, escríbenos respondiendo al correo de tu pedido.</p><p style="margin-top:18px"><button class="btn btn-p" type="button" onclick="location.reload()">Volver a comprobar</button></p></section>
 
   <section id="ok" hidden>
-    <div class="hero"><div class="big">¡Gracias<span id="nm"></span>!</div><h1>Ya es tuyo. Empieza por aquí.</h1><p>Descarga tus archivos y guárdalos en tu celular o computador. <b>Guarda también esta página</b> (agrégala a favoritos): es tu acceso a las descargas.</p></div>
-    <div class="card"><h2>Tus descargas</h2><div class="dl" id="files"></div><p class="note" style="margin-top:12px">Para llenar los PDF en el celular, ábrelos con una app de PDF (por ejemplo, Adobe Acrobat Reader, gratis).</p></div>
-    <div class="card"><h2>Tus primeros 10 minutos</h2><div class="steps"><div><b>Abre PAUSA</b><span>Lee «Empieza aquí» y elige tu síntoma número 1.</span></div><div><b>Entra a PLENA</b><span>Si tu compra la incluye: crea tu cuenta aquí abajo y registra tu día en Mi diario.</span></div><div><b>Empieza el plan</b><span>Día 1 del Plan de 30 días: solo 6 hábitos sencillos.</span></div></div></div>
+    <div class="hero" id="okHero"><div class="big">¡Gracias<span id="nm"></span>!</div><h1 id="okH1">Ya es tuyo. Empieza por aquí.</h1><p>Descarga tus archivos y guárdalos en tu celular o computador. <b>Guarda también esta página</b> (agrégala a favoritos): es tu acceso a las descargas.</p></div>
+    <div class="card" id="dlCard"><h2>Tus descargas</h2><div class="dl" id="files"></div><p class="note" style="margin-top:12px">Para llenar los PDF en el celular, ábrelos con una app de PDF (por ejemplo, Adobe Acrobat Reader, gratis).</p></div>
+    <div class="card" id="stepsCard"><h2>Tus primeros 10 minutos</h2><div class="steps"><div><b>Abre PAUSA</b><span>Lee «Empieza aquí» y elige tu síntoma número 1.</span></div><div><b>Entra a PLENA</b><span>Si tu compra la incluye: crea tu cuenta aquí abajo y registra tu día en Mi diario.</span></div><div><b>Empieza el plan</b><span>Día 1 del Plan de 30 días: solo 6 hábitos sencillos.</span></div></div></div>
     <section class="acct" id="cuenta" hidden>
       <div id="acNew"><span class="pill-o">Último paso</span><h2 style="margin-top:10px">Crea tu cuenta de <span class="plena">Plena</span></h2>
       <p class="note" style="font-size:15.5px">Tu usuario es el <b>correo que pusiste en la compra</b>: a ese correo te llega también la bienvenida. Con él y una contraseña entras a tu academia, tu diario y tus logros desde el celular y el computador. Tu contraseña no se envía por correo ni la vemos nosotras.</p>
@@ -120,6 +151,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 </main>
 <script src="/plena/vendor/supabase-2.118.0.js"></script>
 <script src="/plena/cuenta.js?v=1"></script>
+<script src="/oferta/biblioteca3d.js?v=2" defer></script>
 <script>
 (function(){
 var q=new URLSearchParams(location.search);var who={};
@@ -128,6 +160,8 @@ function usd(c){return 'USD '+(c/100).toFixed(c%100?2:0)}
 var url='/api/entrega?'+(q.get('session_id')?'session_id='+encodeURIComponent(q.get('session_id')):q.get('k')?'k='+encodeURIComponent(q.get('k')):'pedido='+encodeURIComponent(q.get('pedido')||'')+'&t='+encodeURIComponent(q.get('t')||''));
 // Al volver de la pasarela, la confirmación puede tardar unos segundos: se reintenta sola durante ~2 minutos.
 var tries=0;
+// Compra directa en Whop (vuelve sin número de pedido): el acceso llega por correo.
+if(q.get('whop')&&!q.get('pedido')&&!q.get('session_id')&&!q.get('k')){document.getElementById('loading').hidden=true;document.getElementById('whopOk').hidden=false;load=function(){}}
 function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
   if(!d.paid&&d.pending&&!d.review&&tries<24&&(q.get('session_id')||q.get('t'))){tries++;$('#loading').hidden=false;setTimeout(load,tries<6?2500:5000);return}
   $('#loading').hidden=true;
@@ -135,11 +169,23 @@ function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.j
   who=d;$('#ok').hidden=false;if(d.name)$('#nm').textContent=', '+d.name.split(' ')[0];
   $('#files').innerHTML=d.files.length?d.files.map(function(f){return '<a href="'+f.url+'" download target="_blank" rel="noopener"><span>'+f.title.replace(/</g,'&lt;')+'</span><span>Descargar</span></a>'}).join(''):'<p class="note">Tu compra es la app: ábrela abajo.</p>';
   if(d.viaCodigo&&d.cuenta){$('#ok').querySelectorAll('.card,.hero').forEach(function(x){x.hidden=true});cuenta(d);return}
-  if(d.plena||d.cuenta)cuenta(d);
+  if(d.plena||d.cuenta){
+    // PLENA: aquí no van los libros sueltos (están dentro de PLENA). Solo el registro de la cuenta.
+    $('#dlCard').hidden=true;$('#stepsCard').hidden=true;$('#okH1').textContent='Último paso: crea tu cuenta de PLENA';
+    $('#okHero').querySelector('p').innerHTML='Tu usuario es tu correo y tú eliges la contraseña. Dentro de PLENA tienes tus 13 libros, los videos, Mi diario y tu ruta.';
+    cuenta(d);
+  }else if(d.libros){
+    // Biblioteca PAUSA: la estantería 3D es su página de entrega (leer y descargar cada libro).
+    var pdf={};(d.files||[]).forEach(function(f){if(f.item)pdf[f.item]=f.url});window.L3_PDF=pdf;
+    $('#okHero').hidden=true;$('#dlCard').querySelector('h2').textContent='Todos tus PDF en una lista';
+    var bib=$('#biblio');bib.hidden=false;bib.querySelector('.nm2').textContent=d.name?', '+d.name.split(' ')[0]:'';
+    setTimeout(function(){if(window.L3_resize)window.L3_resize()},60);
+  }
   if(!d.viaCodigo&&(d.items||[]).indexOf('todo')<0){var diff=Math.max(500,(d.bundleCents||1900)-(d.cents||0));$('#upsell').hidden=false;$('#upValue').textContent='Valor '+usd(d.valueCents||10400);$('#upPrice').textContent=usd(diff);$('#upBtn').textContent='Completar mi pack · '+usd(diff);if(d.libros){$('#upTxt').innerHTML='Ya tienes tus 13 libros. Súmale <b>PLENA</b>: la academia de 10 módulos con su ruta personal, 132 videos de práctica, tus libros para hojear, <b>Mi diario</b> con tu informe para la consulta, tus logros y tu certificado. Solo pagas la diferencia.';$('#upBtn').textContent='Sumar PLENA · '+usd(diff)}}
   try{var pk='mePurch:'+d.id;if(!localStorage.getItem(pk)){localStorage.setItem(pk,'1');meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}}catch(e){meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}
   confetti();
 }).catch(function(){$('#loading').hidden=true;$('#pending').hidden=false})}
+document.getElementById('leerYa').addEventListener('click',function(){var p=document.querySelector('#biblio .l3-play');if(p)p.click()});
 load();
 $('#upBtn').addEventListener('click',function(){var btn=this;btn.disabled=true;$('#upErr').hidden=true;
   fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:who.name||'Cliente',email:who.email||'',items:['todo'],upgradeFrom:who.id,upgradeT:who.t||'',acepta:true})}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})}).then(function(x){
