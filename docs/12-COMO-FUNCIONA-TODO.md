@@ -7,8 +7,9 @@ Esta guía explica en palabras sencillas el recorrido completo: qué ve la clien
 | Dirección | Para qué |
 |---|---|
 | `https://menopausia-equilibrada.vercel.app/oferta/` | **Página de ventas** (la que pones en anuncios, bio y WhatsApp). |
-| **`/libros`** | **Enlace directo para WhatsApp: solo los libros (12 USD).** Escribe nombre y correo, paga y entra a su biblioteca 3D. |
-| **`/plena-completa`** | **Enlace directo para WhatsApp: libros + PLENA (19 USD).** Escribe nombre y correo, paga y crea su cuenta de PLENA ahí mismo. |
+| **`/mis-libros?k=CLAVE`** | **Acceso directo a los libros (ya te pagó por fuera).** Abre su biblioteca 3D: leer, descargar cada libro o los 13 en ZIP. Sin pago ni registro. |
+| **`/bienvenida?k=CLAVE`** | **Acceso directo a PLENA (ya te pagó por fuera).** Bienvenida + video + escribe su correo → le llega «Crea tu cuenta» (con aviso de revisar Spam) y puede crearla ahí mismo. |
+| `/oferta/comprar.html?o=libros` · `?o=todo` | Pago directo con Whop (nombre + correo → paga en su moneda → acceso). |
 | `/oferta/?oferta=libros` | Abre directo el pedido de la Biblioteca PAUSA. |
 | `/oferta/?oferta=todo` | Abre directo el pedido de Libros + PLENA. |
 | `/plena/` | PLENA, la academia. Las clientas entran con su correo y su contraseña. |
@@ -52,23 +53,21 @@ Los videos están en Cloudinary (cuenta `qff0gu4u`). Para cambiarlos, sube los n
 
 **Por WhatsApp (sin página web).** Tienes dos caminos, y en los dos el acceso le llega solo por correo:
 
-*A) Le mandas tu enlace directo (automático, recomendado).* Copia y pega en el chat:
+*A) Ya te pagó por banco, Nequi o efectivo → le mandas su enlace de acceso (lo más rápido).*
 
-| Oferta | Enlace |
+| Qué compró | Enlace para mandar por WhatsApp |
 |---|---|
-| Solo los libros (12 USD) | https://menopausia-equilibrada.vercel.app/libros |
-| Libros + PLENA (19 USD) | https://menopausia-equilibrada.vercel.app/plena-completa |
+| Solo los libros | `https://menopausia-equilibrada.vercel.app/mis-libros?k=` + el valor de `ACCESO_LIBROS` |
+| Libros + PLENA | `https://menopausia-equilibrada.vercel.app/bienvenida?k=` + el valor de `ACCESO_PLENA` |
 
-Ella escribe su nombre y su correo, paga en Whop en su moneda y vuelve sola: con los libros entra a su biblioteca 3D (leer y descargar, también los 13 en un solo ZIP); con PLENA crea su contraseña y entra. Además le llega el correo. *Mientras falte la clave de API de Whop*, estos enlaces llevan al pago fijo de Whop y el acceso llega solo por correo.
+(Las claves están solo en Vercel → Settings → Environment Variables, nunca en GitHub. Guarda los dos enlaces completos en tus respuestas rápidas de WhatsApp.)
 
-También sirven los enlaces de pago de Whop directamente:
+- **Libros:** abre su biblioteca 3D al instante. Toca un libro, lo lee completo y lo descarga; abajo puede bajar los 13 en un solo ZIP o uno por uno.
+- **PLENA:** ve «¡Bienvenida! Ya estás aquí», el video de PLENA (con el botón «Ver con sonido»), escribe su nombre y su correo, y le llega «Crea tu cuenta de PLENA». La página le dice que revise Spam o Promociones y le da el botón «Crear mi cuenta ahora» para no esperar el correo. Su pedido aparece en tu panel como «whatsapp-enlace».
+- Si escribe el mismo correo dos veces, no se duplica: se le reenvía el enlace (o se le dice que ya tiene cuenta).
+- **Cuida estos enlaces:** quien los tenga entra. Si uno se filtra, cambia `ACCESO_LIBROS` o `ACCESO_PLENA` en Vercel (12 o más letras y números) y redespliega: el enlace viejo deja de funcionar. Las cuentas ya creadas siguen funcionando.
 
-| Oferta | Enlace de pago |
-|---|---|
-| Libros + PLENA (19 USD) | https://whop.com/checkout/plan_DsdwKF5WepIjn |
-| Biblioteca PAUSA (12 USD) | https://whop.com/checkout/plan_lXm2MW9MtlVRs |
-
-Mensaje sugerido: «¡Hola! Aquí puedes pagar con tarjeta, Nequi, PSE o PayPal: [enlace]. Escribe bien tu correo: ahí te llega tu acceso en cuanto pagues.» Ella paga en Whop, Whop avisa al sitio y le llega el correo correcto (crear cuenta o su biblioteca). Tú no haces nada más. En el panel aparece como «whop-directo».
+*C) Quieres que pague con tarjeta desde el celular.* Mándale `https://menopausia-equilibrada.vercel.app/oferta/comprar.html?o=libros` (12 USD) o `?o=todo` (19 USD): escribe su correo, paga en Whop en su moneda y recibe su acceso.
 
 *B) Te paga por transferencia, Nequi o efectivo.*
 

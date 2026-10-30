@@ -52,13 +52,13 @@
       "permanent": true
     },
     {
-      "source": "/libros",
-      "destination": "/oferta/comprar.html?o=libros",
+      "source": "/mis-libros",
+      "destination": "/oferta/gracias.html?directo=libros",
       "permanent": false
     },
     {
-      "source": "/plena-completa",
-      "destination": "/oferta/comprar.html?o=todo",
+      "source": "/bienvenida",
+      "destination": "/oferta/bienvenida.html",
       "permanent": false
     }
   ],

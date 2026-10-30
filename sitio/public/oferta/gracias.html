@@ -158,7 +158,8 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
 var q=new URLSearchParams(location.search);var who={};
 function $(s){return document.querySelector(s)}
 function usd(c){return 'USD '+(c/100).toFixed(c%100?2:0)}
-var url='/api/entrega?'+(q.get('session_id')?'session_id='+encodeURIComponent(q.get('session_id')):q.get('k')?'k='+encodeURIComponent(q.get('k')):'pedido='+encodeURIComponent(q.get('pedido')||'')+'&t='+encodeURIComponent(q.get('t')||''));
+// Enlace directo de WhatsApp (/mis-libros?k=…): su biblioteca sin pedido.
+var url=q.get('directo')==='libros'?'/api/directo?tipo=libros&k='+encodeURIComponent(q.get('k')||''):'/api/entrega?'+(q.get('session_id')?'session_id='+encodeURIComponent(q.get('session_id')):q.get('k')?'k='+encodeURIComponent(q.get('k')):'pedido='+encodeURIComponent(q.get('pedido')||'')+'&t='+encodeURIComponent(q.get('t')||''));
 // Al volver de la pasarela, la confirmación puede tardar unos segundos: se reintenta sola durante ~2 minutos.
 var tries=0;
 // Compra directa en Whop (vuelve sin número de pedido): el acceso llega por correo.
@@ -166,6 +167,7 @@ if(q.get('whop')&&!q.get('pedido')&&!q.get('session_id')&&!q.get('k')){document.
 function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
   if(!d.paid&&d.pending&&!d.review&&tries<24&&(q.get('session_id')||q.get('t'))){tries++;$('#loading').hidden=false;setTimeout(load,tries<6?2500:5000);return}
   $('#loading').hidden=true;
+  if(!d.paid&&d.error&&q.get('directo')){$('#pending').hidden=false;$('#pending').querySelector('h1').textContent='Este enlace no funciona';$('#pendingMsg').textContent=d.error;return}
   if(!d.paid){$('#pending').hidden=false;if(!q.get('session_id')&&!q.get('pedido')&&!q.get('k'))$('#pendingMsg').textContent='Este enlace no tiene un pedido. Usa el enlace que te enviamos por correo.';else if(d.review)$('#pendingMsg').textContent='Recibimos tu pago y lo estamos revisando. En cuanto se confirme te llegará el enlace de descarga a tu correo.';return}
   who=d;$('#ok').hidden=false;if(d.name)$('#nm').textContent=', '+d.name.split(' ')[0];
   $('#files').innerHTML=d.files.length?d.files.map(function(f){return '<a href="'+f.url+'" download target="_blank" rel="noopener"><span>'+f.title.replace(/</g,'&lt;')+'</span><span>Descargar</span></a>'}).join(''):'<p class="note">Tu compra es la app: ábrela abajo.</p>';
@@ -180,11 +182,11 @@ function load(){return fetch(url,{cache:'no-store'}).then(function(r){return r.j
     var pdf={};(d.files||[]).forEach(function(f){if(f.item)pdf[f.item]=f.url});window.L3_PDF=pdf;
     if(d.files&&d.files[0])$('#zipAll').href=d.files[0].url.replace(/[^\/]+$/,'Biblioteca_PAUSA_13_libros.zip');
     $('#okHero').hidden=true;$('#dlCard').querySelector('h2').textContent='Todos tus PDF en una lista';
-    var bib=$('#biblio');bib.hidden=false;bib.querySelector('.nm2').textContent=d.name?', '+d.name.split(' ')[0]:'';
+    var bib=$('#biblio');bib.hidden=false;bib.querySelector('.nm2').textContent=d.name?', '+d.name.split(' ')[0]:'';if(d.directo){bib.querySelector('.big').textContent='¡Bienvenida!';bib.querySelector('h1').textContent='Tu Biblioteca PAUSA ya es tuya';document.title='Tu Biblioteca PAUSA · Menopausia sin tabú'}
     setTimeout(function(){if(window.L3_resize)window.L3_resize()},60);
   }
-  if(!d.viaCodigo&&(d.items||[]).indexOf('todo')<0){var diff=Math.max(500,(d.bundleCents||1900)-(d.cents||0));$('#upsell').hidden=false;$('#upValue').textContent='Valor '+usd(d.valueCents||10400);$('#upPrice').textContent=usd(diff);$('#upBtn').textContent='Completar mi pack · '+usd(diff);if(d.libros){$('#upTxt').innerHTML='Ya tienes tus 13 libros. Súmale <b>PLENA</b>: la academia de 10 módulos con su ruta personal, 132 videos de práctica, tus libros para hojear, <b>Mi diario</b> con tu informe para la consulta, tus logros y tu certificado. Solo pagas la diferencia.';$('#upBtn').textContent='Sumar PLENA · '+usd(diff)}}
-  try{var pk='mePurch:'+d.id;if(!localStorage.getItem(pk)){localStorage.setItem(pk,'1');meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}}catch(e){meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}
+  if(!d.viaCodigo&&!d.directo&&(d.items||[]).indexOf('todo')<0){var diff=Math.max(500,(d.bundleCents||1900)-(d.cents||0));$('#upsell').hidden=false;$('#upValue').textContent='Valor '+usd(d.valueCents||10400);$('#upPrice').textContent=usd(diff);$('#upBtn').textContent='Completar mi pack · '+usd(diff);if(d.libros){$('#upTxt').innerHTML='Ya tienes tus 13 libros. Súmale <b>PLENA</b>: la academia de 10 módulos con su ruta personal, 132 videos de práctica, tus libros para hojear, <b>Mi diario</b> con tu informe para la consulta, tus logros y tu certificado. Solo pagas la diferencia.';$('#upBtn').textContent='Sumar PLENA · '+usd(diff)}}
+  if(!d.directo)try{var pk='mePurch:'+d.id;if(!localStorage.getItem(pk)){localStorage.setItem(pk,'1');meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}}catch(e){meTrack('Purchase',{value:(d.cents||0)/100,currency:'USD',id:d.id})}
   confetti();
 }).catch(function(){$('#loading').hidden=true;$('#pending').hidden=false})}
 document.getElementById('leerYa').addEventListener('click',function(){var p=document.querySelector('#biblio .l3-play');if(p)p.click()});
