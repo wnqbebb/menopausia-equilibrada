@@ -48,8 +48,8 @@ async function handler(req) {
     const now = new Date().toISOString();
     const rec = { v: 2, id: "", createdAt: now, name, email, phone, items: ["todo"], cents: 0, currency: CURRENCY, mode: "prueba", status: "pagado", paidAt: now, origin: ORIGIN, consent: { at: now, policy: "privacidad-2026-10-30" } };
     await store.create(rec);
-    await avisarPagado(rec, ORIGIN);
-    return json({ mode: "prueba", id: rec.id, url: `${ORIGIN}/oferta/gracias.html?pedido=${rec.id}&t=${await hmac(env("ADMIN_KEY"), rec.id)}` });
+    const envio = await avisarPagado(rec, ORIGIN).catch((e) => ({ ok: false, error: String(e?.message || e) }));
+    return json({ mode: "prueba", id: rec.id, correo: envio ? { ok: !!envio.ok, error: envio.error || "" } : null, url: `${ORIGIN}/oferta/gracias.html?pedido=${rec.id}&t=${await hmac(env("ADMIN_KEY"), rec.id)}` });
   }
   const offer = await checkOffer(env("ADMIN_KEY"), b.offer);
   const q = quote(items, { upgradeFromCents, offerActive: !!(offer.ok && offer.active) });
