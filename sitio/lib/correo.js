@@ -19,7 +19,7 @@ function marco(origin, titulo, cuerpo, pre, imagen) {
 <!--[if mso]><style>td,p,a,h1,h2{font-family:Georgia,serif!important}</style><![endif]-->
 <style>@media (max-width:600px){.px{padding-left:20px!important;padding-right:20px!important}.h1{font-size:30px!important}.paso{display:block!important;width:100%!important;padding:0 0 10px!important}}</style></head>
 <body style="margin:0;padding:0;background:${FONDO};-webkit-text-size-adjust:100%">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">${esc(pre)}&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">${esc(pre)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${FONDO}"><tr><td align="center" style="padding:26px 12px 34px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px">
 <tr><td align="center" style="padding:0 0 14px;font-family:${SANS};font-size:12px;letter-spacing:2px;text-transform:uppercase;color:${SUAVE}">Academia PLENA · Menopausia sin tabú</td></tr>
@@ -107,7 +107,7 @@ export async function enviar(to, { subject, html, text }) {
   const info = await tx.sendMail({
     from: { name: env("MAIL_NAME") || "Academia PLENA", address: desde },
     replyTo: soporte(), to, subject, html, text,
-    headers: { "List-Unsubscribe": `<mailto:${soporte()}?subject=Baja>`, "X-Entity-Ref-ID": `${Date.now()}` },
+    headers: { "List-Unsubscribe": `<mailto:${soporte()}?subject=Baja>` },
   });
   return { ok: true, id: info.messageId };
 }
