@@ -18,8 +18,8 @@ export async function conectarWhop(origin, { forzar = false } = {}) {
   if (!key) return { ok: false, error: "Falta WHOP_API_KEY en Vercel." };
   if (await secretoWebhook()) return { ok: true, ya: true };
   const marcas = db().marcas;
-  if (!forzar && !(await marcas.tomar("whop-intento-" + Math.floor(Date.now() / 3600000), { at: Date.now() }))) return { ok: false, pendiente: true };
-  const body = { url: origin.replace(/\/$/, "") + "/api/whop-webhook", events: EVENTOS, api_version: "v1", enabled: true };
+  if (!forzar && !(await marcas.tomar("whop-intento2-" + Math.floor(Date.now() / 3600000), { at: Date.now() }))) return { ok: false, pendiente: true };
+  const body = { url: origin.replace(/\/$/, "") + "/api/whop-webhook", events: EVENTOS, api_version_date: "2026-10-28", enabled: true };
   if (env("WHOP_COMPANY_ID")) body.resource_id = env("WHOP_COMPANY_ID");
   let r, d;
   try {
