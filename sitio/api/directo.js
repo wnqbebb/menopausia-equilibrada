@@ -8,7 +8,7 @@
 import { db } from "../lib/store.js";
 import { filesFor, json, hmac, CURRENCY, BUNDLE_LAUNCH, LIBROS_LAUNCH, envGet as env } from "../lib/catalog.js";
 import { avisarPagado, correoCrearCuenta, enlaceCuenta, origen } from "../lib/cuentas.js";
-import { entregarPagoPorId } from "../lib/whop.js";
+import { entregarPagoPorId, limite } from "../lib/whop.js";
 
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 function claveOk(tipo, k) {
@@ -27,7 +27,7 @@ async function handler(req) {
     const pago = String(url.searchParams.get("pago")).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 60);
     let m = /^(pay|mem)_/.test(pago) ? await db().marcas.get("pago-" + pago) : null;
     // Sin aviso de Whop todavía: se le pregunta a Whop por ese pago y se entrega en el acto.
-    if (!m && pago.startsWith("pay_")) { await entregarPagoPorId(pago, ORIGIN).catch((e) => console.error("directo pago", e.message)); m = await db().marcas.get("pago-" + pago); }
+    if (!m && pago.startsWith("pay_") && (await limite("pago-" + pago, req, 3))) { await entregarPagoPorId(pago, ORIGIN).catch((e) => console.error("directo pago", e.message)); m = await db().marcas.get("pago-" + pago); }
     const rec = m && m.id ? await db().orders.get(m.id) : null;
     if (!rec || rec.status !== "pagado") return json({ paid: false, pending: true });
     const plena = (rec.items || []).includes("todo");
@@ -40,6 +40,7 @@ async function handler(req) {
   }
   if (req.method !== "POST") return json({ error: "Método no permitido." }, 405);
   let b = {}; try { b = await req.json(); } catch { return json({ error: "Datos no válidos." }, 400); }
+  if (!(await limite("directo", req, 5))) return json({ error: "Espera unos segundos e inténtalo de nuevo." }, 429);
   if (b.tipo !== "plena" || !claveOk("plena", String(b.k || ""))) return json({ error: "Este enlace no es válido o ya cambió. Pide uno nuevo por WhatsApp." }, 403);
   const email = String(b.email || "").trim().toLowerCase().slice(0, 254);
   const name = String(b.name || "").trim().slice(0, 80);

@@ -16,7 +16,7 @@ const csvCell = (v) => { const s = String(v ?? ""); return /[",\n;]/.test(s) ? `
 
 async function handler(req) {
   const key = env("ADMIN_KEY");
-  if (!key || req.headers.get("x-admin-key") !== key) return json({ error: "Clave incorrecta." }, 401);
+  if (!key || req.headers.get("x-admin-key") !== key) { await new Promise((r) => setTimeout(r, 1500)); return json({ error: "Clave incorrecta." }, 401); }   // freno a quien adivina claves
   const url = new URL(req.url);
   const ORIGIN = (env("PUBLIC_URL") || url.origin).replace(/\/$/, "");
   const store = db().orders;

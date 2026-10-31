@@ -550,6 +550,7 @@ dialog.lb p{color:#fff;text-align:center;margin-top:10px;font-weight:600}
 .upbox{border:2px solid var(--fucsia);border-radius:20px;padding:16px;display:grid;gap:10px;text-align:left;margin-top:6px;background:#fff}
 .upbox .pill{justify-self:start}
 .upbox p{font-size:14.5px;color:var(--muted)}
+.para{margin:0;background:#FFF5F8;border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:13.5px;line-height:1.5;color:var(--ink)}
 .co .empty .btn{width:100%;margin-top:10px;min-height:50px;font-size:15.5px}
 </style>
 <!-- EMBUDO / MEDICIÓN: pega aquí el código base de tu Píxel de Meta, TikTok o Google (gtag).
@@ -898,6 +899,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
     <div class="prog" aria-hidden="true"><span class="on">1 · Pedido</span><span id="pg2">2 · Tus datos</span><span id="pg3">3 · Pago</span></div>
     <div id="cartLines" class="cart"></div>
     <div id="nudge"></div>
+    <p class="para">💗 <b>Hecho solo para mujeres en perimenopausia y menopausia</b>: si ya tienes síntomas (sofocos, insomnio, cansancio, cambios de ánimo), si estás a punto de entrar o si ya la estás viviendo.</p>
     <div class="sum" aria-live="polite">
       <div id="sSub" hidden><span>Valor por separado</span><span id="sSubV"></span></div>
       <div id="sSave" class="sv2" hidden><span>Tu ahorro</span><span id="sSaveV"></span></div>
@@ -909,7 +911,7 @@ document.addEventListener('error',function(e){var i=e.target;if(!i||i.tagName!==
       <div class="big">¡Gracias!</div>
       <h3>Tu pago está listo 🎉</h3>
       <p id="okMsg">Estamos preparando tu acceso…</p>
-      <div class="spam"><b>📩 Te enviamos tu acceso a tu correo.</b> Si no lo ves en 2 minutos, revisa <b>Spam</b> o <b>Promociones</b> y márcalo como «No es spam».</div>
+      <div class="spam"><b style="display:block;font-size:16.5px;margin-bottom:4px">⚠️ Muy importante: revisa tu carpeta de SPAM</b>Te enviamos tu acceso desde <b>Academia PLENA</b>. Casi siempre llega a <b>Spam</b> o <b>Promociones</b>: ábrelo, toca <b>«No es spam»</b> y entra con el botón del correo.</div>
       <a class="btn btn-p" id="okGo" hidden href="#">Entrar ahora</a>
       <div id="upBox" hidden class="upbox"><span class="pill sun">Solo ahora · antes de irte</span><h3>Suma PLENA por solo USD 7</h3><p>Ya tienes tus 13 libros. Con PLENA los vives paso a paso: 10 módulos, 132 videos, Mi diario, logros y certificado.</p><button type="button" class="btn btn-d" id="upGo">Sí, quiero PLENA · USD 7</button><div id="upCo" class="whopco" hidden></div></div>
     </div>
@@ -1003,11 +1005,11 @@ function render(){
   $$('[data-launch]').forEach(function(e){e.hidden=!L});$$('[data-after]').forEach(function(e){e.hidden=L});
   // pedido
   var lines='';
-  if(q.k==='todo'){lines='<div class="line big"><div class="mini"><img src="/oferta/img/c-pausa.webp" alt=""><img src="/oferta/img/c-guia.webp" alt=""><img src="/oferta/img/c-k1.webp" alt=""></div><div><b>Libros + PLENA</b><small>13 libros + academia PLENA (10 módulos, 132 videos) + Mi diario</small><small><s>Valor USD '+B.value+'</s></small></div><strong>'+usd(b)+'</strong><button type="button" class="rm" data-rm aria-label="Quitar">✕</button></div>'}
+  if(q.k==='todo'){lines='<div class="line big"><div class="mini"><img src="/oferta/img/c-pausa.webp" alt=""><img src="/oferta/img/c-guia.webp" alt=""><img src="/oferta/img/c-k1.webp" alt=""></div><div><b>Libros + PLENA</b><small>Los 13 libros + PLENA, tu academia online de menopausia: 10 módulos, 132 videos, Mi diario, logros y certificado</small><small><s>Valor USD '+B.value+'</s></small></div><strong>'+usd(b)+'</strong><button type="button" class="rm" data-rm aria-label="Quitar">✕</button></div>'}
   else if(q.k==='libros'){lines='<div class="line big"><div class="mini"><img src="/oferta/img/c-pausa.webp" alt=""><img src="/oferta/img/c-guia.webp" alt=""><img src="/oferta/img/c-recetario.webp" alt=""></div><div><b>Biblioteca PAUSA · 13 libros</b><small>PAUSA, Guía Integral, 6 bonos, 3 plantillas y 4 kits en PDF</small><small><s>Valor USD '+B.libValue+'</s></small></div><strong>'+usd(l)+'</strong><button type="button" class="rm" data-rm aria-label="Quitar">✕</button></div>'}
   else{lines='<div class="empty"><p>Elige tu oferta:</p><button type="button" class="btn btn-p" data-buy="todo">Libros + PLENA · '+usd(b)+'</button><button type="button" class="btn btn-g" data-buy="libros">Solo los 13 libros · '+usd(l)+'</button></div>'}
   $('#cartLines').innerHTML=lines;
-  $('#nudge').innerHTML=q.k==='libros'?'<button type="button" class="bump" data-buy="todo"><span class="bx"></span><span><b>Sí, súmame PLENA por solo '+usd(Math.max(0,b-l))+' más <em>Valor USD 29</em></b><small>Tu academia: 10 módulos, 132 videos, Mi diario, logros y certificado. Los 13 libros cobran vida, paso a paso.</small></span></button>':(q.k==='todo'&&cartFrom==='libros'?'<button type="button" class="bump on" data-buy="libros"><span class="bx">✓</span><span><b>PLENA agregada · ¡excelente decisión!</b><small>Toca aquí si prefieres solo los libros (USD '+l+').</small></span></button>':'');
+  $('#nudge').innerHTML=q.k==='libros'?'<button type="button" class="bump" data-buy="todo"><span class="bx"></span><span><b>Sí, súmame PLENA por solo '+usd(Math.max(0,b-l))+' más <em>Valor USD 29</em></b><small><b>¿Qué es PLENA?</b> Tu academia online de menopausia: 10 módulos con lecciones cortas, 132 videos para practicar, Mi diario para registrar tus síntomas y ver tu progreso, logros y certificado. En tu celular y computador, con tu cuenta.</small></span></button>':(q.k==='todo'&&cartFrom==='libros'?'<button type="button" class="bump on" data-buy="libros"><span class="bx">✓</span><span><b>PLENA agregada · ¡excelente decisión!</b><small>Toca aquí si prefieres solo los libros (USD '+l+').</small></span></button>':'');
   $('#sSub').hidden=$('#sSave').hidden=!q.k;
   $('#sSubV').innerHTML='<s>'+usd(q.value)+'</s>';$('#sSaveV').textContent='−'+usd(q.value-q.total);
   $('#sTotal').textContent=usd(q.total);$('#coPayV').textContent=usd(q.total);

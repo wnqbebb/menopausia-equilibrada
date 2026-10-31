@@ -73,3 +73,9 @@ export async function sincronizarPagos(origin, { forzar = false } = {}) {
   }
   return { ok: true, nuevos };
 }
+
+// ---------- Freno contra abusos: como máximo 1 acción por IP cada «seg» segundos ----------
+export function ipDe(req) { return (req.headers.get("x-real-ip") || (req.headers.get("x-forwarded-for") || "").split(",")[0] || "anon").trim().replace(/[^0-9a-fA-F:.]/g, "").slice(0, 45) || "anon"; }
+export async function limite(nombre, req, seg = 10) {
+  return db().marcas.tomar(`rl-${nombre}-${ipDe(req).replace(/[:.]/g, "_")}-${Math.floor(Date.now() / (seg * 1000))}`, { at: Date.now() }).catch(() => true);
+}
