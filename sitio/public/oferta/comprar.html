@@ -97,7 +97,7 @@ $('#f').addEventListener('submit',function(e){
   fetch('/api/checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:n,email:em,phone:t,items:[o],acepta:true,prueba:PR||undefined})})
   .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})})
   .then(function(x){if(!x.ok)throw new Error(x.d.error||'No se pudo continuar.');if(x.d.url){location.href=x.d.url;return}throw new Error('No se pudo abrir el pago. Inténtalo de nuevo.')})
-  .catch(function(ex){fail(ex.message);b.disabled=false});
+  .catch(function(ex){if(!PR){location.href=WHOP[o]+'?email='+encodeURIComponent(em);return}fail(ex.message);b.disabled=false});
 });
 })();
 </script>
