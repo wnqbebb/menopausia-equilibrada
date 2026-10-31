@@ -65,10 +65,15 @@ async function handler(req) {
   if (MEMB.includes(ev.type)) p._membresia = true;
   const pid = String(p.metadata?.pedido || "").replace(/[^a-z0-9]/gi, "");
   if (!pid) return ventaDirecta(p, req);
+  return json(await pagarPedido(pid, p, origen(null, req.url)));
+}
+
+// Pedido creado por la web (lleva metadata.pedido): se marca pagado y se avisa a la clienta.
+export async function pagarPedido(pid, p, ORIGIN) {
   const store = db().orders;
   const rec = await store.get(pid);
-  if (!rec) return json({ ok: true, note: "Pedido no encontrado." });
-  if (rec.status === "pagado") return json({ ok: true, already: true });
+  if (!rec) return { ok: true, note: "Pedido no encontrado." };
+  if (rec.status === "pagado") return { ok: true, already: true };
   const paidCents = p._membresia ? null : toCents(p.usd_total) ?? toCents(p.total) ?? toCents(p.subtotal);
   rec.paymentId = p._membresia ? rec.paymentId || "" : p.id || "";
   if (paidCents != null) rec.paidCents = paidCents;
@@ -80,9 +85,10 @@ async function handler(req) {
   // Si es una mejora a «Todo junto» de alguien que ya tiene cuenta, se le activa PLENA al momento.
   if (rec.status === "pagado") {
     await reflejarEnCuenta(rec).catch((e) => console.error("webhook cuenta", e.message));
-    await avisarPagado(rec, origen(rec, req.url)).catch((e) => console.error("webhook correo", e.message));
+    await avisarPagado(rec, ORIGIN || origen(rec)).catch((e) => console.error("webhook correo", e.message));
   }
-  return json({ ok: true, status: rec.status });
+  if (p.id) await db().marcas.tomar("pago-" + String(p.id).replace(/[^A-Za-z0-9_-]/g, ""), { id: rec.id });
+  return { ok: true, status: rec.status };
 }
 
 // ---------- Ventas hechas directamente en Whop (tienda de Whop o enlace de pago enviado por WhatsApp) ----------
@@ -111,7 +117,7 @@ async function completarDesdeWhop(p) {
   return out;
 }
 
-async function ventaDirecta(p, req) {
+export async function ventaDirecta(p, req, origin) {
   const permitidos = [env("WHOP_PRODUCT_ID"), ...env("WHOP_PRODUCTOS_DIRECTOS").split(",")].map((x) => x.trim()).filter(Boolean);
   const prodLibros = env("WHOP_PRODUCTO_LIBROS").trim();
   const prod = productoDe(p);
@@ -133,7 +139,7 @@ async function ventaDirecta(p, req) {
   if (!correoDe(p)) p = { ...(await completarDesdeWhop(p)), _membresia: p._membresia };
   const email = correoDe(p), now = new Date().toISOString();
   const paidCents = p._membresia ? 0 : toCents(p.usd_total) ?? toCents(p.total) ?? toCents(p.subtotal) ?? 0;
-  const ORIGIN = origen(null, req.url);
+  const ORIGIN = origin || origen(null, req && req.url);
   const rec = {
     v: 2, id: "", createdAt: now, name: nombreDe(p) || (email ? email.split("@")[0] : "Compra en Whop"), email, phone: telefonoDe(p),
     items: soloLibros ? ["libros"] : ["todo"], cents: paidCents, paidCents, currency: CURRENCY, mode: "whop-directo", paymentId: pagoId, origin: ORIGIN,

@@ -31,3 +31,45 @@ export async function conectarWhop(origin, { forzar = false } = {}) {
   await marcas.tomar("whop-secreto", { secret, id: d.id || "", at: Date.now() });
   return { ok: true, creado: true, id: d.id || "" };
 }
+
+// ---------- Sin webhook: el sitio le pregunta a Whop por los pagos (permiso payment:basic:read) ----------
+// Se usa al terminar el pago incrustado (con el id del pago) y cada 2 minutos para los pagos nuevos.
+const api = async (path) => {
+  const key = env("WHOP_API_KEY");
+  if (!key) return null;
+  try { const r = await fetch("https://api.whop.com/api/v1/" + path, { headers: { authorization: `Bearer ${key}` } }); return r.ok ? await r.json() : null; } catch { return null; }
+};
+const pagado = (p) => p && p.status === "paid" && (!p.substatus || p.substatus === "succeeded");
+
+// Entrega un pago de Whop (crea el pedido y envía el correo) si aún no se había entregado.
+export async function entregarPago(p, origin) {
+  if (!pagado(p)) return null;
+  const { pagarPedido, ventaDirecta } = await import("../api/whop-webhook.js");
+  const pid = String(p.metadata?.pedido || "").replace(/[^a-z0-9]/gi, "");
+  if (pid) return pagarPedido(pid, p, origin);
+  const r = await ventaDirecta(p, null, origin);
+  return r && r.json ? r.json() : r;
+}
+
+// Un pago concreto (después del pago incrustado): se pide a Whop y se entrega al momento.
+export async function entregarPagoPorId(id, origin) {
+  if (!/^pay_[A-Za-z0-9]+$/.test(id)) return null;
+  return entregarPago(await api("payments/" + id), origin);
+}
+
+// Revisa los últimos pagos de Whop y entrega los que falten (como máximo una vez cada 2 minutos).
+export async function sincronizarPagos(origin, { forzar = false } = {}) {
+  const cuenta = env("WHOP_COMPANY_ID");
+  if (!env("WHOP_API_KEY") || !cuenta) return { ok: false };
+  if (!forzar && !(await db().marcas.tomar("whop-sync-" + Math.floor(Date.now() / 120000), { at: Date.now() }))) return { ok: true, saltado: true };
+  const d = await api(`payments?account_id=${encodeURIComponent(cuenta)}&first=25`);
+  let nuevos = 0;
+  for (const p of (d && d.data) || []) {
+    if (!pagado(p)) continue;
+    // La lista no siempre trae el correo: se pide el pago completo.
+    const full = p.customer_email ? p : (await api("payments/" + p.id)) || p;
+    const r = await entregarPago(full, origin).catch((e) => { console.error("sync whop", p.id, e.message); return null; });
+    if (r && (r.directa || r.status === "pagado") && !r.already) nuevos++;
+  }
+  return { ok: true, nuevos };
+}

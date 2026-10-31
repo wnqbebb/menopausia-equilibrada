@@ -8,6 +8,7 @@
 import { db } from "../lib/store.js";
 import { filesFor, json, hmac, CURRENCY, BUNDLE_LAUNCH, LIBROS_LAUNCH, envGet as env } from "../lib/catalog.js";
 import { avisarPagado, correoCrearCuenta, enlaceCuenta, origen } from "../lib/cuentas.js";
+import { entregarPagoPorId } from "../lib/whop.js";
 
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[^\s@]{2,}$/;
 function claveOk(tipo, k) {
@@ -24,7 +25,9 @@ async function handler(req) {
   if (req.method === "GET" && url.searchParams.get("pago")) {
     // Después del pago incrustado de Whop: con el id del pago (pay_…) se entrega su acceso en cuanto Whop avisa.
     const pago = String(url.searchParams.get("pago")).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 60);
-    const m = /^(pay|mem)_/.test(pago) ? await db().marcas.get("pago-" + pago) : null;
+    let m = /^(pay|mem)_/.test(pago) ? await db().marcas.get("pago-" + pago) : null;
+    // Sin aviso de Whop todavía: se le pregunta a Whop por ese pago y se entrega en el acto.
+    if (!m && pago.startsWith("pay_")) { await entregarPagoPorId(pago, ORIGIN).catch((e) => console.error("directo pago", e.message)); m = await db().marcas.get("pago-" + pago); }
     const rec = m && m.id ? await db().orders.get(m.id) : null;
     if (!rec || rec.status !== "pagado") return json({ paid: false, pending: true });
     const plena = (rec.items || []).includes("todo");

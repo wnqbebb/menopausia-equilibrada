@@ -6,7 +6,7 @@
 //                                                              | manual (venta por WhatsApp o pago local) | correo (poner el correo de un pedido)
 import { db } from "../lib/store.js";
 import { json, hmac, hasApp, itemsOf, CURRENCY, envGet as env } from "../lib/catalog.js";
-import { conectarWhop } from "../lib/whop.js";
+import { conectarWhop, sincronizarPagos } from "../lib/whop.js";
 import { reflejarEnCuenta, correoBienvenida, correoCrearCuenta, enlaceCuenta, avisarPagado } from "../lib/cuentas.js";
 
 const PAGE_MAX = 200;
@@ -33,6 +33,7 @@ async function handler(req) {
   };
 
   if (req.method === "GET") {
+    await sincronizarPagos(ORIGIN, { forzar: true }).catch((e) => console.error("sync panel", e.message));   // trae las ventas nuevas de Whop
     if (url.searchParams.get("csv")) {
       const recs = await store.all();
       const head = ["fecha", "id", "estado", "nombre", "correo", "telefono", "productos", "total_usd", "modo", "metodo", "pago_id", "entrega", "cuenta", "revocado"];
